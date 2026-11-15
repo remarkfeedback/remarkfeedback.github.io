@@ -1,2 +1,3 @@
-# remarkfeedback.github.io
-Website for Remark, the comment bank add-on for Google Docs
+# Remark
+
+Website for Remark, the comment bank add-on for Google Docs: https://remarkfeedback.github.io
