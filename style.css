@@ -39,3 +39,4 @@ h2{font-size:32px;margin:0 0 24px;letter-spacing:-.5px}
 footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--mut);font-size:14px}
 footer a{color:var(--mut);margin-right:18px}
 @media(max-width:820px){.hero,.feature,.grid3{grid-template-columns:1fr}.hero h1{font-size:38px}nav a{margin-left:12px}}
+.maker{display:flex;align-items:center;gap:8px;margin-bottom:14px;color:var(--mut);font-size:13px}.maker img{border-radius:5px}.maker b{color:var(--txt);font-weight:800;letter-spacing:-.2px}.maker em{font-style:normal;color:var(--or)}
