@@ -93,3 +93,22 @@ a{color:inherit}
   .lines .ln>span{transform:none}
   .sl-wipe{display:none}
 }
+
+/* ---------- opening moment: the flask fills, then the highlighter reveals the page ---------- */
+.sl-intro{position:fixed;inset:0;z-index:998;background:var(--paper,#F6F7F9);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;cursor:pointer}
+.sl-intro svg{width:118px;height:148px;overflow:visible}
+.sl-intro .glass{fill:none;stroke:var(--ink,#0E1525);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:420;stroke-dashoffset:420;animation:slDraw .5s cubic-bezier(.6,.1,.2,1) forwards}
+.sl-intro .lvl{transform:translateY(150px);animation:slFill .85s .4s cubic-bezier(.3,.1,.2,1) forwards}
+.sl-intro .wave{animation:slWave 1.1s linear infinite}
+.sl-intro .wave.back{opacity:.45;animation-duration:1.6s;animation-direction:reverse}
+.sl-intro .bub{fill:#fff;opacity:0;animation:slBub 1s ease-in infinite}
+.sl-intro .bub:nth-of-type(2){animation-delay:.35s}.sl-intro .bub:nth-of-type(3){animation-delay:.7s}
+.sl-intro b{font:900 26px/1 'Schibsted Grotesk',system-ui,sans-serif;letter-spacing:-.04em;color:var(--ink,#0E1525);opacity:0;transform:translateY(10px);animation:slWord .5s .75s cubic-bezier(.2,.7,.2,1) forwards}
+.sl-intro.gone{display:none}
+@keyframes slDraw{to{stroke-dashoffset:0}}
+@keyframes slFill{to{transform:translateY(66px)}}
+@keyframes slWave{to{transform:translateX(-60px)}}
+@keyframes slBub{0%{opacity:0;transform:translateY(0)}20%{opacity:.9}100%{opacity:0;transform:translateY(-34px)}}
+@keyframes slWord{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.sl-intro{display:none}}
+html,body{overflow-x:clip}

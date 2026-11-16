@@ -5,10 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Themely: qualitative coding and thematic analysis in Google Docs</title>
 <meta name="description" content="Code your interviews, group codes into themes and get your findings ready to write up, all inside Google Docs. Built for students and researchers.">
+<link rel="canonical" href="https://survivelabs.co.uk/themely/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Survive Labs">
+<meta property="og:title" content="Themely: qualitative coding and thematic analysis in Google Docs">
+<meta property="og:description" content="Code your interviews, group codes into themes and get your findings ready to write up, all inside Google Docs. Built for students and researchers.">
+<meta property="og:url" content="https://survivelabs.co.uk/themely/">
+<meta property="og:image" content="https://survivelabs.co.uk/assets/og/themely.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://survivelabs.co.uk/assets/og/themely.jpg">
 <link rel="icon" href="/themely/favicon.png">
 <meta name="theme-color" content="#F7FAF8">
 <link rel="stylesheet" href="/assets/sl.css">
 <script src="/assets/sl.js"></script>
+<script src="/assets/try.js" defer></script>
 <style>
 /* Themely's own feel: a researcher's wall. Dotted grid paper, colour-coded highlighters, sticky notes. */
 body{background:#F7FAF8;background-image:radial-gradient(rgba(14,21,37,.09) 1px,transparent 1.2px);background-size:26px 26px}
@@ -154,6 +167,59 @@ body{background:#F7FAF8;background-image:radial-gradient(rgba(14,21,37,.09) 1px,
 .end .chips{position:absolute;right:50px;top:50px;display:flex;flex-direction:column;gap:10px}
 .end .chips span{font:700 22px var(--hand);color:#1d2a26;padding:10px 16px;border-radius:4px;box-shadow:0 12px 24px -12px rgba(0,0,0,.6)}
 @media (max-width:900px){.end .chips{display:none}.end .box{padding:44px 26px}}
+
+/* try it yourself */
+.try{padding:120px 0 40px}
+.try h2{font-size:clamp(40px,5vw,72px);line-height:.98;letter-spacing:-.055em;font-weight:900;margin:0 0 16px;max-width:15ch}
+.try .lede{color:var(--ink2);font-size:19px;line-height:1.5;max-width:54ch;margin:0 0 40px}
+.try .safe{display:inline-flex;align-items:center;gap:8px;font:600 14px var(--sans);color:var(--mut);margin-top:14px}
+.try .safe svg{width:16px;height:16px}
+.tryapp{display:grid;grid-template-columns:minmax(0,1fr) 270px;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 0 0 1px rgba(14,21,37,.07),0 40px 90px -40px rgba(14,21,37,.45)}
+.tryapp .tdoc{padding:30px 40px 30px;min-width:0}
+.tryapp .tdoc h4{font:600 13.5px var(--sans);color:var(--mut);margin:0 0 10px}
+.tryapp [data-paper]{font:400 18px/1.85 var(--doc);outline:none;min-height:200px;border-radius:10px;padding:10px 12px;margin:0 -12px;white-space:pre-wrap;word-wrap:break-word;transition:box-shadow .2s}
+.tryapp [data-paper]:focus{box-shadow:0 0 0 2px var(--mint-soft)}
+.tryapp mark{color:inherit;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone;animation:ink .5s ease-out}
+@keyframes ink{from{background-size:0 100%;filter:saturate(2)}}
+.tryapp .status{font:600 14px var(--sans);color:var(--mut);margin:12px 0 0;min-height:20px}
+.tryapp .status.warn{color:#C2413A}
+.shake{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-5px)}50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}
+.tryapp .tside{background:#F7FAF9;border-left:1px solid var(--rule);padding:20px 16px;display:flex;flex-direction:column;gap:8px;font:500 14px var(--sans)}
+.tryapp .tside .top{display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px;margin-bottom:4px}
+.tryapp .tside .top img{width:18px;height:18px}
+.tryapp [data-codes]{display:flex;flex-direction:column;gap:8px}
+.tryapp .code-btn{all:unset;box-sizing:border-box;cursor:pointer;display:flex;gap:9px;align-items:center;border:1px solid var(--rule);border-radius:10px;padding:10px 11px;background:#fff;font:600 14px var(--sans);transition:border-color .2s,transform .2s}
+.tryapp .code-btn:hover,.tryapp .code-btn:focus-visible{border-color:#0B9E73}
+.tryapp .code-btn:focus-visible{outline:2px solid #0B9E73;outline-offset:2px}
+.tryapp .code-btn i{width:14px;height:14px;border-radius:4px;flex:none}
+.tryapp .code-btn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tryapp .code-btn b{margin-left:auto;color:var(--mut);font-variant-numeric:tabular-nums}
+.tryapp .code-btn.bump b{animation:bump .4s cubic-bezier(.3,1.6,.5,1);color:#0B9E73}
+@keyframes bump{50%{transform:scale(1.6)}}
+.tryapp form{display:flex;gap:6px;margin-top:4px}
+.tryapp form input{flex:1;min-width:0;font:500 14px var(--sans);border:1px dashed #B7C2BE;border-radius:10px;padding:9px 10px;background:transparent}
+.tryapp form button,.tryapp .reset{all:unset;cursor:pointer;font:700 13.5px var(--sans);border-radius:999px;padding:9px 14px;background:var(--ink);color:#fff;text-align:center}
+.tryapp .reset{margin-top:auto;background:none;color:var(--mut);border:1px solid var(--rule)}
+.tryapp form button:focus-visible,.tryapp .reset:focus-visible{outline:2px solid #0B9E73;outline-offset:2px}
+.tryboard{overflow:clip;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-top:22px;padding:22px;border-radius:18px;background:rgba(255,255,255,.6);border:1.5px dashed #C9D3CF;min-height:140px;position:relative}
+.tryboard::before{content:"Your theme board fills up here";position:absolute;inset:0;display:grid;place-items:center;font:700 30px var(--hand);color:#9AA5A1;transition:opacity .3s}
+.tryboard.has::before{opacity:0}
+.tryboard:not(.has) .tcol{visibility:hidden}
+.tryboard .tcol{display:flex;flex-direction:column;gap:8px}
+.tryboard .tcol h6{margin:0 0 2px;font:800 15px var(--sans)}
+.tryboard .tnote{overflow-wrap:anywhere;font:700 19px/1.08 var(--hand);color:#1d2a26;padding:10px 10px 13px;border-radius:4px;box-shadow:0 10px 18px -10px rgba(14,21,37,.45);transform:rotate(var(--r,0deg));animation:fly .55s cubic-bezier(.2,1.3,.4,1)}
+@keyframes fly{from{opacity:0;transform:translateY(-40px) rotate(-10deg) scale(.8)}}
+@media (max-width:900px){
+  .try{padding:80px 0 30px}
+  .tryapp{grid-template-columns:1fr}
+  .tryapp .tdoc{padding:22px 20px}
+  .tryapp [data-paper]{font-size:17px;min-height:0}
+  .tryapp .tside{border-left:0;border-top:1px solid var(--rule)}
+  .tryapp [data-codes]{flex-direction:row;flex-wrap:wrap}
+  .tryapp .code-btn{flex:1 1 130px}
+  .tryboard{grid-template-columns:repeat(2,1fr);padding:16px}
+}
 </style>
 </head>
 <body>
@@ -239,6 +305,28 @@ body{background:#F7FAF8;background-image:radial-gradient(rgba(14,21,37,.09) 1px,
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="try" id="try">
+  <div class="wrap">
+    <h2>Try it on your own interview.</h2>
+    <p class="lede">Use our transcript or paste a few lines of yours. Select a quote, or tap a word, then click a code. Add your own codes too, and watch the theme board fill up.</p>
+    <div class="tryapp" data-try="themely">
+      <div class="tdoc">
+        <h4>Interview 3: money and family</h4>
+        <div data-paper contenteditable="true" spellcheck="false" aria-label="Interview transcript you can edit and code">After the bank froze my account I never really trusted them again. It felt safer to let family deal with money after that. My mum lent me enough to cover rent, which was embarrassing, but I didn't have a choice. Honestly I felt completely powerless, like decisions about my own money were being made by someone else. Now I keep cash at home just in case.</div>
+        <p class="status" data-status aria-live="polite">Select a quote, then click a code.</p>
+      </div>
+      <div class="tside">
+        <div class="top"><img src="/themely/mark.svg" alt="">Themely codes</div>
+        <div data-codes></div>
+        <form data-add><input placeholder="New code, e.g. Shame" maxlength="24" aria-label="New code name"><button>Add</button></form>
+        <button type="button" class="reset" data-reset>Start again</button>
+      </div>
+    </div>
+    <div class="tryboard" data-board aria-label="Theme board"></div>
+    <p class="safe"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 7V5a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="2.5" y="7" width="11" height="8" rx="2" fill="currentColor"/></svg>Nothing you type here leaves your browser.</p>
   </div>
 </section>
 

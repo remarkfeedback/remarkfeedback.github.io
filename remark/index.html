@@ -5,10 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Remark: comment bank and marking codes for Google Docs</title>
 <meta name="description" content="Remark is a comment bank and marking code add-on for Google Docs, built for UK teachers. Click a comment and it goes into the student's work, highlighted, with their name.">
+<link rel="canonical" href="https://survivelabs.co.uk/remark/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Survive Labs">
+<meta property="og:title" content="Remark: comment bank and marking codes for Google Docs">
+<meta property="og:description" content="Remark is a comment bank and marking code add-on for Google Docs, built for UK teachers. Click a comment and it goes into the student's work, highlighted, with their name.">
+<meta property="og:url" content="https://survivelabs.co.uk/remark/">
+<meta property="og:image" content="https://survivelabs.co.uk/assets/og/remark.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://survivelabs.co.uk/assets/og/remark.jpg">
 <link rel="icon" href="/favicon.png">
 <meta name="theme-color" content="#141518">
 <link rel="stylesheet" href="/assets/sl.css">
 <script src="/assets/sl.js"></script>
+<script src="/assets/try.js" defer></script>
 <style>
 /* Remark's own feel: a teacher's desk at night. Charcoal paper, faint exercise-book lines, an orange marking pen. */
 body{background:var(--charcoal);color:var(--chalk)}
@@ -142,6 +155,65 @@ body{background:var(--charcoal);color:var(--chalk)}
 .get a{color:#fff}
 .get .pdf{margin-top:28px;font-size:16px;opacity:.9}
 @media (max-width:720px){.get .box{padding:44px 26px}}
+
+/* try it yourself */
+.try{padding:120px 0 130px;position:relative}
+.try h2{font-size:clamp(40px,5vw,72px);line-height:.98;letter-spacing:-.055em;font-weight:900;margin:0 0 16px;color:#fff;max-width:14ch}
+.try .lede{color:#B9BCC4;font-size:19px;line-height:1.5;max-width:52ch;margin:0 0 40px}
+.try .safe{display:inline-flex;align-items:center;gap:8px;font:600 14px var(--sans);color:#8E929C;margin-top:14px}
+.try .safe svg{width:16px;height:16px}
+.tryapp{display:grid;grid-template-columns:minmax(0,1fr) 290px;border-radius:18px;overflow:hidden;background:#fff;color:#1F2330;box-shadow:0 0 0 1px rgba(255,255,255,.06),0 50px 110px -40px rgba(0,0,0,.8)}
+.tryapp .doc{padding:30px 40px 34px;min-width:0}
+.tryapp .who{display:flex;align-items:center;gap:10px;font:500 13.5px var(--sans);color:#6D7385;margin-bottom:12px}
+.tryapp .who input{font:600 14px var(--sans);border:1px solid #DCE0E7;border-radius:8px;padding:6px 10px;width:130px;color:#1F2330}
+.tryapp [data-paper]{font:400 18px/1.85 var(--doc);outline:none;min-height:230px;border-radius:10px;padding:10px 12px;margin:0 -12px;transition:box-shadow .2s;white-space:pre-wrap;word-wrap:break-word}
+.tryapp [data-paper]:focus{box-shadow:0 0 0 2px #FFD6BD}
+.tryapp mark{background:#FFD6BD;color:inherit;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.tryapp mark.code-q{background:none;text-decoration:underline wavy var(--pen) 1.5px;text-underline-offset:4px}
+.tryapp .ins{font:600 14px/1.5 var(--sans);background:#FFD6BD;color:#8a3a0c;border-radius:3px;padding:1px 6px;white-space:normal}
+.tryapp .code{font:800 15px var(--sans);color:var(--pen-deep);transform:none}
+.tryapp .code.pop{display:inline-block;animation:pop .45s cubic-bezier(.3,1.6,.5,1)}
+.tryapp .ins.pop{animation:inkin .6s ease-out}
+@keyframes inkin{from{opacity:0;background:#FF6A1F;color:#fff}}
+.tryapp .sumbox.pop{animation:pop .45s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{transform:scale(.4);opacity:0}}
+.tryapp .key{margin-top:16px;border-radius:8px;overflow:hidden;font:500 13px/1.4 var(--sans);border:1px solid #E1E3EA;opacity:1;transform:none}
+.tryapp .sumbox{margin-top:12px;border:1px solid #E1E3EA;border-radius:10px;overflow:hidden;font:500 13.5px/1.45 var(--sans);white-space:normal}
+.tryapp .sumbox div{display:grid;grid-template-columns:90px 1fr;border-top:1px solid #EEF0F4}
+.tryapp .sumbox div:first-child{border:0}
+.tryapp .sumbox b{background:#FFF1E8;color:#8a3a0c;padding:8px 12px}
+.tryapp .sumbox span{padding:8px 12px}
+.tryapp .status{font:600 14px var(--sans);color:#6D7385;margin-top:14px;min-height:20px}
+.tryapp .status.warn{color:var(--pen-deep)}
+.shake{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-5px)}50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}
+.tryapp .rail{background:#1E2026;color:#ECECEF;padding:20px 16px;display:flex;flex-direction:column;gap:8px;font:500 14px/1.35 var(--sans)}
+.tryapp .rail .top{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px}
+.tryapp .rail .top i{width:10px;height:10px;border-radius:50%;background:var(--pen)}
+.tryapp .seg{display:flex;background:#141518;border-radius:10px;padding:3px;margin:4px 0 4px}
+.tryapp .seg button{flex:1;border:0;background:none;color:#8E929C;font:700 13px var(--sans);padding:8px;border-radius:8px;cursor:pointer}
+.tryapp .seg button.on{background:#2E3038;color:#fff}
+.tryapp .rail .list{display:flex;flex-direction:column;gap:8px}
+.tryapp .rail .list[hidden]{display:none}
+.tryapp .pick{all:unset;box-sizing:border-box;cursor:pointer;border:1px solid #3A3D46;border-radius:10px;padding:10px 11px;transition:border-color .2s,background .2s,transform .2s;font:500 14px/1.35 var(--sans)}
+.tryapp .pick:hover,.tryapp .pick:focus-visible{border-color:var(--pen);background:rgba(255,106,31,.12)}
+.tryapp .pick:active{transform:scale(.97)}
+.tryapp .pick small{display:block;color:#8E929C;font-size:12px;margin-top:2px}
+.tryapp .rail .list.codes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.tryapp .rail .list.codes[hidden]{display:none}
+.tryapp .codes .pick{text-align:center;padding:10px 0;font-weight:800;color:var(--pen)}
+.tryapp .rail .foot{margin-top:auto;display:flex;flex-direction:column;gap:8px;padding-top:8px}
+.tryapp .btn-s{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;font:700 14px var(--sans);border-radius:999px;padding:10px 14px;background:var(--pen);color:#fff}
+.tryapp .btn-s.ghost{background:none;color:#B9BCC4;border:1px solid #3A3D46}
+.tryapp .btn-s:focus-visible,.tryapp .pick:focus-visible,.tryapp .seg button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+@media (max-width:900px){
+  .try{padding:80px 0 90px}
+  .tryapp{grid-template-columns:1fr}
+  .tryapp .doc{padding:22px 20px 24px}
+  .tryapp [data-paper]{font-size:17px;min-height:0}
+  .tryapp .rail .list:not(.codes){flex-direction:row;flex-wrap:wrap}
+  .tryapp .rail .list:not(.codes) .pick{flex:1 1 140px}
+  .tryapp .rail .foot{flex-direction:row}.tryapp .btn-s{flex:1}
+}
 </style>
 </head>
 <body class="book">
@@ -203,6 +275,41 @@ body{background:var(--charcoal);color:var(--chalk)}
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="try" id="try">
+  <div class="wrap">
+    <h2>Try it on your own words.</h2>
+    <p class="lede">Use our essay or paste in your own. Select a few words, or just tap one, then click a comment. The student's name goes in for you.</p>
+    <div class="tryapp" data-try="remark">
+      <div class="doc">
+        <label class="who">Student's first name <input data-name value="Jordan" maxlength="20" autocomplete="off"></label>
+        <div data-paper contenteditable="true" spellcheck="false" aria-label="Essay you can edit and mark">Shakespeare presents ambition as dangerous from the start. When Macbeth hears the witches, he immediately thinks about murder, which shows how quickly ambition takes hold. Lady macbeth calls on spirits to unsex her this shows she wants power so much she will give up her feminitity. By the end, Macbeth says life is "a tale told by an idiot", and his ambition has left him with nothing.</div>
+        <div class="key" data-key hidden></div>
+        <p class="status" data-status aria-live="polite">Select some words, then click a comment.</p>
+      </div>
+      <div class="rail">
+        <div class="top"><i></i>Remark</div>
+        <div class="seg" role="group" aria-label="What to add"><button type="button" class="on" data-mode="comment" data-keep>Comments</button><button type="button" data-mode="code" data-keep>Marking codes</button></div>
+        <div class="list" data-list="comment">
+          <button type="button" class="pick" data-keep data-type="www" data-short="You back up your points with evidence." data-comment="a strong point, backed up with evidence.">WWW: strong point, backed up with evidence<small>English</small></button>
+          <button type="button" class="pick" data-keep data-type="ebi" data-short="Explain how your evidence proves your point." data-comment="explain how this quotation proves your point.">EBI: explain how your evidence proves your point<small>English</small></button>
+          <button type="button" class="pick" data-keep data-type="ebi" data-short="Look closely at the writer's language." data-comment="zoom in on one word here. What does it suggest?">EBI: zoom in on the language<small>English</small></button>
+          <button type="button" class="pick" data-keep data-type="www" data-short="You track ideas across the whole text." data-comment="good link to the end of the play.">WWW: good link across the text<small>English</small></button>
+        </div>
+        <div class="list codes" data-list="code" hidden>
+          <button type="button" class="pick" data-keep data-code="Sp" data-meaning="Check your spelling">Sp</button>
+          <button type="button" class="pick" data-keep data-code="C" data-meaning="Capital letter needed">C</button>
+          <button type="button" class="pick" data-keep data-code="P" data-meaning="Punctuation missing">P</button>
+          <button type="button" class="pick" data-keep data-code="//" data-meaning="Start a new paragraph">//</button>
+          <button type="button" class="pick" data-keep data-code="Ev" data-meaning="Add evidence">Ev</button>
+          <button type="button" class="pick" data-keep data-code="?" data-meaning="Meaning unclear">?</button>
+        </div>
+        <div class="foot"><button type="button" class="btn-s" data-summary>Add a summary</button><button type="button" class="btn-s ghost" data-reset>Start again</button></div>
+      </div>
+    </div>
+    <p class="safe"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 7V5a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="2.5" y="7" width="11" height="8" rx="2" fill="currentColor"/></svg>Nothing you type here leaves your browser.</p>
   </div>
 </section>
 

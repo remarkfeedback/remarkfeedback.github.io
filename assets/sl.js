@@ -58,10 +58,11 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     measure(document);
-    document.querySelectorAll('[data-in]').forEach(el => {
+    const reveal = () => document.querySelectorAll('[data-in]').forEach(el => {
       // anything already on screen when the page opens plays straight away
       if (reduce || el.getBoundingClientRect().top < innerHeight) el.classList.add('is-in'); else io.observe(el);
     });
+    if (SL.introDone) SL.introDone.then(reveal); else reveal();
     document.querySelectorAll('[data-count]').forEach(el => countIO.observe(el));
     document.querySelectorAll('[data-scene]').forEach(s => scenes.push(s));
     addEventListener('scroll', onScroll, { passive: true });
@@ -83,6 +84,32 @@
     wipe.classList.remove('cover'); wipe.classList.add('out');
   })));
   addEventListener('pageshow', e => { if (e.persisted) wipe.className = 'sl-wipe'; });
+
+  // ---------- opening moment: once per visit, on the main pages ----------
+  let seen = true; try { seen = sessionStorage.getItem('sl-intro') === '1'; sessionStorage.setItem('sl-intro', '1'); } catch (e) {}
+  if (!reduce && !arriving && !seen && /^\/(remark\/|themely\/|tools\/)?(index\.html)?$/.test(location.pathname)) {
+    const intro = document.createElement('div');
+    intro.className = 'sl-intro'; intro.setAttribute('aria-hidden', 'true');
+    const wave = y => `M-60 ${y} q15 -7 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 V200 H-60 Z`;
+    intro.innerHTML = `<svg viewBox="0 0 120 150"><defs><clipPath id="slFlask"><path d="M50 8 V54 L17 122 Q10 141 30 141 H90 Q110 141 103 122 L70 54 V8 Z"/></clipPath></defs>
+      <g clip-path="url(#slFlask)"><g class="lvl"><path class="wave back" fill="#FFB27F" d="${wave(-4)}"/><path class="wave" fill="#FF6A1F" d="${wave(0)}"/>
+      <circle class="bub" cx="46" cy="40" r="3"/><circle class="bub" cx="66" cy="52" r="2.4"/><circle class="bub" cx="56" cy="46" r="2"/></g></g>
+      <path class="glass" d="M42 8 H78 M50 8 V54 L17 122 Q10 141 30 141 H90 Q110 141 103 122 L70 54 V8"/></svg><b>Survive Labs</b>`;
+    document.documentElement.appendChild(intro);
+    let done; SL.introDone = new Promise(r => done = r);
+    let ended = false;
+    const finish = () => {
+      if (ended) return; ended = true;
+      wipe.className = 'sl-wipe in';
+      setTimeout(() => {
+        intro.classList.add('gone'); wipe.className = 'sl-wipe cover'; done();
+        requestAnimationFrame(() => requestAnimationFrame(() => { wipe.className = 'sl-wipe out'; }));
+      }, 560);
+    };
+    const t = setTimeout(finish, 1500);
+    intro.addEventListener('click', () => { clearTimeout(t); finish(); });
+    addEventListener('keydown', () => { clearTimeout(t); finish(); }, { once: true });
+  }
 
   document.addEventListener('click', e => {
     const a = e.target.closest('a');
