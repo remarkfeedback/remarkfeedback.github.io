@@ -52,8 +52,8 @@ a{color:inherit}
 .hl.full{background-size:0% 100%;background-position:0 50%}
 .hl.full.is-in{background-size:100% 100%}
 /* Hand-drawn SVG strokes: circles, underlines, ticks, arrows */
-.draw path,.draw line,.draw polyline,.draw ellipse{fill:none;stroke:var(--draw-c,var(--pen));stroke-width:var(--draw-w,3.2);stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:var(--len,600);stroke-dashoffset:var(--len,600);transition:stroke-dashoffset var(--dur,1.1s) var(--ease) var(--d,0s)}
-.draw.is-in path,.draw.is-in line,.draw.is-in polyline,.draw.is-in ellipse{stroke-dashoffset:0}
+.draw path,.draw line,.draw polyline,.draw ellipse{fill:none;stroke:var(--draw-c,var(--pen));stroke-width:var(--draw-w,3.2);stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:var(--len,600) 99999;stroke-dashoffset:var(--len,600)}
+.draw.is-in path,.draw.is-in line,.draw.is-in polyline,.draw.is-in ellipse{stroke-dashoffset:0;transition:stroke-dashoffset var(--dur,1.1s) var(--ease) var(--d,0s)}
 .note-hand{font:700 26px/1.05 var(--hand);color:var(--pen);opacity:0;transform:translateY(6px) rotate(-4deg);transition:opacity .6s var(--ease) var(--d,0s),transform .6s var(--ease) var(--d,0s)}
 .note-hand.is-in{opacity:1;transform:rotate(-4deg)}
 .rise{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease) var(--d,0s),transform .9s var(--ease) var(--d,0s)}

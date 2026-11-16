@@ -11,7 +11,7 @@
 
   // measure SVG strokes so they can draw themselves
   const measure = root => root.querySelectorAll('.draw path,.draw line,.draw polyline,.draw ellipse').forEach(p => {
-    try { p.style.setProperty('--len', Math.ceil(p.getTotalLength()) + 1); } catch (e) {}
+    try { const l = p.getTotalLength(); if (l > 2) p.style.setProperty('--len', Math.ceil(l) + 1); } catch (e) {}
   });
 
   // reveal on scroll
