@@ -3,71 +3,283 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Survive Labs: simple tools for Google Docs, teachers and students</title>
-<meta name="description" content="Survive Labs makes small, useful tools: Remark, a comment bank for teachers in Google Docs, and Themely, qualitative coding for students and researchers.">
+<title>Survive Labs: Google Docs add-ons for marking and thematic analysis</title>
+<meta name="description" content="Survive Labs makes Remark, a comment bank for teachers marking in Google Docs, and Themely, qualitative coding and thematic analysis for students and researchers.">
 <link rel="icon" href="favicon.png">
 <meta name="google-site-verification" content="W26_NwPSglJv8in8tf-RuLKVjtuJWu3MGSEznaRsvjc" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
 <style>
-  :root { --ink:#1E2A47; --mut:#5B6478; --line:#E4E6EC; --bg:#FAFAF7; }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
-  a { color:var(--ink); }
-  .wrap { max-width:980px; margin:0 auto; padding:0 22px; }
-  header .wrap { display:flex; align-items:center; gap:12px; height:72px; }
-  header img { width:34px; height:34px; border-radius:8px; }
-  header b { font-size:21px; letter-spacing:-.3px; }
-  .hero { padding:56px 0 30px; }
-  .hero h1 { font-size:44px; line-height:1.1; letter-spacing:-1px; margin:0 0 14px; }
-  .hero p { font-size:20px; color:var(--mut); margin:0; max-width:640px; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; padding:30px 0 50px; }
-  .card { background:#fff; border:1px solid var(--line); border-radius:16px; padding:26px; display:flex; flex-direction:column; }
-  .tag { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--mut); }
-  .card h2 { margin:6px 0 8px; font-size:26px; }
-  .card p { margin:0 0 18px; color:#3d465c; flex:1; }
-  .btn { display:inline-block; align-self:flex-start; background:var(--ink); color:#fff; font-weight:700; padding:11px 20px; border-radius:999px; text-decoration:none; }
-  .remark { border-top:5px solid #E8590C; }
-  .themely { border-top:5px solid #63E6BE; }
-  .tools { border-top:5px solid #FFD43B; }
-  .links { font-size:14px; margin-top:12px; color:var(--mut); }
-  .links a { color:var(--mut); margin-right:12px; }
-  footer { border-top:1px solid var(--line); padding:26px 0 40px; color:var(--mut); font-size:14px; }
-  footer a { color:var(--mut); }
-  @media (max-width:600px) { .hero h1 { font-size:34px; } }
+:root{
+  --desk:#E8EDF4; --paper:#FFFFFF; --ink:#13213C; --mut:#56627A; --rule:#D3DAE5;
+  --hl:#FFE15A; --or:#F26B1D; --or-soft:#FFD9C2;
+  --sky:#9ED2FA; --mint:#9BEBCB; --rose:#FBC4C4;
+  --ui:"Bricolage Grotesque",system-ui,sans-serif; --doc:"Newsreader",Georgia,serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--desk);color:var(--ink);font:400 18px/1.55 var(--ui);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--or);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;height:84px}
+.mark{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800;font-size:21px;letter-spacing:-.4px}
+.mark img{width:36px;height:36px;border-radius:9px}
+.top nav{display:flex;gap:28px;font-size:16px}
+.top nav a{text-decoration:none;color:var(--mut)}
+.top nav a:hover{color:var(--ink)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center;padding:36px 0 96px}
+.hero h1{font-size:clamp(44px,5.6vw,76px);line-height:.98;letter-spacing:-.045em;font-weight:800;margin:0 0 26px;font-variation-settings:"opsz" 96}
+.hero p{font-size:20px;color:var(--mut);margin:0 0 32px;max-width:30em}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:10px;font:700 17px var(--ui);text-decoration:none;padding:15px 24px;border-radius:12px;border:2px solid var(--ink);cursor:pointer;background:var(--ink);color:#fff}
+.btn.line{background:transparent;color:var(--ink)}
+.btn:hover{transform:translateY(-1px)}
+
+/* live document */
+.desk{position:relative}
+.modes{display:inline-flex;background:#D7DEE9;border-radius:14px;padding:5px;margin-bottom:16px}
+.modes button{font:600 15px var(--ui);border:0;background:transparent;color:var(--mut);padding:10px 16px;border-radius:10px;cursor:pointer}
+.modes button[aria-selected="true"]{background:var(--paper);color:var(--ink);box-shadow:0 1px 2px rgba(19,33,60,.12)}
+.sheet{display:grid;grid-template-columns:minmax(0,1fr) 220px;background:var(--paper);border-radius:6px;box-shadow:0 1px 0 var(--rule),0 30px 60px -28px rgba(19,33,60,.35);min-height:440px;overflow:hidden}
+.page{padding:38px 40px 34px;font:400 17px/1.75 var(--doc);color:#1d2433}
+.page h3{font:500 22px/1.25 var(--doc);margin:0 0 4px}
+.page .meta{font:500 13px var(--ui);color:var(--mut);margin:0 0 18px}
+.page p{margin:0 0 12px}
+.page .q{font-style:normal}
+.t{border-radius:3px;transition:background-color .45s ease,box-shadow .45s ease;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.t.on{padding:1px 0}
+.t.or{background:var(--or-soft)}
+.t.sky{background:var(--sky)} .t.mint{background:var(--mint)} .t.rose{background:var(--rose)}
+.note{display:inline;font:600 14px/1.5 var(--ui);background:var(--or-soft);color:#7a3108;border-radius:3px;padding:1px 4px;margin-left:4px;animation:pop .35s ease both}
+@keyframes pop{from{opacity:0}to{opacity:1}}
+.rail{background:#F6F8FB;border-left:1px solid var(--rule);padding:22px 16px;font:500 14px/1.35 var(--ui);display:flex;flex-direction:column;gap:8px}
+.rail h4{font:700 15px var(--ui);margin:0 0 4px;display:flex;align-items:center;gap:8px}
+.rail h4 i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.rail .hint{color:var(--mut);font-size:13px;margin:0 0 6px}
+.chip{display:flex;align-items:center;gap:10px;text-align:left;width:100%;font:500 14px/1.3 var(--ui);color:var(--ink);background:#fff;border:1px solid var(--rule);border-radius:9px;padding:10px 11px;cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip:disabled{opacity:.45;cursor:default;border-color:var(--rule)}
+.chip .sw{width:14px;height:14px;border-radius:4px;flex:none}
+.chip .n{margin-left:auto;color:var(--mut);font-variant-numeric:tabular-nums}
+.reset{margin-top:auto;font:600 13px var(--ui);background:none;border:0;color:var(--mut);text-decoration:underline;cursor:pointer;align-self:flex-start;padding:6px 0}
+.hero .caption{font-size:15px;color:var(--mut);margin:14px 2px 0;max-width:none}
+
+/* products */
+.products{background:var(--paper);padding:110px 0 40px}
+.prod{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:72px;align-items:center;padding:0 0 110px}
+.prod.flip{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}
+.prod.flip .shot{order:2}
+.shot{border-radius:14px;overflow:hidden;border:1px solid var(--rule);box-shadow:0 30px 60px -34px rgba(19,33,60,.4);background:#fff}
+.shot .bar{height:30px;background:#F1F3F7;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:6px;padding:0 12px}
+.shot .bar i{width:9px;height:9px;border-radius:50%;background:#CDD4DF}
+.who{display:flex;align-items:center;gap:12px;font-weight:600;color:var(--mut);margin:0 0 14px;font-size:16px}
+.who .dot{width:14px;height:14px;border-radius:4px}
+.prod h2{font-size:clamp(40px,4.4vw,58px);letter-spacing:-.04em;line-height:1;margin:0 0 18px;font-weight:800}
+.prod p.lead{font-size:20px;color:#3a4560;margin:0 0 22px;max-width:30em}
+.prod ul{list-style:none;padding:0;margin:0 0 26px;display:grid;gap:10px}
+.prod li{padding-left:28px;position:relative}
+.prod li::before{content:"";position:absolute;left:0;top:.5em;width:16px;height:9px;border-radius:2px}
+.remark li::before{background:var(--or-soft)}
+.themely li::before{background:var(--mint)}
+.price{font-size:16px;color:var(--mut);margin:0 0 24px}
+.price b{color:var(--ink)}
+.small-links{font-size:15px;color:var(--mut);margin-top:16px;display:flex;gap:18px}
+
+/* tools */
+.tools{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;border-top:1px solid var(--rule);padding:44px 0 90px}
+.tools img{width:132px;border-radius:10px;border:1px solid var(--rule)}
+.tools h3{font-size:26px;letter-spacing:-.02em;margin:0 0 4px}
+.tools p{margin:0;color:var(--mut)}
+
+/* privacy */
+.trust{background:var(--ink);color:#fff;padding:100px 0}
+.trust .wrap{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:64px;align-items:start}
+.trust h2{font-size:clamp(36px,4vw,52px);line-height:1.04;letter-spacing:-.035em;margin:0;font-weight:800}
+.trust p{color:#C7CFDE;margin:0 0 16px;font-size:18px}
+.trust a{color:#fff}
+
+footer{padding:40px 0 56px;color:var(--mut);font-size:15px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 40px;justify-content:space-between}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 22px}
+footer nav a{text-decoration:none}
+footer nav a:hover{text-decoration:underline}
+
+@media (max-width:960px){
+  .hero,.prod,.prod.flip,.trust .wrap{grid-template-columns:1fr;gap:40px}
+  .prod.flip .shot{order:0}
+  .hero{padding-bottom:70px}
+}
+@media (max-width:640px){
+  .top nav{display:none}
+  .sheet{grid-template-columns:1fr}
+  .rail{border-left:0;border-top:1px solid var(--rule)}
+  .page{padding:26px 22px}
+  .tools{grid-template-columns:1fr}
+  .wrap{padding:0 20px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<header><div class="wrap"><img src="sl-icon.png" alt=""><b>Survive Labs</b></div></header>
 
 <div class="wrap">
-  <div class="hero">
-    <h1>Small tools that save you hours.</h1>
-    <p>Survive Labs makes simple, affordable add-ons and tools for teachers, students and small sellers in the UK.</p>
-  </div>
+  <header class="top">
+    <a class="mark" href="./"><img src="sl-icon.png" alt="">Survive Labs</a>
+    <nav aria-label="Main"><a href="#remark">Remark</a><a href="#themely">Themely</a><a href="tools/">Free tools</a><a href="mailto:hello@survivelabs.co.uk">Contact</a></nav>
+  </header>
 
-  <div class="grid">
-    <div class="card remark">
-      <span class="tag">For teachers</span>
-      <h2>Remark</h2>
-      <p>A comment bank and marking codes for Google Docs. Click a comment and it goes into the student's work, highlighted, with their name.</p>
-      <a class="btn" href="remark/">About Remark</a>
-      <div class="links"><a href="remark/privacy.html">Privacy</a><a href="remark/terms.html">Terms</a><a href="remark/support.html">Support</a></div>
+  <section class="hero">
+    <div>
+      <h1>The slow part of your work, done in a click.</h1>
+      <p>Survive Labs makes add-ons for Google Docs. Remark gives teachers a comment bank for marking. Themely helps students code interviews and find themes. Try both on the page.</p>
+      <div class="cta"><a class="btn" href="#remark">For teachers</a><a class="btn line" href="#themely">For students</a></div>
     </div>
-    <div class="card themely">
-      <span class="tag">For students &amp; researchers</span>
-      <h2>Themely</h2>
-      <p>Qualitative coding and thematic analysis in Google Docs. Tag quotes, group codes into themes and get a findings report.</p>
-      <a class="btn" href="themely/">About Themely</a>
-      <div class="links"><a href="themely/privacy.html">Privacy</a><a href="themely/terms.html">Terms</a><a href="themely/#help">Help</a></div>
+
+    <div class="desk">
+      <div class="modes" role="tablist" aria-label="Choose a demo">
+        <button role="tab" id="tab-remark" aria-selected="true" aria-controls="sheet">Mark an essay</button>
+        <button role="tab" id="tab-themely" aria-selected="false" aria-controls="sheet">Code an interview</button>
+      </div>
+      <div class="sheet" id="sheet" role="tabpanel" aria-live="polite"></div>
+      <p class="caption" id="caption"></p>
     </div>
-    <div class="card tools">
-      <span class="tag">For resellers</span>
-      <h2>Free tools</h2>
-      <p>A free price and profit calculator for Vinted, eBay, Depop and Etsy sellers, for Excel and Google Sheets.</p>
-      <a class="btn" href="tools/">Get the calculator</a>
-    </div>
-  </div>
+  </section>
 </div>
 
-<footer><div class="wrap">© 2026 Survive Labs · United Kingdom · <a href="mailto:hello@survivelabs.co.uk">hello@survivelabs.co.uk</a></div></footer>
+<main class="products">
+  <div class="wrap">
+    <article class="prod remark" id="remark">
+      <div class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="comment.jpg" alt="Remark's sidebar in Google Docs, inserting a highlighted feedback comment into a student essay" loading="lazy"></div>
+      <div>
+        <p class="who"><span class="dot" style="background:var(--or)"></span>For teachers</p>
+        <h2>Remark</h2>
+        <p class="lead">A comment bank that lives next to the essay. Click a comment and it goes into the student's work, highlighted and addressed to them by name.</p>
+        <ul>
+          <li>SPaG, WWW / EBI and subject comment banks, ready to use</li>
+          <li>Marking codes with a key that builds itself as you mark</li>
+          <li>Summary boxes and DIRT tasks at the end of each piece</li>
+        </ul>
+        <p class="price"><b>Free to use.</b> Pro £19 a year. Whole school £99 a year.</p>
+        <a class="btn" href="remark/">See how Remark works</a>
+        <div class="small-links"><a href="remark/privacy.html">Privacy</a><a href="remark/terms.html">Terms</a><a href="remark/support.html">Support</a></div>
+      </div>
+    </article>
+
+    <article class="prod flip themely" id="themely">
+      <div class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="assets/themely-codes.jpg" alt="Themely's sidebar in Google Docs, with interview quotes highlighted in the colour of their code" loading="lazy"></div>
+      <div>
+        <p class="who"><span class="dot" style="background:#3DD9AC"></span>For students and researchers</p>
+        <h2>Themely</h2>
+        <p class="lead">Qualitative coding without leaving Google Docs. Highlight a quote, click a code, and build up your themes as you go.</p>
+        <ul>
+          <li>Group codes into themes and add a note to any quote</li>
+          <li>Send every interview to one Google Sheet, with counts for each code</li>
+          <li>Get a findings report with every theme and supporting quote</li>
+        </ul>
+        <p class="price"><b>Free for 3 interviews.</b> Dissertation Pass £9 for 6 months, or £19 a year.</p>
+        <a class="btn" href="themely/">See how Themely works</a>
+        <div class="small-links"><a href="themely/privacy.html">Privacy</a><a href="themely/terms.html">Terms</a><a href="themely/#help">Help</a></div>
+      </div>
+    </article>
+
+    <section class="tools" aria-labelledby="tools-h">
+      <img src="tools/calculator.png" alt="">
+      <div><h3 id="tools-h">Selling on Vinted, eBay or Depop?</h3><p>Our free price and profit calculator works out fees, postage and what you actually take home.</p></div>
+      <a class="btn line" href="tools/">Get the calculator</a>
+    </section>
+  </div>
+</main>
+
+<section class="trust" aria-labelledby="trust-h">
+  <div class="wrap">
+    <h2 id="trust-h">Your students' work and your interviews stay in your Google account.</h2>
+    <div>
+      <p>Remark and Themely run inside Google Docs. Essays, transcripts, quotes and notes stay in your own Docs, Sheets and Drive. We have no servers or database that hold them.</p>
+      <p>The only thing that leaves Google is your email address, sent to Stripe to check whether you've paid for Pro.</p>
+      <p>Questions? <a href="mailto:hello@survivelabs.co.uk">hello@survivelabs.co.uk</a></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Survive Labs, United Kingdom</span>
+    <nav aria-label="Legal"><a href="remark/privacy.html">Remark privacy</a><a href="remark/terms.html">Remark terms</a><a href="themely/privacy.html">Themely privacy</a><a href="themely/terms.html">Themely terms</a><a href="mailto:hello@survivelabs.co.uk">Contact</a></nav>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const demos = {
+    remark: {
+      caption: 'Click a comment and Remark adds it to the essay, highlighted and addressed to the student.',
+      html: `<div class="page"><h3>How does Shakespeare present ambition in Macbeth?</h3><p class="meta">Jordan Smith, Year 10</p>
+        <p>Shakespeare presents ambition as dangerous from the start. <span class="t" data-k="0">When Macbeth hears the witches, he immediately thinks about murder, which shows how quickly ambition takes hold.</span></p>
+        <p>Lady Macbeth calls on spirits to "unsex me here". <span class="t" data-k="1">This shows she is very ambitous and wants power.</span></p>
+        <p><span class="t" data-k="2">By the end, Macbeth says life is "a tale told by an idiot".</span> His ambition has left him with nothing.</p></div>`,
+      rail: `<h4><i style="background:var(--or)"></i>Remark</h4><p class="hint">Click a comment to add it.</p>`,
+      items: [
+        { label: 'Strong point, backed up with evidence', note: 'Jordan, a strong point, backed up with evidence.' },
+        { label: 'Check spelling: ambitious', note: 'Jordan, check your spelling: ambitious.' },
+        { label: 'Explain the language', note: 'Jordan, explain what the word "idiot" shows about his state of mind.' }
+      ]
+    },
+    themely: {
+      caption: 'Click a code and Themely tags the quote in its colour. Counts add up as you go.',
+      html: `<div class="page"><h3>Interview: money and family</h3><p class="meta">Participant 3 (fictional)</p>
+        <p><b>Interviewer:</b> How do you manage your household money?</p>
+        <p><b>P3:</b> After what happened with the bank I <span class="t" data-k="0">never really trusted them again</span>, so <span class="t" data-k="1">it felt safer to let family deal with it</span>.</p>
+        <p><b>P3:</b> They froze my account for two weeks. I felt <span class="t" data-k="2">completely powerless, like nobody was listening</span>.</p></div>`,
+      rail: `<h4><i style="background:#3DD9AC"></i>Themely</h4><p class="hint">Your codes</p>`,
+      items: [
+        { label: 'Trust in institutions', cls: 'sky', sw: 'var(--sky)' },
+        { label: 'Family support', cls: 'mint', sw: 'var(--mint)' },
+        { label: 'Loss of control', cls: 'rose', sw: 'var(--rose)' }
+      ]
+    }
+  };
+  const sheet = document.getElementById('sheet'), cap = document.getElementById('caption');
+  const tabs = { remark: document.getElementById('tab-remark'), themely: document.getElementById('tab-themely') };
+  let mode = 'remark', autoplayed = false;
+
+  function apply(i, btn) {
+    const d = demos[mode], span = sheet.querySelector(`.t[data-k="${i}"]`);
+    if (!span || span.classList.contains('on')) return;
+    span.classList.add('on', mode === 'remark' ? 'or' : d.items[i].cls);
+    if (mode === 'remark') {
+      const n = document.createElement('span'); n.className = 'note'; n.textContent = d.items[i].note; span.after(n);
+    } else {
+      const c = btn.querySelector('.n'); c.textContent = String(Number(c.textContent) + 1);
+    }
+    btn.disabled = true;
+  }
+  function render(m) {
+    mode = m; const d = demos[m];
+    Object.entries(tabs).forEach(([k, b]) => b.setAttribute('aria-selected', String(k === m)));
+    sheet.innerHTML = d.html + `<div class="rail">${d.rail}` + d.items.map((it, i) =>
+      `<button class="chip" data-i="${i}">${it.sw ? `<span class="sw" style="background:${it.sw}"></span>` : ''}<span>${it.label}</span>${it.sw ? '<span class="n">0</span>' : ''}</button>`).join('') +
+      `<button class="reset" type="button">Start again</button></div>`;
+    cap.textContent = d.caption;
+    sheet.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => apply(Number(b.dataset.i), b)));
+    sheet.querySelector('.reset').addEventListener('click', () => render(mode));
+  }
+  tabs.remark.addEventListener('click', () => render('remark'));
+  tabs.themely.addEventListener('click', () => render('themely'));
+  Object.values(tabs).forEach(b => b.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { const next = mode === 'remark' ? 'themely' : 'remark'; render(next); tabs[next].focus(); }
+  }));
+  render('remark');
+  // One gentle moment on load: the first comment goes in by itself, so visitors see what to do.
+  if (!reduce && !autoplayed) { autoplayed = true; setTimeout(() => { const b = sheet.querySelector('.chip'); if (b && mode === 'remark') apply(0, b); }, 1200); }
+})();
+</script>
 </body>
 </html>
