@@ -3,65 +3,71 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Remark: comment bank & marking codes for Google Docs</title>
-<meta name="description" content="Remark is a comment bank and marking code add-on for Google Docs, built for UK teachers.">
-<link rel="stylesheet" href="style.css">
+<title>Survive Labs: simple tools for Google Docs, teachers and students</title>
+<meta name="description" content="Survive Labs makes small, useful tools: Remark, a comment bank for teachers in Google Docs, and Themely, qualitative coding for students and researchers.">
 <link rel="icon" href="favicon.png">
 <meta name="google-site-verification" content="W26_NwPSglJv8in8tf-RuLKVjtuJWu3MGSEznaRsvjc" />
+<style>
+  :root { --ink:#1E2A47; --mut:#5B6478; --line:#E4E6EC; --bg:#FAFAF7; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  a { color:var(--ink); }
+  .wrap { max-width:980px; margin:0 auto; padding:0 22px; }
+  header .wrap { display:flex; align-items:center; gap:12px; height:72px; }
+  header img { width:34px; height:34px; border-radius:8px; }
+  header b { font-size:21px; letter-spacing:-.3px; }
+  .hero { padding:56px 0 30px; }
+  .hero h1 { font-size:44px; line-height:1.1; letter-spacing:-1px; margin:0 0 14px; }
+  .hero p { font-size:20px; color:var(--mut); margin:0; max-width:640px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; padding:30px 0 50px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:16px; padding:26px; display:flex; flex-direction:column; }
+  .tag { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--mut); }
+  .card h2 { margin:6px 0 8px; font-size:26px; }
+  .card p { margin:0 0 18px; color:#3d465c; flex:1; }
+  .btn { display:inline-block; align-self:flex-start; background:var(--ink); color:#fff; font-weight:700; padding:11px 20px; border-radius:999px; text-decoration:none; }
+  .remark { border-top:5px solid #E8590C; }
+  .themely { border-top:5px solid #63E6BE; }
+  .tools { border-top:5px solid #FFD43B; }
+  .links { font-size:14px; margin-top:12px; color:var(--mut); }
+  .links a { color:var(--mut); margin-right:12px; }
+  footer { border-top:1px solid var(--line); padding:26px 0 40px; color:var(--mut); font-size:14px; }
+  footer a { color:var(--mut); }
+  @media (max-width:600px) { .hero h1 { font-size:34px; } }
+</style>
 </head>
 <body>
-<header><div class="wrap"><a class="brand" href="index.html"><i></i>Remark</a>
-<nav><a href="index.html#features">Features</a><a href="index.html#pricing">Pricing</a><a href="support.html">Support</a></nav></div></header>
+<header><div class="wrap"><img src="sl-icon.png" alt=""><b>Survive Labs</b></div></header>
 
 <div class="wrap">
-<div class="hero">
-  <div>
-    <h1>Written feedback in <span>one click</span>.</h1>
-    <p>Remark is a comment bank for Google Docs, built for UK teachers. Click a comment and it goes into the student's work, highlighted, with their name. Marking codes, a code key that builds itself, and WWW / EBI / DIRT summary boxes come with it.</p>
-    <a class="btn" href="#install">Get Remark free</a><a class="btn ghost" href="#features">See how it works</a>
-    <p class="small">Free to use. Pro from £19 a year. Works in Google Docs on any computer.</p>
+  <div class="hero">
+    <h1>Small tools that save you hours.</h1>
+    <p>Survive Labs makes simple, affordable add-ons and tools for teachers, students and small sellers in the UK.</p>
   </div>
-  <img class="shot" src="comment.jpg" alt="Remark sidebar inserting a highlighted feedback comment into a student essay in Google Docs">
+
+  <div class="grid">
+    <div class="card remark">
+      <span class="tag">For teachers</span>
+      <h2>Remark</h2>
+      <p>A comment bank and marking codes for Google Docs. Click a comment and it goes into the student's work, highlighted, with their name.</p>
+      <a class="btn" href="remark/">About Remark</a>
+      <div class="links"><a href="remark/privacy.html">Privacy</a><a href="remark/terms.html">Terms</a><a href="remark/support.html">Support</a></div>
+    </div>
+    <div class="card themely">
+      <span class="tag">For students &amp; researchers</span>
+      <h2>Themely</h2>
+      <p>Qualitative coding and thematic analysis in Google Docs. Tag quotes, group codes into themes and get a findings report.</p>
+      <a class="btn" href="themely/">About Themely</a>
+      <div class="links"><a href="themely/privacy.html">Privacy</a><a href="themely/terms.html">Terms</a><a href="themely/#help">Help</a></div>
+    </div>
+    <div class="card tools">
+      <span class="tag">For resellers</span>
+      <h2>Free tools</h2>
+      <p>A free price and profit calculator for Vinted, eBay, Depop and Etsy sellers, for Excel and Google Sheets.</p>
+      <a class="btn" href="tools/">Get the calculator</a>
+    </div>
+  </div>
 </div>
-</div>
 
-<section id="features"><div class="wrap">
-  <h2>Everything you type over and over, ready to click</h2>
-  <div class="grid3">
-    <div class="card"><h3><span class="dot">●</span> Comment bank</h3><p>Ready-made SPaG, WWW and EBI comments, searchable, with varied wording so 30 students don't get 30 identical comments.</p></div>
-    <div class="card"><h3><span class="dot">●</span> Marking codes</h3><p>Sp, P, C, G, //, Ev, Ex and more, in bold orange. A key explaining every code used appears at the end of the work and updates itself.</p></div>
-    <div class="card"><h3><span class="dot">●</span> Summary box</h3><p>What Went Well, Even Better If, a target and a DIRT task in one tidy table, with a space for the student's response.</p></div>
-    <div class="card"><h3><span class="dot">●</span> Student names</h3><p>Remark reads the name from the document title, so comments say “Great effort, Jordan” without you typing it.</p></div>
-    <div class="card"><h3><span class="dot">●</span> Your own comments</h3><p>Save the comments you write most. Pro users can share a whole bank with their department in one line.</p></div>
-    <div class="card"><h3><span class="dot">●</span> Re-teach report</h3><p>Pro shows which comments you gave most across a class set, so you know exactly what to re-teach.</p></div>
-  </div>
-  <div class="feature">
-    <img class="shot" src="codes.jpg" alt="Marking codes in a student essay with an automatic marking code key">
-    <div><h3>Marking codes with a key that builds itself</h3><p>Drop a code where the cursor is. Remark adds a key at the end of the document explaining every code you used, so students know exactly what to fix during DIRT time.</p></div>
-  </div>
-  <div class="feature">
-    <div><h3>A feedback summary in seconds</h3><p>Pick strengths and next steps from the bank or type your own, choose a DIRT task, and Remark adds a neat summary table addressed to the student.</p></div>
-    <img class="shot" src="summary.jpg" alt="Feedback summary table with What went well, Even better if, Target and DIRT task">
-  </div>
-</div></section>
-
-<section id="pricing"><div class="wrap">
-  <h2>Pricing</h2>
-  <div class="grid3">
-    <div class="card"><h3>Free</h3><div class="price">£0</div><ul><li>SPaG and WWW / EBI comment banks</li><li>15 marking codes and automatic key</li><li>Summary boxes and DIRT tasks</li><li>Up to 15 of your own comments</li></ul></div>
-    <div class="card hl"><h3>Pro</h3><div class="price">£19 <small>/ year</small></div><ul><li>Everything in Free</li><li>GCSE English, History, Science and Humanities banks</li><li>Re-teach report</li><li>Unlimited custom comments and bank sharing</li></ul></div>
-    <div class="card"><h3>Whole school</h3><div class="price">£99 <small>/ year</small></div><ul><li>Pro for every teacher on your school's email domain</li><li>One payment, no per-seat admin</li></ul></div>
-  </div>
-  <p class="small">Licences last 12 months and do not renew automatically. Payments are handled securely by Stripe.</p>
-</div></section>
-
-<section id="install"><div class="wrap">
-  <h2>Get Remark</h2>
-  <div class="card"><p>In Google Docs, open <strong>Extensions → Add-ons → Get add-ons</strong>, search for <strong>Remark</strong> and click <strong>Install</strong>. Then open any document and choose <strong>Extensions → Remark → Open Remark</strong>.</p></div>
-  <p class="small">Don't use Google Docs? <a href="free-marking-codes-and-comment-bank.pdf">Download the free printable marking codes poster and comment bank (PDF)</a>.</p>
-</div></section>
-
-<footer><div class="wrap"><div class="maker"><span>Made by</span><img src="sl-icon.png" alt="" width="22" height="22"><b>SURVIVE <em>LABS</em></b></div><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms</a><a href="support.html">Support</a>
-<p>Remark is an independent add-on and is not affiliated with Google. Google Docs™ is a trademark of Google LLC.</p></div></footer>
+<footer><div class="wrap">© 2026 Survive Labs · United Kingdom · <a href="mailto:hello@survivelabs.co.uk">hello@survivelabs.co.uk</a></div></footer>
 </body>
 </html>
