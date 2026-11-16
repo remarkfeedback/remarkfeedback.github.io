@@ -32,7 +32,7 @@ a{color:inherit}
 .sl-nav.on-dark nav a:hover,.sl-nav.on-dark nav a[aria-current="page"]{background:rgba(255,255,255,.1)}
 .sl-nav nav a.sl-contact{opacity:1;background:var(--ink);color:#fff;margin-left:6px}
 .sl-nav.on-dark nav a.sl-contact{background:var(--chalk);color:var(--charcoal)}
-@media (max-width:720px){.sl-nav nav a.opt{display:none}.sl-nav nav a{padding:8px 10px;font-size:14px}.sl-logo span{display:none}}
+@media (max-width:720px){.sl-nav{padding:6px 6px 6px 10px;gap:8px}.sl-nav nav{gap:0}.sl-nav nav a.opt{display:none}.sl-nav nav a{padding:7px 9px;font-size:13.5px}.sl-nav nav a.sl-contact{margin-left:4px;padding:7px 12px}.sl-logo span{display:none}}
 
 /* ---------- buttons ---------- */
 .btn{display:inline-flex;align-items:center;gap:10px;font:700 17px var(--sans);text-decoration:none;padding:15px 26px;border-radius:999px;background:var(--ink);color:#fff;border:0;cursor:pointer;position:relative;overflow:hidden;isolation:isolate;transition:transform .25s var(--ease)}

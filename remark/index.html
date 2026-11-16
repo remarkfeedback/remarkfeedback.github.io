@@ -22,7 +22,7 @@ body{background:var(--charcoal);color:var(--chalk)}
 .hero .wrap{position:relative}
 .hero .brandline{display:flex;align-items:center;gap:12px;font:700 20px var(--sans);margin:0 0 26px;color:#fff}
 .hero .brandline i{width:14px;height:14px;border-radius:50%;background:var(--pen);box-shadow:0 0 0 6px rgba(255,106,31,.18)}
-.hero h1{font-size:clamp(58px,9vw,136px);line-height:.92;letter-spacing:-.06em;font-weight:900;margin:0;color:#fff;max-width:11ch}
+.hero h1{font-size:clamp(46px,9vw,136px);line-height:.92;letter-spacing:-.06em;font-weight:900;margin:0;color:#fff;max-width:11ch}
 .hero .itick{display:inline-block;width:.62em;height:.5em;margin-left:.12em;vertical-align:.05em;overflow:visible}
 .hero .tickmark{position:absolute;right:28px;top:250px}
 .hero .tickmark .note-hand{font-size:40px;white-space:nowrap}
@@ -128,10 +128,10 @@ body{background:var(--charcoal);color:var(--chalk)}
 .tier.best h3,.tier.best .amt{color:var(--charcoal)}
 .tier.best ul{color:#3A3F4C}
 .tier.best .amt small{color:#6D7385}
-.tier .ring{position:absolute;left:12px;top:-22px;width:200px;height:120px;pointer-events:none}
-.tier .ring .note-hand{position:absolute;right:-90px;top:0;font-size:30px;white-space:nowrap}
+.tier .ringed{position:relative;display:inline-block;margin-right:12px}.tier .ring{position:absolute;left:-26px;right:-22px;top:-20px;bottom:-16px;pointer-events:none}.tier .ring svg{width:100%;height:100%;overflow:visible}
+.tier .tnote{position:absolute;right:16px;top:-30px;font-size:28px;color:var(--pen);white-space:nowrap;transform:rotate(-3deg)}
 .price .fine{margin-top:26px;color:#A3A6AF;font-size:15px}
-@media (max-width:860px){.tiers{grid-template-columns:1fr}.tier .ring .note-hand{right:-40px}}
+@media (max-width:860px){.tiers{grid-template-columns:1fr}.tier .tnote{font-size:24px;top:-26px}}
 
 /* get it */
 .get{padding:110px 0 140px}
@@ -155,7 +155,7 @@ body{background:var(--charcoal);color:var(--chalk)}
 <section class="hero">
   <div class="wrap">
     <p class="brandline rise" data-in><i></i>Remark</p>
-    <h1 class="lines" data-in><span class="ln"><span>Written feedback</span></span><span class="ln"><span style="--d:.12s">in <span class="hl" data-in style="--d:1.2s">one click.</span><svg class="draw itick" data-in viewBox="0 0 100 80" aria-hidden="true" style="--d:1.6s;--dur:.8s;--draw-w:9"><path d="M10 44 L 36 70 L 92 8"/></svg></span></span></h1>
+    <h1 class="lines" data-in><span class="ln"><span>Written feedback</span></span><span class="ln"><span style="--d:.12s">in <span style="white-space:nowrap"><span class="hl" data-in style="--d:1.2s">one click.</span><svg class="draw itick" data-in viewBox="0 0 100 80" aria-hidden="true" style="--d:1.6s;--dur:.8s;--draw-w:9"><path d="M10 44 L 36 70 L 92 8"/></svg></span></span></span></h1>
     <div class="tickmark" aria-hidden="true"><span class="note-hand" data-in style="--d:2.2s">great effort, Jordan</span></div>
     <p class="lede dim rise" data-in style="--d:.5s">Remark is a comment bank for Google Docs, built for UK teachers. Click a comment and it goes into the student's work, highlighted, with their name.</p>
     <div class="ctas rise" data-in style="--d:.65s"><a class="btn pen" href="#get">Get Remark free</a><a class="btn line chalk" href="#how">See how it works</a></div>
@@ -241,8 +241,8 @@ body{background:var(--charcoal);color:var(--chalk)}
     <div class="tiers">
       <div class="tier rise" data-in><h3>Free</h3><p class="amt">£0</p><ul><li>SPaG and WWW / EBI comment banks</li><li>15 marking codes and automatic key</li><li>Summary boxes and DIRT tasks</li><li>Up to 15 of your own comments</li></ul></div>
       <div class="tier best rise" data-in style="--d:.1s">
-        <div class="ring" aria-hidden="true"><svg class="draw" data-in viewBox="0 0 200 120" preserveAspectRatio="none" style="--d:.9s;--dur:1s"><path d="M30 60 C 30 20, 170 10, 186 50 C 200 90, 60 110, 22 76"/></svg><span class="note-hand" data-in style="--d:1.6s">most teachers pick this</span></div>
-        <h3>Pro</h3><p class="amt">£19<small> / year</small></p><ul><li>Everything in Free</li><li>GCSE English, History, Science and Humanities banks</li><li>Re-teach report</li><li>Unlimited custom comments and bank sharing</li></ul></div>
+        <span class="tnote note-hand" data-in style="--d:1.6s" aria-hidden="true">most teachers pick this</span>
+        <h3>Pro</h3><p class="amt"><span class="ringed">£19<span class="ring" aria-hidden="true"><svg class="draw" data-in viewBox="0 0 220 150" style="--d:.9s;--dur:1s"><path d="M165 18 C 126 4, 50 8, 22 40 C 0 66, 10 116, 60 134 C 110 150, 187 140, 211 100 C 225 74, 209 30, 165 16 C 148 12, 132 12, 118 16"/></svg></span></span><small> / year</small></p><ul><li>Everything in Free</li><li>GCSE English, History, Science and Humanities banks</li><li>Re-teach report</li><li>Unlimited custom comments and bank sharing</li></ul></div>
       <div class="tier rise" data-in style="--d:.2s"><h3>Whole school</h3><p class="amt">£99<small> / year</small></p><ul><li>Pro for every teacher on your school's email domain</li><li>One payment, no per-seat admin</li></ul></div>
     </div>
     <p class="fine">Licences last 12 months and do not renew automatically. Payments are handled securely by Stripe.</p>
