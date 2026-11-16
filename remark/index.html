@@ -3,64 +3,302 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Remark: comment bank & marking codes for Google Docs</title>
-<meta name="description" content="Remark is a comment bank and marking code add-on for Google Docs, built for UK teachers.">
-<link rel="stylesheet" href="../style.css">
-<link rel="icon" href="../favicon.png">
+<title>Remark: comment bank and marking codes for Google Docs</title>
+<meta name="description" content="Remark is a comment bank and marking code add-on for Google Docs, built for UK teachers. Click a comment and it goes into the student's work, highlighted, with their name.">
+<link rel="icon" href="/favicon.png">
+<meta name="theme-color" content="#141518">
+<link rel="stylesheet" href="/assets/sl.css">
+<script src="/assets/sl.js"></script>
+<style>
+/* Remark's own feel: a teacher's desk at night. Charcoal paper, faint exercise-book lines, an orange marking pen. */
+body{background:var(--charcoal);color:var(--chalk)}
+.book{background-image:linear-gradient(90deg,transparent 0,transparent 74px,rgba(255,106,31,.35) 74px,rgba(255,106,31,.35) 76px,transparent 76px),repeating-linear-gradient(180deg,transparent 0,transparent 39px,rgba(255,255,255,.045) 39px,rgba(255,255,255,.045) 40px)}
+@media (max-width:720px){.book{background-image:repeating-linear-gradient(180deg,transparent 0,transparent 39px,rgba(255,255,255,.045) 39px,rgba(255,255,255,.045) 40px)}}
+.dim{color:#A3A6AF}
+.hl{--hl-c:#E8590C}
+
+/* hero */
+.hero{padding:180px 0 110px;position:relative}
+.hero .wrap{position:relative}
+.hero .brandline{display:flex;align-items:center;gap:12px;font:700 20px var(--sans);margin:0 0 26px;color:#fff}
+.hero .brandline i{width:14px;height:14px;border-radius:50%;background:var(--pen);box-shadow:0 0 0 6px rgba(255,106,31,.18)}
+.hero h1{font-size:clamp(58px,9vw,136px);line-height:.92;letter-spacing:-.06em;font-weight:900;margin:0;color:#fff;max-width:11ch}
+.hero .itick{display:inline-block;width:.62em;height:.5em;margin-left:.12em;vertical-align:.05em;overflow:visible}
+.hero .tickmark{position:absolute;right:28px;top:250px}
+.hero .tickmark .note-hand{font-size:40px;white-space:nowrap}
+.hero .lede{font-size:clamp(20px,2vw,24px);line-height:1.45;max-width:36ch;margin:36px 0 34px;font-weight:500}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.hero .small{margin:20px 0 0;font-size:15px}
+.btn.chalk{background:var(--chalk);color:var(--charcoal)}
+.btn.line.chalk{background:transparent;color:var(--chalk)}
+@media (max-width:980px){.hero .tickmark{display:none}}
+
+/* how it works: pinned scene, one step at a time */
+.how{height:520vh;position:relative}
+.how .pin{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:56px;align-items:center;padding:90px max(28px,calc((100vw - 1180px)/2 + 28px)) 40px}
+.how h2{font-size:clamp(36px,3.6vw,52px);line-height:1;letter-spacing:-.045em;font-weight:900;margin:0 0 30px;color:#fff}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:6px;counter-reset:s}
+.steps li{position:relative;padding:14px 16px 14px 58px;border-radius:14px;color:#7C808B;transition:color .4s,background .4s;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:16px;top:14px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:800 14px var(--sans);border:2px solid #4A4D57;transition:all .4s}
+.steps li b{display:block;font-size:20px;letter-spacing:-.02em;color:inherit}
+.steps li span{font-size:15.5px;line-height:1.4;display:block;margin-top:4px;max-height:0;overflow:hidden;opacity:0;transition:max-height .5s var(--ease),opacity .4s}
+.steps li.on{color:#fff;background:rgba(255,255,255,.04)}
+.steps li.on::before{background:var(--pen);border-color:var(--pen);color:#fff}
+.steps li.on span{max-height:80px;opacity:1;color:#B9BCC4}
+.steps li.done::before{border-color:var(--pen);color:var(--pen)}
+.bar{height:3px;border-radius:3px;background:#2E3038;margin-top:22px;overflow:hidden}
+.bar i{display:block;height:100%;width:calc(var(--p,0)*100%);background:var(--pen)}
+
+/* the product, built in code */
+.app{border-radius:18px;overflow:hidden;background:#fff;color:#1F2330;box-shadow:0 0 0 1px rgba(255,255,255,.06),0 50px 110px -40px rgba(0,0,0,.8),0 0 120px -30px rgba(255,106,31,.25);display:grid;grid-template-columns:minmax(0,1fr) 250px;height:min(620px,76vh)}
+.app .paper{position:relative;padding:44px 50px;font:400 17px/1.85 var(--doc);overflow:hidden}
+.app .paper h4{font:500 22px/1.3 var(--doc);margin:0 0 2px}
+.app .paper .m{font:500 12.5px var(--sans);color:#6D7385;margin:0 0 14px}
+.app .paper p{margin:0 0 10px}
+.app .q{border-radius:3px;transition:background .4s;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.app .q.on{background:#FFD6BD}
+.app .ins{font:600 14px/1.5 var(--sans);background:#FFD6BD;color:#8a3a0c;border-radius:3px;padding:1px 5px}
+.code{font:800 15px var(--sans);color:var(--pen-deep);display:inline-block;transform:scale(0);transition:transform .45s cubic-bezier(.3,1.6,.5,1)}
+.code.on{transform:scale(1)}
+.key{margin-top:14px;border-radius:8px;overflow:hidden;font:500 13px/1.4 var(--sans);border:1px solid #E1E3EA;opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s}
+.key.on{opacity:1;transform:none}
+.key div{padding:7px 12px;border-top:1px solid #EEF0F4}
+.key div:first-child{background:#1F2330;color:#fff;font-weight:700;border:0}
+.key div b{color:var(--pen-deep);margin-right:8px}
+.sum{position:absolute;left:50px;right:50px;bottom:28px;border-radius:10px;overflow:hidden;font:500 13.5px/1.45 var(--sans);box-shadow:0 14px 40px -16px rgba(0,0,0,.35);transform:translateY(130%);transition:transform .7s var(--ease);background:#fff;border:1px solid #E1E3EA}
+.sum.on{transform:none}
+.sum .row{display:grid;grid-template-columns:110px 1fr;border-top:1px solid #EEF0F4}
+.sum .row:first-child{border:0}
+.sum .row b{background:#FFF1E8;color:#8a3a0c;padding:8px 12px;font-weight:700}
+.sum .row span{padding:8px 12px}
+.app .rail{background:#1E2026;color:#ECECEF;padding:20px 14px;display:flex;flex-direction:column;gap:8px;font:500 13.5px/1.35 var(--sans)}
+.app .rail .top{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px;margin-bottom:2px}
+.app .rail .top i{width:10px;height:10px;border-radius:50%;background:var(--pen)}
+.app .rail .tabs{display:flex;gap:12px;font-size:12px;color:#8E929C;border-bottom:1px solid #33363F;padding-bottom:8px;margin-bottom:4px}
+.app .rail .tabs span.on{color:var(--pen);font-weight:700}
+.app .rail .c{border:1px solid #3A3D46;border-radius:10px;padding:9px 10px;transition:border-color .3s,background .3s,transform .3s}
+.app .rail .c.on{border-color:var(--pen);background:rgba(255,106,31,.14);transform:translateX(-4px)}
+.app .rail .c small{display:block;color:#8E929C;margin-top:3px;font-size:11.5px}
+.app .rail .codes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.app .rail .codes span{border:1px solid #3A3D46;border-radius:8px;text-align:center;padding:8px 0;font-weight:800;color:var(--pen)}
+.app .rail .codes span.on{background:rgba(255,106,31,.18);border-color:var(--pen)}
+.panelset>div{display:none}.panelset>div.on{display:flex;flex-direction:column;gap:8px}
+@media (max-width:900px){
+  .how{height:auto}.how .pin{position:relative;height:auto;grid-template-columns:1fr;padding-top:40px;padding-bottom:80px}
+  .app{grid-template-columns:1fr;height:auto}.app .rail{display:none}.app .paper{padding:26px 22px 160px}
+  .sum{left:16px;right:16px}
+}
+
+/* benefits */
+.why{padding:140px 0 60px}
+.why h2,.pro h2,.price h2,.get h2{font-size:clamp(40px,5vw,72px);line-height:.98;letter-spacing:-.055em;font-weight:900;margin:0 0 50px;color:#fff;max-width:14ch}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:var(--charcoal2);border-radius:24px;padding:34px 30px;position:relative;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.card svg{width:52px;height:44px;margin-bottom:18px}
+.card h3{font-size:24px;line-height:1.15;letter-spacing:-.03em;margin:0 0 10px;color:#fff}
+.card p{margin:0;color:#A3A6AF;font-size:17px}
+@media (max-width:860px){.cards{grid-template-columns:1fr}}
+
+/* re-teach report */
+.pro{padding:110px 0}
+.pro .grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:60px;align-items:center}
+.pro h2{margin-bottom:20px}
+.pro p{font-size:20px;color:#B9BCC4;max-width:32ch}
+.tag{display:inline-block;background:var(--pen);color:#fff;font:800 13px var(--sans);border-radius:999px;padding:4px 12px;margin-bottom:18px}
+.chart{background:#fff;color:#1F2330;border-radius:20px;padding:30px 30px 24px;box-shadow:0 40px 90px -40px rgba(0,0,0,.8)}
+.chart h4{margin:0 0 4px;font-size:18px}
+.chart .m{margin:0 0 22px;color:#6D7385;font-size:14px}
+.chart .r{display:grid;grid-template-columns:200px 1fr 34px;gap:14px;align-items:center;margin:0 0 13px;font-size:14px}
+.chart .r .b{height:14px;border-radius:7px;background:#F1F2F6;overflow:hidden}
+.chart .r .b i{display:block;height:100%;width:var(--w);background:var(--pen);border-radius:7px;transform:scaleX(0);transform-origin:left;transition:transform 1.1s var(--ease) var(--d,0s)}
+.chart.is-in .r .b i{transform:scaleX(1)}
+.chart .r em{font-style:normal;font-weight:700;text-align:right}
+@media (max-width:860px){.pro .grid{grid-template-columns:1fr}.chart .r{grid-template-columns:120px 1fr 28px}}
+
+/* pricing */
+.price{padding:110px 0}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+.tier{background:var(--charcoal2);border-radius:26px;padding:36px 32px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);position:relative}
+.tier h3{margin:0 0 6px;font-size:22px;color:#fff}
+.tier .amt{font-size:64px;font-weight:900;letter-spacing:-.05em;line-height:1;color:#fff;margin:14px 0 4px}
+.tier .amt small{font-size:17px;font-weight:600;color:#A3A6AF;letter-spacing:0}
+.tier ul{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:10px;color:#C4C7CE;font-size:16px}
+.tier li::before{content:"";display:inline-block;width:14px;height:8px;border-left:3px solid var(--pen);border-bottom:3px solid var(--pen);transform:rotate(-45deg) translateY(-3px);margin-right:12px}
+.tier.best{background:#fff;color:var(--charcoal)}
+.tier.best h3,.tier.best .amt{color:var(--charcoal)}
+.tier.best ul{color:#3A3F4C}
+.tier.best .amt small{color:#6D7385}
+.tier .ring{position:absolute;left:12px;top:-22px;width:200px;height:120px;pointer-events:none}
+.tier .ring .note-hand{position:absolute;right:-90px;top:0;font-size:30px;white-space:nowrap}
+.price .fine{margin-top:26px;color:#A3A6AF;font-size:15px}
+@media (max-width:860px){.tiers{grid-template-columns:1fr}.tier .ring .note-hand{right:-40px}}
+
+/* get it */
+.get{padding:110px 0 140px}
+.get .box{background:var(--pen);color:#fff;border-radius:32px;padding:70px 60px;position:relative;overflow:hidden}
+.get h2{color:#fff;margin-bottom:22px}
+.get p{font-size:20px;max-width:46ch;margin:0 0 14px}
+.get kbd{font:700 17px var(--sans);background:rgba(0,0,0,.18);border-radius:8px;padding:2px 8px}
+.get a{color:#fff}
+.get .pdf{margin-top:28px;font-size:16px;opacity:.9}
+@media (max-width:720px){.get .box{padding:44px 26px}}
+</style>
 </head>
-<body>
-<header><div class="wrap"><a class="brand" href="index.html"><i></i>Remark</a>
-<nav><a href="index.html#features">Features</a><a href="index.html#pricing">Pricing</a><a href="support.html">Support</a></nav></div></header>
+<body class="book">
 
-<div class="wrap">
-<div class="hero">
-  <div>
-    <h1>Written feedback in <span>one click</span>.</h1>
-    <p>Remark is a comment bank for Google Docs, built for UK teachers. Click a comment and it goes into the student's work, highlighted, with their name. Marking codes, a code key that builds itself, and WWW / EBI / DIRT summary boxes come with it.</p>
-    <a class="btn" href="#install">Get Remark free</a><a class="btn ghost" href="#features">See how it works</a>
-    <p class="small">Free to use. Pro from £19 a year. Works in Google Docs on any computer.</p>
-  </div>
-  <img class="shot" src="../comment.jpg" alt="Remark sidebar inserting a highlighted feedback comment into a student essay in Google Docs">
-</div>
-</div>
+<header class="sl-nav on-dark" data-always-dark>
+  <a class="sl-logo" href="/"><img src="/sl-icon.png" alt=""><span>Survive Labs</span></a>
+  <nav aria-label="Main"><a href="/remark/" aria-current="page">Remark</a><a href="/themely/">Themely</a><a class="opt" href="/remark/support.html">Support</a><a class="sl-contact" href="#get">Get Remark</a></nav>
+</header>
 
-<section id="features"><div class="wrap">
-  <h2>Everything you type over and over, ready to click</h2>
-  <div class="grid3">
-    <div class="card"><h3><span class="dot">●</span> Comment bank</h3><p>Ready-made SPaG, WWW and EBI comments, searchable, with varied wording so 30 students don't get 30 identical comments.</p></div>
-    <div class="card"><h3><span class="dot">●</span> Marking codes</h3><p>Sp, P, C, G, //, Ev, Ex and more, in bold orange. A key explaining every code used appears at the end of the work and updates itself.</p></div>
-    <div class="card"><h3><span class="dot">●</span> Summary box</h3><p>What Went Well, Even Better If, a target and a DIRT task in one tidy table, with a space for the student's response.</p></div>
-    <div class="card"><h3><span class="dot">●</span> Student names</h3><p>Remark reads the name from the document title, so comments say “Great effort, Jordan” without you typing it.</p></div>
-    <div class="card"><h3><span class="dot">●</span> Your own comments</h3><p>Save the comments you write most. Pro users can share a whole bank with their department in one line.</p></div>
-    <div class="card"><h3><span class="dot">●</span> Re-teach report</h3><p>Pro shows which comments you gave most across a class set, so you know exactly what to re-teach.</p></div>
+<main data-dark>
+<section class="hero">
+  <div class="wrap">
+    <p class="brandline rise" data-in><i></i>Remark</p>
+    <h1 class="lines" data-in><span class="ln"><span>Written feedback</span></span><span class="ln"><span style="--d:.12s">in <span class="hl" data-in style="--d:1.2s">one click.</span><svg class="draw itick" data-in viewBox="0 0 100 80" aria-hidden="true" style="--d:1.6s;--dur:.8s;--draw-w:9"><path d="M10 44 L 36 70 L 92 8"/></svg></span></span></h1>
+    <div class="tickmark" aria-hidden="true"><span class="note-hand" data-in style="--d:2.2s">great effort, Jordan</span></div>
+    <p class="lede dim rise" data-in style="--d:.5s">Remark is a comment bank for Google Docs, built for UK teachers. Click a comment and it goes into the student's work, highlighted, with their name.</p>
+    <div class="ctas rise" data-in style="--d:.65s"><a class="btn pen" href="#get">Get Remark free</a><a class="btn line chalk" href="#how">See how it works</a></div>
+    <p class="small dim rise" data-in style="--d:.8s">Free to use. Pro from £19 a year. Works in Google Docs on any computer.</p>
   </div>
-  <div class="feature">
-    <img class="shot" src="../codes.jpg" alt="Marking codes in a student essay with an automatic marking code key">
-    <div><h3>Marking codes with a key that builds itself</h3><p>Drop a code where the cursor is. Remark adds a key at the end of the document explaining every code you used, so students know exactly what to fix during DIRT time.</p></div>
-  </div>
-  <div class="feature">
-    <div><h3>A feedback summary in seconds</h3><p>Pick strengths and next steps from the bank or type your own, choose a DIRT task, and Remark adds a neat summary table addressed to the student.</p></div>
-    <img class="shot" src="../summary.jpg" alt="Feedback summary table with What went well, Even better if, Target and DIRT task">
-  </div>
-</div></section>
+</section>
 
-<section id="pricing"><div class="wrap">
-  <h2>Pricing</h2>
-  <div class="grid3">
-    <div class="card"><h3>Free</h3><div class="price">£0</div><ul><li>SPaG and WWW / EBI comment banks</li><li>15 marking codes and automatic key</li><li>Summary boxes and DIRT tasks</li><li>Up to 15 of your own comments</li></ul></div>
-    <div class="card hl"><h3>Pro</h3><div class="price">£19 <small>/ year</small></div><ul><li>Everything in Free</li><li>GCSE English, History, Science and Humanities banks</li><li>Re-teach report</li><li>Unlimited custom comments and bank sharing</li></ul></div>
-    <div class="card"><h3>Whole school</h3><div class="price">£99 <small>/ year</small></div><ul><li>Pro for every teacher on your school's email domain</li><li>One payment, no per-seat admin</li></ul></div>
+<section class="how" id="how" data-scene>
+  <div class="pin">
+    <div>
+      <h2>How it works</h2>
+      <ol class="steps" id="steps">
+        <li class="on"><b>Pick a comment</b><span>SPaG, WWW / EBI and subject banks sit right next to the essay. Search, or click.</span></li>
+        <li><b>It lands in the essay</b><span>Highlighted, in the right place, addressed to the student by name.</span></li>
+        <li><b>Drop in marking codes</b><span>Sp, P, C and more. A key explaining every code builds itself at the end.</span></li>
+        <li><b>Finish with a summary</b><span>What Went Well, Even Better If, a target and a DIRT task, in one tidy box.</span></li>
+      </ol>
+      <div class="bar" aria-hidden="true"><i></i></div>
+    </div>
+    <div class="app" aria-hidden="true">
+      <div class="paper">
+        <h4>How does Shakespeare present ambition in Macbeth?</h4>
+        <p class="m">Jordan Smith, Year 10</p>
+        <p>Shakespeare presents ambition as a dangerous force. <span class="q" id="q1">When Macbeth hears the witches, he immediately thinks about murder.</span> <span class="ins" id="ins" hidden></span></p>
+        <p>Lady <span>macbeth</span><span class="code" id="c1">[C]</span> calls on spirits to unsex her<span class="code" id="c2">[P]</span> This shows she wants power so <span>much</span> she will give up her <span>feminitity</span><span class="code" id="c3">[Sp]</span></p>
+        <p>In conclusion, ambition destroys both characters.</p>
+        <div class="key" id="key"><div>Marking code key</div><div><b>[C]</b>Capital letter needed</div><div><b>[P]</b>Punctuation missing</div><div><b>[Sp]</b>Check your spelling</div></div>
+        <div class="sum" id="sum">
+          <div class="row"><b>WWW</b><span>You support your points with well-chosen evidence.</span></div>
+          <div class="row"><b>EBI</b><span>Explain how your evidence proves your point.</span></div>
+          <div class="row"><b>DIRT</b><span>Rewrite paragraph 2, explaining one quotation in detail.</span></div>
+        </div>
+      </div>
+      <div class="rail">
+        <div class="top"><i></i>Remark</div>
+        <div class="tabs"><span class="on" id="tb0">Bank</span><span id="tb1">Codes</span><span id="tb2">Summary</span></div>
+        <div class="panelset">
+          <div class="on" id="pn0">
+            <div class="c" id="cm">WWW: Strong point, backed up with evidence<small>Literacy and SPaG</small></div>
+            <div class="c">EBI: Explain how your evidence proves your point<small>English</small></div>
+            <div class="c">EBI: Use a wider range of vocabulary<small>English</small></div>
+          </div>
+          <div id="pn1"><div class="codes"><span id="k1">C</span><span id="k2">P</span><span id="k3">Sp</span><span>G</span><span>//</span><span>Ev</span></div></div>
+          <div id="pn2"><div class="c on">WWW: well-chosen evidence</div><div class="c on">EBI: explain your evidence</div><div class="c on">DIRT: rewrite paragraph 2</div></div>
+        </div>
+      </div>
+    </div>
   </div>
-  <p class="small">Licences last 12 months and do not renew automatically. Payments are handled securely by Stripe.</p>
-</div></section>
+</section>
 
-<section id="install"><div class="wrap">
-  <h2>Get Remark</h2>
-  <div class="card"><p>In Google Docs, open <strong>Extensions → Add-ons → Get add-ons</strong>, search for <strong>Remark</strong> and click <strong>Install</strong>. Then open any document and choose <strong>Extensions → Remark → Open Remark</strong>.</p></div>
-  <p class="small">Don't use Google Docs? <a href="../free-marking-codes-and-comment-bank.pdf">Download the free printable marking codes poster and comment bank (PDF)</a>.</p>
-</div></section>
+<section class="why" id="features">
+  <div class="wrap">
+    <h2 class="lines" data-in><span class="ln"><span>Why teachers</span></span><span class="ln"><span style="--d:.1s">use Remark</span></span></h2>
+    <div class="cards">
+      <div class="card rise" data-in><svg class="draw" data-in viewBox="0 0 52 44" style="--d:.4s;--draw-w:5"><path d="M4 24 L 18 38 L 48 6"/></svg><h3>Get your evenings back</h3><p>The feedback you write over and over is one click away, so a class set takes a fraction of the time.</p></div>
+      <div class="card rise" data-in style="--d:.12s"><svg class="draw" data-in viewBox="0 0 52 44" style="--d:.55s;--draw-w:5"><path d="M4 24 L 18 38 L 48 6"/></svg><h3>Feedback students can act on</h3><p>Clear codes, a key that explains them and a DIRT task, so students know exactly what to fix.</p></div>
+      <div class="card rise" data-in style="--d:.24s"><svg class="draw" data-in viewBox="0 0 52 44" style="--d:.7s;--draw-w:5"><path d="M4 24 L 18 38 L 48 6"/></svg><h3>Still sounds like you</h3><p>Varied wording, student names and your own saved comments, so thirty students don't get thirty identical lines.</p></div>
+    </div>
+  </div>
+</section>
 
-<footer><div class="wrap"><div class="maker"><span>Made by</span><img src="../sl-icon.png" alt="" width="22" height="22"><b>SURVIVE <em>LABS</em></b></div><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms</a><a href="support.html">Support</a>
-<p>Remark is an independent add-on and is not affiliated with Google. Google Docs™ is a trademark of Google LLC.</p></div></footer>
+<section class="pro">
+  <div class="wrap grid">
+    <div>
+      <span class="tag">Pro</span>
+      <h2 class="lines" data-in><span class="ln"><span>Know exactly</span></span><span class="ln"><span style="--d:.1s">what to re-teach</span></span></h2>
+      <p>The re-teach report shows which comments you gave most across a class set. The biggest bar is your next starter.</p>
+    </div>
+    <div class="chart" data-in aria-label="Example re-teach report">
+      <h4>Re-teach report: 10B English</h4>
+      <p class="m">28 essays marked (example)</p>
+      <div class="r"><span>Explain your evidence</span><div class="b"><i style="--w:86%"></i></div><em>19</em></div>
+      <div class="r"><span>Capital letters</span><div class="b"><i style="--w:59%;--d:.12s"></i></div><em>13</em></div>
+      <div class="r"><span>Embed your quotations</span><div class="b"><i style="--w:41%;--d:.24s"></i></div><em>9</em></div>
+      <div class="r"><span>Paragraph structure</span><div class="b"><i style="--w:27%;--d:.36s"></i></div><em>6</em></div>
+    </div>
+  </div>
+</section>
+
+<section class="price" id="pricing">
+  <div class="wrap">
+    <h2 class="lines" data-in><span class="ln"><span>Simple pricing</span></span></h2>
+    <div class="tiers">
+      <div class="tier rise" data-in><h3>Free</h3><p class="amt">£0</p><ul><li>SPaG and WWW / EBI comment banks</li><li>15 marking codes and automatic key</li><li>Summary boxes and DIRT tasks</li><li>Up to 15 of your own comments</li></ul></div>
+      <div class="tier best rise" data-in style="--d:.1s">
+        <div class="ring" aria-hidden="true"><svg class="draw" data-in viewBox="0 0 200 120" preserveAspectRatio="none" style="--d:.9s;--dur:1s"><path d="M30 60 C 30 20, 170 10, 186 50 C 200 90, 60 110, 22 76"/></svg><span class="note-hand" data-in style="--d:1.6s">most teachers pick this</span></div>
+        <h3>Pro</h3><p class="amt">£19<small> / year</small></p><ul><li>Everything in Free</li><li>GCSE English, History, Science and Humanities banks</li><li>Re-teach report</li><li>Unlimited custom comments and bank sharing</li></ul></div>
+      <div class="tier rise" data-in style="--d:.2s"><h3>Whole school</h3><p class="amt">£99<small> / year</small></p><ul><li>Pro for every teacher on your school's email domain</li><li>One payment, no per-seat admin</li></ul></div>
+    </div>
+    <p class="fine">Licences last 12 months and do not renew automatically. Payments are handled securely by Stripe.</p>
+  </div>
+</section>
+
+<section class="get" id="get">
+  <div class="wrap">
+    <div class="box rise" data-in>
+      <h2>Get Remark</h2>
+      <p>In Google Docs, open <kbd>Extensions</kbd> → <kbd>Add-ons</kbd> → <kbd>Get add-ons</kbd>, search for <b>Remark</b> and click <b>Install</b>.</p>
+      <p>Then open any document and choose <kbd>Extensions</kbd> → <kbd>Remark</kbd> → <kbd>Open Remark</kbd>.</p>
+      <p class="pdf">Don't use Google Docs? <a href="/free-marking-codes-and-comment-bank.pdf">Download the free printable marking codes poster and comment bank (PDF)</a>.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="sl-foot">
+  <div class="wrap">
+    <div class="top">
+      <div><p class="big">Questions about Remark?</p><a href="mailto:hello@survivelabs.co.uk">hello@survivelabs.co.uk</a></div>
+      <div><h4>Remark</h4><a href="/remark/">Overview</a><a href="/remark/#pricing">Pricing</a><a href="/remark/support.html">Support</a><a href="/remark/privacy.html">Privacy</a><a href="/remark/terms.html">Terms</a></div>
+      <div><h4>Themely</h4><a href="/themely/">Overview</a><a href="/themely/#pricing">Pricing</a><a href="/themely/#help">Help</a></div>
+      <div><h4>Survive Labs</h4><a href="/">Home</a><a href="/tools/">Free tools</a><a href="mailto:hello@survivelabs.co.uk">Contact</a></div>
+    </div>
+    <div class="base"><span>© 2026 Survive Labs, United Kingdom</span><span>Remark is an independent add-on and is not affiliated with Google. Google Docs™ is a trademark of Google LLC.</span></div>
+  </div>
+</footer>
+
+<script>
+addEventListener('DOMContentLoaded', () => {
+  const { on, seg, reduce } = SL;
+  const $ = id => document.getElementById(id);
+  const how = $('how'), steps = [...$('steps').children];
+  const txt = 'Jordan, a strong point, backed up with evidence.';
+  on(how, p => {
+    const k = reduce || innerWidth <= 900 ? 1 : p;
+    const step = Math.min(3, Math.floor(k * 4 - .0001));
+    steps.forEach((li, i) => { li.classList.toggle('on', i === step); li.classList.toggle('done', i < step); });
+    // rail tab follows the step
+    const tab = step <= 1 ? 0 : step - 1;
+    [0, 1, 2].forEach(i => { $('tb' + i).classList.toggle('on', i === tab); $('pn' + i).classList.toggle('on', i === tab); });
+    // 1: pick a comment
+    $('cm').classList.toggle('on', seg(k, .1, .2) > 0);
+    // 2: it types into the essay
+    const t = seg(k, .27, .45);
+    $('q1').classList.toggle('on', t > 0);
+    const n = Math.round(t * txt.length); $('ins').hidden = n === 0; $('ins').textContent = txt.slice(0, n);
+    // 3: codes pop in, then the key builds
+    [1, 2, 3].forEach(i => { const on = k > .52 + i * .04; $('c' + i).classList.toggle('on', on); $('k' + i).classList.toggle('on', on); });
+    $('key').classList.toggle('on', k > .68);
+    // 4: summary slides up
+    $('sum').classList.toggle('on', k > .8);
+  });
+});
+</script>
 </body>
 </html>
