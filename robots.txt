@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://survivelabs.co.uk/sitemap.xml
