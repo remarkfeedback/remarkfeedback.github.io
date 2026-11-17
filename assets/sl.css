@@ -65,12 +65,12 @@ a{color:inherit}
 
 /* ---------- page transition: a highlighter stroke wipes the screen ---------- */
 .sl-wipe{position:fixed;inset:-10vh -20vw;z-index:999;pointer-events:none;display:flex;flex-direction:column;justify-content:center;gap:0}
-.sl-wipe i{display:block;height:34vh;background:var(--hl);transform:translateX(-120%) skewX(-12deg);border-radius:12px}
-.sl-wipe i:nth-child(2){background:#FFD21F}
-.sl-wipe.in i{transition:transform .55s var(--ease);transform:translateX(0) skewX(-12deg)}
+.sl-wipe i{display:block;height:44vh;background:#2E2F31;transform:translateX(-130%) skewX(-28deg)}
+.sl-wipe i+i{margin-top:-4px}.sl-wipe i:nth-child(2){background:#FF6A00;height:14vh}.sl-wipe i:nth-child(3){background:#232427}
+.sl-wipe.in i{transition:transform .55s var(--ease);transform:translateX(0) skewX(-28deg)}
 .sl-wipe.in i:nth-child(2){transition-delay:.06s}.sl-wipe.in i:nth-child(3){transition-delay:.12s}
-.sl-wipe.cover i{transform:translateX(0) skewX(-12deg)}
-.sl-wipe.out i{transition:transform .6s var(--ease);transform:translateX(120%) skewX(-12deg)}
+.sl-wipe.cover i{transform:translateX(0) skewX(-28deg)}
+.sl-wipe.out i{transition:transform .6s var(--ease);transform:translateX(130%) skewX(-28deg)}
 .sl-wipe.out i:nth-child(2){transition-delay:.05s}.sl-wipe.out i:nth-child(3){transition-delay:.1s}
 
 /* ---------- footer (every page) ---------- */
