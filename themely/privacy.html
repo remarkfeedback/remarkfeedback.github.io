@@ -19,7 +19,7 @@
 
 <main><div class="wrap">
   <h1>Privacy policy</h1>
-  <p class="mut">Themely: qualitative coding for Google Docs · Last updated 16 November 2026</p>
+  <p class="mut">Themely: qualitative coding for Google Docs and Google Sheets · Last updated 17 November 2026</p>
   <div class="card"><strong>In short:</strong> Themely works inside your own Google account. Your interviews, quotes and notes stay in your Google Docs, Sheets and Drive. We never receive them, and Themely has no servers or database of its own. The only thing that leaves Google is your email address, sent to our payment provider to check whether you have bought Pro.</div>
 
   <h2>Who we are</h2>
@@ -49,7 +49,23 @@
   <h2>What leaves Google</h2>
   <p>When Themely checks your plan, it sends your email address to Stripe and asks whether a Themely payment matches it. The buy buttons in Themely also attach a scrambled account code made from your email, so a payment still matches if you pay with a different email address. The code cannot be turned back into your email. Nothing from your documents is ever sent.</p>
 
-  <h2>Research participants</h2>
+  <h2>Themely for Sheets</h2>
+<p>Themely for Sheets is a separate add-on for Google Sheets, used to tag written answers in a survey or any column of text. It follows the same rules: it works inside your own Google account, it has no servers or database of its own, and we never receive your survey answers.</p>
+<p>When you install it, Google asks you to allow these permissions:</p>
+<ul>
+<li><b>The spreadsheet you open it in</b> (<code>spreadsheets.currentonly</code>). Themely reads the answer column you choose, writes the codes you apply into a "Themely:" column, shades coded answers, and builds the "Themely summary" and "Themely by group" sheets in that same spreadsheet. It cannot open any other spreadsheet.</li>
+<li><b>Showing its sidebar</b> (<code>script.container.ui</code>), so Themely can display its panel next to your spreadsheet.</li>
+<li><b>Your Google account email address</b> (<code>userinfo.email</code>), used only to check whether you have bought Themely Pro.</li>
+<li><b>Connecting to an external service</b> (<code>script.external_request</code>), used only to ask Stripe whether a Themely payment exists for you.</li>
+</ul>
+<p>What it stores, and where:</p>
+<ul>
+<li><b>In your spreadsheet:</b> the codes you apply (as text in the "Themely:" column), the cell shading, and any summary sheets you build.</li>
+<li><b>With your spreadsheet</b> (Google's Apps Script storage for that file): your codebook and themes for that survey, and which column you are coding. Anyone who can edit the spreadsheet and opens Themely in it can see these.</li>
+<li><b>In your Google account:</b> whether your Pro plan is active.</li>
+</ul>
+<p>When Themely for Sheets checks your plan, it sends only your email address (and the scrambled account code described below) to Stripe. Nothing from your spreadsheet is ever sent. One Themely Pro purchase covers both Docs and Sheets.</p>
+<h2>Research participants</h2>
   <p>Many people use Themely on interview transcripts that contain other people's personal data. That data stays in your own Google account (or your institution's), and Survive Labs never receives it. You remain responsible for following your ethics approval, consent terms and your institution's data protection rules, including where your Google account stores data.</p>
 
   <h2>Payments</h2>
