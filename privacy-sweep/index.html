@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Sweep: find where your home address is online, and get it removed | Survive Labs</title>
+<meta name="description" content="Your name, home address and the people you live with are easier to find than you think. Privacy Sweep finds where your details are published in the UK and gets them taken down.">
+<link rel="canonical" href="https://survivelabs.co.uk/privacy-sweep/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Survive Labs">
+<meta property="og:title" content="A stranger can find your home in 60 seconds">
+<meta property="og:description" content="Privacy Sweep finds where your name, address and household are published in the UK, and gets them taken down.">
+<meta property="og:url" content="https://survivelabs.co.uk/privacy-sweep/">
+<meta property="og:image" content="https://survivelabs.co.uk/assets/og/privacy-sweep.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://survivelabs.co.uk/assets/og/privacy-sweep.jpg">
+<link rel="icon" href="/privacy-sweep/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0B1220">
+<link rel="stylesheet" href="/assets/sl.css">
+<script src="/assets/sl.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Privacy Sweep","provider":{"@type":"Organization","name":"Survive Labs","url":"https://survivelabs.co.uk/"},"areaServed":"GB","description":"Finds where a person's name, home address and household are published online in the UK and requests their removal.","url":"https://survivelabs.co.uk/privacy-sweep/"}</script>
+<style>
+:root{--ps:#0B1220;--ps2:#121A2B;--ps-line:#26324B;--red:#FF3B2F;--red-soft:#FFE1DE;--grn:#17A86F;--grn-soft:#D7F5E8;--slate:#8A94A8}
+body{background:var(--paper)}
+
+/* ---------- hero ---------- */
+.hero{background:var(--ps);color:#fff;padding:140px 0 110px;position:relative;overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(900px 500px at 85% 20%,rgba(255,59,47,.13),transparent 60%),radial-gradient(700px 500px at 0% 100%,rgba(23,168,111,.08),transparent 60%)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:60px;align-items:center}
+.brand{display:flex;align-items:center;gap:12px;margin:0 0 28px}
+.brand img{width:40px;height:40px;border-radius:10px}
+.brand b{font:800 19px var(--sans);letter-spacing:-.02em;display:block}
+.brand span{font:500 13.5px var(--sans);color:var(--slate)}
+.hero h1{font-size:clamp(42px,5.4vw,78px);line-height:.96;letter-spacing:-.05em;font-weight:900;margin:0}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero .lede{font-size:clamp(19px,1.8vw,22px);line-height:1.5;color:#C3CADA;max-width:36ch;margin:26px 0 32px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero .btn.line{color:#fff}
+.trustline{display:flex;flex-wrap:wrap;gap:8px 20px;margin:26px 0 0;padding:0;list-style:none;font:500 14.5px var(--sans);color:#AEB6C8}
+.trustline li{display:flex;align-items:center;gap:8px}
+.trustline svg{width:16px;height:16px;flex:none}
+
+/* the live demo */
+.demo{background:#fff;color:var(--ink);border-radius:20px;box-shadow:0 0 0 1px rgba(255,255,255,.06),0 50px 100px -40px rgba(0,0,0,.75);overflow:hidden;font-family:var(--sans)}
+.demo .top{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--rule);background:#F7F8FA}
+.demo .q{flex:1;display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid #D5DAE3;border-radius:999px;padding:9px 14px;font:600 15px var(--sans);min-height:42px}
+.demo .q svg{width:17px;height:17px;flex:none;color:var(--mut)}
+.demo .caret{display:inline-block;width:2px;height:18px;background:var(--ink);margin-left:-6px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.demo .seg{display:flex;background:#E9ECF1;border-radius:999px;padding:3px}
+.demo .seg button{border:0;background:transparent;font:700 12.5px var(--sans);color:var(--mut);padding:7px 12px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.demo .seg button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.14)}
+.demo .seg button[data-v="after"][aria-pressed="true"]{background:var(--ink);color:#fff}
+.rows{list-style:none;margin:0;padding:6px 18px 4px}
+.rows li{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:4px 14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--rule);opacity:0;transform:translateY(8px);transition:opacity .4s var(--ease) calc(var(--i)*.11s),transform .4s var(--ease) calc(var(--i)*.11s)}
+.rows li:last-child{border-bottom:0}
+.found .rows li{opacity:1;transform:none}
+.rows .k{font-size:12.5px;color:var(--mut);font-weight:600}
+.rows .v{position:relative;font:600 16px/1.25 var(--doc);justify-self:start;padding:0 4px}
+.rows .v small{display:block;font:500 12px var(--sans);color:var(--mut);margin-top:3px}
+.rows .ring{position:absolute;left:-8px;top:-7px;width:calc(100% + 16px);height:calc(100% + 14px);overflow:visible;pointer-events:none}
+.rows .ring ellipse{fill:none;stroke:var(--red);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:var(--len,520) 9999;stroke-dashoffset:var(--len,520);transition:stroke-dashoffset .8s var(--ease) calc(var(--i)*.18s),opacity .3s}
+.marked .rows .ring ellipse{stroke-dashoffset:0}
+.after .rows .ring ellipse{opacity:0;transition-delay:0s}
+.rows .redact{position:absolute;left:0;right:0;top:1px;height:1.3em;background:#0A0D14;border-radius:3px;transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease) calc(var(--i)*.13s + .15s)}
+.after .rows .redact{transform:scaleX(1)}
+.chip{font:700 11.5px var(--sans);padding:5px 9px;border-radius:999px;white-space:nowrap;background:var(--red-soft);color:#B4231A;transition:background .3s calc(var(--i)*.13s + .5s),color .3s calc(var(--i)*.13s + .5s)}
+.chip .b{display:none}
+.after .chip{background:var(--grn-soft);color:#0E7A4F}
+.after .chip .a{display:none}.after .chip .b{display:inline}
+.rows li.law .chip,.after .rows li.law .chip{background:#ECEEF2;color:#4A5366}
+.rows li.law .redact{display:none}
+.demo .foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px 16px;font:600 13.5px var(--sans);color:var(--mut);border-top:1px solid var(--rule);background:#FBFBFC}
+.demo .foot b{color:var(--ink)}
+.demo .replay{border:0;background:none;font:700 13px var(--sans);color:var(--ink);text-decoration:underline;cursor:pointer;padding:4px 0}
+.hero .eg{font:500 12.5px var(--sans);color:#8A92A3;text-align:center;margin:14px 0 0}
+
+/* ---------- proof ---------- */
+.proof{background:var(--ps2);color:#fff;padding:56px 0}
+.proof .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2fr);gap:40px;align-items:start}
+.proof h2{font-size:clamp(26px,2.6vw,34px);line-height:1.1;letter-spacing:-.03em;margin:0}
+.proof h2 small{display:block;font:500 15px var(--sans);color:var(--slate);margin-top:10px;letter-spacing:0}
+.proof ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.proof li{border-top:2px solid var(--ps-line);padding-top:14px;font-size:16px;line-height:1.45;color:#D4D9E4}
+.proof li b{display:block;font:800 13px var(--sans);margin-bottom:6px}
+.proof li b.h{color:#FF8A80}.proof li b.ok{color:#5FE0A8}
+
+/* ---------- shared section type ---------- */
+.sec{padding:96px 0}
+.sec h2{font-size:clamp(34px,4.2vw,56px);line-height:1;letter-spacing:-.045em;font-weight:900;margin:0 0 16px;max-width:20ch}
+.sec .sub{color:var(--ink2);font-size:19px;max-width:56ch;margin:0 0 42px}
+
+/* stats */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.stat{background:#fff;border-radius:18px;padding:26px;box-shadow:0 0 0 1px rgba(14,21,37,.06)}
+.stat .n{font:900 clamp(40px,4.4vw,60px)/1 var(--sans);letter-spacing:-.05em}
+.stat p{margin:10px 0 12px;font-size:17px;line-height:1.4}
+.stat small{display:block;font-size:12.5px;color:var(--mut);line-height:1.4}
+.stat.dark{background:var(--ps);color:#fff}.stat.dark small{color:var(--slate)}
+.stat .n.r{color:var(--red)}
+.honest{margin:26px 0 0;font-size:15.5px;color:var(--mut);max-width:70ch}
+
+/* how */
+.how{background:#fff}
+.steps{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;counter-reset:s}
+.steps>li{counter-increment:s;border-top:3px solid var(--ink);padding-top:18px}
+.steps>li::before{content:counter(s);font:900 14px var(--sans);display:inline-grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--ps);color:#fff;margin-bottom:14px}
+.steps b{display:block;font-size:20px;letter-spacing:-.02em;margin-bottom:6px}
+.steps span{font-size:16px;color:var(--ink2);line-height:1.45}
+.where{margin:48px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.where div{background:var(--paper);border-radius:14px;padding:16px;font:600 15px/1.35 var(--sans);display:flex;gap:10px;align-items:flex-start}
+.where svg{width:18px;height:18px;flex:none;margin-top:1px}
+
+/* sample report */
+.report{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:56px;align-items:center}
+.paper{background:#fff;border-radius:16px;box-shadow:0 0 0 1px rgba(14,21,37,.07),0 40px 80px -40px rgba(14,21,37,.4);padding:26px 26px 18px;transform:rotate(-1deg)}
+.paper .hd{display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:6px}
+.paper .hd b{font:800 16px var(--sans)}.paper .hd span{font:500 12px var(--sans);color:var(--mut)}
+.item{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding:13px 0;border-bottom:1px solid var(--rule)}
+.item:last-of-type{border-bottom:0}
+.lvl{font:800 10.5px var(--sans);color:#fff;padding:4px 8px;border-radius:999px;align-self:start;margin-top:2px}
+.lvl.h{background:#D0342C}.lvl.m{background:#C98212}.lvl.l{background:#2E7FC1}.lvl.g{background:var(--grn)}
+.item b{font:700 15px/1.3 var(--sans)}
+.item p{grid-column:2;margin:0;font-size:13.5px;color:var(--mut);line-height:1.4}
+.item .fix{grid-column:2;font:600 12.5px var(--sans);color:#0E7A4F;margin-top:2px}
+.paper .eg{font:500 11.5px var(--sans);color:#8A92A3;margin:10px 0 0}
+.report ul.ticks{list-style:none;padding:0;margin:0;display:grid;gap:14px;font-size:17.5px}
+.report ul.ticks li{display:flex;gap:12px}
+.report ul.ticks svg{width:22px;height:22px;flex:none;margin-top:2px}
+
+/* plans */
+.plans-sec{background:#fff}
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+.plan{border-radius:20px;padding:28px;box-shadow:0 0 0 1.5px var(--rule);display:flex;flex-direction:column;background:#fff}
+.plan h3{margin:0;font-size:22px;letter-spacing:-.02em}
+.plan .price{font:900 46px/1 var(--sans);letter-spacing:-.04em;margin:16px 0 4px}
+.plan .price small{font:600 16px var(--sans);letter-spacing:0;color:var(--mut)}
+.plan .for{font-size:15px;color:var(--mut);margin:0 0 16px}
+.plan ul{margin:0 0 24px;padding:0 0 0 20px;font-size:16px;line-height:1.5;flex:1}
+.plan li{margin:0 0 6px}
+.plan .btn{justify-content:center}
+.plan.main{box-shadow:0 0 0 3px var(--ps);position:relative}
+.plan.main .tag{position:absolute;top:-14px;left:24px;background:var(--ps);color:#fff;font:700 13px var(--sans);padding:5px 12px;border-radius:999px}
+.note{margin:22px 0 0;font-size:14.5px;color:var(--mut)}
+
+/* promises */
+.promises{background:var(--ps);color:#fff}
+.promises .sub{color:#C3CADA}
+.pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.pr{background:var(--ps2);border:1px solid var(--ps-line);border-radius:18px;padding:24px}
+.pr svg{width:30px;height:30px;margin-bottom:14px}
+.pr b{display:block;font-size:19px;letter-spacing:-.02em;margin-bottom:8px}
+.pr p{margin:0;color:#B9C1D2;font-size:16px;line-height:1.5}
+
+/* faq */
+.faq .list{max-width:800px}
+.faq details{border-bottom:1px solid var(--rule);padding:18px 0}
+.faq summary{cursor:pointer;font-weight:700;font-size:19px;letter-spacing:-.01em;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-weight:400;font-size:26px;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin:10px 0 0;color:var(--ink2);font-size:17px;max-width:66ch}
+
+/* join */
+.join{background:var(--ps);color:#fff;padding:96px 0;text-align:left}
+.join .box{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:center}
+.join h2{font-size:clamp(36px,4.4vw,60px);line-height:1;letter-spacing:-.045em;font-weight:900;margin:0 0 16px}
+.join p{color:#C3CADA;font-size:19px;max-width:46ch;margin:0}
+.join .act{background:var(--ps2);border:1px solid var(--ps-line);border-radius:20px;padding:26px}
+.join .act p{font-size:15.5px;margin:14px 0 0;color:var(--slate)}
+.join .act .btn{width:100%;justify-content:center}
+
+.sources{padding:40px 0 70px;font-size:13.5px;color:var(--mut)}
+.sources h2{font-size:15px;margin:0 0 10px;color:var(--ink)}
+.sources ol{margin:0;padding-left:20px;max-width:92ch}
+.sources li{margin:0 0 6px}
+
+@media (max-width:980px){
+  .hero{padding:118px 0 80px}
+  .hero .wrap,.report,.join .box,.proof .wrap{grid-template-columns:1fr;gap:44px}
+  .grid,.plans,.pgrid,.proof ul{grid-template-columns:1fr}
+  .steps,.where{grid-template-columns:1fr 1fr}
+  .paper{transform:none}
+}
+@media (max-width:560px){
+  .steps,.where{grid-template-columns:1fr}
+  .rows li{grid-template-columns:1fr auto}
+  .rows .k{grid-column:1/-1}
+  .demo .top{flex-wrap:wrap}.demo .seg{width:100%}.demo .seg button{flex:1}
+}
+</style>
+</head>
+<body>
+<header class="sl-nav">
+  <a class="sl-logo" href="/"><img src="/sl-icon.png" alt=""><span>Survive Labs</span></a>
+  <nav aria-label="Main"><a class="opt" href="#how">How it works</a><a class="opt" href="#pricing">Pricing</a><a class="opt" href="#promises">Our promises</a><a class="sl-contact" href="#join">Join the waitlist</a></nav>
+</header>
+<main>
+
+<section class="hero" data-dark>
+  <div class="wrap">
+    <div>
+      <div class="brand rise" data-in><img src="/privacy-sweep/logo.svg" alt=""><div><b>Privacy Sweep</b><span>by Survive Labs</span></div></div>
+      <h1 class="lines" data-in><span class="ln"><span>A stranger can</span></span> <span class="ln"><span style="--d:.08s">find your home</span></span> <span class="ln"><span style="--d:.16s">in <em>60 seconds.</em></span></span></h1>
+      <p class="lede rise" data-in style="--d:.3s">Your name, your address, who you live with and what your house cost are on public websites right now. We find every place your details appear, and we get them taken down.</p>
+      <div class="ctas rise" data-in style="--d:.4s"><a class="btn pen" href="#join">Join the waitlist</a><a class="btn line" href="#how">How it works</a></div>
+      <ul class="trustline rise" data-in style="--d:.5s">
+        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#5FE0A8" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Built in the UK, for UK records</li>
+        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#5FE0A8" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>We only ever search for you</li>
+        <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#5FE0A8" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Your details are never sold</li>
+      </ul>
+    </div>
+
+    <div class="rise" data-in style="--d:.2s">
+      <div class="demo found marked after" id="demo" aria-label="Example: what a search finds, before and after Privacy Sweep">
+        <div class="top">
+          <div class="q"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span id="typed">Daniel Morgan, Swansea</span><i class="caret" id="caret" hidden></i></div>
+          <div class="seg" role="group" aria-label="Show results"><button type="button" data-v="before" aria-pressed="false">Before</button><button type="button" data-v="after" aria-pressed="true">After Privacy Sweep</button></div>
+        </div>
+        <ul class="rows">
+          <li style="--i:0"><span class="k">Full name</span><span class="v">Daniel J. Morgan<svg class="ring" viewBox="0 0 200 50" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="100" cy="25" rx="98" ry="22"/></svg><span class="redact"></span><small>People-search website</small></span><b class="chip"><span class="a">Public</span><span class="b">Removed</span></b></li>
+          <li style="--i:1"><span class="k">Lives with</span><span class="v">Claire &amp; Ellie Morgan<svg class="ring" viewBox="0 0 200 50" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="100" cy="25" rx="98" ry="22"/></svg><span class="redact"></span><small>People-search website</small></span><b class="chip"><span class="a">Public</span><span class="b">Removed</span></b></li>
+          <li style="--i:2"><span class="k">Area</span><span class="v">Swansea, SA2<span class="redact"></span><small>Open electoral register</small></span><b class="chip"><span class="a">Public</span><span class="b">Removed</span></b></li>
+          <li style="--i:3"><span class="k">Home address</span><span class="v">One small payment away<svg class="ring" viewBox="0 0 200 50" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="100" cy="25" rx="98" ry="22"/></svg><span class="redact"></span><small>Paid people-search</small></span><b class="chip"><span class="a">For sale</span><span class="b">Removed</span></b></li>
+          <li style="--i:4"><span class="k">Seller page</span><span class="v">Shop based in Swansea<span class="redact"></span><small>Online marketplace</small></span><b class="chip"><span class="a">Public</span><span class="b">Hidden</span></b></li>
+          <li style="--i:5" class="law"><span class="k">House sale</span><span class="v">2004, £95,000<small>Land Registry</small></span><b class="chip">Public by law</b></li>
+        </ul>
+        <div class="foot"><span id="sum"><b>5 of 6</b> removed. We tell you what can't be.</span><button class="replay" type="button" id="replay">Replay</button></div>
+      </div>
+      <p class="eg">An example with made-up details. Every line is the kind of thing a real sweep finds.</p>
+    </div>
+  </div>
+</section>
+
+<section class="proof">
+  <div class="wrap">
+    <h2>What our first real sweep found<small>Run on one of our own team, with permission, in under an hour.</small></h2>
+    <ul>
+      <li><b class="h">High risk</b>Their full name, middle initial, area and the names of two people they live with, free to see on the UK's biggest people-search site.</li>
+      <li><b class="h">High risk</b>Their home address set to appear publicly on an app marketplace listing, next to their business name.</li>
+      <li><b class="ok">Fixed</b>Both can be removed for free once you know where to look. Most people never find out they're there.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2>Your details are worth something to criminals.</h2>
+    <p class="sub">Burglary and identity fraud happen on a huge scale in the UK. The less of your life that sits on public websites, the harder you are to target.</p>
+    <div class="grid">
+      <div class="stat dark rise" data-in><div class="n"><span data-count="900" data-pre="~">~900</span></div><p>homes burgled every day in England and Wales</p><small>327,000 domestic burglaries in the year to December 2025 (ONS).</small></div>
+      <div class="stat rise" data-in style="--d:.08s"><div class="n"><span data-count="444">444</span>k</div><p>fraud cases recorded in the UK in 2025, a record. More than 1,200 a day.</p><small>Cifas, Fraudscape 2026.</small></div>
+      <div class="stat rise" data-in style="--d:.16s"><div class="n r"><span data-count="59">59</span>%</div><p>of fraud cases in early 2026 were identity fraud, which runs on stolen personal details</p><small>Cifas, Fraudscape 2026 six-month update.</small></div>
+      <div class="stat rise" data-in><div class="n"><span data-count="700">700</span>m</div><p>UK records on one people-search website, built from the electoral roll, Companies House and the Land Registry</p><small>192.com, the largest UK people-search site.</small></div>
+      <div class="stat rise" data-in style="--d:.08s"><div class="n">2×</div><p>Company directors are twice as likely to be victims of identity fraud</p><small>GOV.UK figure, cited by TaxAssist Accountants.</small></div>
+      <div class="stat dark rise" data-in style="--d:.16s"><div class="n r">£0</div><p>to see someone's name, area and household on the biggest people-search site</p><small>Free search results. The full record costs extra.</small></div>
+    </div>
+    <p class="honest">To be straight with you: removing your details won't make crime impossible, and nobody honest will promise that. It means a stranger can't find where you live, who you live with and what you own with one quick search.</p>
+  </div>
+</section>
+
+<section class="sec how" id="how">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="sub">You spend about ten minutes. We do the searching, the paperwork and the chasing.</p>
+    <ol class="steps">
+      <li class="rise" data-in><b>We check it's you</b><span>A quick ID check, so we only ever look up the person who's paying. Nobody can use us to find someone else.</span></li>
+      <li class="rise" data-in style="--d:.08s"><b>We search everywhere</b><span>People-search sites, public registers, property sites, Google, seller pages and social media.</span></li>
+      <li class="rise" data-in style="--d:.16s"><b>You get the report</b><span>A plain-English list of everything we found, ranked by risk, with what can and can't be removed.</span></li>
+      <li class="rise" data-in style="--d:.24s"><b>We get it removed</b><span>With your written permission we send every removal request, chase the ones that don't reply, and check it's gone.</span></li>
+    </ol>
+    <div class="where">
+      <div><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="6.5" fill="none" stroke="#FF3B2F" stroke-width="2.4"/></svg>192.com and other people-search sites</div>
+      <div><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="6.5" fill="none" stroke="#FF3B2F" stroke-width="2.4"/></svg>The open electoral register</div>
+      <div><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="6.5" fill="none" stroke="#FF3B2F" stroke-width="2.4"/></svg>Companies House, including old filings</div>
+      <div><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="6.5" fill="none" stroke="#FF3B2F" stroke-width="2.4"/></svg>Property sites showing your home and its price</div>
+      <div><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="6.5" fill="none" stroke="#FF3B2F" stroke-width="2.4"/></svg>Google search results for your name</div>
+      <div><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="6.5" fill="none" stroke="#FF3B2F" stroke-width="2.4"/></svg>Seller and trader pages on Etsy, eBay and app stores</div>
+      <div><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="6.5" fill="none" stroke="#FF3B2F" stroke-width="2.4"/></svg>Social media, old usernames and photos</div>
+      <div><svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="6.5" fill="none" stroke="#FF3B2F" stroke-width="2.4"/></svg>Google Street View</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap report">
+    <div class="paper rise" data-in>
+      <div class="hd"><b>Your Privacy Sweep report</b><span>Example</span></div>
+      <div class="item"><span class="lvl h">HIGH</span><b>Name, area and household on a people-search site</b><p>Free to view. The full address is sold for a small fee.</p><span class="fix">We remove it, and opt you out at the source</span></div>
+      <div class="item"><span class="lvl h">HIGH</span><b>Home address on a seller page</b><p>Shown next to your shop name on an online marketplace.</p><span class="fix">We switch it to a business address</span></div>
+      <div class="item"><span class="lvl m">MEDIUM</span><b>House details on property websites</b><p>Sale price, bedrooms and floor size. Public by law, so it can't be removed.</p></div>
+      <div class="item"><span class="lvl g">GOOD</span><b>No Companies House exposure</b><p>No filings show your home address.</p></div>
+      <p class="eg">Example report with made-up findings.</p>
+    </div>
+    <div>
+      <h2>A report you can actually understand</h2>
+      <p class="sub" style="margin-bottom:28px">No jargon and no scare tactics. Just what's out there, how serious it is and what happens next.</p>
+      <ul class="ticks">
+        <li><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M3 12l5 5L19 5" stroke="#17A86F" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Every finding ranked high, medium or low</li>
+        <li><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M3 12l5 5L19 5" stroke="#17A86F" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Clear about what can't be removed, before you pay for removals</li>
+        <li><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M3 12l5 5L19 5" stroke="#17A86F" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>A before-and-after copy once the removals are done</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec plans-sec" id="pricing">
+  <div class="wrap">
+    <h2>Choose how much we do</h2>
+    <p class="sub">Founding prices for our first customers. Tell us which you'd choose and we'll be in touch when your place is ready. Nothing to pay now.</p>
+    <div class="plans">
+      <div class="plan">
+        <h3>Report only</h3>
+        <div class="price">£49</div>
+        <p class="for">For people who'd rather fix things themselves</p>
+        <ul><li>Full sweep of where your details appear</li><li>Plain-English report ranked by risk</li><li>Step-by-step instructions for every fix</li></ul>
+        <a class="btn line" href="mailto:survivelabs@outlook.com?subject=Privacy%20Sweep%20waitlist%3A%20Report%20only&amp;body=Hi%2C%20please%20add%20me%20to%20the%20waitlist%20for%20Report%20only.%0A%0AName%3A%0AI%27m%20a%20(online%20seller%20%2F%20company%20director%20%2F%20landlord%20%2F%20other)%3A">Join the waitlist</a>
+      </div>
+      <div class="plan main">
+        <span class="tag">Recommended</span>
+        <h3>Done for you</h3>
+        <div class="price">£199</div>
+        <p class="for">We find it and we remove it</p>
+        <ul><li>Everything in Report only</li><li>We send every removal request for you</li><li>Your few quick steps, filled in and ready to send</li><li>A before-and-after report</li></ul>
+        <a class="btn pen" href="mailto:survivelabs@outlook.com?subject=Privacy%20Sweep%20waitlist%3A%20Done%20for%20you&amp;body=Hi%2C%20please%20add%20me%20to%20the%20waitlist%20for%20Done%20for%20you.%0A%0AName%3A%0AI%27m%20a%20(online%20seller%20%2F%20company%20director%20%2F%20landlord%20%2F%20other)%3A">Join the waitlist</a>
+      </div>
+      <div class="plan">
+        <h3>Monitoring</h3>
+        <div class="price">£12<small> a month</small></div>
+        <p class="for">An add-on that keeps you off the lists</p>
+        <ul><li>Regular re-checks of every site</li><li>We remove anything that comes back</li><li>An alert if your details turn up somewhere new</li></ul>
+        <a class="btn line" href="mailto:survivelabs@outlook.com?subject=Privacy%20Sweep%20waitlist%3A%20Monitoring&amp;body=Hi%2C%20please%20add%20me%20to%20the%20waitlist%20for%20Monitoring.%0A%0AName%3A%0AI%27m%20a%20(online%20seller%20%2F%20company%20director%20%2F%20landlord%20%2F%20other)%3A">Join the waitlist</a>
+      </div>
+    </div>
+    <p class="note">Government fees, such as Companies House charges for removing an address from old filings, are passed on at cost. We'll always tell you before anything is charged.</p>
+  </div>
+</section>
+
+<section class="sec promises" id="promises" data-dark>
+  <div class="wrap">
+    <h2>Our promises</h2>
+    <p class="sub">You're trusting us with the very details you want hidden. Here's how we treat them.</p>
+    <div class="pgrid">
+      <div class="pr rise" data-in><svg viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="11" r="5" fill="none" stroke="#5FE0A8" stroke-width="2.4"/><path d="M5 26c1.5-5 5.5-8 10-8s8.5 3 10 8" fill="none" stroke="#5FE0A8" stroke-width="2.4" stroke-linecap="round"/></svg><b>We only ever search for you</b><p>Every customer passes an ID check first, so Privacy Sweep can never be used to track down someone else.</p></div>
+      <div class="pr rise" data-in style="--d:.08s"><svg viewBox="0 0 30 30" aria-hidden="true"><rect x="6" y="13" width="18" height="13" rx="3" fill="none" stroke="#5FE0A8" stroke-width="2.4"/><path d="M10 13V9a5 5 0 0110 0v4" fill="none" stroke="#5FE0A8" stroke-width="2.4"/></svg><b>Never sold, never shared</b><p>We collect only what's needed to find and remove your details. We don't sell it or share it, and we delete your ID check once it's done.</p></div>
+      <div class="pr rise" data-in style="--d:.16s"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M15 4l9 4v7c0 6-4 9.5-9 11-5-1.5-9-5-9-11V8z" fill="none" stroke="#5FE0A8" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 15l3 3 5-6" fill="none" stroke="#5FE0A8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Your rights, used properly</b><p>UK data protection law lets you ask companies to delete your data, and lets us act for you with your written permission.</p></div>
+      <div class="pr rise" data-in><svg viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="10" fill="none" stroke="#5FE0A8" stroke-width="2.4"/><path d="M15 10v6M15 20v.5" stroke="#5FE0A8" stroke-width="2.6" stroke-linecap="round"/></svg><b>Straight about the limits</b><p>Some records are public by law. We'll tell you exactly what can't be removed before you pay for removals.</p></div>
+      <div class="pr rise" data-in style="--d:.08s"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M6 8h18M6 15h12M6 22h15" stroke="#5FE0A8" stroke-width="2.4" stroke-linecap="round"/></svg><b>No fake reviews</b><p>We're new, and we'll say so. You won't see made-up testimonials here, just what we do and what it costs.</p></div>
+      <div class="pr rise" data-in style="--d:.16s"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M5 9l10 7 10-7" fill="none" stroke="#5FE0A8" stroke-width="2.4" stroke-linejoin="round"/><rect x="5" y="7" width="20" height="16" rx="3" fill="none" stroke="#5FE0A8" stroke-width="2.4"/></svg><b>A real person replies</b><p>Questions go to a real inbox and a real person, not a ticket queue.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec faq">
+  <div class="wrap">
+    <h2>Questions</h2>
+    <div class="list">
+      <details><summary>Is this legal?</summary><p>Yes. UK data protection law gives you the right to ask companies to delete your personal data, and lets someone act for you with your written permission. That's what we do.</p></details>
+      <details><summary>Will I lose my vote?</summary><p>No. You'd come off the <em>open</em> version of the electoral register, which is the one sold to marketers and people-search sites. You stay on the full register and can still vote.</p></details>
+      <details><summary>What can't be removed?</summary><p>Some records are public by law, like Land Registry sales. We'll tell you exactly what can and can't be removed before you pay for the done-for-you service.</p></details>
+      <details><summary>Can't I just do this myself?</summary><p>You can, and many of the fixes are free. The hard part is knowing where to look, doing it in the right order so your details don't come straight back, and chasing the sites that ignore you. That's what you're paying us for. If you'd rather do it yourself, Report only gives you every step.</p></details>
+      <details><summary>How long does it take?</summary><p>The sweep and report take a few days. Companies have up to a month to act on a removal request, and we chase any that don't.</p></details>
+      <details><summary>Who is it for?</summary><p>Anyone, but especially online sellers, company directors, landlords and anyone who'd rather a stranger couldn't find their front door.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="join" id="join" data-dark>
+  <div class="wrap box">
+    <div>
+      <h2>Be one of the first.</h2>
+      <p>We're opening to a small group of founding customers in the UK. Join the waitlist and we'll be in touch when your place is ready.</p>
+    </div>
+    <div class="act">
+      <a class="btn pen" href="mailto:survivelabs@outlook.com?subject=Privacy%20Sweep%20waitlist&amp;body=Hi%2C%20please%20add%20me%20to%20the%20Privacy%20Sweep%20waitlist.%0A%0AName%3A%0AWhich%20option%20interests%20me%20(Report%20only%20%2F%20Done%20for%20you%20%2F%20Monitoring)%3A">Join the waitlist by email</a>
+      <p>No payment now. We'll only use your email to tell you about Privacy Sweep. <a href="/privacy-sweep/privacy.html" style="color:#fff">How we handle your data</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sources">
+  <div class="wrap">
+    <h2>Sources</h2>
+    <ol>
+      <li>Office for National Statistics, Crime in England and Wales: year ending December 2025 (327,000 domestic burglary incidents, Crime Survey for England and Wales). The daily figure is that total divided by 365.</li>
+      <li>Cifas, Fraudscape 2026 (444,000 fraud cases recorded to the National Fraud Database in 2025).</li>
+      <li>Cifas, Fraudscape 2026 six-month update, August 2026 (identity fraud was 59% of fraud-risk cases, January to June 2026).</li>
+      <li>192.com: about 700 million UK residential and business records drawn from the open electoral register, Companies House and Land Registry data.</li>
+      <li>GOV.UK figure on company directors and identity fraud, as cited by TaxAssist Accountants.</li>
+    </ol>
+  </div>
+</section>
+</main>
+
+<footer class="sl-foot">
+  <div class="wrap">
+    <div class="top">
+      <div><p class="big">Questions?<br>We actually reply.</p><a href="mailto:survivelabs@outlook.com">survivelabs@outlook.com</a></div>
+      <div><h4>Privacy Sweep</h4><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#join">Waitlist</a><a href="/privacy-sweep/privacy.html">Privacy</a></div>
+      <div><h4>Products</h4><a href="/remark/">Remark</a><a href="/themely/">Themely</a></div>
+      <div><h4>Survive Labs</h4><a href="/">Home</a><a href="/guides/">Guides</a><a href="/privacy-sweep/">Privacy Sweep</a><a href="/tools/">Free tools</a></div>
+    </div>
+    <div class="base"><span>© 2026 Survive Labs, United Kingdom</span><span>We don't give legal advice. If you're in danger, contact the police.</span></div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const demo = document.getElementById('demo');
+  const typed = document.getElementById('typed'), caret = document.getElementById('caret');
+  const sum = document.getElementById('sum');
+  const btns = demo.querySelectorAll('.seg button');
+  const query = 'Daniel Morgan, Swansea';
+  const rings = demo.querySelectorAll('.ring ellipse');
+  rings.forEach(e => { try { e.style.setProperty('--len', Math.ceil(e.getTotalLength()) + 2); } catch (_) {} });
+  let timers = [];
+  const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+  const setView = v => {
+    btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
+    demo.classList.toggle('after', v === 'after');
+    sum.innerHTML = v === 'after' ? '<b>5 of 6</b> removed. We tell you what can’t be.' : '<b>6 results</b> found in 41 seconds';
+  };
+  const showFinal = () => { demo.className = 'demo found marked'; typed.textContent = query; caret.hidden = true; setView('after'); };
+  const play = () => {
+    timers.forEach(clearTimeout); timers = [];
+    demo.className = 'demo'; setView('before'); typed.textContent = ''; caret.hidden = false;
+    [...query].forEach((ch, i) => later(() => { typed.textContent += ch; }, 300 + i * 55));
+    const t = 300 + query.length * 55 + 250;
+    later(() => { caret.hidden = true; demo.classList.add('found'); }, t);
+    later(() => demo.classList.add('marked'), t + 900);
+    later(() => setView('after'), t + 2900);
+  };
+  btns.forEach(b => b.addEventListener('click', () => { timers.forEach(clearTimeout); timers = []; demo.classList.add('found', 'marked'); typed.textContent = query; caret.hidden = true; setView(b.dataset.v); }));
+  document.getElementById('replay').addEventListener('click', () => SL.reduce ? showFinal() : play());
+  if (SL.reduce) { showFinal(); return; }
+  // start when the demo is on screen
+  const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); play(); } }, { threshold: .35 });
+  io.observe(demo);
+})();
+</script>
+</body>
+</html>
