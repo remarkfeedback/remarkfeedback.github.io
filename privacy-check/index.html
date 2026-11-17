@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Sweep: find out where your home address is online, and get it removed | Survive Labs</title>
+<meta name="description" content="Your name, home address and the people you live with are easier to find than you think. We find where your details are published in the UK and get them taken down.">
+<link rel="canonical" href="https://survivelabs.co.uk/privacy-check/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Survive Labs">
+<meta property="og:title" content="How easy is it to find your home address?">
+<meta property="og:description" content="We find where your details are published in the UK and get them taken down.">
+<meta property="og:url" content="https://survivelabs.co.uk/privacy-check/">
+<meta property="og:image" content="https://survivelabs.co.uk/assets/og/home.jpg">
+<meta property="og:locale" content="en_GB">
+<link rel="icon" href="/favicon.png">
+<meta name="theme-color" content="#0E1525">
+<link rel="stylesheet" href="/assets/sl.css">
+<script src="/assets/sl.js"></script>
+<style>
+body{background:var(--paper)}
+.red{color:#FF5A4E}
+
+/* hero: a public record card being circled in red pen */
+.hero{background:var(--ink);color:#fff;padding:150px 0 110px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:56px;align-items:center}
+.hero .kicker{font:700 15px var(--sans);color:#FFB199;margin:0 0 18px}
+.hero h1{font-size:clamp(42px,5.3vw,76px);line-height:.95;letter-spacing:-.05em;font-weight:900;margin:0}
+.hero .lede{font-size:clamp(19px,1.8vw,22px);line-height:1.5;color:#C9CEDA;max-width:34ch;margin:28px 0 32px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero .btn.line{color:#fff}
+.hero .small{margin:18px 0 0;font-size:14.5px;color:#8D94A6}
+
+.record{background:#fff;color:var(--ink);border-radius:18px;padding:26px 26px 18px;box-shadow:0 40px 80px -30px rgba(0,0,0,.6);position:relative;transform:rotate(1.2deg)}
+.record .top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:6px}
+.record .top b{font:800 15px var(--sans);letter-spacing:-.01em}
+.record .top span{font-size:12.5px;color:var(--mut)}
+.record dl{margin:0;display:grid;grid-template-columns:auto 1fr;column-gap:18px}
+.record dt{font-size:13px;color:var(--mut);padding:11px 0;border-bottom:1px solid var(--rule)}
+.record dd{margin:0;font:600 16px/1.3 var(--doc);padding:10px 0 10px 14px;border-bottom:1px solid var(--rule);position:relative}
+.record dd .ring{position:absolute;left:0;top:2px;width:100%;height:calc(100% - 2px);overflow:visible;pointer-events:none}
+.record dd .ring ellipse{--draw-c:#FF3B2F;--draw-w:2.6}
+.record .where{font:700 24px/1 var(--hand);color:#FF3B2F;position:absolute;right:10px;bottom:-34px;transform:rotate(-5deg)}
+.record .eg{font-size:12px;color:var(--mut);margin:12px 0 0}
+
+/* the numbers */
+.nums{padding:90px 0 40px}
+.nums h2,.how h2,.tiers h2,.faq h2,.join h2{font-size:clamp(32px,4vw,54px);line-height:1;letter-spacing:-.045em;font-weight:900;margin:0 0 14px}
+.nums .intro{color:var(--ink2);font-size:19px;max-width:52ch;margin:0 0 40px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.stat{background:#fff;border-radius:18px;padding:26px;box-shadow:0 0 0 1px rgba(14,21,37,.06)}
+.stat .n{font:900 clamp(40px,4.4vw,60px)/1 var(--sans);letter-spacing:-.05em}
+.stat p{margin:10px 0 12px;font-size:17px;line-height:1.4}
+.stat small{display:block;font-size:12.5px;color:var(--mut);line-height:1.4}
+.stat.dark{background:var(--ink);color:#fff}
+.stat.dark small{color:#8D94A6}
+.honest{margin:26px 0 0;font-size:15px;color:var(--mut);max-width:70ch}
+
+/* how it works */
+.how{padding:80px 0}
+.how ol{list-style:none;padding:0;margin:34px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;counter-reset:s}
+.how ol>li{counter-increment:s;border-top:3px solid var(--ink);padding-top:16px}
+.how ol>li::before{content:counter(s);font:900 14px var(--sans);display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--hl);margin-bottom:12px}
+.how ol>li b{display:block;font-size:20px;letter-spacing:-.02em;margin-bottom:6px}
+.how ol>li span{font-size:16px;color:var(--ink2);line-height:1.45}
+.checks{margin:46px 0 0;background:#fff;border-radius:18px;padding:26px 28px;box-shadow:0 0 0 1px rgba(14,21,37,.06)}
+.checks h3{margin:0 0 12px;font-size:20px;letter-spacing:-.02em}
+.checks ul{margin:0;padding:0;list-style:none;columns:2;column-gap:36px}
+.checks li{padding:6px 0 6px 26px;position:relative;break-inside:avoid;font-size:16px}
+.checks li::before{content:"";position:absolute;left:0;top:12px;width:12px;height:12px;border-radius:50%;border:2.5px solid #FF3B2F}
+
+/* tiers */
+.tiers{padding:80px 0;background:#fff}
+.tiers .sub{color:var(--ink2);font-size:18px;margin:0 0 36px;max-width:56ch}
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+.plan{border-radius:20px;padding:28px;box-shadow:0 0 0 1.5px var(--rule);display:flex;flex-direction:column}
+.plan h3{margin:0;font-size:22px;letter-spacing:-.02em}
+.plan .price{font:900 46px/1 var(--sans);letter-spacing:-.04em;margin:16px 0 4px}
+.plan .price small{font:600 16px var(--sans);letter-spacing:0;color:var(--mut)}
+.plan .for{font-size:15px;color:var(--mut);margin:0 0 16px}
+.plan ul{margin:0 0 24px;padding:0 0 0 20px;font-size:16px;line-height:1.5;flex:1}
+.plan li{margin:0 0 6px}
+.plan .btn{justify-content:center}
+.plan.main{box-shadow:0 0 0 3px var(--ink);position:relative}
+.plan.main .tag{position:absolute;top:-14px;left:24px;background:#FF3B2F;color:#fff;font:700 13px var(--sans);padding:5px 12px;border-radius:999px}
+.tiers .note{margin:22px 0 0;font-size:14.5px;color:var(--mut)}
+
+/* faq */
+.faq{padding:80px 0}
+.faq .list{max-width:780px;margin-top:26px}
+.faq details{border-bottom:1px solid var(--rule);padding:18px 0}
+.faq summary{cursor:pointer;font-weight:700;font-size:19px;letter-spacing:-.01em;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::after{content:"+";font-weight:400;font-size:26px;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin:10px 0 0;color:var(--ink2);font-size:17px;max-width:66ch}
+
+/* join */
+.join{background:var(--ink);color:#fff;padding:90px 0}
+.join p{color:#C9CEDA;font-size:19px;max-width:46ch;margin:0 0 28px}
+.join .ctas{display:flex;flex-wrap:wrap;gap:12px}
+.join .btn.line{color:#fff}
+
+.sources{padding:40px 0 70px;font-size:13.5px;color:var(--mut)}
+.sources h2{font-size:15px;margin:0 0 10px;color:var(--ink)}
+.sources ol{margin:0;padding-left:20px;max-width:90ch}
+.sources li{margin:0 0 6px}
+
+@media (max-width:900px){
+  .hero{padding:120px 0 90px}
+  .hero .wrap{grid-template-columns:1fr;gap:60px}
+  .record{transform:none}
+  .grid,.plans{grid-template-columns:1fr}
+  .how ol{grid-template-columns:1fr 1fr}
+  .checks ul{columns:1}
+}
+@media (max-width:560px){.how ol{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="sl-nav">
+  <a class="sl-logo" href="/"><img src="/sl-icon.png" alt=""><span>Survive Labs</span></a>
+  <nav aria-label="Main"><a class="opt" href="#how">How it works</a><a class="opt" href="#pricing">Pricing</a><a class="sl-contact" href="#join">Join the waitlist</a></nav>
+</header>
+<main>
+
+<section class="hero" data-dark>
+  <div class="wrap">
+    <div>
+      <p class="kicker">Privacy Sweep</p>
+      <h1 class="lines" data-in><span class="ln"><span>A stranger can</span></span><span class="ln"><span style="--d:.08s">find your home</span></span><span class="ln"><span style="--d:.16s">in <span class="red">60 seconds.</span></span></span></h1>
+      <p class="lede">Your name, your address, who you live with and what your house cost are sitting on public websites right now. We find every place your details appear and get them taken down.</p>
+      <div class="ctas"><a class="btn pen" href="#join">Join the waitlist</a><a class="btn line" href="#how">See what we check</a></div>
+      <p class="small">Opening soon to a small number of founding customers in the UK.</p>
+    </div>
+    <div class="record rise" data-in>
+      <div class="top"><b>What a 60-second search can show</b><span>Free public websites</span></div>
+      <dl>
+        <dt>Full name</dt><dd>Daniel J. Morgan<svg class="ring draw" data-in style="--d:.5s" viewBox="0 0 200 40" preserveAspectRatio="none"><ellipse cx="100" cy="20" rx="98" ry="17"/></svg></dd>
+        <dt>Area</dt><dd>Swansea, SA2</dd>
+        <dt>Lives with</dt><dd>Claire Morgan, Ellie Morgan<svg class="ring draw" data-in style="--d:.9s" viewBox="0 0 200 40" preserveAspectRatio="none"><ellipse cx="100" cy="20" rx="98" ry="17"/></svg></dd>
+        <dt>At this address</dt><dd>Every year since 2011</dd>
+        <dt>Home</dt><dd>3 bed semi, 87 m², bought for £95,000<svg class="ring draw" data-in style="--d:1.3s" viewBox="0 0 200 40" preserveAspectRatio="none"><ellipse cx="100" cy="20" rx="98" ry="17"/></svg></dd>
+        <dt>Full address</dt><dd>One small payment away</dd>
+      </dl>
+      <p class="eg">An example with made-up details. Every line is the kind of thing we found in a real test sweep.</p>
+      <span class="where note-hand" data-in style="--d:1.6s">all public!</span>
+    </div>
+  </div>
+</section>
+
+<section class="nums">
+  <div class="wrap">
+    <h2>Your details are worth something to criminals.</h2>
+    <p class="intro">Burglary and identity fraud happen on a huge scale in the UK. The less of your life that sits on public websites, the harder you are to target.</p>
+    <div class="grid">
+      <div class="stat dark rise" data-in><div class="n"><span data-count="900" data-pre="~">~900</span></div><p>homes burgled every day in England and Wales</p><small>327,000 domestic burglaries in the year to December 2025. Source: ONS, Crime Survey for England and Wales.</small></div>
+      <div class="stat rise" data-in style="--d:.1s"><div class="n"><span data-count="444" >444</span>k</div><p>fraud cases recorded in the UK in 2025, a record. More than 1,200 a day.</p><small>Source: Cifas, Fraudscape 2026.</small></div>
+      <div class="stat rise" data-in style="--d:.2s"><div class="n"><span data-count="59">59</span>%</div><p>of fraud cases in early 2026 were identity fraud, which runs on stolen personal details</p><small>Source: Cifas, Fraudscape 2026 six-month update.</small></div>
+      <div class="stat rise" data-in><div class="n"><span data-count="700">700</span>m</div><p>UK records on one people-search website, pulled from the electoral roll, Companies House and the Land Registry</p><small>192.com, the largest UK people-search site.</small></div>
+      <div class="stat rise" data-in style="--d:.1s"><div class="n">2×</div><p>Company directors are twice as likely to be victims of identity fraud</p><small>Source: GOV.UK, cited by TaxAssist Accountants.</small></div>
+      <div class="stat dark rise" data-in style="--d:.2s"><div class="n">£0</div><p>is all it costs to see someone's name, area and household on the biggest people-search site</p><small>Free search results. The full record costs extra.</small></div>
+    </div>
+    <p class="honest">To be straight with you: removing your details won't make crime impossible, and nobody honest will promise that. It means a stranger can't find where you live, who you live with and what you own with one quick search.</p>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <ol>
+      <li><b>We check it's you</b><span>A quick ID check, so we only ever look up the person who's paying.</span></li>
+      <li><b>We search everywhere</b><span>People-search sites, public registers, property sites, Google and social media.</span></li>
+      <li><b>You get the report</b><span>A plain-English list of what's out there, ranked by risk.</span></li>
+      <li><b>We get it removed</b><span>With your permission we send every removal request and chase the ones that don't reply.</span></li>
+    </ol>
+    <div class="checks">
+      <h3>Where we look</h3>
+      <ul>
+        <li>192.com and other people-search sites</li>
+        <li>The open electoral register</li>
+        <li>Companies House, including old filings</li>
+        <li>Property sites showing your home and its price</li>
+        <li>Google search results for your name</li>
+        <li>Seller and trader pages (Etsy, eBay, app stores)</li>
+        <li>Social media, old usernames and photos</li>
+        <li>Google Street View</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="tiers" id="pricing">
+  <div class="wrap">
+    <h2>Pick how much you want us to do</h2>
+    <p class="sub">Founding prices for our first customers. Tell us which you'd choose and we'll contact you when your place is ready. Nothing to pay now.</p>
+    <div class="plans">
+      <div class="plan">
+        <h3>Report only</h3>
+        <div class="price">£49</div>
+        <p class="for">For people who'd rather fix things themselves</p>
+        <ul><li>Full sweep of where your details appear</li><li>Plain-English report ranked by risk</li><li>Step-by-step instructions for every fix</li></ul>
+        <a class="btn line" href="mailto:survivelabs@outlook.com?subject=Privacy%20Sweep%20waitlist%3A%20Report%20only&amp;body=Hi%2C%20please%20add%20me%20to%20the%20waitlist%20for%20the%20Report%20only%20option.%0A%0AName%3A%0AI%27m%20a%20(e.g.%20online%20seller%2C%20company%20director%2C%20landlord%2C%20other)%3A">Join the waitlist</a>
+      </div>
+      <div class="plan main">
+        <span class="tag">Recommended</span>
+        <h3>Done for you</h3>
+        <div class="price">£199</div>
+        <p class="for">We find it and we remove it</p>
+        <ul><li>Everything in Report only</li><li>We send every removal request for you</li><li>Forms for your few quick steps, filled in ready to send</li><li>A before-and-after report</li></ul>
+        <a class="btn pen" href="mailto:survivelabs@outlook.com?subject=Privacy%20Sweep%20waitlist%3A%20Done%20for%20you&amp;body=Hi%2C%20please%20add%20me%20to%20the%20waitlist%20for%20the%20Done%20for%20you%20option.%0A%0AName%3A%0AI%27m%20a%20(e.g.%20online%20seller%2C%20company%20director%2C%20landlord%2C%20other)%3A">Join the waitlist</a>
+      </div>
+      <div class="plan">
+        <h3>Monitoring</h3>
+        <div class="price">£12<small> a month</small></div>
+        <p class="for">Add-on that keeps you off the lists</p>
+        <ul><li>Regular re-checks of every site</li><li>We remove anything that comes back</li><li>An alert if your details turn up somewhere new</li></ul>
+        <a class="btn line" href="mailto:survivelabs@outlook.com?subject=Privacy%20Sweep%20waitlist%3A%20Monitoring&amp;body=Hi%2C%20please%20add%20me%20to%20the%20waitlist%20for%20Monitoring.%0A%0AName%3A%0AI%27m%20a%20(e.g.%20online%20seller%2C%20company%20director%2C%20landlord%2C%20other)%3A">Join the waitlist</a>
+      </div>
+    </div>
+    <p class="note">Government fees, such as Companies House charges for removing an address from old filings, are passed on at cost. We'll tell you before anything is charged.</p>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <h2>Questions</h2>
+    <div class="list">
+      <details><summary>Is this legal?</summary><p>Yes. UK data protection law gives you the right to ask companies to delete your personal data, and lets someone act for you with your written permission. That's what we do.</p></details>
+      <details><summary>Will I lose my vote?</summary><p>No. You'd come off the <em>open</em> version of the electoral register, which is the one sold to marketers and people-search sites. You stay on the full register and can still vote.</p></details>
+      <details><summary>What can't be removed?</summary><p>Some records are public by law, like Land Registry sales. We'll tell you exactly what can and can't be removed before you pay for the done-for-you service.</p></details>
+      <details><summary>How do you protect my details?</summary><p>We only collect what's needed to find and remove your information, we never sell or share it, and we delete your ID check once it's done.</p></details>
+      <details><summary>Who is this for?</summary><p>Anyone, but especially online sellers, company directors, landlords and anyone who'd rather a stranger couldn't find their front door.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="join" id="join" data-dark>
+  <div class="wrap">
+    <h2>Be one of the first.</h2>
+    <p>We're opening to a small group of founding customers in the UK. Join the waitlist and we'll be in touch when your place is ready. No payment now.</p>
+    <div class="ctas"><a class="btn pen" href="mailto:survivelabs@outlook.com?subject=Privacy%20Sweep%20waitlist&amp;body=Hi%2C%20please%20add%20me%20to%20the%20Privacy%20Sweep%20waitlist.%0A%0AName%3A%0AWhich%20option%20interests%20me%20(Report%20only%20%2F%20Done%20for%20you%20%2F%20Monitoring)%3A">Join the waitlist</a></div>
+  </div>
+</section>
+
+<section class="sources">
+  <div class="wrap">
+    <h2>Sources</h2>
+    <ol>
+      <li>Office for National Statistics, Crime in England and Wales: year ending December 2025 (327,000 domestic burglary incidents, Crime Survey for England and Wales). Daily figure is that total divided by 365.</li>
+      <li>Cifas, Fraudscape 2026 (444,000 fraud cases recorded to the National Fraud Database in 2025).</li>
+      <li>Cifas, Fraudscape 2026 six-month update, August 2026 (identity fraud 59% of fraud-risk cases, January to June 2026).</li>
+      <li>192.com: about 700 million UK residential and business records drawn from the open electoral register, Companies House and Land Registry data.</li>
+      <li>GOV.UK figure on company directors and identity fraud, as cited by TaxAssist Accountants.</li>
+    </ol>
+  </div>
+</section>
+
+</main>
+<footer class="sl-foot">
+  <div class="wrap">
+    <div class="top">
+      <div><p class="big">Questions?<br>We actually reply.</p><a href="mailto:survivelabs@outlook.com">survivelabs@outlook.com</a></div>
+      <div><h4>Privacy Sweep</h4><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#join">Waitlist</a></div>
+      <div><h4>Products</h4><a href="/remark/">Remark</a><a href="/themely/">Themely</a></div>
+      <div><h4>Survive Labs</h4><a href="/">Home</a><a href="/guides/">Guides</a><a href="/tools/">Free tools</a><a href="mailto:survivelabs@outlook.com">Contact</a></div>
+    </div>
+    <div class="base"><span>© 2026 Survive Labs, United Kingdom</span><span>We don't give legal advice. If you're at serious risk, contact the police.</span></div>
+  </div>
+</footer>
+</body>
+</html>
