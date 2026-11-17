@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to analyse open-ended survey answers in Google Sheets | Survive Labs</title>
+<meta name="description" content="Turn written answers from a Google Form into clear themes, counts and charts in Google Sheets, with the formulas to copy.">
+<link rel="canonical" href="https://survivelabs.co.uk/guides/analyse-open-ended-survey-responses-google-sheets.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to analyse open-ended survey answers in Google Sheets">
+<meta property="og:description" content="Turn written answers from a Google Form into clear themes, counts and charts in Google Sheets, with the formulas to copy.">
+<meta property="og:url" content="https://survivelabs.co.uk/guides/analyse-open-ended-survey-responses-google-sheets.html">
+<meta property="og:image" content="https://survivelabs.co.uk/assets/og/home.jpg">
+<link rel="stylesheet" href="/assets/sl.css">
+<link rel="stylesheet" href="/assets/guide.css">
+<link rel="icon" href="/favicon.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to analyse open-ended survey answers in Google Sheets", "description": "Turn written answers from a Google Form into clear themes, counts and charts in Google Sheets, with the formulas to copy.", "author": {"@type": "Organization", "name": "Survive Labs"}, "publisher": {"@type": "Organization", "name": "Survive Labs"}, "datePublished": "2026-11-17", "mainEntityOfPage": "https://survivelabs.co.uk/guides/analyse-open-ended-survey-responses-google-sheets.html"}</script>
+</head>
+<body>
+<header class="sl-nav">
+  <a class="sl-logo" href="/"><img src="/sl-icon.png" alt=""><span>Survive Labs</span></a>
+  <nav aria-label="Main"><a href="/remark/">Remark</a><a href="/themely/">Themely</a><a href="/guides/" aria-current="page">Guides</a></nav>
+</header>
+<main>
+<article class="g g-wrap">
+<p class="g-crumb"><a href="/guides/">Guides</a> · For teachers, schools and researchers</p>
+<h1>How to analyse open-ended survey answers in Google Sheets</h1>
+<p class="g-lede">Tick-box questions give you instant charts. Questions where people write their own answers give you the interesting stuff, and a wall of text. Here's how to turn those written answers into clear themes, counts and a chart in Google Sheets.</p>
+<p class="g-meta">About an 8-minute read · Works with any Google Form, or any column of text</p>
+
+<nav class="g-toc" aria-label="On this page"><b>On this page</b><ol>
+<li><a href="#sheet">Get your answers into a sheet</a></li>
+<li><a href="#codes">Decide on your codes</a></li>
+<li><a href="#tag">Tag every answer</a></li>
+<li><a href="#count">Count them with formulas</a></li>
+<li><a href="#groups">Compare groups</a></li>
+<li><a href="#report">Report what you found</a></li>
+</ol></nav>
+
+<p>This works for student voice surveys, course feedback, exit tickets, staff surveys, parent questionnaires and research questionnaires: anything where people answer in their own words.</p>
+
+<div class="step" id="sheet"><span class="n">1</span><h3>Get your answers into a sheet</h3><div>
+<p>In your Google Form, open the <strong>Responses</strong> tab and click <strong>Link to Sheets</strong> (or <strong>View in Sheets</strong> if it's already linked). Each question becomes a column and each person a row. If your answers came from somewhere else, paste them into a column with one answer per row.</p>
+<p>Before you start, make a copy of the sheet (<code>File › Make a copy</code>) so the original responses stay untouched.</p>
+</div></div>
+
+<div class="step" id="codes"><span class="n">2</span><h3>Decide on your codes</h3><div>
+<p>A <strong>code</strong> is a short label for an idea that keeps coming up, such as <mark>Homework load</mark> or <mark>Lunch and food</mark>. Read the first 20 or 30 answers and note the ideas you see repeated. Turn them into 5 to 10 codes to start with. You can always add more.</p>
+<p>Write your codes in a list on a new tab called "Codes". Keep the names short and use the same wording every time.</p>
+</div></div>
+
+<div class="step" id="tag"><span class="n">3</span><h3>Tag every answer</h3><div>
+<p>Add a new column next to the answers called "Codes". Read each answer and type the code or codes that fit, separated by commas when an answer covers two ideas.</p>
+<div class="tablebox"><table>
+<tr><th>Year group</th><th>What one thing would make school better?</th><th>Codes</th></tr>
+<tr><td>Year 7</td><td>The lunch queue is so long I only get ten minutes to eat.</td><td>Lunch and food</td></tr>
+<tr><td>Year 9</td><td>Less homework on the same night, sometimes I get four pieces at once.</td><td>Homework load</td></tr>
+<tr><td>Year 10</td><td>I feel stressed about GCSEs and don't know who to talk to.</td><td>Wellbeing and stress</td></tr>
+</table></div>
+<p>To avoid typos, you can turn the column into a dropdown: select it, choose <code>Data › Data validation</code>, add a rule, pick <strong>Dropdown (from a range)</strong> and choose your list on the Codes tab. A standard dropdown holds one choice per cell, so if lots of answers need two codes, typing them is simpler. Just copy the names exactly from your list.</p>
+</div></div>
+
+<div class="tip"><p><strong>Tip:</strong> some answers won't fit any code ("not sure", "nothing"). Give them a code like "No suggestion" so you can count them too, rather than leaving gaps.</p></div>
+
+<div class="step" id="count"><span class="n">4</span><h3>Count them with formulas</h3><div>
+<p>On your Codes tab, put each code in column A. In column B, count how many answers mention it. If your codes are in column E of a tab called "Form responses 1", use:</p>
+<p><code>=COUNTIF('Form responses 1'!E:E, "*"&amp;A2&amp;"*")</code></p>
+<p>The stars mean "anywhere in the cell", so an answer tagged "Homework load, Wellbeing and stress" counts towards both codes. To show it as a share of everyone who answered, divide by the number of answers:</p>
+<p><code>=B2/COUNTA('Form responses 1'!D2:D)</code></p>
+<p>Format that column as a percentage, then select both columns and choose <code>Insert › Chart</code>. A bar chart, sorted from biggest to smallest, is usually clearest.</p>
+</div></div>
+
+<div class="step" id="groups"><span class="n">5</span><h3>Compare groups</h3><div>
+<p>Often the useful finding is who said what: Year 7 worry about lunch, Year 10 about stress. Add a column for each group and count with two conditions. With year group in column B:</p>
+<p><code>=COUNTIFS('Form responses 1'!B:B, "Year 7", 'Form responses 1'!E:E, "*"&amp;A2&amp;"*")</code></p>
+<p>Copy it across for each group. Remember that groups can be different sizes, so compare percentages, not raw counts.</p>
+</div></div>
+
+<div class="step" id="report"><span class="n">6</span><h3>Report what you found</h3><div>
+<p>For each of your top codes, give the count, the percentage, and one or two real quotes that show what people meant. Quotes are what make a summary land with colleagues or governors: "17% asked for more clubs" is fine, but the student who said "a football club for girls" is what people remember.</p>
+</div></div>
+
+<section class="shortcut">
+<h2>Got hundreds of answers?</h2>
+<p>Themely for Sheets does the slow parts for you. It finds the column of written answers, shows them one at a time so you can tag each with a click (or tag every answer that mentions a word at once), writes the codes into your sheet, and builds the summary table, example quotes, chart and group comparison for you.</p>
+<a class="btn" href="/themely/#sheets">See Themely for Sheets</a>
+<p class="soon">Coming soon to the Google Workspace Marketplace. Free for up to 50 answers per spreadsheet.</p>
+</section>
+
+<section class="faq">
+<h2>Questions people ask</h2>
+<h3>How many answers do I need to read before choosing codes?</h3>
+<p>Usually 20 to 30 is enough to see the main ideas. You'll still add a code or two as you go, which is fine. Just recheck the earlier answers when you do.</p>
+<h3>Can I just search for keywords instead?</h3>
+<p>Searching helps you find candidates quickly, but people say the same thing in different words ("homework", "too many assignments", "work every night"). Always read the answer before you tag it.</p>
+<h3>Should one person do all the tagging?</h3>
+<p>It's more consistent if one person tags everything, or if two people agree the code list first and check a sample of each other's work.</p>
+</section>
+
+</article>
+<section class="g-more"><h2>More guides</h2><div class="cards"><a href="/guides/thematic-analysis-google-docs.html">How to do thematic analysis in Google Docs<span>A step-by-step guide to coding interview transcripts and finding themes using only Google Docs, for dissertations and research projects.</span></a><a href="/guides/faster-feedback-google-docs.html">How to mark essays faster in Google Docs<span>Practical ways for teachers to give good written feedback in Google Docs in less time: comment banks, marking codes, WWW/EBI and DIRT.</span></a></div></section>
+</main>
+<footer class="sl-foot">
+  <div class="wrap">
+    <div class="top">
+      <div><p class="big">Questions?<br>We actually reply.</p><a href="mailto:hello@survivelabs.co.uk">hello@survivelabs.co.uk</a></div>
+      <div><h4>Remark</h4><a href="/remark/">Overview</a><a href="/remark/#pricing">Pricing</a><a href="/remark/support.html">Support</a><a href="/remark/privacy.html">Privacy</a><a href="/remark/terms.html">Terms</a></div>
+      <div><h4>Themely</h4><a href="/themely/">Overview</a><a href="/themely/#pricing">Pricing</a><a href="/themely/#help">Help</a><a href="/themely/privacy.html">Privacy</a><a href="/themely/terms.html">Terms</a></div>
+      <div><h4>Survive Labs</h4><a href="/">Home</a><a href="/guides/">Guides</a><a href="/tools/">Free tools</a><a href="mailto:hello@survivelabs.co.uk">Contact</a></div>
+    </div>
+    <div class="base"><span>© 2026 Survive Labs, United Kingdom</span><span>Remark and Themely are independent add-ons and are not affiliated with Google.</span></div>
+  </div>
+</footer>
+</body>
+</html>
