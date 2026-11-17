@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free tools for UK resellers · Survive Labs</title>
+<title>Free tools for UK resellers | Survive Labs</title>
 <meta name="description" content="Free price and profit calculator for Vinted, eBay, Depop and Etsy sellers in the UK. Excel and Google Sheets.">
 <link rel="canonical" href="https://survivelabs.co.uk/tools/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Survive Labs">
-<meta property="og:title" content="Free tools for UK resellers · Survive Labs">
+<meta property="og:title" content="Free tools for UK resellers | Survive Labs">
 <meta property="og:description" content="Free price and profit calculator for Vinted, eBay, Depop and Etsy sellers in the UK. Excel and Google Sheets.">
 <meta property="og:url" content="https://survivelabs.co.uk/tools/">
 <meta property="og:image" content="https://survivelabs.co.uk/assets/og/tools.jpg">
@@ -17,38 +17,102 @@
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://survivelabs.co.uk/assets/og/tools.jpg">
+<link rel="icon" href="/sl-icon.png">
+<meta name="theme-color" content="#FFF0A6">
 <link rel="stylesheet" href="/assets/sl.css">
-<link rel="stylesheet" href="../style.css">
-<style>body{padding-top:96px}header.sl-nav{border-bottom:0;height:auto}.sl-nav nav a{margin-left:0;color:inherit;text-decoration:none}.sl-nav .sl-logo{color:inherit}</style>
 <script src="/assets/sl.js"></script>
-<link rel="icon" href="../sl-icon.png">
-<style>.tool img{width:100%;border-radius:10px;margin:12px 0}.btn{display:inline-block;background:#E8590C;color:#fff;padding:12px 20px;border-radius:8px;font-weight:700;text-decoration:none;margin:6px 8px 6px 0}.btn.alt{background:#3a3a3e}</style>
+<style>
+/* Free tools: a seller's notebook. Butter paper, receipts, price stickers. */
+.top-hero{background:var(--butter);padding:150px 0 70px;position:relative;overflow:hidden}
+.top-hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:48px;align-items:center}
+.top-hero .who{font:700 26px var(--hand);color:var(--pen-deep);margin:0 0 8px}
+.top-hero h1{font-size:clamp(42px,6vw,84px);line-height:.95;letter-spacing:-.055em;font-weight:900;margin:0 0 20px}
+.top-hero p{font-size:clamp(18px,1.8vw,21px);line-height:1.5;color:var(--ink2);max-width:38ch;margin:0}
+.top-hero .tag{display:inline-block;background:var(--ink);color:#fff;font:800 13px var(--sans);padding:6px 12px;border-radius:999px;margin-top:22px}
+.top-hero img{border-radius:16px;box-shadow:0 30px 60px -30px rgba(14,21,37,.5);transform:rotate(2deg)}
+.tools{padding:70px 0 100px}
+.tools .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.tool{background:#fff;border-radius:22px;padding:28px;box-shadow:0 0 0 1px rgba(14,21,37,.07),0 24px 48px -32px rgba(14,21,37,.35);display:flex;flex-direction:column}
+.tool .price{align-self:flex-start;font:800 13px var(--sans);padding:6px 12px;border-radius:999px;margin-bottom:16px}
+.tool .price.free{background:var(--mint-soft);color:#0B6B4D}
+.tool .price.paid{background:#FFE3D2;color:var(--pen-deep)}
+.tool h2{font-size:clamp(26px,2.6vw,34px);line-height:1.05;letter-spacing:-.035em;margin:0 0 12px;font-weight:900}
+.tool p{font-size:17px;line-height:1.5;color:var(--ink2);margin:0 0 16px}
+.tool ul{margin:0 0 22px;padding:0;list-style:none;display:grid;gap:8px;font-size:16px}
+.tool li{display:flex;gap:10px}
+.tool li svg{width:20px;height:20px;flex:none;margin-top:1px}
+.tool .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto}
+.tool .note{font-size:14px;color:var(--mut);margin:14px 0 0}
+.fine{font-size:14px;color:var(--mut);margin:26px 0 0}
+@media (max-width:860px){
+  .top-hero{padding:118px 0 56px}
+  .top-hero .wrap,.tools .grid{grid-template-columns:1fr;gap:32px}
+  .top-hero img{transform:none}
+  .tool{padding:24px 22px}
+  .tool .acts{flex-direction:column}
+  .tool .acts .btn{justify-content:center}
+}
+</style>
 </head>
-<body data-dark>
+<body>
 <header class="sl-nav">
   <a class="sl-logo" href="/"><img src="/sl-icon.png" alt=""><span>Survive Labs</span></a>
-  <nav aria-label="Main"><a href="/remark/">Remark</a><a href="/themely/">Themely</a><a href="/tools/" aria-current="page" class="opt">Free tools</a><a class="sl-contact" href="mailto:hello@survivelabs.co.uk">Contact</a></nav>
+  <nav aria-label="Main"><a href="/remark/">Remark</a><a href="/themely/">Themely</a><a href="/privacy-sweep/">Privacy Sweep</a><a class="sl-contact opt" href="mailto:hello@survivelabs.co.uk">Contact</a></nav>
 </header>
-<div class="wrap doc">
-  <h1>Free tools for UK resellers</h1>
-  <p class="mut">For people selling on Vinted, eBay, Depop and Etsy.</p>
-
-  <div class="card tool">
-    <h2>Price &amp; Profit Calculator <span class="mut">· free</span></h2>
-    <p>Type in what you paid and what you want to sell for. It shows your real profit after Vinted, eBay, Depop and Etsy fees, postage and packaging. Includes a batch pricer for listing lots at once.</p>
-    <img src="calculator.png" alt="Calculator preview">
-    <a class="btn" href="Reseller-Price-and-Profit-Calculator.xlsx" download>Download free (.xlsx)</a>
-    <p class="mut">Opens in Excel, or upload it to Google Sheets (File → Import). No sign-up needed.</p>
+<main>
+<section class="top-hero">
+  <div class="wrap">
+    <div>
+      <p class="who rise" data-in>for Vinted, eBay, Depop and Etsy sellers</p>
+      <h1 class="lines" data-in><span class="ln"><span>Know what you</span></span> <span class="ln"><span style="--d:.08s">actually take home.</span></span></h1>
+      <p class="rise" data-in style="--d:.25s">Free tools for UK resellers. Work out fees, postage and real profit before you list, and keep your records straight for HMRC.</p>
+      <span class="tag rise" data-in style="--d:.35s">No sign-up needed</span>
+    </div>
+    <img class="rise" data-in style="--d:.2s" src="/tools/calculator.png" alt="The price and profit calculator spreadsheet">
   </div>
+</section>
 
-  <div class="card tool">
-    <h2>Reseller Profit &amp; HMRC Tracker <span class="mut">· £12</span></h2>
-    <p>Log every buy and sale and see your profit, expenses, and where you stand against the £1,000 HMRC trading allowance and the platform reporting limits. Ready for Self Assessment.</p>
-    <a class="btn" href="https://www.etsy.com/listing/4618138680?utm_source=tools">Get it on Etsy</a>
-    <a class="btn alt" href="https://payhip.com/b/VU970?utm_source=tools">Get it on Payhip</a>
+<section class="tools">
+  <div class="wrap">
+    <div class="grid">
+      <div class="tool rise" data-in>
+        <span class="price free">Free</span>
+        <h2>Price &amp; Profit Calculator</h2>
+        <p>Type in what you paid and what you want to sell for. It shows your real profit after fees, postage and packaging on every platform.</p>
+        <ul>
+          <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5.5" stroke="#0B9E73" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Vinted, eBay, Depop and Etsy fees side by side</li>
+          <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5.5" stroke="#0B9E73" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>A batch pricer for listing lots at once</li>
+          <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5.5" stroke="#0B9E73" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Works in Excel or Google Sheets</li>
+        </ul>
+        <div class="acts"><a class="btn" href="/tools/Reseller-Price-and-Profit-Calculator.xlsx" download>Download free (.xlsx)</a></div>
+        <p class="note">To use it in Google Sheets: File, then Import, then upload the file.</p>
+      </div>
+      <div class="tool rise" data-in style="--d:.1s">
+        <span class="price paid">£12, one-off</span>
+        <h2>Reseller Profit &amp; HMRC Tracker</h2>
+        <p>Log every buy and sale and see your profit, your expenses and where you stand against the £1,000 trading allowance and the platform reporting limits.</p>
+        <ul>
+          <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5.5" stroke="#E2530D" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Running profit, month by month</li>
+          <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5.5" stroke="#E2530D" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Warns you as you get close to HMRC limits</li>
+          <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5.5" stroke="#E2530D" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Ready for your Self Assessment</li>
+        </ul>
+        <div class="acts"><a class="btn pen" href="https://www.etsy.com/listing/4618138680?utm_source=tools">Get it on Etsy</a><a class="btn line" href="https://payhip.com/b/VU970?utm_source=tools">Get it on Payhip</a></div>
+      </div>
+    </div>
+    <p class="fine">General information, not tax advice.</p>
   </div>
-
-  <p class="mut">General information, not tax advice. Made by Survive Labs, UK · <a href="mailto:survivelabs@outlook.com">survivelabs@outlook.com</a></p>
-</div>
+</section>
+</main>
+<footer class="sl-foot">
+  <div class="wrap">
+    <div class="top">
+      <div><p class="big">Questions?<br>We actually reply.</p><a href="mailto:hello@survivelabs.co.uk">hello@survivelabs.co.uk</a></div>
+      <div><h4>Remark</h4><a href="/remark/">Overview</a><a href="/remark/#pricing">Pricing</a><a href="/remark/support.html">Support</a><a href="/remark/privacy.html">Privacy</a><a href="/remark/terms.html">Terms</a></div>
+      <div><h4>Themely</h4><a href="/themely/">Overview</a><a href="/themely/#pricing">Pricing</a><a href="/themely/#help">Help</a><a href="/themely/privacy.html">Privacy</a><a href="/themely/terms.html">Terms</a></div>
+      <div><h4>Survive Labs</h4><a href="/">Home</a><a href="/guides/">Guides</a><a href="/privacy-sweep/">Privacy Sweep</a><a href="/tools/">Free tools</a><a href="mailto:hello@survivelabs.co.uk">Contact</a></div>
+    </div>
+    <div class="base"><span>© 2026 Survive Labs, United Kingdom</span><span>Remark and Themely are independent add-ons and are not affiliated with Google.</span></div>
+  </div>
+</footer>
 </body>
 </html>

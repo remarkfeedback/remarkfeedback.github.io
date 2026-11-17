@@ -35,20 +35,42 @@
 .hero .lede{max-width:40ch;font-size:clamp(20px,2vw,24px);line-height:1.4;color:var(--ink2);margin:40px 0 34px;font-weight:500}
 .hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
 .picks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:1120px}
-.pick{display:flex;flex-direction:column;gap:6px;text-decoration:none;border-radius:20px;padding:22px 24px 22px;transition:transform .3s var(--ease),box-shadow .3s}
+.pick{display:flex;flex-direction:column;gap:8px;text-decoration:none;border-radius:22px;padding:22px 22px 18px;position:relative;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s}
 .pick:hover{transform:translateY(-4px)}
+.pick:active{transform:scale(.985)}
 .pick:focus-visible{outline:3px solid var(--pen);outline-offset:3px}
-.pick .who{font:700 13.5px var(--sans);opacity:.75}
-.pick b{font:900 34px/1 var(--sans);letter-spacing:-.04em}
-.pick .what{font:500 16px/1.45 var(--sans);margin-top:4px}
-.pick .cost{font:700 14px var(--sans);margin-top:10px;padding-top:12px;border-top:1px solid currentColor;border-color:rgba(127,127,127,.25)}
+.pick .top{display:flex;align-items:center;gap:10px}
+.pick .ic{width:34px;height:34px;border-radius:10px;flex:none;display:grid;place-items:center}
+.pick .ic-r{background:rgba(255,106,31,.16)}.pick .ic-r i{width:13px;height:13px;border-radius:50%;background:var(--pen);box-shadow:0 0 0 5px rgba(255,106,31,.22)}
+.pick .who{font:700 13.5px var(--sans)}
+.pick b{font:900 34px/1 var(--sans);letter-spacing:-.04em;margin-top:6px}
+.pick .what{font:500 16px/1.45 var(--sans)}
+.pick .viz{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px;min-height:34px;align-items:center}
+.pick .foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:14px;border-top:1px solid rgba(127,127,127,.25)}
+.pick .cost{font:700 14px/1.35 var(--sans)}
+.pick .go{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none;transition:transform .3s var(--ease)}
+.pick:hover .go{transform:translateX(3px)}
+.pick .go svg{width:18px;height:18px}
+/* Remark: charcoal and pen orange */
 .pick.r{background:var(--charcoal);color:#fff;box-shadow:0 20px 40px -24px rgba(20,21,24,.7)}
-.pick.r .who,.pick.r .cost{color:var(--pen);opacity:1}
-.pick.t{background:#fff;color:var(--ink);box-shadow:0 0 0 1px rgba(14,21,37,.08),0 20px 40px -24px rgba(14,21,37,.35)}
-.pick.t .who,.pick.t .cost{color:#0B9E73;opacity:1}
-.pick.p{background:#0B1220;color:#fff;box-shadow:0 20px 40px -24px rgba(11,18,32,.75)}
-.pick.p .who,.pick.p .cost{color:#FF6B61;opacity:1}
-
+.pick.r .who,.pick.r .cost{color:var(--pen)}
+.pick.r .go{background:var(--pen);color:#fff}
+.cmt-chip{font:600 13px/1.4 var(--sans);background:#FFD6BD;color:#8a3a0c;border-radius:6px;padding:5px 9px}
+/* Themely: the researcher's wall, dotted paper and highlighter tags */
+.pick.t{background:#fff;color:var(--ink);box-shadow:0 0 0 1px rgba(14,21,37,.08),0 20px 40px -24px rgba(14,21,37,.35);background-image:radial-gradient(rgba(14,21,37,.08) 1px,transparent 1.2px);background-size:18px 18px}
+.pick.t .who,.pick.t .cost{color:#0B9E73}
+.pick.t .go{background:var(--ink);color:#fff}
+.tg{font:700 12.5px var(--sans);color:#1d2a26;padding:5px 10px;border-radius:6px;box-shadow:0 4px 10px -6px rgba(0,0,0,.3)}
+.tg:nth-child(odd){transform:rotate(-2deg)}.tg:nth-child(even){transform:rotate(1.5deg)}
+/* Privacy Sweep: surveillance dark with caution tape */
+.pick.p{background:#07090F;color:#fff;box-shadow:0 20px 40px -24px rgba(7,9,15,.8);padding-top:30px}
+.pick.p::before{content:"";position:absolute;left:0;right:0;top:0;height:9px;background:repeating-linear-gradient(-45deg,#FFD400 0 12px,#0A0A0A 12px 24px)}
+.pick.p .who,.pick.p .cost{color:#FFD400}
+.pick.p .go{background:#FFD400;color:#0A0A0A}
+.rd{display:flex;align-items:center;gap:8px;width:100%;background:#fff;border-radius:7px;padding:6px 8px}
+.rd svg{width:16px;height:16px;flex:none}
+.rd i{display:block;height:11px;background:#0A0D14;border-radius:2px}
+.rd em{margin-left:auto;font:800 10.5px var(--sans);font-style:normal;background:#D7F5E8;color:#0E7A4F;padding:3px 7px;border-radius:999px}
 .early{margin:18px 0 0;font:500 15px/1.5 var(--sans);color:var(--ink2);max-width:62ch}.early a{color:var(--ink);font-weight:700}
 @media (max-width:980px){.picks{grid-template-columns:1fr 1fr}}@media (max-width:720px){.picks{grid-template-columns:1fr}.pick b{font-size:28px}}
 @media (max-width:980px){.hero .side{display:none}}
@@ -137,6 +159,14 @@
   .th .mock .doc{padding-bottom:20px!important}.notes{position:relative;inset:auto;margin-top:16px}
 }
 
+@media (max-width:720px){
+  .duo{height:auto}
+  .duo .pin{position:relative;height:auto;overflow:visible;background:none;color:inherit}
+  .track{flex-direction:column;width:100%;height:auto;transform:none}
+  .panel{width:100%;height:auto;padding:84px 22px 72px}
+  .panel.r{background:#141518;color:#ECECEF}
+  .panel.th{background:#ECF8F3;color:var(--ink)}
+}
 /* ---------- privacy: words light up as you scroll ---------- */
 .say{height:260vh;background:var(--white);position:relative}
 @media (max-width:720px){.say{height:190vh}}
@@ -180,7 +210,7 @@
 
 <header class="sl-nav">
   <a class="sl-logo" href="/"><img src="/sl-icon.png" alt=""><span>Survive Labs</span></a>
-  <nav aria-label="Main"><a href="/remark/">Remark</a><a href="/themely/">Themely</a><a class="opt" href="/privacy-sweep/">Privacy Sweep</a><a class="sl-contact" href="mailto:hello@survivelabs.co.uk">Contact</a></nav>
+  <nav aria-label="Main"><a href="/remark/">Remark</a><a href="/themely/">Themely</a><a href="/privacy-sweep/">Privacy Sweep</a><a class="sl-contact opt" href="mailto:hello@survivelabs.co.uk">Contact</a></nav>
 </header>
 
 <main>
@@ -199,22 +229,25 @@
     <p class="lede rise" data-in style="--d:.6s">We make small, clever tools that do the slow, repetitive part of a job for you: add-ons that sit inside Google Docs, and a service that gets your home address off the internet.</p>
     <div class="picks rise" data-in style="--d:.75s">
       <a class="pick r" href="/remark/">
-        <span class="who">For teachers</span>
+        <span class="top"><span class="ic ic-r" aria-hidden="true"><i></i></span><span class="who">For teachers</span></span>
         <b>Remark</b>
         <span class="what">Mark essays faster. Click a ready-written comment and it drops into the student's work, with their name.</span>
-        <span class="cost">Free to try. Pro is £19 a year.</span>
+        <span class="viz" aria-hidden="true"><span class="cmt-chip">✓ Jordan, a strong point, backed up with evidence.</span></span>
+        <span class="foot"><span class="cost">Free to try. Pro is £19 a year.</span><span class="go" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
       </a>
       <a class="pick t" href="/themely/">
-        <span class="who">For students and researchers</span>
+        <span class="top"><img class="ic" src="/themely/mark.svg" alt=""><span class="who">For students and researchers</span></span>
         <b>Themely</b>
         <span class="what">Make sense of interviews and survey answers. Tag quotes, and Themely sorts them into themes and builds your findings report.</span>
-        <span class="cost">Free to try. £9 for a dissertation.</span>
+        <span class="viz" aria-hidden="true"><span class="tg" style="background:var(--sky)">Trust</span><span class="tg" style="background:var(--mint-soft)">Family</span><span class="tg" style="background:var(--rose)">Control</span><span class="tg" style="background:var(--butter)">Money</span></span>
+        <span class="foot"><span class="cost">Free to try. £9 for a dissertation.</span><span class="go" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
       </a>
       <a class="pick p" href="/privacy-sweep/">
-        <span class="who">For anyone online</span>
+        <span class="top"><img class="ic" src="/privacy-sweep/logo.svg" alt=""><span class="who">For anyone online</span></span>
         <b>Privacy Sweep</b>
         <span class="what">Find out where your name, address and household are published online, and get them taken down.</span>
-        <span class="cost">New. Join the waitlist for founding prices.</span>
+        <span class="viz" aria-hidden="true"><span class="rd"><svg viewBox="0 0 24 24"><path d="M12 2.6L23.2 21.6H.8z" fill="#FFD400" stroke="#0A0A0A" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 9.2v5.6" stroke="#0A0A0A" stroke-width="2.5" stroke-linecap="round"/><circle cx="12" cy="18.1" r="1.45" fill="#0A0A0A"/></svg><i style="width:58%"></i><em>Removed</em></span><span class="rd"><svg viewBox="0 0 24 24"><path d="M12 2.6L23.2 21.6H.8z" fill="#FFD400" stroke="#0A0A0A" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 9.2v5.6" stroke="#0A0A0A" stroke-width="2.5" stroke-linecap="round"/><circle cx="12" cy="18.1" r="1.45" fill="#0A0A0A"/></svg><i style="width:42%"></i><em>Removed</em></span></span>
+        <span class="foot"><span class="cost">New. Join the waitlist for founding prices.</span><span class="go" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
       </a>
     </div>
     <p class="early rise" data-in style="--d:.9s">Remark and Themely are waiting for approval from Google. Want to try them first? <a href="/remark/#get">Test Remark</a> or <a href="/themely/#testers">test Themely</a>, and get Pro free for a year.</p>
@@ -464,21 +497,25 @@
     const txt = 'Jordan, a strong point, backed up with evidence.';
     const qs = [...duo.querySelectorAll('.th .q')], stickies = [...duo.querySelectorAll('.sticky')], ns = [0, 1, 2].map(i => document.getElementById('n' + i));
     const qCode = [0, 1, 2, 1];
+    const small = matchMedia('(max-width:720px)'), panR = duo.querySelector('.panel.r');
     on(duo, p => {
-      const x = reduce ? 0 : seg(p, .42, .58);
+      // on phones the two products stack, each shown finished, instead of a sideways pinned slide
+      const still = reduce || small.matches;
+      panR.toggleAttribute('data-dark', small.matches);
+      const x = still ? 0 : seg(p, .42, .58);
       duo.style.setProperty('--x', x.toFixed(4));
       pin.style.setProperty('--duo-bg', mix(BG1, BG2, x));
       pin.style.setProperty('--duo-fg', mix(FG1, FG2, x));
-      duo.toggleAttribute('data-dark', x < .5);
+      duo.toggleAttribute('data-dark', !small.matches && x < .5);
       // Remark: pick a comment, it types into the essay highlighted, then a tick is drawn
-      const a = reduce ? 1 : seg(p, .04, .36);
+      const a = still ? 1 : seg(p, .04, .36);
       rC1.classList.toggle('on', a > .08);
       rQ.style.background = a > .2 ? '#FFD6BD' : 'transparent';
       const n = Math.round(seg(a, .25, .8) * txt.length);
       rIns.hidden = n === 0; rIns.textContent = txt.slice(0, n);
       rTick.style.strokeDashoffset = String(30 - 30 * seg(a, .82, 1));
       // Themely: quotes highlight one by one, counts tick up, then they lift off into themed sticky notes
-      const b = reduce ? 1 : seg(p, .62, .98);
+      const b = still ? 1 : seg(p, .62, .98);
       const counts = [0, 0, 0];
       qs.forEach((q, i) => { const lit = b > .08 + i * .12; q.style.background = lit ? q.dataset.c : 'transparent'; if (lit) counts[qCode[i]]++; });
       ns.forEach((el, i) => el.textContent = counts[i]);

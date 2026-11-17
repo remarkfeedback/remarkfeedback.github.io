@@ -77,6 +77,8 @@ body{background:var(--paper)}
 .rows li{display:grid;grid-template-columns:26px 92px minmax(0,1fr) auto;gap:4px 12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--rule);opacity:0;transform:translateY(8px);transition:opacity .4s var(--ease) calc(var(--i)*.11s),transform .4s var(--ease) calc(var(--i)*.11s)}
 .rows li:last-child{border-bottom:0}
 .found .rows li{opacity:1;transform:none}
+.rows{position:relative}
+.screen:not(.found) .rows::before{content:"Searching public websites\2026";position:absolute;inset:0;display:grid;place-items:center;font:700 15px var(--sans);color:var(--mut);animation:pulse 1.1s ease-in-out infinite}
 .rows .sign{width:22px;height:22px;display:grid;place-items:center;transform:scale(0);transition:transform .35s cubic-bezier(.3,1.6,.5,1) calc(var(--i)*.14s)}
 .marked .rows .sign{transform:scale(1)}
 .rows .sign svg{width:22px;height:22px}
@@ -586,8 +588,8 @@ body{background:var(--paper)}
   const play = () => {
     timers.forEach(clearTimeout); timers = [];
     demo.className = base; setView('before'); typed.textContent = ''; caret.hidden = false;
-    [...query].forEach((ch, i) => later(() => { typed.textContent += ch; }, 300 + i * 55));
-    const t = 300 + query.length * 55 + 250;
+    [...query].forEach((ch, i) => later(() => { typed.textContent += ch; }, 250 + i * 40));
+    const t = 250 + query.length * 40 + 450;
     later(() => { caret.hidden = true; demo.classList.add('found'); }, t);
     later(() => demo.classList.add('marked'), t + 800);
     later(() => setView('after'), t + 3400);
