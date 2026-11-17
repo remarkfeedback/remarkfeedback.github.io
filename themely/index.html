@@ -163,7 +163,7 @@ body{background:#F7FAF8;background-image:radial-gradient(rgba(14,21,37,.09) 1px,
 .end{padding:90px 0 140px}
 .end .box{background:var(--ink);color:#fff;border-radius:32px;padding:70px 60px;position:relative;overflow:hidden}
 .end h2{font-size:clamp(40px,5vw,72px);line-height:.98;letter-spacing:-.055em;font-weight:900;margin:0 0 18px;max-width:14ch}
-.end p{font-size:20px;color:#C9CEDA;max-width:40ch;margin:0}
+.end p{font-size:20px;color:#C9CEDA;max-width:44ch;margin:0}.end p+p{margin-top:12px}
 .end .chips{position:absolute;right:50px;top:50px;display:flex;flex-direction:column;gap:10px}
 .end .chips span{font:700 22px var(--hand);color:#1d2a26;padding:10px 16px;border-radius:4px;box-shadow:0 12px 24px -12px rgba(0,0,0,.6)}
 @media (max-width:900px){.end .chips{display:none}.end .box{padding:44px 26px}}
@@ -220,6 +220,16 @@ body{background:#F7FAF8;background-image:radial-gradient(rgba(14,21,37,.09) 1px,
   .tryapp .code-btn{flex:1 1 130px}
   .tryboard{grid-template-columns:repeat(2,1fr);padding:16px}
 }
+
+/* plain-English benefits under the hero */
+.hero .facts{--facts-line:var(--rule);--facts-dim:var(--ink2);display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px;padding-top:30px;border-top:1px solid var(--facts-line)}
+.hero .facts div b{display:block;font:800 19px/1.25 var(--sans);letter-spacing:-.02em;margin-bottom:6px}
+.hero .facts div span{display:block;font:500 16px/1.45 var(--sans);color:var(--facts-dim)}
+@media (max-width:800px){.hero .facts{--facts-line:var(--rule);--facts-dim:var(--ink2);grid-template-columns:1fr;gap:18px;margin-top:40px}}
+/* first testers */
+.testers{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:26px}
+.end .testers .btn{background:#fff;color:var(--ink)}
+.testers small{font:600 14px var(--sans);opacity:.85}
 </style>
 </head>
 <body>
@@ -240,8 +250,13 @@ body{background:#F7FAF8;background-image:radial-gradient(rgba(14,21,37,.09) 1px,
       <div class="stk" data-in style="--d:1.7s">findings, ready to write up</div>
     </div>
     <p class="lede rise" data-in style="--d:.5s">Doing interviews for a dissertation or research project? Themely helps you find the patterns in what people said. Tag quotes in Google Docs, and Themely sorts them into themes and builds a findings report for you.</p>
-    <div class="ctas rise" data-in style="--d:.65s"><a class="btn" href="#how">See how it works</a><a class="btn line" href="#pricing">Pricing</a></div>
+    <div class="ctas rise" data-in style="--d:.65s"><a class="btn" href="#how">See how it works</a><a class="btn line" href="#testers">Be a first tester</a></div>
     <p class="small rise" data-in style="--d:.8s">Coming soon to the Google Workspace Marketplace. Free for 3 interviews.</p>
+    <div class="facts rise" data-in style="--d:.95s">
+      <div><b>No expensive software</b><span>It works in Google Docs, which you already have for free.</span></div>
+      <div><b>Transcripts to themes in one place</b><span>Highlight, tag and sort quotes without copying anything into spreadsheets.</span></div>
+      <div><b>Ready for your write-up</b><span>Quote tables for your appendix and a findings report for your results chapter.</span></div>
+    </div>
   </div>
 </section>
 
@@ -384,11 +399,13 @@ body{background:#F7FAF8;background-image:radial-gradient(rgba(14,21,37,.09) 1px,
   </div>
 </section>
 
-<section class="end">
+<section class="end" id="testers">
   <div class="wrap">
     <div class="box rise" data-in>
-      <h2>Coming soon to Google Docs</h2>
-      <p>Themely is on its way to the Google Workspace Marketplace. Questions in the meantime? <a href="mailto:hello@survivelabs.co.uk" style="color:#fff">hello@survivelabs.co.uk</a></p>
+      <h2>Be one of the first to use Themely</h2>
+      <p>Themely is in its final review with Google. We're looking for a small group of students and researchers to try it on real interviews and tell us honestly how it went.</p>
+      <p>Our first testers get Themely Pro free for a year.</p>
+      <div class="testers"><a class="btn" href="mailto:hello@survivelabs.co.uk?subject=Themely%20tester&body=Hi%2C%20I%27d%20like%20to%20test%20Themely.%0A%0AWhat%20I%27m%20studying%3A%20%0AHow%20many%20interviews%20I%20have%3A%20%0A">Email us to join</a><small>hello@survivelabs.co.uk</small></div>
       <div class="chips" aria-hidden="true"><span style="background:var(--sky);transform:rotate(-3deg)">trust</span><span style="background:var(--mint-soft);transform:rotate(2deg)">family</span><span style="background:var(--rose);transform:rotate(-1deg)">control</span></div>
     </div>
   </div>

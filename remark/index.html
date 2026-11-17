@@ -214,13 +214,23 @@ body{background:var(--charcoal);color:var(--chalk)}
   .tryapp .rail .list:not(.codes) .pick{flex:1 1 140px}
   .tryapp .rail .foot{flex-direction:row}.tryapp .btn-s{flex:1}
 }
+
+/* plain-English benefits under the hero */
+.hero .facts{--facts-line:rgba(255,255,255,.14);--facts-dim:#B9BCC4;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px;padding-top:30px;border-top:1px solid var(--facts-line)}
+.hero .facts div b{display:block;font:800 19px/1.25 var(--sans);letter-spacing:-.02em;margin-bottom:6px}
+.hero .facts div span{display:block;font:500 16px/1.45 var(--sans);color:var(--facts-dim)}
+@media (max-width:800px){.hero .facts{--facts-line:rgba(255,255,255,.14);--facts-dim:#B9BCC4;grid-template-columns:1fr;gap:18px;margin-top:40px}}
+/* first testers */
+.testers{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:26px}
+.testers .btn{background:#fff;color:var(--ink)}
+.testers small{font:600 14px var(--sans);opacity:.85}
 </style>
 </head>
 <body class="book">
 
 <header class="sl-nav on-dark" data-always-dark>
   <a class="sl-logo" href="/"><img src="/sl-icon.png" alt=""><span>Survive Labs</span></a>
-  <nav aria-label="Main"><a href="/remark/" aria-current="page">Remark</a><a href="/themely/">Themely</a><a class="opt" href="/remark/support.html">Support</a><a class="sl-contact" href="#get">Get Remark</a></nav>
+  <nav aria-label="Main"><a href="/remark/" aria-current="page">Remark</a><a href="/themely/">Themely</a><a class="opt" href="/remark/support.html">Support</a><a class="sl-contact" href="#get">Early access</a></nav>
 </header>
 
 <main data-dark>
@@ -230,8 +240,13 @@ body{background:var(--charcoal);color:var(--chalk)}
     <h1 class="lines" data-in><span class="ln"><span>Written feedback</span></span><span class="ln"><span style="--d:.12s">in <span style="white-space:nowrap"><span class="hl" data-in style="--d:1.2s">one click.</span><svg class="draw itick" data-in viewBox="0 0 100 80" aria-hidden="true" style="--d:1.6s;--dur:.8s;--draw-w:9"><path d="M10 44 L 36 70 L 92 8"/></svg></span></span></span></h1>
     <div class="tickmark" aria-hidden="true"><span class="note-hand" data-in style="--d:2.2s">great effort, Jordan</span></div>
     <p class="lede dim rise" data-in style="--d:.5s">Remark helps UK teachers mark essays in Google Docs faster. Click a ready-written comment and it drops into the student's work, highlighted and addressed to them by name.</p>
-    <div class="ctas rise" data-in style="--d:.65s"><a class="btn pen" href="#get">Get Remark free</a><a class="btn line chalk" href="#how">See how it works</a></div>
-    <p class="small dim rise" data-in style="--d:.8s">Free to use. Pro from £19 a year. Works in Google Docs on any computer.</p>
+    <div class="ctas rise" data-in style="--d:.65s"><a class="btn pen" href="#get">Be a first tester</a><a class="btn line chalk" href="#how">See how it works</a></div>
+    <p class="small dim rise" data-in style="--d:.8s">Coming soon to the Google Workspace Marketplace. Free to use, Pro from £19 a year.</p>
+    <div class="facts rise" data-in style="--d:.95s">
+      <div><b>Write it once, click it forever</b><span>The same comment on 30 essays is 30 clicks, not 30 rewrites.</span></div>
+      <div><b>Works where you already mark</b><span>It sits inside Google Docs. No new website, no new logins.</span></div>
+      <div><b>Free to start</b><span>No card and no time limit. Upgrade only if it saves you time.</span></div>
+    </div>
   </div>
 </section>
 
@@ -359,10 +374,11 @@ body{background:var(--charcoal);color:var(--chalk)}
 <section class="get" id="get">
   <div class="wrap">
     <div class="box rise" data-in>
-      <h2>Get Remark</h2>
-      <p>In Google Docs, open <kbd>Extensions</kbd> → <kbd>Add-ons</kbd> → <kbd>Get add-ons</kbd>, search for <b>Remark</b> and click <b>Install</b>.</p>
-      <p>Then open any document and choose <kbd>Extensions</kbd> → <kbd>Remark</kbd> → <kbd>Open Remark</kbd>.</p>
-      <p class="pdf">Don't use Google Docs? <a href="/free-marking-codes-and-comment-bank.pdf">Download the free printable marking codes poster and comment bank (PDF)</a>.</p>
+      <h2>Be one of the first to use Remark</h2>
+      <p>Remark is in its final review with Google. We're looking for a small group of teachers to try it first and tell us honestly what works and what doesn't.</p>
+      <p>Our first testers get Remark Pro free for a year.</p>
+      <div class="testers"><a class="btn" href="mailto:hello@survivelabs.co.uk?subject=Remark%20tester&body=Hi%2C%20I%27d%20like%20to%20test%20Remark.%0A%0AI%20teach%20(subject%20and%20year%20groups)%3A%20%0A">Email us to join</a><small>hello@survivelabs.co.uk</small></div>
+      <p class="pdf">Can't wait? <a href="/free-marking-codes-and-comment-bank.pdf">Download our free printable marking codes poster and comment bank (PDF)</a>.</p><p class="pdf" hidden>Don't use Google Docs? <a href="/free-marking-codes-and-comment-bank.pdf">Download the free printable marking codes poster and comment bank (PDF)</a>.</p>
     </div>
   </div>
 </section>
