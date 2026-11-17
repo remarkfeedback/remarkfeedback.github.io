@@ -230,6 +230,23 @@ body{background:#F7FAF8;background-image:radial-gradient(rgba(14,21,37,.09) 1px,
 .testers{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:26px}
 .end .testers .btn{background:#fff;color:var(--ink)}
 .testers small{font:600 14px var(--sans);opacity:.85}
+
+/* Themely for Sheets */
+.sheets{padding:110px 0 40px}
+.sheets .grid{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:center}
+.sheets .tag2{display:inline-block;font:800 13px var(--sans);background:var(--mint-soft);color:#087F5B;border-radius:999px;padding:5px 12px;margin-bottom:16px}
+.sheets h2{font-size:clamp(38px,4.6vw,64px);line-height:1;letter-spacing:-.055em;font-weight:900;margin:0 0 18px}
+.sheets p{font-size:18px;line-height:1.55;color:var(--ink2);margin:0 0 14px;max-width:46ch}
+.sheets ul{margin:6px 0 0;padding:0;list-style:none}
+.sheets li{font:600 16px/1.5 var(--sans);padding:6px 0 6px 28px;position:relative}
+.sheets li::before{content:"";position:absolute;left:0;top:11px;width:16px;height:16px;border-radius:4px;background:var(--mint-soft)}
+.sgrid{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 0 0 1px rgba(14,21,37,.07),0 40px 80px -40px rgba(14,21,37,.45);font:500 14px/1.35 var(--sans)}
+.sgrid .r{display:grid;grid-template-columns:70px 1fr 150px;border-top:1px solid var(--rule)}
+.sgrid .r:first-child{border-top:0;background:#F3F5F4;font-weight:800;font-size:12.5px;color:var(--ink2)}
+.sgrid .r>div{padding:10px 12px;border-left:1px solid var(--rule)}
+.sgrid .r>div:first-child{border-left:0;color:var(--mut)}
+.sgrid .chip{display:inline-block;font:700 12px var(--sans);border-radius:4px;padding:2px 7px;margin:1px 3px 1px 0}
+@media (max-width:900px){.sheets .grid{grid-template-columns:1fr;gap:32px}.sgrid .r{grid-template-columns:56px 1fr 112px}.sgrid{font-size:13px}}
 </style>
 </head>
 <body>
@@ -399,11 +416,35 @@ body{background:#F7FAF8;background-image:radial-gradient(rgba(14,21,37,.09) 1px,
   </div>
 </section>
 
+<section class="sheets" id="sheets">
+  <div class="wrap grid">
+    <div class="rise" data-in>
+      <span class="tag2">Coming soon: Themely for Google Sheets</span>
+      <h2>Survey answers, sorted too.</h2>
+      <p>Got a Google Form full of written answers? Themely for Sheets shows them one at a time, so you can tag each one with a code in a click, or tag every answer that mentions a word at once.</p>
+      <ul>
+        <li>Works on any Google Form or column of text</li>
+        <li>A summary sheet with counts, percentages, example quotes and a chart</li>
+        <li>Pro compares groups, such as year groups or departments</li>
+        <li>One Pro purchase unlocks Themely in Docs and Sheets</li>
+      </ul>
+    </div>
+    <div class="sgrid rise" data-in style="--d:.15s" aria-label="Example of survey answers tagged with codes in Google Sheets">
+      <div class="r"><div>Year</div><div>What one thing would make school better?</div><div>Themely codes</div></div>
+      <div class="r"><div>Year 7</div><div style="background:#FFD8A8">The lunch queue is so long I only get ten minutes to eat.</div><div><span class="chip" style="background:#FFD8A8">Lunch and food</span></div></div>
+      <div class="r"><div>Year 9</div><div style="background:#A5D8FF">Less homework on the same night, sometimes I get four pieces at once.</div><div><span class="chip" style="background:#A5D8FF">Homework load</span></div></div>
+      <div class="r"><div>Year 10</div><div style="background:#D0BFFF">I feel stressed about GCSEs and don't know who to talk to.</div><div><span class="chip" style="background:#D0BFFF">Wellbeing</span></div></div>
+      <div class="r"><div>Year 7</div><div style="background:#DEE2E6">More clubs at lunchtime, especially art and coding.</div><div><span class="chip" style="background:#B2F2BB">Clubs</span><span class="chip" style="background:#FFD8A8">Lunch and food</span></div></div>
+      <div class="r"><div>Year 8</div><div>Bullying on the bus home, nobody does anything about it.</div><div style="color:var(--mut)">not coded yet</div></div>
+    </div>
+  </div>
+</section>
+
 <section class="end" id="testers">
   <div class="wrap">
     <div class="box rise" data-in>
       <h2>Be one of the first to use Themely</h2>
-      <p>Themely is in its final review with Google. We're looking for a small group of students and researchers to try it on real interviews and tell us honestly how it went.</p>
+      <p>Themely is in its final review with Google. We're looking for a small group of students, researchers and teachers to try it on real interviews or survey answers and tell us honestly how it went.</p>
       <p>Our first testers get Themely Pro free for a year.</p>
       <div class="testers"><a class="btn" href="mailto:hello@survivelabs.co.uk?subject=Themely%20tester&body=Hi%2C%20I%27d%20like%20to%20test%20Themely.%0A%0AWhat%20I%27m%20studying%3A%20%0AHow%20many%20interviews%20I%20have%3A%20%0A">Email us to join</a><small>hello@survivelabs.co.uk</small></div>
       <div class="chips" aria-hidden="true"><span style="background:var(--sky);transform:rotate(-3deg)">trust</span><span style="background:var(--mint-soft);transform:rotate(2deg)">family</span><span style="background:var(--rose);transform:rotate(-1deg)">control</span></div>
