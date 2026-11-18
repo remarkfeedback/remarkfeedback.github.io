@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Themely for Sheets: sort open-ended survey answers into themes in Google Sheets</title>
+<meta name="description" content="Code the written answers from a Google Form or survey into themes, right inside Google Sheets. Tag answers in a click, then get counts, percentages, example quotes and a chart.">
+<link rel="canonical" href="https://survivelabs.co.uk/themely/sheets/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Survive Labs">
+<meta property="og:title" content="Themely for Sheets: survey answers, sorted into themes">
+<meta property="og:description" content="Code the written answers from a Google Form or survey into themes, right inside Google Sheets. Tag answers in a click, then get counts, percentages, example quotes and a chart.">
+<meta property="og:url" content="https://survivelabs.co.uk/themely/sheets/">
+<meta property="og:image" content="https://survivelabs.co.uk/assets/og/themely.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://survivelabs.co.uk/assets/og/themely.jpg">
+<link rel="icon" href="/themely/favicon.png">
+<meta name="theme-color" content="#F7FAF8">
+<link rel="stylesheet" href="/assets/sl.css?v=20261117b">
+<script src="/assets/sl.js?v=20261117b"></script>
+<style>
+/* Themely's own feel: a researcher's wall. Dotted grid paper, colour-coded highlighters, sticky notes. */
+body{background:#F7FAF8;background-image:radial-gradient(rgba(14,21,37,.09) 1px,transparent 1.2px);background-size:26px 26px}
+.green{color:#0B9E73}
+
+/* hero */
+.hero{padding:180px 0 90px}
+.hero .wrap{position:relative}
+.hero .brandline{display:flex;align-items:center;gap:12px;font:800 22px var(--sans);margin:0 0 26px}
+.hero .brandline img{width:34px;height:34px}
+.hero h1{font-size:clamp(46px,9vw,140px);line-height:.92;letter-spacing:-.06em;font-weight:900;margin:0;max-width:11ch}
+.hero h1 .hl{--hl-c:var(--sky)}
+.hero h1 .hl.b{--hl-c:var(--mint-soft)}
+.hero h1 .hl.c{--hl-c:var(--rose)}
+.hero .lede{font-size:clamp(20px,2vw,24px);line-height:1.45;max-width:36ch;margin:36px 0 34px;font-weight:500;color:var(--ink2)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.hero .small{margin:20px 0 0;font-size:15px;color:var(--mut)}
+.hero .stickies{position:absolute;right:28px;top:20px;width:330px;height:300px}
+.hero .stk{position:absolute;width:150px;padding:14px 14px 18px;font:700 22px/1.05 var(--hand);color:#1d2a26;box-shadow:0 14px 30px -14px rgba(14,21,37,.4);border-radius:4px}
+.hero .stk:nth-child(1){background:var(--butter);left:10px;top:10px;--r:-6deg}
+.hero .stk:nth-child(2){background:var(--mint-soft);left:150px;top:70px;--r:5deg}
+.hero .stk:nth-child(3){background:var(--sky);left:40px;top:160px;--r:3deg}
+.hero .stk{transform:rotate(var(--r)) translateY(30px) scale(.9);opacity:0;transition:transform .8s cubic-bezier(.3,1.4,.5,1) var(--d,0s),opacity .5s var(--d,0s)}
+.hero .stk.is-in{transform:rotate(var(--r));opacity:1}
+@media (max-width:1060px){.hero .stickies{display:none}}
+
+/* how it works: transcript -> codes -> themes -> report */
+.how{height:560vh;position:relative}
+.how .pin{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:48px;align-items:center;padding:90px max(28px,calc((100vw - 1180px)/2 + 28px)) 40px}
+.how h2{font-size:clamp(36px,3.6vw,52px);line-height:1;letter-spacing:-.045em;font-weight:900;margin:0 0 30px}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:6px;counter-reset:s}
+.steps li{position:relative;padding:14px 16px 14px 58px;border-radius:14px;color:#8A91A1;transition:color .4s,background .4s;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:16px;top:14px;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font:800 14px var(--sans);border:2px solid #C9CFDA;transition:all .4s}
+.steps li b{display:block;font-size:20px;letter-spacing:-.02em;color:inherit}
+.steps li span{font-size:15.5px;line-height:1.4;display:block;margin-top:4px;max-height:0;overflow:hidden;opacity:0;transition:max-height .5s var(--ease),opacity .4s}
+.steps li.on{color:var(--ink);background:#fff;box-shadow:0 10px 30px -18px rgba(14,21,37,.35)}
+.steps li.on::before{background:var(--mint);border-color:var(--mint);color:#fff}
+.steps li.on span{max-height:80px;opacity:1;color:var(--mut)}
+.steps li.done::before{border-color:var(--mint);color:#0B9E73}
+.bar{height:3px;border-radius:3px;background:#DDE3E0;margin-top:22px;overflow:hidden}
+.bar i{display:block;height:100%;width:calc(var(--p,0)*100%);background:var(--mint)}
+
+/* the stage: everything is built in code so it stays sharp */
+.stagebox{position:relative;width:100%;aspect-ratio:16/10.4;max-height:76vh}
+.stage{position:absolute;left:0;top:0;width:960px;height:624px;transform-origin:0 0;transform:scale(var(--fit,1))}
+.win{position:absolute;inset:0;border-radius:18px;background:#fff;box-shadow:0 0 0 1px rgba(14,21,37,.07),0 50px 100px -40px rgba(14,21,37,.45);overflow:hidden}
+.doc{position:absolute;left:0;top:0;bottom:0;width:640px;padding:40px 46px;font:400 17px/1.85 var(--doc);color:#262a33;transition:transform .9s var(--ease),opacity .6s}
+.doc h4{font:500 22px var(--doc);margin:0 0 2px}
+.doc .m{font:500 12.5px var(--sans);color:var(--mut);margin:0 0 14px}
+.doc p{margin:0 0 10px}
+.doc .q{border-radius:3px;transition:background .4s;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.side{position:absolute;right:0;top:0;bottom:0;width:320px;background:#F7FAF9;border-left:1px solid var(--rule);padding:22px 18px;font:500 14px/1.35 var(--sans);transition:transform .9s var(--ease),opacity .6s}
+.side .top{display:flex;gap:9px;align-items:center;font:800 16px var(--sans);margin-bottom:14px}
+.side .top img{width:22px;height:22px}
+.side h5{margin:12px 0 6px;font:700 12.5px var(--sans);color:var(--mut)}
+.code{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--rule);border-radius:10px;padding:9px 11px;margin-bottom:6px;transition:transform .7s var(--ease),border-color .3s}
+.code i{width:13px;height:13px;border-radius:4px}
+.code b{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--mut)}
+.code.flash{border-color:var(--ink)}
+.theme{font:800 14px var(--sans);display:flex;align-items:center;gap:7px;opacity:0;transform:translateY(-6px);transition:all .5s var(--ease)}
+.theme.on{opacity:1;transform:none}
+/* the theme wall */
+.wall{position:absolute;inset:0;padding:30px 34px;opacity:0;pointer-events:none;transition:opacity .6s}
+.wall.on{opacity:1}
+.wall .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;height:100%}
+.wall .col h6{margin:0 0 14px;font:900 22px var(--sans);letter-spacing:-.02em}
+.note{position:absolute;width:250px;padding:13px 14px 16px;border-radius:5px;font:700 21px/1.1 var(--hand);color:#1d2a26;box-shadow:0 14px 26px -14px rgba(14,21,37,.45);will-change:transform,opacity}
+/* the report */
+.report{position:absolute;inset:0;padding:40px 60px;background:#fff;font:400 15px/1.6 var(--doc);opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s var(--ease);pointer-events:none}
+.report.on{opacity:1;transform:none}
+.report h4{font:500 30px var(--doc);margin:0 0 4px}
+.report .m{font:500 12.5px var(--sans);color:var(--mut);margin:0 0 18px}
+.report h5{font:600 19px var(--doc);margin:16px 0 4px;display:flex;align-items:center;gap:10px}
+.report h5 i{width:12px;height:12px;border-radius:3px}
+.report p{margin:0 0 3px;padding-left:22px;color:#3a3f4c}
+.report .sheetchip{position:absolute;right:30px;top:34px;display:flex;align-items:center;gap:8px;font:700 13px var(--sans);background:#E7F8F1;color:#0B7A59;border-radius:999px;padding:8px 14px}
+.mwall{display:none}
+@media (max-width:900px){
+  .how{height:auto}.how .pin{position:relative;height:auto;grid-template-columns:1fr;padding:40px 20px 80px}
+  .stagebox{display:none}
+  .mwall{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;background:#fff;border-radius:18px;padding:18px 14px 22px;box-shadow:0 0 0 1px rgba(14,21,37,.07),0 30px 60px -30px rgba(14,21,37,.4)}
+  .mwall h6{margin:0 0 10px;font:900 16px var(--sans)}
+  .mwall span{display:block;font:700 17px/1.05 var(--hand);color:#1d2a26;padding:9px 9px 11px;border-radius:4px;margin-bottom:8px;box-shadow:0 10px 18px -10px rgba(14,21,37,.4)}
+}
+
+/* benefits */
+.why{padding:130px 0 60px}
+.why h2,.more h2,.price h2,.help h2{font-size:clamp(40px,5vw,72px);line-height:.98;letter-spacing:-.055em;font-weight:900;margin:0 0 50px;max-width:15ch}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:#fff;border-radius:24px;padding:34px 30px;box-shadow:0 0 0 1px rgba(14,21,37,.06),0 20px 50px -34px rgba(14,21,37,.4)}
+.card .sw{display:flex;gap:6px;margin-bottom:22px}
+.card .sw i{width:28px;height:12px;border-radius:3px}
+.card h3{font-size:24px;line-height:1.15;letter-spacing:-.03em;margin:0 0 10px}
+.card p{margin:0;color:var(--mut);font-size:17px}
+@media (max-width:860px){.cards{grid-template-columns:1fr}}
+
+/* more features */
+.more{padding:90px 0}
+.feats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.feat{display:flex;gap:18px;align-items:flex-start;background:rgba(255,255,255,.75);border-radius:18px;padding:22px 24px;box-shadow:0 0 0 1px rgba(14,21,37,.06)}
+.feat .ic{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font:900 18px var(--sans)}
+.feat h3{margin:0 0 4px;font-size:19px;letter-spacing:-.02em}
+.feat p{margin:0;color:var(--mut);font-size:16px}
+@media (max-width:820px){.feats{grid-template-columns:1fr}}
+
+/* pricing */
+.price{padding:110px 0}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.tier{background:#fff;border-radius:26px;padding:36px 32px;box-shadow:0 0 0 1px rgba(14,21,37,.07);position:relative}
+.tier h3{margin:0 0 6px;font-size:22px}
+.tier .amt{font-size:64px;font-weight:900;letter-spacing:-.05em;line-height:1;margin:14px 0 4px}
+.tier .amt small{font-size:17px;font-weight:600;color:var(--mut);letter-spacing:0}
+.tier ul{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:10px;color:var(--ink2);font-size:16px}
+.tier li::before{content:"";display:inline-block;width:14px;height:8px;border-left:3px solid var(--mint);border-bottom:3px solid var(--mint);transform:rotate(-45deg) translateY(-3px);margin-right:12px}
+.tier.best{background:var(--ink);color:#fff}
+.tier.best ul{color:#C9CEDA}
+.tier.best .amt small{color:#9AA2B4}
+.tier .ringed{position:relative;display:inline-block;margin-right:12px}.tier .ring{position:absolute;left:-26px;right:-22px;top:-20px;bottom:-16px;pointer-events:none}.tier .ring svg{width:100%;height:100%;overflow:visible}
+.tier .ring .draw{--draw-c:var(--mint)}
+.tier .tnote{position:absolute;right:16px;top:-30px;font-size:28px;color:#0B9E73;white-space:nowrap;transform:rotate(-3deg)}
+.price .fine{margin-top:26px;color:var(--mut);font-size:15px}
+@media (max-width:860px){.tiers{grid-template-columns:1fr}.tier .tnote{font-size:24px;top:-26px}}
+
+/* help */
+.help{padding:90px 0 60px}
+.qa{display:grid;gap:12px;max-width:820px}
+.qa details{background:#fff;border-radius:16px;box-shadow:0 0 0 1px rgba(14,21,37,.07);padding:0 24px}
+.qa summary{cursor:pointer;list-style:none;font:700 19px var(--sans);letter-spacing:-.01em;padding:20px 0;display:flex;justify-content:space-between;gap:16px}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"+";font-weight:400;font-size:26px;line-height:1;transition:transform .3s}
+.qa details[open] summary::after{transform:rotate(45deg)}
+.qa p{margin:0 0 20px;color:var(--ink2)}
+.cite{margin-top:50px;max-width:820px}
+.cite h3{font-size:26px;letter-spacing:-.03em;margin:0 0 10px}
+.cite p{color:var(--mut)}
+.cite code{display:block;background:#fff;border-radius:14px;padding:18px 20px;font:500 15px/1.5 var(--doc);color:var(--ink);box-shadow:0 0 0 1px rgba(14,21,37,.07)}
+
+/* closing */
+.end{padding:90px 0 140px}
+.end .box{background:var(--ink);color:#fff;border-radius:32px;padding:70px 60px;position:relative;overflow:hidden}
+.end h2{font-size:clamp(40px,5vw,72px);line-height:.98;letter-spacing:-.055em;font-weight:900;margin:0 0 18px;max-width:14ch}
+.end p{font-size:20px;color:#C9CEDA;max-width:44ch;margin:0}.end p+p{margin-top:12px}
+.end .chips{position:absolute;right:50px;top:50px;display:flex;flex-direction:column;gap:10px}
+.end .chips span{font:700 22px var(--hand);color:#1d2a26;padding:10px 16px;border-radius:4px;box-shadow:0 12px 24px -12px rgba(0,0,0,.6)}
+@media (max-width:900px){.end .chips{display:none}.end .box{padding:44px 26px}}
+
+/* try it yourself */
+.try{padding:120px 0 40px}
+.try h2{font-size:clamp(40px,5vw,72px);line-height:.98;letter-spacing:-.055em;font-weight:900;margin:0 0 16px;max-width:15ch}
+.try .lede{color:var(--ink2);font-size:19px;line-height:1.5;max-width:54ch;margin:0 0 40px}
+.try .safe{display:inline-flex;align-items:center;gap:8px;font:600 14px var(--sans);color:var(--mut);margin-top:14px}
+.try .safe svg{width:16px;height:16px}
+.tryapp{display:grid;grid-template-columns:minmax(0,1fr) 270px;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 0 0 1px rgba(14,21,37,.07),0 40px 90px -40px rgba(14,21,37,.45)}
+.tryapp .tdoc{padding:30px 40px 30px;min-width:0}
+.tryapp .tdoc h4{font:600 13.5px var(--sans);color:var(--mut);margin:0 0 10px}
+.tryapp [data-paper]{font:400 18px/1.85 var(--doc);outline:none;min-height:200px;border-radius:10px;padding:10px 12px;margin:0 -12px;white-space:pre-wrap;word-wrap:break-word;transition:box-shadow .2s}
+.tryapp [data-paper]:focus{box-shadow:0 0 0 2px var(--mint-soft)}
+.tryapp mark{color:inherit;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone;animation:ink .5s ease-out}
+@keyframes ink{from{background-size:0 100%;filter:saturate(2)}}
+.tryapp .status{font:600 14px var(--sans);color:var(--mut);margin:12px 0 0;min-height:20px}
+.tryapp .status.warn{color:#C2413A}
+.shake{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-5px)}50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}
+.tryapp .tside{background:#F7FAF9;border-left:1px solid var(--rule);padding:20px 16px;display:flex;flex-direction:column;gap:8px;font:500 14px var(--sans)}
+.tryapp .tside .top{display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px;margin-bottom:4px}
+.tryapp .tside .top img{width:18px;height:18px}
+.tryapp [data-codes]{display:flex;flex-direction:column;gap:8px}
+.tryapp .code-btn{all:unset;box-sizing:border-box;cursor:pointer;display:flex;gap:9px;align-items:center;border:1px solid var(--rule);border-radius:10px;padding:10px 11px;background:#fff;font:600 14px var(--sans);transition:border-color .2s,transform .2s}
+.tryapp .code-btn:hover,.tryapp .code-btn:focus-visible{border-color:#0B9E73}
+.tryapp .code-btn:focus-visible{outline:2px solid #0B9E73;outline-offset:2px}
+.tryapp .code-btn i{width:14px;height:14px;border-radius:4px;flex:none}
+.tryapp .code-btn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tryapp .code-btn b{margin-left:auto;color:var(--mut);font-variant-numeric:tabular-nums}
+.tryapp .code-btn.bump b{animation:bump .4s cubic-bezier(.3,1.6,.5,1);color:#0B9E73}
+@keyframes bump{50%{transform:scale(1.6)}}
+.tryapp form{display:flex;gap:6px;margin-top:4px}
+.tryapp form input{flex:1;min-width:0;font:500 14px var(--sans);border:1px dashed #B7C2BE;border-radius:10px;padding:9px 10px;background:transparent}
+.tryapp form button,.tryapp .reset{all:unset;cursor:pointer;font:700 13.5px var(--sans);border-radius:999px;padding:9px 14px;background:var(--ink);color:#fff;text-align:center}
+.tryapp .reset{margin-top:auto;background:none;color:var(--mut);border:1px solid var(--rule)}
+.tryapp form button:focus-visible,.tryapp .reset:focus-visible{outline:2px solid #0B9E73;outline-offset:2px}
+.tryboard{overflow:clip;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-top:22px;padding:22px;border-radius:18px;background:rgba(255,255,255,.6);border:1.5px dashed #C9D3CF;min-height:140px;position:relative}
+.tryboard::before{content:"Your theme board fills up here";position:absolute;inset:0;display:grid;place-items:center;font:700 30px var(--hand);color:#9AA5A1;transition:opacity .3s}
+.tryboard.has::before{opacity:0}
+.tryboard:not(.has) .tcol{visibility:hidden}
+.tryboard .tcol{display:flex;flex-direction:column;gap:8px}
+.tryboard .tcol h6{margin:0 0 2px;font:800 15px var(--sans)}
+.tryboard .tnote{overflow-wrap:anywhere;font:700 19px/1.08 var(--hand);color:#1d2a26;padding:10px 10px 13px;border-radius:4px;box-shadow:0 10px 18px -10px rgba(14,21,37,.45);transform:rotate(var(--r,0deg));animation:fly .55s cubic-bezier(.2,1.3,.4,1)}
+@keyframes fly{from{opacity:0;transform:translateY(-40px) rotate(-10deg) scale(.8)}}
+@media (max-width:900px){
+  .try{padding:80px 0 30px}
+  .tryapp{grid-template-columns:1fr}
+  .tryapp .tdoc{padding:22px 20px}
+  .tryapp [data-paper]{font-size:17px;min-height:0}
+  .tryapp .tside{border-left:0;border-top:1px solid var(--rule)}
+  .tryapp [data-codes]{flex-direction:row;flex-wrap:wrap}
+  .tryapp .code-btn{flex:1 1 130px}
+  .tryboard{grid-template-columns:repeat(2,1fr);padding:16px}
+}
+
+/* plain-English benefits under the hero */
+.hero .facts{--facts-line:var(--rule);--facts-dim:var(--ink2);display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px;padding-top:30px;border-top:1px solid var(--facts-line)}
+.hero .facts div b{display:block;font:800 19px/1.25 var(--sans);letter-spacing:-.02em;margin-bottom:6px}
+.hero .facts div span{display:block;font:500 16px/1.45 var(--sans);color:var(--facts-dim)}
+@media (max-width:800px){.hero .facts{--facts-line:var(--rule);--facts-dim:var(--ink2);grid-template-columns:1fr;gap:18px;margin-top:40px}}
+/* first testers */
+.testers{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:26px}
+.end .testers .btn{background:#fff;color:var(--ink)}
+.testers small{font:600 14px var(--sans);opacity:.85}
+
+/* Themely for Sheets */
+.sheets{padding:110px 0 40px}
+.sheets .grid{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:center}
+.sheets .tag2{display:inline-block;font:800 13px var(--sans);background:var(--mint-soft);color:#087F5B;border-radius:999px;padding:5px 12px;margin-bottom:16px}
+.sheets h2{font-size:clamp(38px,4.6vw,64px);line-height:1;letter-spacing:-.055em;font-weight:900;margin:0 0 18px}
+.sheets p{font-size:18px;line-height:1.55;color:var(--ink2);margin:0 0 14px;max-width:46ch}
+.sheets ul{margin:6px 0 0;padding:0;list-style:none}
+.sheets li{font:600 16px/1.5 var(--sans);padding:6px 0 6px 28px;position:relative}
+.sheets li::before{content:"";position:absolute;left:0;top:11px;width:16px;height:16px;border-radius:4px;background:var(--mint-soft)}
+.sgrid{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 0 0 1px rgba(14,21,37,.07),0 40px 80px -40px rgba(14,21,37,.45);font:500 14px/1.35 var(--sans)}
+.sgrid .r{display:grid;grid-template-columns:70px 1fr 150px;border-top:1px solid var(--rule)}
+.sgrid .r:first-child{border-top:0;background:#F3F5F4;font-weight:800;font-size:12.5px;color:var(--ink2)}
+.sgrid .r>div{padding:10px 12px;border-left:1px solid var(--rule)}
+.sgrid .r>div:first-child{border-left:0;color:var(--mut)}
+.sgrid .chip{display:inline-block;font:700 12px var(--sans);border-radius:4px;padding:2px 7px;margin:1px 3px 1px 0}
+@media (max-width:900px){.sheets .grid{grid-template-columns:1fr;gap:32px}.sgrid .r{grid-template-columns:56px 1fr 112px}.sgrid{font-size:13px}}
+
+/* Themely for Sheets page */
+.steps4{padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;counter-reset:st;margin-top:10px}
+.steps4 li{list-style:none;background:#fff;border-radius:22px;padding:28px 24px;box-shadow:0 0 0 1px rgba(14,21,37,.07);counter-increment:st}
+.steps4 li::before{content:counter(st);display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-weight:800;margin-bottom:14px}
+.steps4 b{display:block;font-size:19px;margin-bottom:8px}.steps4 span{color:var(--ink2);font-size:16px;line-height:1.5}
+.sum{background:#fff;border-radius:22px;box-shadow:0 0 0 1px rgba(14,21,37,.07);padding:26px 28px}
+.sum table{width:100%;border-collapse:collapse;font-size:15px}.sum th{text-align:left;color:var(--mut);font-weight:700;padding:6px 8px;border-bottom:1px solid rgba(14,21,37,.1)}
+.sum td{padding:9px 8px;border-bottom:1px solid rgba(14,21,37,.06)}.sum .bar{display:inline-block;height:10px;border-radius:5px;vertical-align:middle;margin-right:8px}
+.sum q{color:var(--ink2);font-style:italic}
+.who{padding:20px 0 90px}
+@media (max-width:900px){.steps4{grid-template-columns:1fr 1fr}}@media (max-width:560px){.steps4{grid-template-columns:1fr}.sum td:nth-child(4),.sum th:nth-child(4){display:none}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://survivelabs.co.uk/#org","name":"Survive Labs","url":"https://survivelabs.co.uk/","logo":"https://survivelabs.co.uk/sl-icon.png","email":"survivelabs@outlook.com","areaServed":"GB"},{"@type":"SoftwareApplication","name":"Themely for Sheets","url":"https://survivelabs.co.uk/themely/sheets/","description":"Code the written answers from a Google Form or survey into themes, right inside Google Sheets. Tag answers in a click, then get counts, percentages, example quotes and a chart.","applicationCategory":"BusinessApplication","operatingSystem":"Web (Google Workspace add-on)","publisher":{"@id":"https://survivelabs.co.uk/#org"},"offers":[{"@type":"Offer","name":"Free","price":"0","priceCurrency":"GBP"},{"@type":"Offer","name":"Dissertation Pass (6 months)","price":"9","priceCurrency":"GBP"},{"@type":"Offer","name":"Pro (12 months)","price":"19","priceCurrency":"GBP"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does Themely for Sheets do?","acceptedAnswer":{"@type":"Answer","text":"It helps you sort written survey answers into themes. You give each answer a short label (a code), such as \"homework load\" or \"lunch queue\", and Themely counts how often each one comes up, with example quotes and a chart."}},{"@type":"Question","name":"Does it work with Google Forms?","acceptedAnswer":{"@type":"Answer","text":"Yes. Open the spreadsheet your Google Form sends its responses to, pick the question column, and start coding. It works on any column of text in Google Sheets."}},{"@type":"Question","name":"What can Themely see in my Google account?","acceptedAnswer":{"@type":"Answer","text":"Only the spreadsheet you open it in. It can't see your other files, and your answers stay in your own Google account."}},{"@type":"Question","name":"Is there a free version?","acceptedAnswer":{"@type":"Answer","text":"Yes. The free version gives you up to 10 codes and 50 coded answers per spreadsheet. Pro removes the limits and adds group comparisons."}},{"@type":"Question","name":"Do I need to pay again if I already have Themely for Docs?","acceptedAnswer":{"@type":"Answer","text":"No. One Themely Pro or Dissertation Pass purchase unlocks Themely in both Google Docs and Google Sheets."}}]}]}</script>
+</head>
+<body>
+<header class="sl-nav">
+  <a class="sl-logo" href="/"><img src="/sl-icon.png" alt=""><span>Survive Labs</span></a>
+  <nav aria-label="Main"><a href="/remark/">Remark</a><a href="/themely/">Themely</a><a class="opt" href="#help">Help</a><a class="sl-contact" href="#pricing">Pricing</a></nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <p class="brandline rise" data-in><img src="/themely/mark.svg" alt="">themely <span style="font-weight:600;color:var(--mut)">for Sheets</span></p>
+    <h1 class="lines" data-in><span class="ln"><span>Your <span class="hl" data-in style="--d:1.1s">survey</span></span></span><span class="ln"><span style="--d:.12s"><span class="hl b" data-in style="--d:1.45s">answers</span>,</span></span><span class="ln"><span style="--d:.24s"><span class="hl c" data-in style="--d:1.8s">sorted</span>.</span></span></h1>
+    <div class="stickies" aria-hidden="true">
+      <div class="stk" data-in style="--d:1.2s">works on any Google Form</div>
+      <div class="stk" data-in style="--d:1.45s">every answer counted</div>
+      <div class="stk" data-in style="--d:1.7s">chart in one click</div>
+    </div>
+    <p class="lede rise" data-in style="--d:.5s">Got a Google Form full of written answers? Themely for Sheets shows them one at a time. Give each one a short label, like <em>homework load</em> or <em>lunch queue</em> (researchers call this coding), and Themely counts the themes, picks example quotes and draws the chart for you.</p>
+    <div class="ctas rise" data-in style="--d:.65s"><a class="btn" href="#how">See how it works</a><a class="btn line" href="#testers">Be a first tester</a></div>
+    <p class="small rise" data-in style="--d:.8s">Free for 50 answers per spreadsheet.</p>
+    <div class="facts rise" data-in style="--d:.95s">
+      <div><b>Stays in Google Sheets</b><span>No exporting, no copying answers into another tool. It works in the sheet your form already fills.</span></div>
+      <div><b>Hundreds of answers, quickly</b><span>Tag an answer in one click, or tag every answer that mentions a word at once.</span></div>
+      <div><b>Results you can share</b><span>A summary sheet with counts, percentages, example quotes and a chart, ready for a report or a meeting.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="how">
+  <div class="wrap">
+    <h2 class="lines" data-in><span class="ln"><span>How it works</span></span></h2>
+    <ol class="steps4">
+      <li class="rise" data-in><b>Pick your question</b><span>Open the spreadsheet your Google Form fills, choose the column of written answers, and click Code this column.</span></li>
+      <li class="rise" data-in style="--d:.08s"><b>Make a few codes</b><span>Add short labels for the ideas you expect, such as <em>homework load</em>. Add more as new ideas appear.</span></li>
+      <li class="rise" data-in style="--d:.16s"><b>Tag each answer</b><span>Themely shows one answer at a time. Click a code, or press 1 to 9, and it jumps to the next answer you haven't coded.</span></li>
+      <li class="rise" data-in style="--d:.24s"><b>Build your summary</b><span>One click adds a summary sheet with how often each code came up, example quotes and a chart.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sheets">
+  <div class="wrap grid">
+    <div class="rise" data-in>
+      <span class="tag2">Your codes stay in your sheet</span>
+      <h2>See every answer and its theme.</h2>
+      <p>Themely adds a column next to your answers with each one's codes, and shades the answer in its code's colour. Filter it, sort it or share it like any other column.</p>
+      <ul>
+        <li>An answer can have more than one code</li>
+        <li>Jump straight to the next answer you haven't coded</li>
+        <li>Find every answer that mentions a word and tag them all at once</li>
+        <li>Group codes into themes as patterns appear</li>
+      </ul>
+    </div>
+    <div class="sgrid rise" data-in style="--d:.15s" aria-label="Example of survey answers tagged with codes in Google Sheets">
+      <div class="r"><div>Year</div><div>What one thing would make school better?</div><div>Themely codes</div></div>
+      <div class="r"><div>Year 7</div><div style="background:#FFD8A8">The lunch queue is so long I only get ten minutes to eat.</div><div><span class="chip" style="background:#FFD8A8">Lunch and food</span></div></div>
+      <div class="r"><div>Year 9</div><div style="background:#A5D8FF">Less homework on the same night, sometimes I get four pieces at once.</div><div><span class="chip" style="background:#A5D8FF">Homework load</span></div></div>
+      <div class="r"><div>Year 10</div><div style="background:#D0BFFF">I feel stressed about GCSEs and don't know who to talk to.</div><div><span class="chip" style="background:#D0BFFF">Wellbeing</span></div></div>
+      <div class="r"><div>Year 7</div><div style="background:#DEE2E6">More clubs at lunchtime, especially art and coding.</div><div><span class="chip" style="background:#B2F2BB">Clubs</span><span class="chip" style="background:#FFD8A8">Lunch and food</span></div></div>
+      <div class="r"><div>Year 8</div><div>Bullying on the bus home, nobody does anything about it.</div><div style="color:var(--mut)">not coded yet</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="more">
+  <div class="wrap">
+    <h2 class="lines" data-in><span class="ln"><span>Your summary, in one click</span></span></h2>
+    <div class="sum rise" data-in>
+      <table>
+        <thead><tr><th>Code</th><th>Answers</th><th>Share</th><th>Example quote</th></tr></thead>
+        <tbody>
+          <tr><td>Lunch and food</td><td>9</td><td><span class="bar" style="width:90px;background:#FFD8A8"></span>30%</td><td><q>Longer lunch so we can actually eat and see friends.</q></td></tr>
+          <tr><td>Homework load</td><td>6</td><td><span class="bar" style="width:60px;background:#A5D8FF"></span>20%</td><td><q>Homework deadlines all land on the same day.</q></td></tr>
+          <tr><td>Wellbeing</td><td>5</td><td><span class="bar" style="width:50px;background:#D0BFFF"></span>17%</td><td><q>Someone to talk to when exam stress gets bad.</q></td></tr>
+          <tr><td>Clubs</td><td>4</td><td><span class="bar" style="width:40px;background:#B2F2BB"></span>13%</td><td><q>Drama club and a school show.</q></td></tr>
+        </tbody>
+      </table>
+      <p class="small" style="margin:14px 0 0">An example from a made-up student voice survey of 30 answers.</p>
+    </div>
+    <div class="feats" style="margin-top:40px">
+      <div class="feat rise" data-in><span class="ic" style="background:var(--sky)">⇄</span><div><h3>Compare groups (Pro)</h3><p>See which codes come up most in each group, such as year groups, departments or sites.</p></div></div>
+      <div class="feat rise" data-in style="--d:.08s"><span class="ic" style="background:var(--mint-soft)">◎</span><div><h3>Try it first</h3><p>Not ready with your own data? Try it on a built-in sample survey.</p></div></div>
+      <div class="feat rise" data-in style="--d:.16s"><span class="ic" style="background:var(--rose)">🔒</span><div><h3>Only this spreadsheet</h3><p>Themely can only open the spreadsheet you use it in. Your answers stay in your Google account.</p></div></div>
+      <div class="feat rise" data-in style="--d:.24s"><span class="ic" style="background:var(--butter)">D</span><div><h3>Interviews too</h3><p>Coding interviews instead? <a href="/themely/">Themely for Google Docs</a> works the same way.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="why who">
+  <div class="wrap">
+    <h2 class="lines" data-in><span class="ln"><span>Who it's for</span></span></h2>
+    <div class="cards">
+      <div class="card rise" data-in><div class="sw"><i style="background:var(--sky)"></i><i style="background:var(--mint-soft)"></i></div><h3>Schools</h3><p>Student voice, parent and staff surveys. Turn a hundred comments into a clear picture for SLT or governors.</p></div>
+      <div class="card rise" data-in style="--d:.12s"><div class="sw"><i style="background:var(--mint-soft)"></i><i style="background:var(--rose)"></i></div><h3>Students and researchers</h3><p>Open-ended questionnaire answers for a dissertation or project, coded in a way you can explain in your methods.</p></div>
+      <div class="card rise" data-in style="--d:.24s"><div class="sw"><i style="background:var(--rose)"></i><i style="background:var(--butter)"></i></div><h3>Teams and charities</h3><p>Customer feedback, event forms and staff pulse surveys, sorted into themes without a pricey survey platform.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="price" id="pricing">
+  <div class="wrap">
+    <h2 class="lines" data-in><span class="ln"><span>Pricing</span></span></h2>
+    <div class="tiers">
+      <div class="tier rise" data-in><h3>Free</h3><p class="amt">£0</p><ul><li>Up to 10 codes</li><li>Up to 50 coded answers per spreadsheet</li><li>Summary sheet and chart</li></ul></div>
+      <div class="tier best rise" data-in style="--d:.1s"><h3>Dissertation Pass</h3><p class="amt">£9<small> / 6 months</small></p><ul><li>Everything unlimited</li><li>Compare groups</li><li>One-off payment</li></ul></div>
+      <div class="tier rise" data-in style="--d:.2s"><h3>Pro</h3><p class="amt">£19<small> / 12 months</small></p><ul><li>Everything unlimited</li><li>Compare groups</li><li>One-off payment</li></ul></div>
+    </div>
+    <p class="fine">One purchase unlocks Themely in both Google Sheets and Google Docs. One-off payments: nothing renews automatically. Full refund within 14 days if it isn't for you.</p>
+  </div>
+</section>
+
+<section class="help" id="help">
+  <div class="wrap">
+    <h2 class="lines" data-in><span class="ln"><span>Questions</span></span></h2>
+    <div class="qa">
+      <details open><summary>What does Themely for Sheets do?</summary><p>It helps you sort written survey answers into themes. You give each answer a short label (a code), such as &ldquo;homework load&rdquo; or &ldquo;lunch queue&rdquo;, and Themely counts how often each one comes up, with example quotes and a chart.</p></details>
+      <details><summary>Does it work with Google Forms?</summary><p>Yes. Open the spreadsheet your Google Form sends its responses to, pick the question column, and start coding. It works on any column of text in Google Sheets.</p></details>
+      <details><summary>What can Themely see in my Google account?</summary><p>Only the spreadsheet you open it in. It can't see your other files, and your answers stay in your own Google account.</p></details>
+      <details><summary>Is there a free version?</summary><p>Yes. The free version gives you up to 10 codes and 50 coded answers per spreadsheet. Pro removes the limits and adds group comparisons.</p></details>
+      <details><summary>Do I need to pay again if I already have Themely for Docs?</summary><p>No. One Themely Pro or Dissertation Pass purchase unlocks Themely in both Google Docs and Google Sheets.</p></details>
+      <details><summary>Anything else?</summary><p>Email <a href="mailto:hello@survivelabs.co.uk">hello@survivelabs.co.uk</a>. Read our guide: <a href="/guides/analyse-open-ended-survey-responses-google-sheets.html">how to analyse open-ended survey answers in Google Sheets</a>.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="end" id="testers">
+  <div class="wrap">
+    <div class="box rise" data-in>
+      <h2>Be one of the first to use it</h2>
+      <p>Themely for Sheets is in its final review with Google. We're looking for a few teachers, researchers and teams to try it on a real survey and tell us honestly how it went.</p>
+      <p>Our first testers get Themely Pro free for a year.</p>
+      <div class="testers"><a class="btn" href="mailto:hello@survivelabs.co.uk?subject=Themely%20for%20Sheets%20tester&body=Hi%2C%20I%27d%20like%20to%20test%20Themely%20for%20Sheets.%0A%0AWhat%20my%20survey%20is%20about%3A%20%0AAbout%20how%20many%20answers%3A%20%0A">Email us to join</a><small>hello@survivelabs.co.uk</small></div>
+      <div class="chips" aria-hidden="true"><span style="background:#FFD8A8;transform:rotate(-3deg)">lunch</span><span style="background:#A5D8FF;transform:rotate(2deg)">homework</span><span style="background:#D0BFFF;transform:rotate(-1deg)">wellbeing</span></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="sl-foot">
+  <div class="wrap">
+    <div class="top">
+      <div><p class="big">Questions about Themely for Sheets?</p><a href="mailto:hello@survivelabs.co.uk">hello@survivelabs.co.uk</a></div>
+      <div><h4>Themely</h4><a href="/themely/">Themely for Docs</a><a href="/themely/sheets/">Themely for Sheets</a><a href="/themely/#pricing">Pricing</a><a href="/themely/#help">Help</a><a href="/themely/privacy.html">Privacy</a><a href="/themely/terms.html">Terms</a></div>
+      <div><h4>Remark</h4><a href="/remark/">Overview</a><a href="/remark/#pricing">Pricing</a><a href="/remark/support.html">Support</a></div>
+      <div><h4>Survive Labs</h4><a href="/">Home</a><a href="/guides/">Guides</a><a href="/privacy-sweep/">Privacy Sweep</a><a href="/tools/">Free tools</a><a href="mailto:hello@survivelabs.co.uk">Contact</a></div>
+    </div>
+    <div class="base"><span>© 2026 Survive Labs, United Kingdom</span><span>Themely is an independent add-on and is not affiliated with Google. Google Docs™ and Google Sheets™ are trademarks of Google LLC.</span></div>
+  </div>
+</footer>
+<!-- Cloudflare Web Analytics (cookie-free) --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "8f72d9749e9f4d19a9bc2ef5aa6f097c"}'></script>
+</body>
+</html>
