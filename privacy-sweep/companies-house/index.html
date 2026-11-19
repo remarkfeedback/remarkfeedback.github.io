@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Remove your home address from Companies House | Privasweep</title>
+<meta name="description" content="Used your home as a registered office or service address? It's still on old Companies House filings. We find every document that shows it and prepare your SR01 removal form for £29.">
+<link rel="canonical" href="https://survivelabs.co.uk/privacy-sweep/companies-house/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Survive Labs">
+<meta property="og:title" content="Your home address is still on Companies House. We'll find every filing.">
+<meta property="og:description" content="We find every Companies House document showing your home address and prepare the removal form. £29.">
+<meta property="og:url" content="https://survivelabs.co.uk/privacy-sweep/companies-house/">
+<meta property="og:image" content="https://survivelabs.co.uk/assets/og/privacy-sweep.jpg?v=2">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/privacy-sweep/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/privacy-sweep/apple-touch-icon.png">
+<meta name="theme-color" content="#0E3B3A">
+<link rel="stylesheet" href="/assets/sl.css?v=20261117b">
+<script src="/assets/sl.js?v=20261117b"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Service","name":"Companies House home address removal","serviceType":"SR01 application preparation","provider":{"@type":"Organization","name":"Survive Labs","url":"https://survivelabs.co.uk/"},"areaServed":{"@type":"Country","name":"United Kingdom"},"url":"https://survivelabs.co.uk/privacy-sweep/companies-house/","offers":{"@type":"Offer","price":"29","priceCurrency":"GBP"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much does Companies House charge?","acceptedAnswer":{"@type":"Answer","text":"Companies House charges £34 for each document your address is removed from. You pay that to Companies House directly. Our £29 is for finding the documents and preparing the form."}},{"@type":"Question","name":"Can I remove my current registered office address?","acceptedAnswer":{"@type":"Answer","text":"Not while it's still in use. You change your registered office to another address first, then apply to remove the old one. We tell you exactly what to do."}},{"@type":"Question","name":"What if you don't find anything that can be removed?","acceptedAnswer":{"@type":"Answer","text":"You get your £29 back in full."}}]}]}</script>
+<style>
+/* The register as a pile of paper. Each filing is a sheet; your address on it gets redacted with a marker. */
+:root{--sheet:#FFFFFF;--blk:#0E1525;--bar:#0E1525;--ok:#17A86F}
+body{background:var(--paper);color:var(--ink)}
+
+.hero{padding:118px 0 80px;position:relative;overflow:hidden;background:#0E3B3A;color:#fff;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(700px 480px at 78% 40%,rgba(255,225,77,.13),transparent 65%),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 34px)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:10px;background:repeating-linear-gradient(90deg,var(--hl) 0 46px,#0E3B3A 46px 58px)}
+.hero .kicker{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#E6F0EE}
+.hero .kicker b{background:var(--hl)}
+.hero .lede{color:#C9DCD8!important}
+.hero .pricenote{color:#A9C2BD}.hero .pricenote a{color:#fff}
+.hero .btn.line{color:#fff;border-color:#fff}
+.hero .btn.pen{background:var(--hl);color:#0E1525;border-color:var(--hl)}
+.hero .btn.pen::after{display:none}
+
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px;align-items:center}
+.kicker{display:inline-flex;align-items:center;gap:9px;font:700 14px var(--sans);color:var(--ink2);background:var(--white);border:1.5px solid var(--rule);padding:6px 13px;border-radius:999px;margin:0 0 22px}
+.kicker b{width:8px;height:8px;border-radius:50%;background:var(--pen)}
+.hero h1{font-size:clamp(40px,5.4vw,76px);line-height:.98;letter-spacing:-.045em;font-weight:900;margin:0;max-width:13ch}
+.hero .lede{font-size:clamp(18px,1.7vw,21px);line-height:1.55;color:var(--ink2);max-width:38ch;margin:24px 0 30px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.pricenote{font:500 15px/1.5 var(--sans);color:var(--mut);margin:14px 0 0;max-width:44ch}
+.pricenote a{color:var(--ink);text-underline-offset:3px}
+
+/* scene: a filing drawer being searched; one sheet pulls out, address redacted, stamped */
+.scene{position:relative;height:500px;max-width:540px;justify-self:end;width:100%}
+.counter{position:absolute;top:0;right:0;z-index:5;background:#0B2928;border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:12px 16px;font:600 13.5px/1.35 var(--sans);color:#C9DCD8;min-width:150px}
+.counter b{display:block;font:900 30px/1 var(--sans);color:#fff;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.counter .hit{display:block;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.18);color:var(--hl);font-weight:800;opacity:0;transition:opacity .4s}
+.counter.found .hit{opacity:1}
+.pull{position:absolute;left:5%;right:9%;top:112px;z-index:1;background:#fff;border-radius:6px;padding:24px 24px 20px;font:500 13px/1.45 var(--sans);color:var(--ink2);box-shadow:0 40px 70px -30px rgba(0,0,0,.75);transform:rotate(-1.5deg);animation:pull 9s cubic-bezier(.5,0,.2,1) infinite}
+.pull .form{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--blk);padding-bottom:8px;margin-bottom:14px}
+.pull .form b{font:800 15px var(--sans);color:var(--blk)}
+.pull .form span{font:700 12px var(--sans);color:var(--mut)}
+.pull dl{margin:0;display:grid;grid-template-columns:118px 1fr;gap:9px 12px}
+.pull dt{color:var(--mut);font-weight:600}
+.pull dd{margin:0;color:var(--blk);font-weight:600}
+.addr{position:relative;display:inline-block}
+.addr::after{content:"";position:absolute;left:-3px;right:-3px;top:-1px;bottom:-1px;background:var(--blk);border-radius:2px;transform:scaleX(0);transform-origin:left;animation:redact 9s cubic-bezier(.6,0,.2,1) infinite}
+.addr.two::after{animation-name:redact2}
+.pull .foot{margin-top:16px;padding-top:10px;border-top:1px dashed var(--rule);display:flex;justify-content:space-between;color:var(--mut);font-size:12px}
+.stamp{position:absolute;right:16px;top:52px;border:3px solid #17A86F;color:#17A86F;border-radius:8px;padding:6px 12px;font:900 17px/1.05 var(--sans);letter-spacing:.04em;text-align:center;opacity:0;animation:stamp 9s cubic-bezier(.3,1.6,.5,1) infinite;background:rgba(255,255,255,.85)}
+.drawer{position:absolute;left:0;right:0;bottom:0;height:190px;z-index:2;background:linear-gradient(#21514F,#173F3E);border-radius:14px 14px 18px 18px;box-shadow:inset 0 2px 0 rgba(255,255,255,.12),0 30px 50px -25px rgba(0,0,0,.8);overflow:hidden}
+.drawer::after{content:"";position:absolute;left:50%;bottom:22px;width:110px;height:16px;margin-left:-55px;border-radius:8px;background:#0B2928;box-shadow:inset 0 2px 4px rgba(0,0,0,.6),0 1px 0 rgba(255,255,255,.12)}
+.drawer .label{position:absolute;left:50%;bottom:48px;transform:translateX(-50%);background:#F3EBD3;color:#3A3A2E;font:700 11px var(--sans);letter-spacing:.06em;padding:4px 10px;border-radius:3px;white-space:nowrap}
+.tabs{position:absolute;left:0;right:0;top:0;height:92px;overflow:hidden;background:#0B2928;-webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.track{display:flex;gap:10px;width:max-content;padding:16px 0 0 10px;animation:files 9s linear infinite}
+.track i{display:block;width:74px;height:86px;border-radius:7px 7px 0 0;background:#E8DFC6;position:relative;font:800 12px var(--sans);font-style:normal;color:#5C5440;padding:7px 0 0 9px;box-shadow:inset 0 -20px 30px -20px rgba(0,0,0,.25)}
+.track i.hit{background:var(--hl);color:#0E1525}
+.track i.hit::after{content:"";position:absolute;right:9px;top:9px;width:8px;height:8px;border-radius:50%;background:#0E1525}
+.lens{position:absolute;z-index:4;bottom:96px;left:20%;width:66px;height:66px;border:6px solid #fff;border-radius:50%;background:rgba(255,255,255,.12);box-shadow:0 10px 20px -8px rgba(0,0,0,.6);animation:lens 4.5s ease-in-out infinite alternate}
+.lens::after{content:"";position:absolute;width:30px;height:8px;background:#fff;border-radius:4px;right:-28px;bottom:-8px;transform:rotate(45deg)}
+@keyframes pull{0%,6%{transform:translateY(230px) rotate(0);opacity:1}20%{transform:translateY(0) rotate(-1.5deg);opacity:1}88%{transform:translateY(0) rotate(-1.5deg);opacity:1}97%,100%{transform:translateY(230px) rotate(0);opacity:1}}
+@keyframes redact{0%,30%{transform:scaleX(0)}37%,90%{transform:scaleX(1)}96%,100%{transform:scaleX(0)}}
+@keyframes redact2{0%,40%{transform:scaleX(0)}47%,90%{transform:scaleX(1)}96%,100%{transform:scaleX(0)}}
+@keyframes stamp{0%,55%{opacity:0;transform:scale(2.4) rotate(-18deg)}61%{opacity:1;transform:scale(1) rotate(-8deg)}90%{opacity:1;transform:scale(1) rotate(-8deg)}96%,100%{opacity:0;transform:scale(1) rotate(-8deg)}}
+@keyframes files{to{transform:translateX(-50%)}}
+@keyframes lens{from{left:8%}to{left:68%}}
+@media (prefers-reduced-motion:reduce){.pull,.addr::after,.stamp,.track,.lens{animation:none}.pull{opacity:1}.addr::after{transform:scaleX(1)}.stamp{opacity:1;transform:rotate(-8deg)}.counter .hit{opacity:1}}
+
+/* sections */
+.sec{padding:84px 0;border-top:1px solid var(--rule)}
+.sec h2{font-size:clamp(30px,3.6vw,48px);line-height:1.02;letter-spacing:-.035em;font-weight:900;margin:0 0 14px;max-width:20ch}
+.sec .intro{font-size:18px;line-height:1.6;color:var(--ink2);max-width:58ch;margin:0 0 40px}
+
+.who{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 40px;list-style:none;margin:0;padding:0;max-width:880px}
+.who li{display:flex;gap:12px;font:500 17px/1.5 var(--sans);color:var(--ink2);padding:14px 0;border-bottom:1px solid var(--rule)}
+.who svg{width:20px;height:20px;flex:none;margin-top:3px}
+
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.steps li{counter-increment:s;background:var(--white);border:1px solid var(--rule);border-radius:14px;padding:22px 20px}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--blk);color:#fff;font:800 16px var(--sans);margin-bottom:16px}
+.steps h3{font:800 18px/1.25 var(--sans);letter-spacing:-.01em;margin:0 0 8px}
+.steps p{margin:0;font:500 15.5px/1.55 var(--sans);color:var(--ink2)}
+
+.price{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start}
+.card{background:var(--white);border:2px solid var(--blk);border-radius:18px;padding:30px}
+.card .amt{font:900 64px/1 var(--sans);letter-spacing:-.05em;margin:0}
+.card .amt small{font:600 17px var(--sans);color:var(--mut);letter-spacing:0;margin-left:6px}
+.card ul{list-style:none;padding:0;margin:22px 0 26px;display:grid;gap:11px}
+.card li{display:flex;gap:10px;font:500 16px/1.45 var(--sans);color:var(--ink2)}
+.card li svg{width:19px;height:19px;flex:none;margin-top:2px}
+.card .btn{width:100%;justify-content:center}
+.card .fine{font:500 13.5px/1.5 var(--sans);color:var(--mut);margin:14px 0 0}
+.sum{border-collapse:collapse;width:100%;font:500 16px var(--sans)}
+.sum caption{text-align:left;font:800 18px var(--sans);margin-bottom:12px}
+.sum td{padding:12px 0;border-bottom:1px solid var(--rule);color:var(--ink2)}
+.sum td:last-child{text-align:right;font-weight:700;color:var(--ink)}
+.sum tr:last-child td{border-bottom:2px solid var(--blk);font-weight:800;color:var(--ink)}
+.sumnote{font:500 14.5px/1.55 var(--sans);color:var(--mut);margin:14px 0 0}
+
+.faq{max-width:760px}
+.faq details{border-bottom:1px solid var(--rule);padding:18px 0}
+.faq summary{cursor:pointer;font:800 18px/1.35 var(--sans);list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-weight:700;color:var(--mut)}
+.faq details[open] summary::after{content:"–"}
+.faq p{font:500 16.5px/1.6 var(--sans);color:var(--ink2);margin:10px 0 0}
+
+.more{background:var(--blk);color:#fff;border-radius:22px;padding:40px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
+.more h2{color:#fff;margin:0;font-size:clamp(24px,2.6vw,34px)}
+.more p{margin:8px 0 0;color:#C3CADA;font:500 16px/1.5 var(--sans);max-width:48ch}
+.more .btn.line{color:#fff;border-color:#fff}
+
+@media (max-width:900px){
+  .hero{padding:100px 0 50px}
+  .hero .wrap,.price{grid-template-columns:1fr;gap:40px}
+  .scene{height:430px;justify-self:stretch;max-width:500px}
+  .steps{grid-template-columns:1fr 1fr}
+  .who{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .steps{grid-template-columns:1fr}
+  .scene{height:470px}
+  .pull{left:0;right:4%;top:96px;padding:18px 16px 16px;font-size:12px}
+  .pull dl{grid-template-columns:92px 1fr}
+  .counter{padding:9px 12px;font-size:12px}.counter b{font-size:24px}
+  .drawer{height:160px}.stamp{font-size:14px;right:8px;top:118px}
+  .lens{width:54px;height:54px;bottom:80px}
+  .more{padding:28px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#17A86F"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+<header class="sl-nav">
+  <a class="sl-logo" href="/"><img src="/sl-icon.png" alt=""><span>Survive Labs</span></a>
+  <nav aria-label="Main"><a class="opt" href="#how">How it works</a><a class="opt" href="#price">Price</a><a class="sl-contact" href="https://buy.stripe.com/3cI5kCeSOcrC6hg64W1Fe0a">Get started</a></nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="kicker rise" data-in><b></b>Privasweep for company directors</p>
+      <h1 class="rise" data-in style="--d:.1s">Your home address is still on Companies House.</h1>
+      <p class="lede rise" data-in style="--d:.2s">If you ever used your home as a registered office or a correspondence address, it's on old filings anyone can download for free. We find every one and fill in the removal form for you.</p>
+      <div class="ctas rise" data-in style="--d:.3s"><a class="btn pen" href="https://buy.stripe.com/3cI5kCeSOcrC6hg64W1Fe0a">Find my filings, £29</a><a class="btn line" href="#how">How it works</a></div>
+      <p class="pricenote rise" data-in style="--d:.35s">Companies House charges its own fee of £34 per document, which you pay to them directly. Nothing removable found? <a href="#faq">You get your £29 back.</a></p>
+    </div>
+
+    <div class="scene" aria-label="Animation: a filing drawer is searched, an old filing is pulled out and the home address on it is blacked out">
+      <p class="counter" id="ctr" aria-hidden="true"><b id="chk">0</b>filings checked<span class="hit">3 show your address</span></p>
+      <div class="pull" aria-hidden="true">
+        <div class="form"><b>Incorporation</b><span>2016</span></div>
+        <dl><dt>Company</dt><dd>Example Lettings Ltd</dd><dt>Registered office</dt><dd><span class="addr">14 Orchard Road, Leeds</span></dd><dt>Director</dt><dd>J. Example</dd><dt>Service address</dt><dd><span class="addr two">14 Orchard Road, Leeds</span></dd></dl>
+        <div class="foot"><span>Publicly downloadable</span><span>Page 1 of 9</span></div>
+        <div class="stamp">ADDRESS<br>HIDDEN</div>
+      </div>
+      <div class="lens" aria-hidden="true"></div>
+      <div class="drawer" aria-hidden="true"><div class="tabs"><div class="track"><i>2003</i><i>2005</i><i>2008</i><i>2011</i><i>2014</i><i class="hit">2016</i><i class="hit">2017</i><i>2018</i><i class="hit">2019</i><i>2021</i><i>2023</i><i>2025</i><i>2003</i><i>2005</i><i>2008</i><i>2011</i><i>2014</i><i class="hit">2016</i><i class="hit">2017</i><i>2018</i><i class="hit">2019</i><i>2021</i><i>2023</i><i>2025</i></div></div><span class="label">EXAMPLE LETTINGS LTD · 2003–2026</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2>Who this is for</h2>
+    <p class="intro">Directors' home addresses are kept private these days, but older filings and some company addresses are still public, and most people don't know they're there.</p>
+    <ul class="who">
+      <li><svg><use href="#ok"/></svg>You set up a limited company from home and used your house as the registered office</li>
+      <li><svg><use href="#ok"/></svg>You gave your home as your correspondence (service) address</li>
+      <li><svg><use href="#ok"/></svg>You own rental property through a limited company</li>
+      <li><svg><use href="#ok"/></svg>You've resigned or the company has closed, but the old filings are still public</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="how">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="intro">The fiddly part is finding every document. The form only has room for a few, each one has to be listed exactly, and Companies House rejects mistakes. That's the part we do.</p>
+    <ol class="steps">
+      <li><h3>Tell us who you are</h3><p>Pay £29 and give us your name and one of your companies. Takes two minutes.</p></li>
+      <li><h3>We go through every filing</h3><p>We check each company you're linked to, back to 2003, and list every document that shows your home address and can be removed.</p></li>
+      <li><h3>You get a finished form</h3><p>Within 3 working days we email your completed SR01 form, the list of documents and the exact fee to pay.</p></li>
+      <li><h3>You send it off</h3><p>Pay Companies House online and email them the form. They review each document and confirm when your address is gone.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="price">
+  <div class="wrap price">
+    <div class="card">
+      <p class="amt">£29<small>one-off</small></p>
+      <ul>
+        <li><svg><use href="#ok"/></svg>Every company you're linked to, checked back to 2003</li>
+        <li><svg><use href="#ok"/></svg>A completed SR01 form, ready to send</li>
+        <li><svg><use href="#ok"/></svg>Plain instructions, including how to change a registered office first if you need to</li>
+        <li><svg><use href="#ok"/></svg>Full refund if we find nothing that can be removed</li>
+      </ul>
+      <a class="btn pen" href="https://buy.stripe.com/3cI5kCeSOcrC6hg64W1Fe0a">Find my filings, £29</a>
+      <p class="fine">Secure payment by Stripe. No subscription.</p>
+    </div>
+    <div>
+      <table class="sum">
+        <caption>Example: address on 3 filings</caption>
+        <tr><td>Privasweep: finding the filings and preparing the form</td><td>£29</td></tr>
+        <tr><td>Companies House fee, 3 × £34, paid to them</td><td>£102</td></tr>
+        <tr><td>Total</td><td>£131</td></tr>
+      </table>
+      <p class="sumnote">The Companies House fee is set by them and charged per document. We only list documents they can remove, so you don't pay for ones they'd refuse.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="faq">
+  <div class="wrap faq">
+    <h2>Questions</h2>
+    <details><summary>Can I remove my current registered office address?</summary><p>Not while it's still in use. You change your registered office to another address first, for example a registered office service, and then the old one can be removed. We'll tell you exactly what to do.</p></details>
+    <details><summary>What if you don't find anything that can be removed?</summary><p>We refund your £29 in full.</p></details>
+    <details><summary>Does this remove my address completely?</summary><p>It removes it from the public documents anyone can download. Companies House still keeps it privately, as the law requires. If a UK address was a registered office, they may leave the first part of the postcode showing.</p></details>
+    <details><summary>Do you send the form for me?</summary><p>You send it yourself, so the Companies House fee goes straight from you to them and the application comes from you. It's one email.</p></details>
+    <details><summary>Are you lawyers or accountants?</summary><p>No. We're a small UK privacy service. We do the searching and paperwork; Companies House makes the decision on each document. If you're at risk of violence or intimidation, Companies House has a separate process, and you should contact the police if you're in danger.</p></details>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="more">
+      <div><h2>Worried about the rest of the internet?</h2><p>Companies House is one place your address shows up. A Privasweep report finds the others.</p></div>
+      <a class="btn line" href="/privacy-sweep/">See Privasweep</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="sl-foot">
+  <div class="wrap">
+    <div class="top">
+      <div><p class="big">Questions?<br>We actually reply.</p><a href="mailto:hello@survivelabs.co.uk">hello@survivelabs.co.uk</a></div>
+      <div><h4>Privasweep</h4><a href="/privacy-sweep/">Privasweep</a><a href="/privacy-sweep/landlords/">For landlords</a><a href="#how">How it works</a><a href="/privacy-sweep/privacy.html">Privacy</a></div>
+      <div><h4>Guides</h4><a href="/guides/home-address-privacy-landlords.html">Landlords</a><a href="/guides/">All guides</a></div>
+      <div><h4>Survive Labs</h4><a href="/">Home</a><a href="/remark/">Remark</a><a href="/themely/">Themely</a><a href="/tools/">Free tools</a></div>
+    </div>
+    <div class="base"><span>© 2026 Survive Labs, Lytchett House, 13 Freeland Park, Wareham Road, Poole, Dorset BH16 6FA, United Kingdom</span><span>Not affiliated with Companies House. We don't give legal advice.</span></div>
+  </div>
+</footer>
+<script>
+(() => {
+  const n = document.getElementById('chk'), c = document.getElementById('ctr');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { n.textContent = '47'; return; }
+  const loop = 9000, t0 = performance.now();
+  const tick = now => {
+    const t = (now - t0) % loop, p = Math.min(1, t / 4200);
+    n.textContent = Math.round(47 * (1 - Math.pow(1 - p, 2)));
+    c.classList.toggle('found', t > 4400 && t < 8600);
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+})();
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "8f72d9749e9f4d19a9bc2ef5aa6f097c"}'></script>
+</body>
+</html>
