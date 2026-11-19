@@ -205,6 +205,7 @@
 .tools p{font-size:20px;color:var(--ink2);margin:0 0 28px;max-width:30ch}
 .tools img{border-radius:16px;box-shadow:0 30px 60px -30px rgba(14,21,37,.5);transform:rotate(2deg)}
 @media (max-width:820px){.tools .card{grid-template-columns:1fr;padding:36px 26px}}
+.llnote{margin:0 0 22px}.llnote a{display:inline-block;background:#FFD400;color:#0A0A0A;font-weight:700;font-size:15.5px;line-height:1.4;padding:9px 14px;border-radius:12px;text-decoration:none}.llnote a:hover{text-decoration:underline}.psbtns{display:flex;flex-wrap:wrap;gap:10px}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://survivelabs.co.uk/#org","name":"Survive Labs","url":"https://survivelabs.co.uk/","logo":"https://survivelabs.co.uk/sl-icon.png","email":"survivelabs@outlook.com","areaServed":"GB"},{"@type":"WebSite","@id":"https://survivelabs.co.uk/#site","url":"https://survivelabs.co.uk/","name":"Survive Labs","publisher":{"@id":"https://survivelabs.co.uk/#org"},"inLanguage":"en-GB"}]}</script>
 </head>
@@ -212,7 +213,7 @@
 
 <header class="sl-nav">
   <a class="sl-logo" href="/"><img src="/sl-icon.png" alt=""><span>Survive Labs</span></a>
-  <nav aria-label="Main"><a href="/remark/">Remark</a><a href="/themely/">Themely</a><a href="/privacy-sweep/">Privacy Sweep</a><a class="sl-contact opt" href="mailto:hello@survivelabs.co.uk">Contact</a></nav>
+  <nav aria-label="Main"><a href="/remark/">Remark</a><a href="/themely/">Themely</a><a href="/privacy-sweep/">Privacy Sweep</a><a class="opt" href="/privacy-sweep/landlords/">Landlords</a><a class="sl-contact opt" href="mailto:hello@survivelabs.co.uk">Contact</a></nav>
 </header>
 
 <main>
@@ -366,7 +367,8 @@
       <p class="psk"><img src="/privacy-sweep/logo.svg" alt="">Privacy Sweep</p>
       <h2>A stranger can find your home in 60 seconds.</h2>
       <p>Your name, your address and who you live with are on public websites right now. We find every one and get it taken down.</p>
-      <a class="btn pen" href="/privacy-sweep/">Explore Privacy Sweep</a>
+      <p class="llnote"><a href="/privacy-sweep/landlords/"><b>Landlords:</b> the new landlord register opens on 15 December. Keep your home address off it &rarr;</a></p>
+      <div class="psbtns"><a class="btn pen" href="/privacy-sweep/">Explore Privacy Sweep</a> <a class="btn line" href="/privacy-sweep/landlords/" style="color:#fff">For landlords</a></div>
     </div>
     <ul class="psrows" aria-hidden="true">
       <li><span>Full name</span><i style="width:58%"></i><b>Removed</b></li>

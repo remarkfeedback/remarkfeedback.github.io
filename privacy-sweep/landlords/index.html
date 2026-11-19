@@ -346,6 +346,7 @@ body{background:var(--paper)}
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="w" viewBox="0 0 24 24"><path d="M12 2.6L23.2 21.6H.8z" fill="#FFD400" stroke="#0A0A0A" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 9.2v5.6" stroke="#0A0A0A" stroke-width="2.5" stroke-linecap="round"/><circle cx="12" cy="18.1" r="1.45" fill="#0A0A0A"/></symbol>
+  <symbol id="ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#17A86F"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 <header class="sl-nav">
   <a class="sl-logo" href="/"><img src="/sl-icon.png" alt=""><span>Survive Labs</span></a>
@@ -359,7 +360,7 @@ body{background:var(--paper)}
       <div class="brand rise" data-in><img src="/privacy-sweep/logo.svg" alt=""><div><b>Privacy Sweep for landlords</b><span>by Survive Labs</span></div></div>
       <p class="count rise" data-in style="--d:.1s" id="count"><b id="days">--</b><span id="countText">days until landlord registration opens</span></p>
       <h1 class="lines" data-in><span class="ln"><span>The landlord register</span></span> <span class="ln"><span style="--d:.08s">is coming. Keep your</span></span> <span class="ln"><span style="--d:.16s"><em>home address private.</em></span></span></h1>
-      <p class="lede rise" data-in style="--d:.3s">From 15 December, every landlord in England has to register their contact details and every property they let on a new national database. Some of it will be visible to tenants, and what the public sees hasn't been decided. We find where your home address is already out there, get it removed where the law allows, and help you register without handing it out.</p>
+      <p class="lede rise" data-in style="--d:.3s">From 15 December, every landlord in England must register their contact details on a new national database, and what the public sees hasn't been decided. We find where your home address is already out there, get it removed, and help you register without handing it out.</p>
       <div class="ctas rise" data-in style="--d:.4s"><a class="btn pen" href="#pricing">Book your sweep</a><a class="btn line" href="#when">See the key dates</a></div>
       <ul class="trustline rise" data-in style="--d:.5s">
         <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#5FE0A8" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Built in the UK, for UK records</li>
@@ -369,6 +370,67 @@ body{background:var(--paper)}
     </div>
 
     <div class="rise" data-in style="--d:.2s">
+      <div class="monitor">
+        <div class="hud" aria-hidden="true"><span class="rec">REC</span><span>TENANT SEARCH</span><span id="clock">00:00:00</span></div>
+        <div class="screen found marked after" id="demo" aria-label="Example: what a tenant can find from a landlord's name, before and after Privacy Sweep">
+          <div class="top">
+            <div class="q"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M13 13l5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span id="typed">James Morgan landlord Bristol</span><i class="caret" id="caret" hidden></i></div>
+            <div class="seg" role="group" aria-label="Show results"><button type="button" data-v="before" aria-pressed="false">Before</button><button type="button" data-v="after" aria-pressed="true">After Privacy Sweep</button></div>
+          </div>
+          <ul class="rows">
+            <li style="--i:0" class="law"><span class="sign"><svg class="bad"><use href="#w"/></svg><svg class="ok"><use href="#ok"/></svg></span><span class="k">Landlord</span><span class="v">James R. Morgan<small>Tenancy agreement</small></span><b class="chip">Your tenant knows</b></li>
+            <li style="--i:1"><span class="sign"><svg class="bad"><use href="#w"/></svg><svg class="ok"><use href="#ok"/></svg></span><span class="k">Home address</span><span class="v">14 Elm Grove, BS9<span class="redact"></span><small>Old safety certificate</small></span><b class="chip"><span class="a">EXPOSED</span><span class="b">Removed</span></b></li>
+            <li style="--i:2"><span class="sign"><svg class="bad"><use href="#w"/></svg><svg class="ok"><use href="#ok"/></svg></span><span class="k">Lives with</span><span class="v">Sarah &amp; Tom Morgan<span class="redact"></span><small>People-search website</small></span><b class="chip"><span class="a">EXPOSED</span><span class="b">Removed</span></b></li>
+            <li style="--i:3"><span class="sign"><svg class="bad"><use href="#w"/></svg><svg class="ok"><use href="#ok"/></svg></span><span class="k">Home address</span><span class="v">One small payment away<span class="redact"></span><small>Paid people-search</small></span><b class="chip"><span class="a">FOR SALE</span><span class="b">Removed</span></b></li>
+            <li style="--i:4"><span class="sign"><svg class="bad"><use href="#w"/></svg><svg class="ok"><use href="#ok"/></svg></span><span class="k">Your home</span><span class="v">Car on drive, side gate<span class="redact"></span><small>Street-level imagery</small></span><b class="chip"><span class="a">EXPOSED</span><span class="b">Blurred</span></b></li>
+            <li style="--i:5" class="law"><span class="sign"><svg class="bad"><use href="#w"/></svg><svg class="ok"><use href="#ok"/></svg></span><span class="k">Other lets</span><span class="v">3 more homes nearby<small>Property records</small></span><b class="chip">Public by law</b></li>
+          </ul>
+          <div class="foot"><span id="sum"><b>4 of 4</b> risks removed. We tell you what can't be.</span><button class="replay" type="button" id="replay">Replay</button></div>
+        </div>
+      </div>
+      <p class="eg">An example with made-up details. Every line is the kind of thing a real sweep finds.</p>
+    </div>
+  </div>
+
+  <div class="ticker" aria-label="Landlord register key facts">
+    <div class="run">
+      <div class="set"><span>Landlord registration opens 15 December 2026</span><i></i><span>Every landlord in England must register</span><i></i><span>Final deadline 14 November 2027</span><i></i><span>Your name is on every tenancy you sign</span><i></i><span>What the public sees: not decided yet</span><i></i></div>
+      <div class="set" aria-hidden="true"><span>Landlord registration opens 15 December 2026</span><i></i><span>Every landlord in England must register</span><i></i><span>Final deadline 14 November 2027</span><i></i><span>Your name is on every tenancy you sign</span><i></i><span>What the public sees: not decided yet</span><i></i></div>
+    </div>
+  </div>
+</section>
+
+<section class="case" data-scene id="case" data-dark aria-label="How a tenant in a dispute finds a landlord's home from public websites">
+  <div class="pin">
+    <div class="cap">
+      <div class="step on" data-s="0"><p class="tag"><svg class="warn"><use href="#w"/></svg>Step 1</p><h2>It starts with a dispute.</h2><p>A deposit row, a rent rise, a possession notice. Your tenant already has your name.</p></div>
+      <div class="step" data-s="1"><p class="tag"><svg class="warn"><use href="#w"/></svg>Step 2</p><h2>Free websites fill in the rest.</h2><p>Your name and your rental's area lead to your home, who you live with and what else you own. None of it is hacking.</p></div>
+      <div class="step" data-s="2"><p class="tag"><svg class="warn"><use href="#w"/></svg>Found</p><h2>Now they know where you live.</h2><p>Under a minute, at no cost. And the landlord register adds one more official list with your name on it.</p></div>
+      <div class="step end" data-s="3"><p class="tag" style="color:#5FE0A8"><svg class="warn"><use href="#ok"/></svg>Privacy Sweep</p><h2>Now try finding you.</h2><p>We remove what can be removed, help you register without your home address, and keep checking it stays gone.</p></div>
+      <div class="meter" aria-hidden="true"><div>Time searching<b id="tm">00:00</b></div><div>Cost to them<b class="r">£0</b></div></div>
+    </div>
+    <div class="board" id="board" aria-hidden="true">
+      <svg class="strings" viewBox="0 0 400 300" preserveAspectRatio="none">
+        <line x1="64" y1="39" x2="200" y2="150" pathLength="1"/><line x1="336" y1="39" x2="200" y2="150" pathLength="1"/><line x1="64" y1="147" x2="200" y2="150" pathLength="1"/><line x1="336" y1="147" x2="200" y2="150" pathLength="1"/><line x1="64" y1="255" x2="200" y2="150" pathLength="1"/><line x1="336" y1="255" x2="200" y2="150" pathLength="1"/>
+      </svg>
+      <div class="map" id="map"><div class="streets"></div><div class="park"></div>
+        <svg class="pin-drop" viewBox="0 0 30 40"><path d="M15 1C7.3 1 1 7 1 14.4 1 24.6 15 39 15 39s14-14.4 14-24.6C29 7 22.7 1 15 1z" fill="#FF3B2F" stroke="#0A0A0A" stroke-width="1.5"/><circle cx="15" cy="14" r="5" fill="#fff"/></svg>
+        <div class="cross"></div><span class="lbl">LANDLORD'S HOME</span></div>
+      <div class="card" style="left:1%;top:3%;--r:-2deg;--wd:0s"><span class="h"><svg class="warn bad"><use href="#w"/></svg><svg class="warn ok"><use href="#ok"/></svg><span class="t1">EXPOSED</span><span class="t2">KEPT PRIVATE</span></span><b>James R. Morgan<span class="redact"></span></b><small>Tenancy agreement</small></div>
+      <div class="card" style="left:69%;top:3%;--r:2deg;--wd:.08s"><span class="h"><svg class="warn bad"><use href="#w"/></svg><svg class="warn ok"><use href="#ok"/></svg><span class="t1">EXPOSED</span><span class="t2">REMOVED</span></span><b>Lives with Sarah &amp; Tom<span class="redact"></span></b><small>People-search website</small></div>
+      <div class="card" style="left:1%;top:39%;--r:1.5deg;--wd:.16s"><span class="h"><svg class="warn bad"><use href="#w"/></svg><svg class="warn ok"><use href="#ok"/></svg><span class="t1">EXPOSED</span><span class="t2">REMOVED</span></span><b>14 Elm Grove, BS9<span class="redact"></span></b><small>Old safety certificate</small></div>
+      <div class="card" style="left:69%;top:39%;--r:-1.5deg;--wd:.24s"><span class="h"><svg class="warn bad"><use href="#w"/></svg><svg class="warn ok"><use href="#ok"/></svg><span class="t1">EXPOSED</span><span class="t2">PRIVATE</span></span><b>4-bed detached, £610k<span class="redact"></span></b><small>Property website</small></div>
+      <div class="card" style="left:1%;top:75%;--r:-1deg;--wd:.32s"><span class="h"><svg class="warn bad"><use href="#w"/></svg><svg class="warn ok"><use href="#ok"/></svg><span class="t1">EXPOSED</span><span class="t2">BLURRED</span></span><b>Car on drive, side gate<span class="redact"></span></b><small>Street-level imagery</small></div>
+      <div class="card" style="left:69%;top:75%;--r:2deg;--wd:.4s"><span class="h"><svg class="warn bad"><use href="#w"/></svg><svg class="warn ok"><use href="#ok"/></svg><span class="t1">EXPOSED</span><span class="t2">REMOVED</span></span><b>Address for sale, £1.99<span class="redact"></span></b><small>Paid people-search</small></div>
+      <div class="tape t1"></div><div class="tape t2"></div>
+      <div class="stamp" id="stamp"><span class="a">HOME FOUND</span><span class="b">REMOVED</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec reg">
+  <div class="wrap report">
+    <div class="rise" data-in>
       <div class="form">
         <div class="sheet" id="form" aria-label="What landlord registration will ask for, before and after Privacy Sweep">
           <div class="hd"><b>Landlord registration</b><div class="seg" role="group" aria-label="Show"><button type="button" data-v="before" aria-pressed="true">Before</button><button type="button" data-v="after" aria-pressed="false">After Privacy Sweep</button></div></div>
@@ -379,10 +441,20 @@ body{background:var(--paper)}
             <li><span class="k">Every property you let<small>Full address and details</small></span><b class="chip">Required</b></li>
             <li class="risk"><span class="k">Your address elsewhere online<small id="webNote">Paperwork, records and people-search sites</small></span><b class="chip" id="webChip">Exposed</b></li>
           </ul>
-          <div class="ft"><p id="sum"><b>2 risks</b> before you even register.</p></div>
+          <div class="ft"><p id="fsum"><b>2 risks</b> before you even register.</p></div>
         </div>
       </div>
-      <p class="eg">Based on what the government has said registration will collect. Illustration only.</p>
+      
+      <p class="eg" style="color:var(--mut)">Based on what the government has said registration will collect. Illustration only.</p>
+    </div>
+    <div>
+      <h2>Registration asks for a contact address</h2>
+      <p class="sub" style="margin-bottom:28px">Most landlords will just type their home. Once it's on an official register, you can't control who ends up seeing it.</p>
+      <ul class="ticks">
+        <li><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M3 12l5 5L19 5" stroke="#17A86F" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>We show you your options for the address you register with</li>
+        <li><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M3 12l5 5L19 5" stroke="#17A86F" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>We clear your home address from the places it already leaks</li>
+        <li><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M3 12l5 5L19 5" stroke="#17A86F" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Done before your region opens, not after</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -518,21 +590,73 @@ body{background:var(--paper)}
   else if (days === 1) { d.textContent = '1'; t.textContent = 'day until landlord registration opens'; }
   else { d.textContent = 'Open'; t.textContent = 'Landlord registration is rolling out now'; }
 
-  // before / after toggle
+  const clock = document.getElementById('clock');
+  const tickClock = () => { const d = new Date(); clock.textContent = d.toLocaleDateString('en-GB') + ' ' + d.toLocaleTimeString('en-GB'); };
+  tickClock(); setInterval(tickClock, 1000);
+
+  // ---------- hero search demo ----------
+  const demo = document.getElementById('demo');
+  const typed = document.getElementById('typed'), caret = document.getElementById('caret');
+  const sum = document.getElementById('sum');
+  const btns = demo.querySelectorAll('.seg button');
+  const query = 'James Morgan landlord Bristol';
+  let timers = [];
+  const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+  const base = 'screen';
+  const setView = v => {
+    btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
+    demo.classList.toggle('after', v === 'after');
+    sum.innerHTML = v === 'after' ? '<b>4 of 4</b> risks removed. We tell you what can’t be.' : '<b>6 results</b> in 38 seconds. <b style="color:#B4231A">Home found.</b>';
+  };
+  const showFinal = () => { demo.className = base + ' found marked'; typed.textContent = query; caret.hidden = true; setView('after'); };
+  const play = () => {
+    timers.forEach(clearTimeout); timers = [];
+    demo.className = base; setView('before'); typed.textContent = ''; caret.hidden = false;
+    [...query].forEach((ch, i) => later(() => { typed.textContent += ch; }, 250 + i * 40));
+    const t = 250 + query.length * 40 + 450;
+    later(() => { caret.hidden = true; demo.classList.add('found'); }, t);
+    later(() => demo.classList.add('marked'), t + 800);
+    later(() => setView('after'), t + 3400);
+  };
+  btns.forEach(b => b.addEventListener('click', () => { timers.forEach(clearTimeout); timers = []; demo.classList.add('found', 'marked'); typed.textContent = query; caret.hidden = true; setView(b.dataset.v); }));
+  document.getElementById('replay').addEventListener('click', () => SL.reduce ? showFinal() : play());
+  if (SL.reduce) showFinal();
+  else { const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); play(); } }, { threshold: .35 }); io.observe(demo); }
+
+  // ---------- the case board: scroll pieces your life together, then Privacy Sweep takes it apart ----------
+  const scene = document.getElementById('case');
+  const board = document.getElementById('board'), map = document.getElementById('map'), stamp = document.getElementById('stamp');
+  const cards = [...board.querySelectorAll('.card')], lines = [...board.querySelectorAll('.strings line')], tapes = [...board.querySelectorAll('.tape')];
+  const steps = [...scene.querySelectorAll('.step')], tm = document.getElementById('tm');
+  const at = (el, on) => el.classList.toggle('on', on);
+  SL.on(scene, p => {
+    at(map, p > .02); map.classList.toggle('zoom', p > .05); map.classList.toggle('pinned', p > .08);
+    cards.forEach((c, i) => { const on = p > .14 + i * .08; at(c, on); at(lines[i], on); });
+    tapes.forEach(t => at(t, p > .6));
+    at(stamp, p > .64);
+    board.classList.toggle('wiped', p > .78);
+    const s = p < .13 ? 0 : p < .6 ? 1 : p < .77 ? 2 : 3;
+    steps.forEach((el, i) => at(el, i === s));
+    const secs = Math.round(Math.min(1, Math.max(0, (p - .02) / .62)) * 58);
+    tm.textContent = '00:' + String(secs).padStart(2, '0');
+  });
+
+  // registration form before / after
   const form = document.getElementById('form');
-  const btns = form.querySelectorAll('.seg button');
+  const fbtns = form.querySelectorAll('.seg button');
   const set = v => {
     const after = v === 'after';
-    btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
+    fbtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
     form.classList.toggle('after', after);
     document.getElementById('addrChip').textContent = after ? 'Not your home' : 'Your home?';
     document.getElementById('addrNote').textContent = after ? 'A correspondence address you control' : 'Most people just put their home';
     document.getElementById('webChip').textContent = after ? 'Removed' : 'Exposed';
     document.getElementById('webNote').textContent = after ? 'Removed where the law allows' : 'Paperwork, records and people-search sites';
-    document.getElementById('sum').innerHTML = after ? '<b>Ready to register</b> with your home kept private.' : '<b>2 risks</b> before you even register.';
+    document.getElementById('fsum').innerHTML = after ? '<b>Ready to register</b> with your home kept private.' : '<b>2 risks</b> before you even register.';
   };
-  btns.forEach(b => b.addEventListener('click', () => { clearTimeout(auto); set(b.dataset.v); }));
-  const auto = SL.reduce ? null : setTimeout(() => set('after'), 4200);
+  form.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => { clearTimeout(auto); set(b.dataset.v); }));
+  let auto = null;
+  if (!SL.reduce) { const fio = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { fio.disconnect(); auto = setTimeout(() => set('after'), 2600); } }, { threshold: .5 }); fio.observe(form); }
 })();
 </script>
 <!-- Cloudflare Web Analytics (cookie-free) --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "8f72d9749e9f4d19a9bc2ef5aa6f097c"}'></script>

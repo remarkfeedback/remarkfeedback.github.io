@@ -307,6 +307,7 @@ body{background:var(--paper)}
 }
 @media (max-height:700px) and (max-width:980px){.card small{display:none}.map{height:90px}}
 @media (prefers-reduced-motion:reduce){.ticker .run{animation:none}.screen::after{display:none}}
+.llchip{display:inline-flex;gap:6px;align-items:center;background:#fff;color:#0A0A0A;font:600 14px var(--sans);padding:7px 14px;border-radius:999px;text-decoration:none}.llchip:hover{text-decoration:underline}
 </style>
 </head>
 <body>
@@ -316,7 +317,7 @@ body{background:var(--paper)}
 </svg>
 <header class="sl-nav">
   <a class="sl-logo" href="/"><img src="/sl-icon.png" alt=""><span>Survive Labs</span></a>
-  <nav aria-label="Main"><a class="opt" href="#how">How it works</a><a class="opt" href="#pricing">Pricing</a><a class="opt" href="#promises">Our promises</a><a class="sl-contact" href="#pricing">Book a sweep</a></nav>
+  <nav aria-label="Main"><a class="opt" href="#how">How it works</a><a class="opt" href="#pricing">Pricing</a><a class="opt" href="/privacy-sweep/landlords/">Landlords</a><a class="sl-contact" href="#pricing">Book a sweep</a></nav>
 </header>
 <main>
 
@@ -324,6 +325,7 @@ body{background:var(--paper)}
   <div class="wrap">
     <div>
       <div class="brand rise" data-in><img src="/privacy-sweep/logo.svg" alt=""><div><b>Privacy Sweep</b><span>by Survive Labs</span></div></div>
+      <p class="rise" data-in style="--d:.05s;margin:0 0 14px"><a class="llchip" href="/privacy-sweep/landlords/"><b>Landlord?</b> The landlord register opens 15 December &rarr;</a></p>
       <p class="alert rise" data-in style="--d:.1s"><svg class="warn"><use href="#w"/></svg>Your details are public right now</p>
       <h1 class="lines" data-in><span class="ln"><span>A stranger can</span></span> <span class="ln"><span style="--d:.08s">find your home</span></span> <span class="ln"><span style="--d:.16s">in <em>60 seconds.</em></span></span></h1>
       <p class="lede rise" data-in style="--d:.3s">Your name, your address, who you live with and what your house cost are on public websites right now. We find every place your details appear, and we get them taken down.</p>
