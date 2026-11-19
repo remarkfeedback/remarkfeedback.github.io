@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Landlord register: keep your home address private | Privasweep</title>
-<meta name="description" content="Every landlord in England must register on the new landlord database from 15 December 2026. Privasweep finds where your home address is already public, gets it removed where the law allows, and helps you register without handing it out.">
+<meta name="description" content="Landlord registration opens region by region from 15 December 2026, and every landlord in England must register by November 2027. Privasweep finds where your home address is already public, gets it removed where the law allows, and helps you register without handing it out.">
 <link rel="canonical" href="https://survivelabs.co.uk/privacy-sweep/landlords/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Survive Labs">
 <meta property="og:title" content="The landlord register is coming. Keep your home address private.">
-<meta property="og:description" content="Registration opens 15 December 2026. Privasweep finds where your home address is public and gets it removed.">
+<meta property="og:description" content="Registration starts 15 December 2026. Privasweep finds where your home address is public and gets it removed.">
 <meta property="og:url" content="https://survivelabs.co.uk/privacy-sweep/landlords/">
 <meta property="og:image" content="https://survivelabs.co.uk/assets/og/privacy-sweep.jpg?v=2">
 <meta property="og:locale" content="en_GB">
@@ -51,6 +51,7 @@ body{background:var(--paper)}
 .hero .lede{font-size:clamp(19px,1.8vw,22px);line-height:1.5;color:#C3CADA;max-width:36ch;margin:24px 0 30px}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
 .hero .btn.line{color:#fff}
+.pricenote{font:500 15px var(--sans);color:#AEB6C8;margin:14px 0 0}.pricenote a{color:#fff;text-underline-offset:3px}
 .trustline{display:flex;flex-wrap:wrap;gap:8px 20px;margin:24px 0 0;padding:0;list-style:none;font:500 14.5px var(--sans);color:#AEB6C8}
 .trustline li{display:flex;align-items:center;gap:8px}
 .trustline svg{width:16px;height:16px;flex:none}
@@ -76,6 +77,7 @@ body{background:var(--paper)}
 .rows li:last-child{border-bottom:0}
 .found .rows li{opacity:1;transform:none}
 .rows{position:relative}
+.screen:not(.found) .rows{height:150px}.screen:not(.found) .rows li{display:none}
 .screen:not(.found) .rows::before{content:"Searching public websites\2026";position:absolute;inset:0;display:grid;place-items:center;font:700 15px var(--sans);color:var(--mut);animation:pulse 1.1s ease-in-out infinite}
 .rows .sign{width:22px;height:22px;display:grid;place-items:center;transform:scale(0);transition:transform .35s cubic-bezier(.3,1.6,.5,1) calc(var(--i)*.14s)}
 .marked .rows .sign{transform:scale(1)}
@@ -100,7 +102,7 @@ body{background:var(--paper)}
 .hero .eg{font:500 12.5px var(--sans);color:#7F889A;text-align:center;margin:14px 0 0}
 
 /* ---------- the case board (pinned scroll scene) ---------- */
-.case{height:560vh;position:relative;background:var(--ps2);color:#fff}
+.case{height:320vh;position:relative;background:var(--ps2);color:#fff}
 .case .pin{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:48px;align-items:center;padding:96px max(28px,calc((100vw - 1180px)/2 + 28px)) 40px}
 .case .pin::before{content:"";position:absolute;inset:0;background:radial-gradient(800px 600px at 70% 50%,rgba(255,212,0,.05),transparent 70%);pointer-events:none}
 .cap{position:relative;display:grid;align-content:center}
@@ -282,7 +284,7 @@ body{background:var(--paper)}
   .grid,.plans,.pgrid,.proof ul{grid-template-columns:1fr}
   .steps,.where{grid-template-columns:1fr 1fr}
   .paper{transform:none}
-  .case{height:620vh}
+  .case{height:340vh}
   .case .pin{grid-template-columns:1fr;grid-template-rows:auto auto;gap:16px;padding:84px 18px 18px;align-content:center}
   .cap h2{font-size:28px;margin-bottom:8px}
   .cap p{font-size:15.5px}
@@ -360,8 +362,9 @@ body{background:var(--paper)}
       <div class="brand rise" data-in><img src="/privacy-sweep/logo.svg" alt=""><div><b>Privasweep for landlords</b><span>by Survive Labs</span></div></div>
       <p class="count rise" data-in style="--d:.1s" id="count"><b id="days">--</b><span id="countText">days until landlord registration opens</span></p>
       <h1 class="lines" data-in><span class="ln"><span>The landlord register</span></span> <span class="ln"><span style="--d:.08s">is coming. Keep your</span></span> <span class="ln"><span style="--d:.16s"><em>home address private.</em></span></span></h1>
-      <p class="lede rise" data-in style="--d:.3s">From 15 December, every landlord in England must register their contact details on a new national database, and what the public sees hasn't been decided. We find where your home address is already out there, get it removed, and help you register without handing it out.</p>
-      <div class="ctas rise" data-in style="--d:.4s"><a class="btn pen" href="#pricing">Book your sweep</a><a class="btn line" href="#when">See the key dates</a></div>
+      <p class="lede rise" data-in style="--d:.3s">Registration starts 15 December, region by region. What the public will see hasn't been decided. We find where your home address is already out there, get it removed, and help you register without handing it out.</p>
+      <div class="ctas rise" data-in style="--d:.4s"><a class="btn pen" href="https://buy.stripe.com/9B6aEWdOK9fq6hg50S1Fe09">Done for you, £69</a><a class="btn line" href="https://buy.stripe.com/9B65kC4ea8bm0WWeBs1Fe08">Report only, £19</a></div>
+      <p class="pricenote rise" data-in style="--d:.45s">Pay once, nothing renews. <a href="#pricing">Compare what you get</a> or <a href="#when">see the key dates</a>.</p>
       <ul class="trustline rise" data-in style="--d:.5s">
         <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#5FE0A8" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Built in the UK, for UK records</li>
         <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#5FE0A8" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>We only ever search for you</li>
@@ -394,8 +397,8 @@ body{background:var(--paper)}
 
   <div class="ticker" aria-label="Landlord register key facts">
     <div class="run">
-      <div class="set"><span>Landlord registration opens 15 December 2026</span><i></i><span>Every landlord in England must register</span><i></i><span>Final deadline 14 November 2027</span><i></i><span>Your name is on every tenancy you sign</span><i></i><span>What the public sees: not decided yet</span><i></i></div>
-      <div class="set" aria-hidden="true"><span>Landlord registration opens 15 December 2026</span><i></i><span>Every landlord in England must register</span><i></i><span>Final deadline 14 November 2027</span><i></i><span>Your name is on every tenancy you sign</span><i></i><span>What the public sees: not decided yet</span><i></i></div>
+      <div class="set"><span>Registration starts 15 December 2026, region by region</span><i></i><span>Every landlord in England must register</span><i></i><span>Final deadline 14 November 2027</span><i></i><span>Your name is on every tenancy you sign</span><i></i><span>What the public sees: not decided yet</span><i></i></div>
+      <div class="set" aria-hidden="true"><span>Registration starts 15 December 2026, region by region</span><i></i><span>Every landlord in England must register</span><i></i><span>Final deadline 14 November 2027</span><i></i><span>Your name is on every tenancy you sign</span><i></i><span>What the public sees: not decided yet</span><i></i></div>
     </div>
   </div>
 </section>
@@ -425,6 +428,37 @@ body{background:var(--paper)}
       <div class="tape t1"></div><div class="tape t2"></div>
       <div class="stamp" id="stamp"><span class="a">HOME FOUND</span><span class="b">REMOVED</span></div>
     </div>
+  </div>
+</section>
+
+<section class="sec plans-sec" id="pricing">
+  <div class="wrap">
+    <h2>Choose how much we do</h2>
+    <p class="sub">Founding prices for our first 10 customers. Pay when you book, and we start within 1 working day.</p>
+    <div class="plans">
+      <div class="plan">
+        <h3>Report only</h3>
+        <div class="price">£19</div>
+        <p class="for">For landlords who'd rather fix things themselves</p>
+        <ul><li>Full sweep of where your home address appears</li><li>Plain-English report ranked by risk</li><li>Your options for a registration contact address</li><li>Step-by-step instructions for every fix</li><li>Upgrade later and we take the £19 off</li></ul>
+        <a class="btn line" href="https://buy.stripe.com/9B65kC4ea8bm0WWeBs1Fe08">Book Report only</a>
+      </div>
+      <div class="plan main">
+        <span class="tag">Recommended</span>
+        <h3>Done for you</h3>
+        <div class="price">£69</div>
+        <p class="for">We find it and we remove it</p>
+        <ul><li>Everything in Report only</li><li>We send every removal request for you</li><li>Your few quick steps, filled in and ready to send</li><li>A before-and-after report</li></ul>
+        <a class="btn pen" href="https://buy.stripe.com/9B6aEWdOK9fq6hg50S1Fe09">Book Done for you</a>
+      </div>
+      <div class="plan">
+        <h3>No subscription</h3>
+        <div class="price">£0<small> a month</small></div>
+        <p class="for">Pay once. Nothing renews.</p>
+        <ul><li>Most removal services charge you every month, for as long as you stay</li><li>We do your sweep once, properly, by hand</li><li>Want another check next year? Just book again</li></ul>
+      </div>
+    </div>
+    <p class="note">Secure checkout by Stripe. Within 1 working day of booking we'll email you a short form and a permission letter to sign. Your report arrives within 5 working days of getting them back. Any official fees, such as government charges for correcting old public records, are yours to pay directly, and we'll always tell you first. We don't register you on the database ourselves, and we don't give legal advice.</p>
   </div>
 </section>
 
@@ -495,36 +529,7 @@ body{background:var(--paper)}
   </div>
 </section>
 
-<section class="sec plans-sec" id="pricing">
-  <div class="wrap">
-    <h2>Choose how much we do</h2>
-    <p class="sub">Founding prices for our first 10 customers. Pay when you book, and we start within 1 working day.</p>
-    <div class="plans">
-      <div class="plan">
-        <h3>Report only</h3>
-        <div class="price">£19</div>
-        <p class="for">For landlords who'd rather fix things themselves</p>
-        <ul><li>Full sweep of where your home address appears</li><li>Plain-English report ranked by risk</li><li>Your options for a registration contact address</li><li>Step-by-step instructions for every fix</li><li>Upgrade later and we take the £19 off</li></ul>
-        <a class="btn line" href="https://buy.stripe.com/9B65kC4ea8bm0WWeBs1Fe08">Book Report only</a>
-      </div>
-      <div class="plan main">
-        <span class="tag">Recommended</span>
-        <h3>Done for you</h3>
-        <div class="price">£69</div>
-        <p class="for">We find it and we remove it</p>
-        <ul><li>Everything in Report only</li><li>We send every removal request for you</li><li>Your few quick steps, filled in and ready to send</li><li>A before-and-after report</li></ul>
-        <a class="btn pen" href="https://buy.stripe.com/9B6aEWdOK9fq6hg50S1Fe09">Book Done for you</a>
-      </div>
-      <div class="plan">
-        <h3>No subscription</h3>
-        <div class="price">£0<small> a month</small></div>
-        <p class="for">Pay once. Nothing renews.</p>
-        <ul><li>Most removal services charge you every month, for as long as you stay</li><li>We do your sweep once, properly, by hand</li><li>Want another check next year? Just book again</li></ul>
-      </div>
-    </div>
-    <p class="note">Secure checkout by Stripe. Within 1 working day of booking we'll email you a short form and a permission letter to sign. Your report arrives within 5 working days of getting them back. Any official fees, such as government charges for correcting old public records, are yours to pay directly, and we'll always tell you first. We don't register you on the database ourselves, and we don't give legal advice.</p>
-  </div>
-</section>
+
 
 <section class="sec faq">
   <div class="wrap">
