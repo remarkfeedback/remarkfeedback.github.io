@@ -1,0 +1,26 @@
+/* Shared top bar: each product link carries its own brand mark and colour. */
+.sl-nav nav{gap:2px}
+.sl-nav nav a.pl{display:inline-flex;align-items:center;gap:7px;opacity:.86;font-weight:700;letter-spacing:-.01em}
+.sl-nav nav a.pl:hover,.sl-nav nav a.pl[aria-current="page"]{opacity:1}
+.pl .mk{width:18px;height:18px;flex:none;display:inline-block}
+/* Privasweep: black badge, yellow padlock */
+.pl.p-ps[aria-current="page"],.pl.p-ps:hover{background:rgba(255,212,0,.22)!important}
+/* Remark: orange dot */
+.pl.p-rm[aria-current="page"],.pl.p-rm:hover{background:rgba(255,106,31,.16)!important}
+.pl.p-rm[aria-current="page"]{color:#E2530D}
+.sl-nav.on-dark .pl.p-rm[aria-current="page"]{color:#FF8A4C}
+/* Themely: lowercase wordmark, blue-green diamond */
+.pl.p-th{text-transform:lowercase;font-weight:800!important}
+.pl.p-th[aria-current="page"],.pl.p-th:hover{background:rgba(159,210,255,.3)!important}
+/* Landlords hub: green */
+.pl.p-ll[aria-current="page"],.pl.p-ll:hover{background:rgba(43,212,160,.2)!important}
+.pl.p-ll[aria-current="page"]{color:#0B6B4D}
+.sl-nav.on-dark .pl.p-ll[aria-current="page"]{color:#8FE0BB}
+/* Free tools: butter */
+.pl.p-ft[aria-current="page"],.pl.p-ft:hover{background:rgba(255,225,77,.45)!important}
+.sl-nav.on-dark .pl.p-ft[aria-current="page"],.sl-nav.on-dark .pl.p-ft:hover{background:rgba(255,225,77,.2)!important}
+.sl-nav nav .sl-div{width:1px;height:20px;background:currentColor;opacity:.15;margin:0 6px}
+@media (max-width:1040px){.sl-nav nav a.pl .lbl-long{display:none}.sl-nav nav a.pl{padding:8px 10px}}
+@media (max-width:900px){.sl-nav nav a.pl.p-ll,.sl-nav nav a.pl.p-ft{display:none}}
+@media (max-width:720px){.sl-nav nav a.pl,.sl-nav nav .sl-div{display:none}}
+.sl-nav.on-dark .pl.p-ps[aria-current="page"]{color:#FFD400}
