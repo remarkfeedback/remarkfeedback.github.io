@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Renters' Rights Act landlord kit: written statement of terms builder | Survive Labs</title>
+<meta name="description" content="Free for landlords in England: a plain-English Renters' Rights Act checklist and a written statement of terms builder for assured periodic tenancies. Nothing you type leaves your device.">
+<link rel="canonical" href="https://survivelabs.co.uk/guides/renters-rights-act-landlord-kit.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Survive Labs">
+<meta property="og:title" content="Free Renters' Rights Act landlord kit">
+<meta property="og:description" content="A plain-English checklist and a written statement of terms builder for landlords in England. Free, no sign-up.">
+<meta property="og:url" content="https://survivelabs.co.uk/guides/renters-rights-act-landlord-kit.html">
+<meta property="og:image" content="https://survivelabs.co.uk/assets/og/home.jpg">
+<meta property="og:locale" content="en_GB">
+<link rel="stylesheet" href="/assets/sl.css?v=20261117b">
+<link rel="stylesheet" href="/assets/guide.css">
+<link rel="icon" href="/sl-icon.png">
+<link rel="apple-touch-icon" href="/sl-apple-touch.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Free Renters' Rights Act landlord kit","description":"A plain-English Renters' Rights Act checklist and a written statement of terms builder for landlords in England.","author":{"@type":"Organization","name":"Survive Labs","url":"https://survivelabs.co.uk/"},"publisher":{"@type":"Organization","name":"Survive Labs","url":"https://survivelabs.co.uk/"},"dateModified":"2026-11-20","mainEntityOfPage":"https://survivelabs.co.uk/guides/renters-rights-act-landlord-kit.html"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this a full tenancy agreement?","acceptedAnswer":{"@type":"Answer","text":"No. It builds the written statement of terms: the information the law says a tenant must be given before an assured periodic tenancy is agreed. You can give it on its own or attach it to your tenancy agreement."}},{"@type":"Question","name":"Does this work for Wales or Scotland?","acceptedAnswer":{"@type":"Answer","text":"No. These rules are for private tenancies in England. Wales uses occupation contracts under the Renting Homes (Wales) Act, and Scotland has its own system."}},{"@type":"Question","name":"Does the address for notices have to be my home address?","acceptedAnswer":{"@type":"Answer","text":"The rules ask for an address in England and Wales where your tenant can serve notices on you, including court papers. They don't say it must be your home, but it must be an address where notices will reliably reach you. If you're unsure, take advice before using a different address."}}]}]}</script>
+<style>
+/* Kit-specific pieces on top of the guide styles: checklist cards, the builder form and a paper preview. */
+.kit-wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.check{list-style:none;padding:0 !important}
+.check li{background:var(--white);border:1px solid var(--rule);border-radius:14px;padding:16px 18px 16px 54px;margin:0 0 12px !important;position:relative;font-size:17px !important}
+.check li::before{content:"";position:absolute;left:18px;top:19px;width:20px;height:20px;border-radius:6px;border:2.5px solid var(--ink)}
+.check li b{display:block;font:700 18px/1.35 var(--sans);color:var(--ink);margin-bottom:4px}
+.check li.priv{border-color:var(--ink);background:#0F1420;color:#C9CEDA}
+.check li.priv b{color:#fff}
+.check li.priv::before{border-color:#FFD400}
+.check li.priv a{color:#FFD400;text-decoration-color:#FFD400}
+
+.builder{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start;margin:20px 0 10px}
+@media(max-width:900px){.builder{grid-template-columns:minmax(0,1fr)}}
+.form fieldset{border:1px solid var(--rule);background:var(--white);border-radius:16px;padding:18px 18px 8px;margin:0 0 16px}
+.form legend{font:800 13px var(--sans);letter-spacing:.02em;background:var(--ink);color:#fff;border-radius:999px;padding:5px 12px}
+.form label{display:block;font:700 15px/1.3 var(--sans);color:var(--ink);margin:12px 0 6px}
+.form .hint{display:block;font:400 14px/1.45 var(--sans);color:var(--mut);margin:-2px 0 6px}
+.form input[type=text],.form input[type=date],.form textarea,.form select{width:100%;font:400 16px/1.4 var(--sans);padding:11px 12px;border:1.5px solid var(--rule);border-radius:10px;background:#fff;color:var(--ink)}
+.form textarea{min-height:64px;resize:vertical}
+.form input:focus,.form textarea:focus,.form select:focus{outline:3px solid var(--hl);outline-offset:1px;border-color:var(--ink)}
+.form .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+@media(max-width:520px){.form .row{grid-template-columns:minmax(0,1fr)}}
+.form .tick{display:flex;gap:10px;align-items:flex-start;font:500 15px/1.45 var(--sans);color:var(--ink2);margin:12px 0}
+.form .tick input{width:20px;height:20px;margin-top:1px;accent-color:var(--ink);flex:none}
+.form .bills{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px}
+@media(max-width:520px){.form .bills{grid-template-columns:1fr}}
+.form .bills .tick{margin:6px 0}
+.form .sub{display:none;border-left:3px solid var(--rule);padding-left:12px;margin:6px 0 10px}
+.form .sub.on{display:block}
+.privnote{background:#0F1420;color:#C9CEDA;border-radius:12px;padding:12px 14px;margin:8px 0 6px;font:400 14px/1.5 var(--sans)}
+.privnote b{color:#FFD400}
+.privnote a{color:#fff;font-weight:700}
+
+.out{position:sticky;top:96px}
+@media(max-width:900px){.out{position:static}}
+.paper{background:#fff;border:1px solid var(--rule);border-radius:6px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 18px 40px -22px rgba(0,0,0,.35);padding:30px 30px 26px;max-height:72vh;overflow:auto;font:400 15px/1.55 Georgia,"Times New Roman",serif;color:#111}
+.paper h3{font:700 19px/1.25 Georgia,serif;margin:0 0 4px}
+.paper .sub-h{font:400 13px var(--sans);color:#666;margin:0 0 18px}
+.paper h4{font:700 14px var(--sans);text-transform:none;margin:16px 0 4px;color:#111}
+.paper p{margin:0 0 8px}
+.paper .blank{background:#FFF3B0;border-radius:3px;padding:0 4px;color:#7a5b00;font-family:var(--sans);font-size:13px}
+.paper .foot{font:400 12px/1.45 var(--sans);color:#777;border-top:1px solid #ddd;margin-top:18px;padding-top:10px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 6px}
+.actions button{font:800 15px var(--sans);border-radius:999px;padding:12px 18px;cursor:pointer;border:2px solid var(--ink);background:var(--ink);color:#fff;min-height:44px}
+.actions button.ghost{background:transparent;color:var(--ink)}
+.actions button:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+.status{font:500 14px var(--sans);color:var(--mut);min-height:20px}
+.local{font:500 14px var(--sans);color:var(--mut);margin:6px 0 0}
+
+@media print{
+  body{padding:0;background:#fff}
+  .sl-nav,.sl-foot,.g,.g-more,.form,.actions,.status,.local,.kit-intro,.kit-after{display:none !important}
+  .kit-wrap,.builder{display:block;max-width:none;padding:0;margin:0}
+  .out{position:static}
+  .paper{box-shadow:none;border:0;max-height:none;overflow:visible;padding:0;font-size:12pt}
+}
+</style>
+</head>
+<body>
+<header class="sl-nav">
+  <a class="sl-logo" href="/"><img src="/sl-icon.png" alt=""><span>Survive Labs</span></a>
+  <nav aria-label="Main"><a href="/remark/">Remark</a><a href="/themely/">Themely</a><a href="/guides/" aria-current="page">Guides</a></nav>
+</header>
+<main>
+<article class="g g-wrap">
+<p class="g-crumb"><a href="/guides/">Guides</a> · Landlord kit</p>
+<h1>Free Renters' Rights Act landlord kit</h1>
+<p class="g-lede">A plain-English checklist of what changed for landlords in England, and a builder that makes the written statement of terms your tenants must now get. Free, no sign-up, and nothing you type leaves your device.</p>
+<p class="g-meta">Updated 20 November 2026 · England only · Not legal advice</p>
+
+<nav class="g-toc" aria-label="On this page"><b>On this page</b><ol>
+<li><a href="#changed">What changed</a></li><li><a href="#checklist">Your checklist</a></li><li><a href="#builder">Written statement builder</a></li><li><a href="#faq">Questions</a></li>
+</ol></nav>
+
+<h2 id="changed">What changed on 1 May 2026</h2>
+<p>The Renters' Rights Act 2025 ended assured shorthold tenancies and fixed terms for new private lettings in England. New tenancies are now open-ended <strong>assured periodic tenancies</strong>.</p>
+<p>Before you agree a new tenancy, you must give each tenant a <strong>written statement of terms</strong>: the key facts about the tenancy and their rights. GOV.UK says you can be fined up to £7,000 if you don't. You can put this information in your tenancy agreement or give it separately, and you don't have to use the exact legal wording.</p>
+<div class="tip"><p><strong>In Wales or Scotland?</strong> This kit isn't for you. Wales uses occupation contracts under the Renting Homes (Wales) Act, and Scotland has its own rules.</p></div>
+
+<h2 id="checklist">Your checklist</h2>
+<ul class="check">
+<li><b>New tenancy since 1 May 2026</b>Give every tenant the written statement before you sign or agree the tenancy. Use the <a href="#builder">builder below</a> or your own agreement, as long as it covers everything required.</li>
+<li><b>Tenancy started before 1 May 2026, with a written agreement</b>You needed to give each tenant the government's official Information Sheet by 31 May 2026. It must be the exact <a href="https://www.gov.uk/government/publications/the-renters-rights-act-information-sheet-2026">PDF from GOV.UK</a>, not a link or your own summary. If you missed it, do it now and consider taking advice.</li>
+<li><b>Tenancy started before 1 May 2026, with only a spoken agreement</b>Those tenants needed a full written statement by 31 May 2026. If you haven't given one, the builder below covers the same information.</li>
+<li><b>Putting the rent up</b>Rent increases now go through a formal notice under section 13 of the Housing Act 1988. Your statement has to tell tenants this.</li>
+<li><b>Pets</b>Tenants can ask to keep a pet, and you can't unreasonably refuse. This is also part of the statement.</li>
+<li><b>The landlord database</b>Registration opens region by region from 15 December 2026, and every landlord in England must be registered by 14 November 2027.</li>
+<li class="priv"><b>Check where your home address is going</b>Your statement gives tenants an address for notices, and the database collects your contact details. Before you hand them out, check where your home address is already public. <a href="/guides/home-address-privacy-landlords.html">Do the free 10-minute check</a>, or <a href="/privacy-sweep/landlords/">let Privasweep do it for you</a>.</li>
+</ul>
+</article>
+
+<section class="kit-wrap" id="builder" aria-labelledby="builder-h">
+<div class="g kit-intro" style="max-width:720px">
+<h2 id="builder-h">Written statement of terms builder</h2>
+<p>Fill in the form and your statement builds itself on the right. Yellow highlights show what's still missing. Then copy it, or print it and save it as a PDF.</p>
+</div>
+<div class="builder">
+<form class="form" id="f" autocomplete="off" onsubmit="return false">
+  <fieldset><legend>The people</legend>
+    <label for="landlords">Landlord name(s)</label><span class="hint">Joint landlords: put each name on its own line.</span>
+    <textarea id="landlords" placeholder="Jane Smith"></textarea>
+    <label for="tenants">Tenant name(s)</label><span class="hint">Joint tenants: put each name on its own line.</span>
+    <textarea id="tenants" placeholder="Alex Jones&#10;Sam Patel"></textarea>
+    <label for="notice">Address for notices</label><span class="hint">An address in England and Wales where your tenant can serve notices on you, including court papers.</span>
+    <textarea id="notice" placeholder="Building, street, town, postcode"></textarea>
+    <div class="privnote"><b>Privacy:</b> this address goes to your tenant and could end up in court papers. The rules don't say it has to be your home, but notices must reliably reach you there. Check what's already public about your home address with our <a href="/guides/home-address-privacy-landlords.html">free check</a>.</div>
+  </fieldset>
+
+  <fieldset><legend>The tenancy</legend>
+    <label for="property">Address of the property you're letting</label>
+    <textarea id="property" placeholder="Flat 2, 10 High Street, Bristol BS1 1AA"></textarea>
+    <label for="start">Date the tenant can move in</label><span class="hint">The first day they're entitled to possession.</span>
+    <input type="date" id="start">
+    <div class="row">
+      <div><label for="rent">Rent (£)</label><input type="text" id="rent" inputmode="decimal" placeholder="950.00"></div>
+      <div><label for="freq">Paid</label><select id="freq"><option>per calendar month</option><option>per week</option><option>every four weeks</option><option>per quarter</option></select></div>
+    </div>
+    <label for="due">When rent is due</label><input type="text" id="due" placeholder="on the 1st of each month, in advance">
+    <label for="deposit">Deposit (£)</label><span class="hint">Leave blank if you're not taking a deposit. Remember it must be protected in a government-approved scheme.</span>
+    <input type="text" id="deposit" inputmode="decimal" placeholder="1,096.15">
+    <label for="quit">Minimum notice the tenant must give to leave</label><span class="hint">Usually two months. You can agree a shorter period, but you can't ask for more than two months.</span>
+    <input type="text" id="quit" value="two months">
+  </fieldset>
+
+  <fieldset><legend>Bills the tenant pays you</legend>
+    <span class="hint" style="margin-top:10px">Only tick bills the tenant pays <em>to you</em>. Leave all unticked if they pay suppliers directly.</span>
+    <div class="bills" id="bills">
+      <label class="tick"><input type="checkbox" value="council tax"> Council tax</label>
+      <label class="tick"><input type="checkbox" value="electricity"> Electricity</label>
+      <label class="tick"><input type="checkbox" value="gas or other fuel"> Gas or other fuel</label>
+      <label class="tick"><input type="checkbox" value="water and sewerage"> Water and sewerage</label>
+      <label class="tick"><input type="checkbox" value="green deal energy efficiency payments"> Green deal payments</label>
+      <label class="tick"><input type="checkbox" value="a TV licence"> TV licence</label>
+      <label class="tick"><input type="checkbox" value="communication services (landline, internet, cable or satellite TV)"> Broadband, phone or TV</label>
+    </div>
+    <div class="sub" id="billsSub">
+      <label for="billHow">How they pay these bills</label>
+      <select id="billHow"><option value="in">Included in the rent</option><option value="extra">In addition to the rent</option></select>
+      <div class="sub" id="extraSub">
+        <label for="billAmt">Amounts, or how and when you'll tell them</label>
+        <textarea id="billAmt" placeholder="Electricity: £60 per month. Water: we'll tell you the amount in writing each April."></textarea>
+        <label for="billDue">Due dates, or how and when you'll tell them</label>
+        <textarea id="billDue" placeholder="Due with the rent on the 1st of each month."></textarea>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset><legend>About the property</legend>
+    <label class="tick"><input type="checkbox" id="gas"> The property has gas appliances, fittings or flues</label>
+    <label class="tick"><input type="checkbox" id="elec" checked> The electrical safety rules apply (most private lets)</label>
+    <label class="tick"><input type="checkbox" id="repairs" checked> I'm responsible for the usual repairs (untick only if a court order or right-to-manage company changes this)</label>
+    <label class="tick"><input type="checkbox" id="improve"> The tenant can make improvements with my permission</label>
+    <label class="tick"><input type="checkbox" id="supported"> This is supported accommodation</label>
+    <div class="sub" id="suppSub"><label for="suppWhy">Why it's supported accommodation</label><textarea id="suppWhy"></textarea></div>
+  </fieldset>
+</form>
+
+<div class="out">
+  <div class="paper" id="paper" aria-live="polite"></div>
+  <div class="actions">
+    <button type="button" id="copy">Copy text</button>
+    <button type="button" class="ghost" id="print">Print or save as PDF</button>
+    <button type="button" class="ghost" id="reset">Start again</button>
+  </div>
+  <p class="status" id="status" role="status"></p>
+  <p class="local">Everything stays in your browser. We don't see or store what you type.</p>
+</div>
+</div>
+</section>
+
+<article class="g g-wrap kit-after">
+<section class="shortcut">
+<h2>Your tenants get an address for you. Who else can find your home?</h2>
+<p>Most landlords' home addresses are already linked to their name somewhere online: people-search sites, old listings, property and company records. <b>Registration on the new landlord database opens on 15 December 2026.</b> Sort out where your home address appears before you register.</p>
+<p>Privasweep searches for you the way a stranger would, gives you a plain-English report of where your home address and household are published, and can send the removal requests for you.</p>
+<a class="btn" href="/privacy-sweep/landlords/">See Privasweep for landlords</a>
+<p class="soon">From £19, paid once. No subscription.</p>
+</section>
+
+<section class="faq">
+<h2 id="faq">Questions</h2>
+<h3>Is this a full tenancy agreement?</h3>
+<p>No. It builds the written statement of terms, which is the information the law says a tenant must get before an assured periodic tenancy is agreed. You can give it on its own or attach it to your tenancy agreement. Any other terms you add must comply with the law.</p>
+<h3>Do I have to use this wording?</h3>
+<p>No. GOV.UK says you don't need to use the exact wording in the legislation, as long as you give all the required information. This builder follows the list in the official regulations, written in plain English.</p>
+<h3>Does the address for notices have to be my home?</h3>
+<p>The rules ask for an address in England and Wales where your tenant can serve notices on you, including court papers. They don't say it must be your home, but it must be somewhere notices will reliably reach you. If you're unsure, take advice before you use a different address.</p>
+<h3>I let through an agent. Do I need this?</h3>
+<p>Your agent will usually prepare it, but you're still responsible for it being right. It's worth checking their version against this list.</p>
+<h3>Is this legal advice?</h3>
+<p>No. We've built it carefully from the official sources below, but every tenancy is different. If your situation is unusual, such as a lodger, a company let or a property in Wales, get advice.</p>
+</section>
+
+<section class="refs">
+<h2>Official sources</h2>
+<p><a href="https://www.gov.uk/assured-tenancy-agreements-a-guide-for-landlords/written-information-you-need-to-give-to-your-tenant">GOV.UK: Written information you need to give to your tenant</a></p>
+<p><a href="https://www.gov.uk/guidance/tenancy-agreements-written-information-for-your-tenant">GOV.UK: Tenancy agreements, written information for your tenant</a></p>
+<p><a href="https://www.legislation.gov.uk/uksi/2026/324/schedule/made">The Assured Tenancies (Private Rented Sector) (Written Statement of Terms etc and Information Sheet) (England) Regulations 2026, Schedule</a></p>
+<p><a href="https://www.gov.uk/government/publications/the-renters-rights-act-information-sheet-2026">GOV.UK: The Renters' Rights Act Information Sheet 2026</a></p>
+</section>
+</article>
+
+<section class="g-more"><h2>More guides</h2><div class="cards"><a href="/guides/home-address-privacy-landlords.html">Privacy for landlords<span>Check whether tenants and strangers can find your own home address online, and what UK law lets you remove.</span></a><a href="/guides/home-address-privacy-estate-agents.html">Privacy for estate agents<span>Estate agents are the public face of every sale and let. Here's how to check whether…</span></a></div></section>
+</main>
+<footer class="sl-foot">
+  <div class="wrap">
+    <div class="top">
+      <div><p class="big">Questions?<br>We actually reply.</p><a href="mailto:hello@survivelabs.co.uk">hello@survivelabs.co.uk</a></div>
+      <div><h4>Remark</h4><a href="/remark/">Overview</a><a href="/remark/#pricing">Pricing</a><a href="/remark/support.html">Support</a><a href="/remark/privacy.html">Privacy</a><a href="/remark/terms.html">Terms</a></div>
+      <div><h4>Themely</h4><a href="/themely/">Themely for Docs</a><a href="/themely/sheets/">Themely for Sheets</a><a href="/themely/#pricing">Pricing</a><a href="/themely/#help">Help</a><a href="/themely/privacy.html">Privacy</a><a href="/themely/terms.html">Terms</a></div>
+      <div><h4>Survive Labs</h4><a href="/">Home</a><a href="/guides/">Guides</a><a href="/privacy-sweep/">Privasweep</a><a href="/tools/">Free tools</a><a href="mailto:hello@survivelabs.co.uk">Contact</a></div>
+    </div>
+    <div class="base"><span>© 2026 Survive Labs, Lytchett House, 13 Freeland Park, Wareham Road, Poole, Dorset BH16 6FA, United Kingdom</span><span>Remark and Themely are independent add-ons and are not affiliated with Google.</span></div>
+  </div>
+</footer>
+<script>
+{
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const blank = t => `<span class="blank">${t}</span>`;
+  const lines = v => v.split('\n').map(s => s.trim()).filter(Boolean);
+  const money = v => { const n = v.replace(/[£,\s]/g, ''); return n ? '£' + (isNaN(+n) ? esc(v) : (+n).toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2})) : ''; };
+  const listText = a => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1];
+  const val = id => $(id).value.trim();
+
+  function build() {
+    const L = lines($('landlords').value), T = lines($('tenants').value);
+    const bills = [...$('bills').querySelectorAll('input:checked')].map(b => b.value);
+    $('billsSub').classList.toggle('on', bills.length > 0);
+    $('extraSub').classList.toggle('on', $('billHow').value === 'extra');
+    $('suppSub').classList.toggle('on', $('supported').checked);
+
+    const start = val('start') ? new Date(val('start') + 'T12:00').toLocaleDateString('en-GB', {day: 'numeric', month: 'long', year: 'numeric'}) : '';
+    const s = [];
+    const sec = (h, body) => s.push(`<h4>${h}</h4>${body}`);
+
+    sec('1. Landlord', `<p>${L.length ? esc(listText(L)) : blank('landlord name')}${L.length > 1 ? ' (joint landlords)' : ''}</p>`);
+    sec('2. Tenant', `<p>${T.length ? esc(listText(T)) : blank('tenant name')}${T.length > 1 ? ' (joint tenants)' : ''}</p>`);
+    sec('3. Address for notices', `<p>The tenant may serve notices on the landlord, including notices in proceedings, at this address in England and Wales:<br>${val('notice') ? esc(val('notice')).replace(/\n/g, '<br>') : blank('address for notices')}</p>`);
+    sec('4. The property', `<p>${val('property') ? esc(val('property')).replace(/\n/g, '<br>') : blank('property address')} ("the property").</p>`);
+    sec('5. Start of the tenancy', `<p>The tenant is first entitled to possession of the property on ${start || blank('start date')}.</p>`);
+    sec('6. Rent', `<p>The rent is ${money(val('rent')) || blank('rent amount')} ${esc($('freq').value)}, payable ${val('due') ? esc(val('due')) : blank('when rent is due')}.</p>`);
+    sec('7. Rent increases', `<p>If the landlord proposes to increase the rent, the landlord must do so by serving a notice on the tenant under section 13 of the Housing Act 1988.</p>`);
+    let n = 8;
+    if (bills.length) {
+      const extra = $('billHow').value === 'extra';
+      sec(`${n++}. Bills paid to the landlord`, extra
+        ? `<p>As well as the rent, the tenant must pay the landlord for ${esc(listText(bills))}.</p><p>Amounts: ${val('billAmt') ? esc(val('billAmt')) : blank('amounts, or how and when the tenant will be told')}</p><p>Due: ${val('billDue') ? esc(val('billDue')) : blank('due dates, or how and when the tenant will be told')}</p>`
+        : `<p>The rent includes payment for ${esc(listText(bills))}.</p>`);
+    }
+    if (val('deposit')) sec(`${n++}. Deposit`, `<p>The tenancy deposit is ${money(val('deposit'))}.</p>`);
+    sec(`${n++}. Ending the tenancy: tenant`, `<p>The tenant must give the landlord at least ${val('quit') ? esc(val('quit')) : blank('notice period')}'s notice to end the tenancy.</p>`);
+    sec(`${n++}. Ending the tenancy: landlord`, `<p>The landlord can usually only end the tenancy by obtaining and enforcing a court order for possession. To seek one, the landlord (or at least one joint landlord) must usually serve a notice of proceedings for possession in the prescribed form, stating the ground or grounds relied on. The ground or grounds decide the minimum notice period before court proceedings can begin.</p>`);
+    sec(`${n++}. Fitness for human habitation`, `<p>The landlord must ensure the property is fit for human habitation, to the extent required by section 9A of the Landlord and Tenant Act 1985.</p>`);
+    if ($('repairs').checked) sec(`${n++}. Repairs`, `<p>To the extent required by section 11 of the Landlord and Tenant Act 1985, the landlord must keep in repair the structure and exterior of the property; keep in repair and proper working order the installations for the supply of water, gas and electricity and for sanitation; and keep in repair and proper working order the installations for space heating and heating water.</p>`);
+    if ($('elec').checked) sec(`${n++}. Electrical safety`, `<p>The landlord must ensure the electrical safety standards are met while the property is occupied; ensure the electrical installations are inspected and tested by a qualified person at least every five years, or sooner if the latest report requires it; and obtain a report of the results, including the date of the next inspection, and give a copy to the tenant.</p>`);
+    if ($('gas').checked) sec(`${n++}. Gas safety`, `<p>The landlord must keep the gas fittings and flues serving the property in a safe condition; have each gas appliance and flue safety-checked by an approved (Gas Safe registered) engineer at the intervals required by the Gas Safety (Installation and Use) Regulations 1998; and keep a record of each check and, unless an exception applies, give the tenant a copy.</p>`);
+    if ($('improve').checked) sec(`${n++}. Adaptations for disabled people`, `<p>Under section 190 of the Equality Act 2010, the landlord must not unreasonably refuse consent to an improvement that is likely to be necessary to help a disabled person who lives, or intends to live, in the property to enjoy it. Section 190 doesn't apply to the extent that this tenancy makes equivalent provision.</p>`);
+    sec(`${n++}. Pets`, `<p>Under section 16A of the Housing Act 1988, the tenant may keep a pet at the property if they ask under that section and the landlord consents. The landlord must not unreasonably refuse consent.</p>`);
+    if ($('supported').checked) sec(`${n++}. Supported accommodation`, `<p>This tenancy is a tenancy of supported accommodation. Reason: ${val('suppWhy') ? esc(val('suppWhy')) : blank('why it is supported accommodation')}</p>`);
+
+    $('paper').innerHTML = `<h3>Written statement of terms</h3><p class="sub-h">Assured periodic tenancy · England · Given before the tenancy is agreed</p>${s.join('')}
+      <p class="foot">This statement gives the information required by the Assured Tenancies (Private Rented Sector) (Written Statement of Terms etc and Information Sheet) (England) Regulations 2026. Made with the free landlord kit at survivelabs.co.uk. Not legal advice.</p>`;
+    const missing = $('paper').querySelectorAll('.blank').length;
+    $('status').textContent = missing ? `${missing} detail${missing === 1 ? '' : 's'} still missing (highlighted in yellow).` : 'All details filled in. Check it carefully before giving it to your tenant.';
+  }
+
+  $('f').addEventListener('input', build);
+  $('f').addEventListener('change', build);
+  $('copy').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText($('paper').innerText); $('status').textContent = 'Copied. Paste it into your tenancy agreement or a document.'; }
+    catch { $('status').textContent = "Couldn't copy automatically. Select the text and copy it instead."; }
+  });
+  $('print').addEventListener('click', () => window.print());
+  $('reset').addEventListener('click', () => { $('f').reset(); build(); $('status').textContent = 'Cleared.'; });
+  build();
+}
+</script>
+<!-- Cloudflare Web Analytics (cookie-free) --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "8f72d9749e9f4d19a9bc2ef5aa6f097c"}'></script>
+</body>
+</html>
