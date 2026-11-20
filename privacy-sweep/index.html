@@ -309,6 +309,18 @@ body{background:var(--paper)}
 @media (prefers-reduced-motion:reduce){.ticker .run{animation:none}.screen::after{display:none}}
 .llchip{display:inline-flex;gap:6px;align-items:center;background:#fff;color:#0A0A0A;font:600 14px var(--sans);padding:7px 14px;border-radius:999px;text-decoration:none}.llchip:hover{text-decoration:underline}.llchip+.llchip{margin-top:8px;background:#FFE14D}
 </style>
+<style>
+.human{padding:56px 0}
+.hcard{background:#fff;color:#0E1525;border:2px solid #0E1525;border-radius:20px;padding:32px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:32px;align-items:center;box-shadow:8px 8px 0 #FFD400}
+.hwho{display:flex;gap:18px;align-items:flex-start}
+.hav{flex:none;width:58px;height:58px;border-radius:50%;background:#0E1525;color:#FFD400;display:grid;place-items:center;font:900 26px var(--sans)}
+.hcard h2{font-size:clamp(24px,2.6vw,34px)!important;line-height:1.08;letter-spacing:-.03em;margin:0 0 10px!important;color:#0E1525;max-width:none!important}
+.hcard p{margin:0;font:500 16.5px/1.55 var(--sans);color:#4A5468}
+.hcard ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.hcard li{display:flex;gap:12px;font:600 16.5px/1.45 var(--sans);color:#0E1525}
+.hcard li svg{width:22px;height:22px;flex:none;margin-top:1px}
+@media (max-width:800px){.hcard{grid-template-columns:1fr;gap:22px;padding:24px;box-shadow:6px 6px 0 #FFD400}}
+</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -498,6 +510,13 @@ body{background:var(--paper)}
     <p class="note">Secure checkout by Stripe. Within 1 working day of booking we'll email you a short form and a permission letter to sign. Your report arrives within 5 working days of getting them back. Any official fees, such as government charges for correcting old public records, are yours to pay directly, and we'll always tell you first.</p>
   </div>
 </section>
+<section class="sec human" aria-labelledby="human-h">
+  <div class="wrap"><div class="hcard">
+    <div class="hwho"><span class="hav" aria-hidden="true">R</span><div><h2 id="human-h">Checked by a person, not just a computer</h2><p>Lots of privacy services are fully automated. Privasweep isn't. I'm Regan, and I look at your results myself.</p></div></div>
+    <ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#17A86F"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Every report is checked by me before it's sent to you</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#17A86F"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Removal requests are sent and chased by a person, not fired off by a bot</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#17A86F"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Every email is answered by me, not a ticket system</span></li></ul>
+  </div></div>
+</section>
+
 
 <section class="sec promises" id="promises" data-dark>
   <div class="wrap">
@@ -509,7 +528,7 @@ body{background:var(--paper)}
       <div class="pr rise" data-in style="--d:.16s"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M15 4l9 4v7c0 6-4 9.5-9 11-5-1.5-9-5-9-11V8z" fill="none" stroke="#5FE0A8" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 15l3 3 5-6" fill="none" stroke="#5FE0A8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Your rights, used properly</b><p>UK data protection law lets you ask companies to delete your data, and lets us act for you with your written permission.</p></div>
       <div class="pr rise" data-in><svg viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="10" fill="none" stroke="#5FE0A8" stroke-width="2.4"/><path d="M15 10v6M15 20v.5" stroke="#5FE0A8" stroke-width="2.6" stroke-linecap="round"/></svg><b>Straight about the limits</b><p>Some records are public by law. We'll tell you exactly what can't be removed before you pay for removals.</p></div>
       <div class="pr rise" data-in style="--d:.08s"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M6 8h18M6 15h12M6 22h15" stroke="#5FE0A8" stroke-width="2.4" stroke-linecap="round"/></svg><b>No fake reviews</b><p>We're new, and we'll say so. You won't see made-up testimonials here, just what we do and what it costs.</p></div>
-      <div class="pr rise" data-in style="--d:.16s"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M5 9l10 7 10-7" fill="none" stroke="#5FE0A8" stroke-width="2.4" stroke-linejoin="round"/><rect x="5" y="7" width="20" height="16" rx="3" fill="none" stroke="#5FE0A8" stroke-width="2.4"/></svg><b>A real person replies</b><p>Questions go to a real inbox and a real person, not a ticket queue.</p></div>
+      <div class="pr rise" data-in style="--d:.16s"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M5 9l10 7 10-7" fill="none" stroke="#5FE0A8" stroke-width="2.4" stroke-linejoin="round"/><rect x="5" y="7" width="20" height="16" rx="3" fill="none" stroke="#5FE0A8" stroke-width="2.4"/></svg><b>A real person replies</b><p>Questions come to me, Regan, not a ticket queue or a chatbot.</p></div>
     </div>
   </div>
 </section>
