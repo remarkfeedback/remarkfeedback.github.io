@@ -1,5 +1,6 @@
 import { parseProduct, PLANTS, FISH, HARDSCAPE } from './parse.js';
 import { TankScene, hashStr, rng } from './scene.js';
+import { getPhoto, plantColours, bodyColour } from './photo.js';
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -11,6 +12,17 @@ const ORDER = ['tank', 'stand', 'light', 'filter', 'heater', 'co2', 'airpump', '
 
 let state = { items: [] };
 try { const s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s?.items) state = s; } catch {}
+// photo looks, worked out in the browser (not saved: they're recomputed from the photo link)
+const photos = new Map();
+const look = it => (it && it.image && !it.noPhoto) ? photos.get(it.image) || null : null;
+let photoTimer = null;
+function ensurePhotos() {
+  for (const it of state.items) {
+    if (!it.image || it.noPhoto || photos.has(it.image)) continue;
+    photos.set(it.image, undefined);
+    getPhoto(it.image, API).then(a => { photos.set(it.image, a || null); clearTimeout(photoTimer); photoTimer = setTimeout(() => render(), 120); });
+  }
+}
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {} };
 
 // ---------- layout: turn items into a placed scene ----------
@@ -19,7 +31,9 @@ function layout() {
   const tankItem = items.find(i => i.cat === 'tank');
   const tank = tankItem ? { ...tankItem } : { id: 'virtual', name: 'No tank yet: showing 60cm', dims: { l: 60, w: 30, h: 36 }, style: 'rimless', specs: { litres: 54 }, virtual: true };
   const t = tank.dims;
-  const standItem = items.find(i => i.cat === 'stand');
+  const standRaw = items.find(i => i.cat === 'stand');
+  const sl = look(standRaw);
+  const standItem = standRaw ? { ...standRaw, ...(sl ? { tex: sl.patch, colour: bodyColour(sl) } : {}) } : null;
   const standH = standItem ? standItem.dims.h : 0;
   const glass = 0.6; const inL = t.l - glass * 2, inW = t.w - glass * 2;
   const L = { tank, stand: standItem || null, standH, objects: [], fish: [] };
@@ -28,13 +42,16 @@ function layout() {
   const subItem = items.find(i => i.cat === 'substrate');
   if (subItem) {
     const avg = Math.max(0.5, Math.min(14, (subLitres || 3) * 1000 / (inL * inW)));
-    L.substrate = { front: avg * 0.6, back: avg * 1.4, colour: subItem.colour || '#9a8f84', avg };
+    const su = look(subItem); const loose = su && su.fullFrame; // a photo of the gravel itself, not the bag
+    L.substrate = { front: avg * 0.6, back: avg * 1.4, colour: loose ? su.main : subItem.colour || '#9a8f84', tex: loose ? su.patch : null, avg };
   }
   const placed = (item, i, def) => ({ ...def, ...(item.place?.[i] || {}) });
   const skip = (item, i) => item.removed?.includes(i);
 
   // equipment
-  for (const it of items) {
+  for (const it0 of items) {
+    const el = ['light', 'filter', 'co2', 'airpump'].includes(it0.cat) ? look(it0) : null;
+    const it = el ? { ...it0, colour: bodyColour(el) } : it0;
     const d = it.dims; if (!d) continue;
     const key = i => `${it.id}:${i}`;
     if (it.cat === 'light') L.objects.push(placed(it, 0, { key: key(0), item: it.id, kind: 'light', size: d, colour: it.colour, where: 'top', x: 0, z: 0, legs: d.l > t.l + 3 ? 6 : 0 }));
@@ -62,7 +79,8 @@ function layout() {
       const dist = i === 0 ? 0 : pieces[0].l * 0.45 + p.l * 0.5 + i * 1.2;
       const x = Math.max(-inL / 2 + p.l / 2, Math.min(inL / 2 - p.l / 2, cx + Math.cos(ang) * dist));
       const z = Math.max(-inW / 2 + p.w / 2, Math.min(inW / 2 - p.w / 2, cz + Math.sin(ang) * dist * 0.6));
-      L.objects.push(placed(it, i, { key: `${it.id}:${i}`, item: it.id, kind: 'rock', size: p, colour: it.colour, flat: it.hs?.flat, where: 'floor', x, z, ry: r() * 6.28, sink: p.h * 0.12 }));
+      const lk = look(it);
+      L.objects.push(placed(it, i, { key: `${it.id}:${i}`, item: it.id, kind: 'rock', size: p, colour: lk ? bodyColour(lk) : it.colour, tex: lk?.patch, flat: it.hs?.flat, where: 'floor', x, z, ry: r() * 6.28, sink: p.h * 0.12 }));
     });
     rockSlot++;
   }
@@ -73,19 +91,22 @@ function layout() {
       const d = it.dims;
       const x = woodSlot === 0 ? inL / 5 : -inL / 5 + (r() - 0.5) * 10; const z = -inW * 0.12;
       anchors.push({ x, z, r: d.l * 0.5, wood: true });
-      L.objects.push(placed(it, i, { key: `${it.id}:${i}`, item: it.id, kind: 'wood', size: d, colour: it.colour, form: it.woodForm, where: 'floor', x: Math.max(-inL / 2 + d.l * 0.3, Math.min(inL / 2 - d.l * 0.3, x)), z, ry: (r() - 0.5) * 1.2, sink: 1 }));
+      const lk = look(it);
+      L.objects.push(placed(it, i, { key: `${it.id}:${i}`, item: it.id, kind: 'wood', size: d, colour: lk ? bodyColour(lk) : it.colour, tex: lk?.patch, form: it.woodForm, where: 'floor', x: Math.max(-inL / 2 + d.l * 0.3, Math.min(inL / 2 - d.l * 0.3, x)), z, ry: (r() - 0.5) * 1.2, sink: 1 }));
       woodSlot++;
     }
   }
   for (const it of items.filter(i => i.cat === 'ornament')) {
     if (skip(it, 0)) continue;
-    L.objects.push(placed(it, 0, { key: `${it.id}:0`, item: it.id, kind: 'ornament', size: it.dims, colour: it.colour, where: 'floor', x: (r() - 0.5) * inL * 0.3, z: inW * 0.05 }));
+    const lk = look(it);
+    L.objects.push(placed(it, 0, { key: `${it.id}:0`, item: it.id, kind: 'ornament', size: it.dims, colour: lk ? bodyColour(lk) : it.colour, tex: lk?.patch, where: 'floor', x: (r() - 0.5) * inL * 0.3, z: inW * 0.05 }));
   }
 
   // plants by zone
   const zoneSlot = { carpet: 0, fore: 0, mid: 0, back: 0, moss: 0, float: 0 };
   for (const it of items.filter(i => i.cat === 'plant')) {
-    const base = it.plant || { form: 'rosette', h: 15, zone: 'mid', c: '#3f8a2e' };
+    const pc = look(it) ? plantColours(look(it)) : null;
+    const base = { ...(it.plant || { form: 'rosette', h: 15, zone: 'mid', c: '#3f8a2e' }), ...(pc || {}) };
     const room = t.h - 3 - glass - (L.substrate ? L.substrate.back : 0) - 1.5;
     const info = base.zone === 'float' ? base : { ...base, h: Math.min(base.h, room) };
     const n = Math.max(1, Math.min(24, it.qty || 1));
@@ -104,7 +125,11 @@ function layout() {
       L.objects.push(placed(it, i, { key: `${it.id}:${i}`, item: it.id, kind: 'plant', plant: info, radius, size: { l: radius * 2, w: radius * 2, h: info.h }, where, x, z }));
     }
   }
-  for (const it of items.filter(i => i.cat === 'fish')) L.fish.push({ id: it.id, info: it.fish || FISH[0], count: Math.max(0, Math.min(40, it.qty || 1)) });
+  for (const it of items.filter(i => i.cat === 'fish')) {
+    let info = it.fish || FISH[0]; const fl = look(it);
+    if (fl && (!it.fish || it.fish.c?.[0] === '#c0c0c0')) { const sat = fl.palette.slice().sort((a, b) => b.s - a.s)[0]; info = { ...info, c: [bodyColour(fl), sat?.hex || bodyColour(fl)] }; }
+    L.fish.push({ id: it.id, info, count: Math.max(0, Math.min(40, it.qty || 1)) });
+  }
   return L;
 }
 
@@ -189,6 +214,7 @@ const scene = new TankScene($('c'), {
 });
 
 function render(rebuild = true) {
+  ensurePhotos();
   if (rebuild) scene.build(layout());
   const items = state.items.slice().sort((a, b) => ORDER.indexOf(a.cat) - ORDER.indexOf(b.cat));
   $('empty').hidden = state.items.length > 0;
@@ -218,9 +244,12 @@ function card(i) {
   const spec = [i.specs?.litres && i.cat === 'tank' ? `${i.specs.litres}L` : '', i.specs?.flow ? `${i.specs.flow} l/h` : '', i.specs?.maxTank ? `up to ${i.specs.maxTank}L` : '', i.cat === 'heater' && i.specs?.watts ? `${i.specs.watts}W` : '', i.cat === 'light' && i.specs?.watts ? `${i.specs.watts}W` : '', i.cat === 'substrate' && i.bagLitres ? `${i.bagLitres}L bag` : '', i.cat === 'rock' && i.specs?.kg ? `${i.specs.kg}kg` : '', i.cat === 'rock' && i.pieces?.length > 1 ? `${i.pieces.length} pieces` : '', i.cat === 'plant' && i.plant ? `${i.plant.zone === 'back' ? 'background' : i.plant.zone === 'mid' ? 'midground' : i.plant.zone === 'fore' ? 'foreground' : i.plant.zone}, ~${i.plant.h}cm` : '', i.cat === 'fish' && i.fish ? `${i.fish.len}cm adult` : ''].filter(Boolean).join(' · ');
   const qtyable = ['fish', 'plant', 'substrate', 'wood'].includes(i.cat);
   const cost = lineCost(i);
-  return `<li class="item" data-id="${i.id}"><div class="ic" title="${LABEL[i.cat]}">${ICON[i.cat] || '•'}</div><div class="bd">
+  const ph = i.image ? photos.get(i.image) : undefined;
+  const lookNote = !i.image ? '' : i.noPhoto ? '<em class="pl off">photo look off</em>' : ph ? '<em class="pl">📷 real look</em>' : ph === null ? '<em class="pl off" title="The shop didn\'t let us read the photo, so colours are estimated">photo blocked</em>' : '';
+  const icon = i.image ? `<img class="thumb" src="${esc(i.image)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.replaceWith(document.createTextNode('${ICON[i.cat] || '•'}'))">` : (ICON[i.cat] || '•');
+  return `<li class="item" data-id="${i.id}"><div class="ic" title="${LABEL[i.cat]}">${icon}</div><div class="bd">
     <b>${i.url ? `<a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.name)}</a>` : esc(i.name)}</b>
-    <span class="sub">${esc(LABEL[i.cat])}${i.shop ? ' · ' + esc(i.shop) : ''}${size ? ' · ' + size : ''}${i.estimated ? ' <em class="est" title="The page didn\'t list this, so we estimated it">estimated</em>' : ''}</span>
+    <span class="sub">${esc(LABEL[i.cat])}${i.shop ? ' · ' + esc(i.shop) : ''}${size ? ' · ' + size : ''}${i.estimated ? ' <em class="est" title="The page didn\'t list this, so we estimated it">estimated</em>' : ''} ${lookNote}</span>
     ${spec ? `<span class="spec">${esc(spec)}</span>` : ''}
     ${i.notes?.length ? `<span class="note">${esc(i.notes[0])}</span>` : ''}
     <div class="row">
@@ -232,6 +261,8 @@ function card(i) {
       <label>Type <select data-cat="${i.id}">${ORDER.map(c => `<option value="${c}" ${c === i.cat ? 'selected' : ''}>${LABEL[c]}</option>`).join('')}</select></label>
       ${d ? `<label>Length <input type="number" step="0.5" min="1" value="${d.l}" data-dim="l" data-id="${i.id}">cm</label><label>Depth <input type="number" step="0.5" min="1" value="${d.w}" data-dim="w" data-id="${i.id}">cm</label><label>Height <input type="number" step="0.5" min="0.5" value="${d.h}" data-dim="h" data-id="${i.id}">cm</label>` : ''}
       <label>Price £<input type="number" step="0.01" min="0" value="${i.price ?? ''}" data-price="${i.id}"></label>
+      <label class="wide">Photo link <input type="url" placeholder="Right-click the product photo, Copy image address" value="${esc(i.image || '')}" data-img="${i.id}"></label>
+      ${i.image ? `<label class="chk"><input type="checkbox" data-usephoto="${i.id}" ${i.noPhoto ? '' : 'checked'}> Use the photo's colours and texture</label>` : ''}
       <button type="button" class="link danger" data-del="${i.id}">Remove from build</button>
     </div>
   </div><button class="x" data-del="${i.id}" aria-label="Remove ${esc(i.name)}">×</button></li>`;
@@ -313,7 +344,9 @@ $('list').addEventListener('click', e => {
   if (t.dataset.readpaste) { const ta = document.querySelector(`[data-paste="${t.dataset.readpaste}"]`); const p = state.items.find(i => i.id === t.dataset.readpaste); if (ta.value.trim().length > 20) readPasted(ta.value, p?.url || '', p?.id); }
 });
 $('list').addEventListener('change', e => {
-  const el = e.target; const id = el.dataset.id || el.dataset.cat || el.dataset.price; const it = state.items.find(i => i.id === id); if (!it) return;
+  const el = e.target; const id = el.dataset.id || el.dataset.cat || el.dataset.price || el.dataset.img || el.dataset.usephoto; const it = state.items.find(i => i.id === id); if (!it) return;
+  if (el.dataset.img) { const v = el.value.trim(); it.image = /^https?:\/\//i.test(v) ? v : null; }
+  if (el.dataset.usephoto) it.noPhoto = !el.checked;
   if (el.dataset.dim) { it.dims[el.dataset.dim] = Math.max(0.5, +el.value || it.dims[el.dataset.dim]); it.estimated = false; if (it.cat === 'rock') it.pieces = [{ ...it.dims }]; if (it.cat === 'tank') it.specs.litres = Math.round(it.dims.l * it.dims.w * it.dims.h / 1000); it.place = {}; }
   if (el.dataset.cat) { const re = parseProduct({ url: it.url, text: it.name }); it.cat = el.dataset.cat; Object.assign(it, { plant: it.plant || (it.cat === 'plant' ? { n: it.name, zone: 'mid', h: 15, form: 'rosette', c: '#3f8a2e' } : undefined), fish: it.fish || (it.cat === 'fish' ? { n: it.name, len: 4, c: ['#c0c0c0', '#888'], school: true } : undefined), colour: it.colour || re.colour || '#8a8d88' }); if (it.cat === 'rock' && !it.pieces) it.pieces = [{ ...it.dims }]; if (it.cat === 'tank') it.style = it.style || 'rimless'; }
   if (el.dataset.price != null && el.dataset.price !== undefined && el.matches('[data-price]')) it.price = el.value === '' ? null : +(+el.value).toFixed(2);

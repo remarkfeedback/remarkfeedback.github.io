@@ -63,6 +63,12 @@ details.more[open]{background:#fff}
 #list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 .item{display:grid;grid-template-columns:34px minmax(0,1fr) 28px;gap:10px;border:1px solid var(--sand2);border-radius:var(--r);padding:10px 8px 10px 10px;background:#fff}
 .item .ic{font-size:22px;line-height:1}
+.item .thumb{width:34px;height:34px;object-fit:contain;border-radius:8px;background:#fff;border:1px solid var(--sand2);display:block}
+.item .pl{font-style:normal;font-weight:700;font-size:11.5px;color:var(--deep2);background:var(--aqua-soft);border-radius:6px;padding:0 5px;white-space:nowrap}
+.item .pl.off{color:var(--mut);background:var(--sand)}
+.edit .wide{grid-column:1/-1}
+.edit .chk{grid-column:1/-1;flex-direction:row;align-items:center;gap:8px;font-size:13px;color:var(--ink)}
+.edit .chk input{width:auto}
 .item b{display:block;font-size:14.5px;line-height:1.3}
 .item b a{color:var(--ink);text-decoration:none}.item b a:hover{text-decoration:underline}
 .item .sub,.item .spec,.item .note{display:block;font-size:12.5px;color:var(--mut)}

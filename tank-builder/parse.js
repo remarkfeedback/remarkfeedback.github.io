@@ -351,6 +351,11 @@ function nameFromUrl(url) {
 }
 
 // ---------- main ----------
+function absImg(src, base) {
+  if (!src || typeof src !== 'string') return null;
+  try { const u = new URL(src.trim(), base || undefined); return /^https?:$/.test(u.protocol) ? u.href : null; } catch { return /^https?:\/\//.test(src) ? src.trim() : null; }
+}
+
 export function parseProduct({ url = '', html = '', text = '' } = {}) {
   const st = readStructured(html);
   const rawText = text || htmlToText(html);
@@ -385,7 +390,7 @@ export function parseProduct({ url = '', html = '', text = '' } = {}) {
     id: Math.random().toString(36).slice(2, 9),
     url, shop: (() => { try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return ''; } })(),
     name, cat, sub: sub || null, price: price != null ? +(+price).toFixed(2) : null, currency,
-    image: st.image || st.ogImage || null,
+    image: absImg(st.image || st.ogImage, url),
     specs, notes, qty: 1,
   };
 

@@ -9,17 +9,25 @@ function noise3(x, y, z, s) { // cheap smooth-ish noise from sines
   return (Math.sin(x * 1.7 + s) * Math.cos(y * 2.3 + s * 1.3) + Math.sin(z * 2.9 + s * 0.7) * Math.cos(x * 1.1 - s) + Math.sin((x + y + z) * 3.7 + s * 2.1) * 0.5) / 2.5;
 }
 
+const texCache = new WeakMap();
+// A real-photo surface patch as a texture. Mirrored repeats hide the seams.
+export function photoTex(canvas, rx = 1, ry = 1) {
+  if (!canvas) return null;
+  let base = texCache.get(canvas);
+  if (!base) { base = new THREE.CanvasTexture(canvas); base.colorSpace = THREE.SRGBColorSpace; base.anisotropy = 4; texCache.set(canvas, base); }
+  const t = base.clone(); t.wrapS = t.wrapT = THREE.MirroredRepeatWrapping; t.repeat.set(rx, ry); t.needsUpdate = true; return t;
+}
 const mat = (c, o = {}) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.8, metalness: 0, ...o });
 const shade = (hex, f) => { const c = new THREE.Color(hex); c.offsetHSL(0, 0, f); return c; };
 
 // ---------- geometry builders ----------
-export function makeRock(piece, colour, seed, flat) {
+export function makeRock(piece, colour, seed, flat, tex) {
   const r = rng(seed);
   const g = new THREE.IcosahedronGeometry(1, 4);
   const p = g.attributes.position; const v = new THREE.Vector3();
   const s = r() * 100;
   const cols = [];
-  const base = new THREE.Color(colour);
+  const base = new THREE.Color(tex ? '#f2f2f2' : colour);
   // big facets: push vertices along a few random planes for an angular stone look
   const cuts = Array.from({ length: 7 }, () => ({ n: new THREE.Vector3(r() - 0.5, (r() - 0.3) * 0.8, r() - 0.5).normalize(), d: 0.55 + r() * 0.35 }));
   for (let i = 0; i < p.count; i++) {
@@ -39,15 +47,28 @@ export function makeRock(piece, colour, seed, flat) {
   const bb = g.boundingBox; const size = new THREE.Vector3(); bb.getSize(size);
   g.translate(0, -bb.min.y, 0);
   g.scale(piece.l / size.x, (flat ? piece.h * 0.5 : piece.h) / size.y, piece.w / size.z);
-  const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.95, flatShading: true }));
+  let map = null;
+  if (tex) {
+    // project the photo's stone surface onto each facet from its main direction (14cm per repeat)
+    const pp = g.attributes.position; const uv = new Float32Array(pp.count * 2); const a = new THREE.Vector3(), b = new THREE.Vector3(), cc = new THREE.Vector3(), n = new THREE.Vector3();
+    const off = r() * 10;
+    for (let i = 0; i < pp.count; i += 3) {
+      a.fromBufferAttribute(pp, i); b.fromBufferAttribute(pp, i + 1); cc.fromBufferAttribute(pp, i + 2);
+      n.subVectors(cc, b).cross(a.clone().sub(b)); const ax = Math.abs(n.x), ay = Math.abs(n.y), az = Math.abs(n.z);
+      for (let j = 0; j < 3; j++) { const v = j === 0 ? a : j === 1 ? b : cc; const [u, w] = ax >= ay && ax >= az ? [v.z, v.y] : ay >= az ? [v.x, v.z] : [v.x, v.y]; uv[(i + j) * 2] = u / 14 + off; uv[(i + j) * 2 + 1] = w / 14 + off; }
+    }
+    g.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+    map = photoTex(tex);
+  }
+  const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.95, flatShading: true, map }));
   m.castShadow = true; m.receiveShadow = true;
   return m;
 }
 
-export function makeWood(dims, colour, form, seed) {
+export function makeWood(dims, colour, form, seed, tex) {
   const r = rng(seed);
   const grp = new THREE.Group();
-  const material = new THREE.MeshStandardMaterial({ color: colour, roughness: 0.9, flatShading: false });
+  const material = new THREE.MeshStandardMaterial({ color: tex ? '#ffffff' : colour, roughness: 0.9, flatShading: false, map: tex ? photoTex(tex, Math.max(1, dims.l / 9), 1) : null });
   const thick = form === 'chunky' ? 0.14 : form === 'log' ? 0.22 : 0.06;
   const branchCount = form === 'chunky' ? 3 : form === 'log' ? 0 : 6 + Math.floor(r() * 4);
   const tube = (pts, radius, segs = 24) => {
@@ -114,8 +135,8 @@ export function makePlant(info, radius, seed) {
     addInst(bladeGeo, n, (d) => { const a = r() * Math.PI * 2, rr = Math.sqrt(r()) * radius; d.position.set(Math.cos(a) * rr, 0, Math.sin(a) * rr); const hh = h * (0.55 + r() * 0.5); d.scale.set(form === 'ribbon' ? 0.9 : 0.25, hh, hh * 0.6); d.rotation.set((r() - 0.5) * 0.3, r() * 6.28, (r() - 0.5) * 0.35); }, () => jitter(base));
   } else if (form === 'stem') {
     const stems = Math.max(4, Math.round(radius * radius * 0.35));
-    const tip = info.n && /rotala|ludwigia|alternanthera/i.test(info.n) ? new THREE.Color(info.c) : null;
-    const green = tip ? new THREE.Color('#4f9a32') : base;
+    const tip = info.tip ? new THREE.Color(info.tip) : info.n && /rotala|ludwigia|alternanthera/i.test(info.n) ? new THREE.Color(info.c) : null;
+    const green = info.tip ? base : tip ? new THREE.Color('#4f9a32') : base;
     const leavesPer = 14;
     const stemData = Array.from({ length: stems }, () => { const a = r() * 6.28, rr = Math.sqrt(r()) * radius; return { x: Math.cos(a) * rr, z: Math.sin(a) * rr, hh: h * (0.6 + r() * 0.45), lean: (r() - 0.5) * 0.15 }; });
     addInst(new THREE.CylinderGeometry(0.12, 0.15, 1, 4), stems, (d, i) => { const s = stemData[i]; d.position.set(s.x, s.hh / 2, s.z); d.scale.set(1, s.hh, 1); d.rotation.set(0, 0, s.lean); }, () => green.clone().offsetHSL(0, 0, -0.1));
@@ -216,7 +237,7 @@ export class TankScene {
     // stand
     if (L.stand) {
       const s = L.stand.dims; const col = L.stand.colour || '#1d1f22';
-      const st = new THREE.Mesh(new THREE.BoxGeometry(s.l, s.h, s.w), mat(col, { roughness: 0.6 }));
+      const st = new THREE.Mesh(new THREE.BoxGeometry(s.l, s.h, s.w), mat(L.stand.tex ? '#ffffff' : col, { roughness: 0.6, map: L.stand.tex ? photoTex(L.stand.tex, Math.max(1, s.l / 45), Math.max(1, s.h / 45)) : null }));
       st.position.set(0, s.h / 2, 0); st.castShadow = true; st.receiveShadow = true; W.add(st);
       const doorMat = new THREE.LineBasicMaterial({ color: shade(col, -0.12) });
       const pts = [[-s.l / 2 + 1.5, 1.5], [s.l / 2 - 1.5, 1.5], [s.l / 2 - 1.5, s.h - 1.5], [-s.l / 2 + 1.5, s.h - 1.5], [-s.l / 2 + 1.5, 1.5]].map(([x, y]) => new THREE.Vector3(x, y, s.w / 2 + 0.05));
@@ -250,12 +271,13 @@ export class TankScene {
       const sg = new THREE.BoxGeometry(inL, 1, inW, 32, 1, 16); const p = sg.attributes.position;
       for (let i = 0; i < p.count; i++) { const y = p.getY(i); const x = p.getX(i), z = p.getZ(i); p.setY(i, y > 0 ? this.subHeight(x, z) : glass); }
       sg.computeVertexNormals();
-      const sm = new THREE.Mesh(sg, mat(sub.colour, { roughness: 1, flatShading: false })); sm.receiveShadow = true; tg.add(sm);
+      if (sub.tex) { const uv = sg.attributes.uv; for (let i = 0; i < p.count; i++) uv.setXY(i, p.getX(i) / 10, p.getZ(i) / 10 + p.getY(i) / 10); }
+      const sm = new THREE.Mesh(sg, mat(sub.tex ? '#ffffff' : sub.colour, { roughness: 1, flatShading: false, map: sub.tex ? photoTex(sub.tex) : null })); sm.receiveShadow = true; tg.add(sm);
       // speckle layer for texture
       const dots = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(0.25, 0), mat(shade(sub.colour, 0.08), { roughness: 1 }), Math.min(2500, Math.round(inL * inW * 0.6)));
       const d = new THREE.Object3D(); const rr = rng(7);
       for (let i = 0; i < dots.count; i++) { const x = (rr() - 0.5) * inL, z = (rr() - 0.5) * inW; d.position.set(x, this.subHeight(x, z), z); const s = 0.5 + rr(); d.scale.set(s, s * 0.6, s); d.updateMatrix(); dots.setMatrixAt(i, d.matrix); }
-      tg.add(dots);
+      if (!sub.tex) tg.add(dots);
     }
     // water
     const wh = this.inner.water - glass;
@@ -286,8 +308,8 @@ export class TankScene {
     const tg = this.tankGroup; const t = this.L.tank.dims;
     let m;
     const seed = hashStr(o.key);
-    if (o.kind === 'rock') m = makeRock(o.size, o.colour, seed, o.flat);
-    else if (o.kind === 'wood') m = makeWood(o.size, o.colour, o.form, seed);
+    if (o.kind === 'rock') m = makeRock(o.size, o.colour, seed, o.flat, o.tex);
+    else if (o.kind === 'wood') m = makeWood(o.size, o.colour, o.form, seed, o.tex);
     else if (o.kind === 'plant') m = makePlant(o.plant, o.radius, seed);
     else if (o.kind === 'canister') {
       m = new THREE.Group();
@@ -313,7 +335,7 @@ export class TankScene {
       m = new THREE.Mesh(new THREE.BoxGeometry(o.size.l, o.size.h, o.size.w), mat(o.colour || '#3a3d40', { roughness: 0.5 }));
       m.geometry.translate(0, o.size.h / 2, 0); m.castShadow = true;
     } else if (o.kind === 'ornament') {
-      m = new THREE.Mesh(new THREE.DodecahedronGeometry(0.5, 1), mat(o.colour || '#8a7a6a', { flatShading: true, roughness: 0.9 }));
+      m = new THREE.Mesh(new THREE.DodecahedronGeometry(0.5, 1), mat(o.tex ? '#ffffff' : o.colour || '#8a7a6a', { flatShading: true, roughness: 0.9, map: o.tex ? photoTex(o.tex, 1, 1) : null }));
       m.geometry.translate(0, 0.5, 0); m.scale.set(o.size.l, o.size.h, o.size.w); m.castShadow = true;
     }
     if (!m) return;
