@@ -1,6 +1,6 @@
-import { parseProduct, PLANTS, FISH, HARDSCAPE } from './parse.js?v=3';
-import { TankScene, hashStr, rng } from './scene.js?v=3';
-import { getPhoto, plantColours, bodyColour } from './photo.js?v=3';
+import { parseProduct, PLANTS, FISH, HARDSCAPE } from './parse.js?v=4';
+import { TankScene, hashStr, rng } from './scene.js?v=4';
+import { getPhoto, plantColours, bodyColour } from './photo.js?v=4';
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -410,7 +410,7 @@ const EXAMPLE = [
   { url: 'https://www.ukaquascaping.example/chihiros-wrgb2-60', text: 'Chihiros WRGB II 60 LED Light\n£159.99\nSuitable for tanks 60-75cm. Dimensions: 60 x 10 x 1.5 cm. Power 54W' },
   { url: 'https://www.completeaquatics.co.uk/fluval-t-series-t100-heater', text: 'Fluval T-Series T100 Heater\n£26.99\n100W heater for aquariums up to 120 litres. Dimensions 3.5 x 3.5 x 27cm' },
   { url: 'https://www.ukaquascaping.example/ada-aqua-soil-amazonia-9l', text: 'ADA Aqua Soil Amazonia 9L\n£36.00', qty: 1 },
-  { url: 'https://aquaessentials.co.uk/products/mini-landscape-rock-seiryu-stone-per-kg', text: 'Mini Landscape Rock (Seiryu Stone)\nRegular price\n£19.99\nSIZE\n5kg (25L tank)\nAdd to cart' },
+  { url: 'https://aquaessentials.co.uk/products/mini-landscape-rock-seiryu-stone-per-kg', text: 'Mini Landscape Rock (Seiryu Stone)\nRegular price\n£19.99\nSIZE\n5kg (25L tank)\nAdd to cart', image: 'https://aquaessentials.co.uk/cdn/shop/files/mini-landscape-rock_abfe9b41-d85a-421b-a367-47475939dfb5.jpg?v=1774456864' },
   { url: 'https://www.ukaquascaping.example/spider-wood-medium', text: 'Spider Wood - Medium\n£12.99\nApprox. 25-35cm in length. Each piece is unique.' },
   { url: 'https://www.completeaquatics.co.uk/tropica-1-2-grow-monte-carlo', text: 'Tropica 1-2-Grow Monte Carlo\n£5.99\nCarpeting foreground plant', qty: 6 },
   { url: 'https://www.completeaquatics.co.uk/tropica-1-2-grow-rotala-rotundifolia', text: 'Tropica 1-2-Grow Rotala rotundifolia\n£5.99\nHeight: 15-30 cm. Stem plant for the background.', qty: 4 },
@@ -421,7 +421,7 @@ const EXAMPLE = [
 ];
 $('example').addEventListener('click', () => {
   state.items = [];
-  for (const e of EXAMPLE) { const it = parseProduct({ url: e.url, text: e.text }); if (e.qty) it.qty = e.qty; if (/\.example\//.test(e.url)) { it.url = ''; it.shop = ''; } addParsed(it); if (e.qty) it.qty = e.qty; }
+  for (const e of EXAMPLE) { const it = parseProduct({ url: e.url, text: e.text }); if (e.qty) it.qty = e.qty; if (e.image) it.image = e.image; if (/\.example\//.test(e.url)) { it.url = ''; it.shop = ''; } addParsed(it); if (e.qty) it.qty = e.qty; }
   scene._framed = false; render();
   $('status').textContent = 'Example: a 60cm planted tank. Drag rocks, wood and plants to rearrange.';
 });
