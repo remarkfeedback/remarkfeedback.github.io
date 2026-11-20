@@ -1,6 +1,6 @@
-import { parseProduct, PLANTS, FISH, HARDSCAPE } from './parse.js';
-import { TankScene, hashStr, rng } from './scene.js';
-import { getPhoto, plantColours, bodyColour } from './photo.js';
+import { parseProduct, PLANTS, FISH, HARDSCAPE } from './parse.js?v=3';
+import { TankScene, hashStr, rng } from './scene.js?v=3';
+import { getPhoto, plantColours, bodyColour } from './photo.js?v=3';
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
