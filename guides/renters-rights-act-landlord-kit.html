@@ -19,37 +19,70 @@
 <link rel="apple-touch-icon" href="/sl-apple-touch.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Free Renters' Rights Act landlord kit","description":"A plain-English Renters' Rights Act checklist and a written statement of terms builder for landlords in England.","author":{"@type":"Organization","name":"Survive Labs","url":"https://survivelabs.co.uk/"},"publisher":{"@type":"Organization","name":"Survive Labs","url":"https://survivelabs.co.uk/"},"dateModified":"2026-11-20","mainEntityOfPage":"https://survivelabs.co.uk/guides/renters-rights-act-landlord-kit.html"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this a full tenancy agreement?","acceptedAnswer":{"@type":"Answer","text":"No. It builds the written statement of terms: the information the law says a tenant must be given before an assured periodic tenancy is agreed. You can give it on its own or attach it to your tenancy agreement."}},{"@type":"Question","name":"Does this work for Wales or Scotland?","acceptedAnswer":{"@type":"Answer","text":"No. These rules are for private tenancies in England. Wales uses occupation contracts under the Renting Homes (Wales) Act, and Scotland has its own system."}},{"@type":"Question","name":"Does the address for notices have to be my home address?","acceptedAnswer":{"@type":"Answer","text":"The rules ask for an address in England and Wales where your tenant can serve notices on you, including court papers. They don't say it must be your home, but it must be an address where notices will reliably reach you. If you're unsure, take advice before using a different address."}}]}]}</script>
 <style>
+/* Landlord kit: its own "official paperwork" look (ledger green on cream), so it reads as a free tool, not an advert.
+   Anything that points to Privasweep switches to Privasweep's own world: black, hazard yellow, caution tape. */
+:root{--kit:#123D2F;--kit2:#1B5440;--kit-ink:#0C2A20;--mint:#8FE0BB;--cream:#F7F3E8;--cream2:#EFE8D6;--hl:#9BE3C2;--ps:#07090F;--haz:#FFD400}
+body{background:var(--cream);padding-top:0}
+.kit-hero{background:var(--kit);color:#fff;padding:150px max(5vw,24px) 64px;position:relative;overflow:hidden}
+.kit-hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 31px,rgba(255,255,255,.05) 31px 32px);pointer-events:none}
+.kit-hero .in{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:48px;align-items:center;position:relative}
+@media(max-width:860px){.kit-hero .in{grid-template-columns:minmax(0,1fr)}.kit-hero .art{max-width:320px}}
+.kit-hero .g-crumb,.kit-hero .g-crumb a{color:var(--mint);font:600 14px var(--sans)}
+.kit-hero h1{font:800 clamp(36px,5.2vw,58px)/1.02 var(--sans);letter-spacing:-.035em;margin:12px 0 18px;color:#fff;text-wrap:balance}
+.kit-hero h1 em{font-style:normal;color:var(--mint)}
+.kit-hero .lede{font:400 21px/1.5 var(--doc);color:#D8E8E0;margin:0 0 18px;max-width:600px}
+.kit-hero .meta{display:flex;flex-wrap:wrap;gap:8px;margin:0}
+.kit-hero .meta span{font:600 14px var(--sans);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:6px 12px;color:#fff}
+.kit-hero .go{display:inline-block;margin-top:24px;background:var(--mint);color:var(--kit-ink);font:800 17px var(--sans);text-decoration:none;padding:14px 24px;border-radius:999px}
+.kit-hero .go:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.kit-hero .art svg{width:100%;height:auto;display:block;filter:drop-shadow(0 30px 40px rgba(0,0,0,.35))}
+@media(prefers-reduced-motion:no-preference){.kit-hero .stamp{animation:stamp .7s .4s cubic-bezier(.2,1.4,.4,1) both}@keyframes stamp{from{transform:scale(1.6) rotate(-14deg);opacity:0}to{transform:none;opacity:1}}}
+.g-wrap{margin-top:44px}
+.g a{text-decoration-color:var(--mint)}
+.g .g-toc{background:#fff;border-color:var(--cream2)}
+.g .tip{border-left-color:var(--kit2)}
+
+/* Privasweep zones */
+.ps-zone{background:var(--ps) !important;color:#C9CEDA !important;position:relative;overflow:hidden}
+.ps-zone::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:repeating-linear-gradient(-45deg,var(--haz) 0 12px,#0A0A0A 12px 24px)}
+.ps-zone b,.ps-zone h2,.ps-zone strong{color:#fff !important}
+.ps-zone a{color:var(--haz) !important;text-decoration-color:var(--haz) !important}
+.ps-tag{display:inline-flex;align-items:center;gap:8px;font:800 13px var(--sans);color:#0A0A0A !important;background:var(--haz);border-radius:999px;padding:5px 11px 5px 6px;margin-bottom:10px;text-decoration:none !important}
+.ps-tag img{width:20px;height:20px;border-radius:5px}
+.g .shortcut.ps-zone{padding-top:36px}
+.ps-zone a.ps-tag{color:#0A0A0A !important}
+.check li.priv.ps-zone{background:linear-gradient(var(--ps),var(--ps)) 0 10px/100% 100% no-repeat,repeating-linear-gradient(-45deg,#FFD400 0 12px,#0A0A0A 12px 24px) !important}
+.ps-zone a.btn{background:var(--haz) !important;color:#0A0A0A !important;text-decoration:none !important}
+
 /* Kit-specific pieces on top of the guide styles: checklist cards, the builder form and a paper preview. */
 .kit-wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 .check{list-style:none;padding:0 !important}
-.check li{background:var(--white);border:1px solid var(--rule);border-radius:14px;padding:16px 18px 16px 54px;margin:0 0 12px !important;position:relative;font-size:17px !important}
-.check li::before{content:"";position:absolute;left:18px;top:19px;width:20px;height:20px;border-radius:6px;border:2.5px solid var(--ink)}
+.check li{background:#fff;border:1px solid var(--cream2);border-radius:14px;padding:16px 18px 16px 54px;margin:0 0 12px !important;position:relative;font-size:17px !important}
+.check li::before{content:"";position:absolute;left:18px;top:19px;width:22px;height:22px;border-radius:6px;background:var(--kit) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3L15 6.5' fill='none' stroke='%238FE0BB' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
 .check li b{display:block;font:700 18px/1.35 var(--sans);color:var(--ink);margin-bottom:4px}
-.check li.priv{border-color:var(--ink);background:#0F1420;color:#C9CEDA}
-.check li.priv b{color:#fff}
-.check li.priv::before{border-color:#FFD400}
-.check li.priv a{color:#FFD400;text-decoration-color:#FFD400}
+.check li.priv{border:0;padding-top:26px}
+.check li.priv::before{top:29px;background:var(--haz) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 4v7M10 14.5v.5' stroke='%230A0A0A' stroke-width='2.8' stroke-linecap='round'/%3E%3C/svg%3E") center/16px no-repeat}
 
 .builder{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start;margin:20px 0 10px}
 @media(max-width:900px){.builder{grid-template-columns:minmax(0,1fr)}}
-.form fieldset{border:1px solid var(--rule);background:var(--white);border-radius:16px;padding:18px 18px 8px;margin:0 0 16px}
-.form legend{font:800 13px var(--sans);letter-spacing:.02em;background:var(--ink);color:#fff;border-radius:999px;padding:5px 12px}
+.form fieldset{border:1px solid var(--cream2);background:#fff;border-radius:16px;padding:18px 18px 8px;margin:0 0 16px}
+.form legend{font:800 13px var(--sans);letter-spacing:.02em;background:var(--kit);color:#fff;border-radius:999px;padding:5px 12px}
 .form label{display:block;font:700 15px/1.3 var(--sans);color:var(--ink);margin:12px 0 6px}
 .form .hint{display:block;font:400 14px/1.45 var(--sans);color:var(--mut);margin:-2px 0 6px}
 .form input[type=text],.form input[type=date],.form textarea,.form select{width:100%;font:400 16px/1.4 var(--sans);padding:11px 12px;border:1.5px solid var(--rule);border-radius:10px;background:#fff;color:var(--ink)}
 .form textarea{min-height:64px;resize:vertical}
-.form input:focus,.form textarea:focus,.form select:focus{outline:3px solid var(--hl);outline-offset:1px;border-color:var(--ink)}
+.form input:focus,.form textarea:focus,.form select:focus{outline:3px solid var(--mint);outline-offset:1px;border-color:var(--kit)}
 .form .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
 @media(max-width:520px){.form .row{grid-template-columns:minmax(0,1fr)}}
 .form .tick{display:flex;gap:10px;align-items:flex-start;font:500 15px/1.45 var(--sans);color:var(--ink2);margin:12px 0}
-.form .tick input{width:20px;height:20px;margin-top:1px;accent-color:var(--ink);flex:none}
+.form .tick input{width:20px;height:20px;margin-top:1px;accent-color:var(--kit);flex:none}
 .form .bills{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px}
 @media(max-width:520px){.form .bills{grid-template-columns:1fr}}
 .form .bills .tick{margin:6px 0}
 .form .sub{display:none;border-left:3px solid var(--rule);padding-left:12px;margin:6px 0 10px}
 .form .sub.on{display:block}
-.privnote{background:#0F1420;color:#C9CEDA;border-radius:12px;padding:12px 14px;margin:8px 0 6px;font:400 14px/1.5 var(--sans)}
-.privnote b{color:#FFD400}
+.privnote{border-radius:12px;padding:20px 14px 12px;margin:8px 0 6px;font:400 14px/1.5 var(--sans)}
+.privnote b{color:var(--haz) !important}
 .privnote a{color:#fff;font-weight:700}
 
 .out{position:sticky;top:96px}
@@ -59,18 +92,18 @@
 .paper .sub-h{font:400 13px var(--sans);color:#666;margin:0 0 18px}
 .paper h4{font:700 14px var(--sans);text-transform:none;margin:16px 0 4px;color:#111}
 .paper p{margin:0 0 8px}
-.paper .blank{background:#FFF3B0;border-radius:3px;padding:0 4px;color:#7a5b00;font-family:var(--sans);font-size:13px}
+.paper .blank{background:#FCE3D3;border-radius:3px;padding:0 4px;color:#8A3B12;font-family:var(--sans);font-size:13px}
 .paper .foot{font:400 12px/1.45 var(--sans);color:#777;border-top:1px solid #ddd;margin-top:18px;padding-top:10px}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 6px}
-.actions button{font:800 15px var(--sans);border-radius:999px;padding:12px 18px;cursor:pointer;border:2px solid var(--ink);background:var(--ink);color:#fff;min-height:44px}
-.actions button.ghost{background:transparent;color:var(--ink)}
-.actions button:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+.actions button{font:800 15px var(--sans);border-radius:999px;padding:12px 18px;cursor:pointer;border:2px solid var(--kit);background:var(--kit);color:#fff;min-height:44px}
+.actions button.ghost{background:transparent;color:var(--kit)}
+.actions button:focus-visible{outline:3px solid var(--mint);outline-offset:2px}
 .status{font:500 14px var(--sans);color:var(--mut);min-height:20px}
 .local{font:500 14px var(--sans);color:var(--mut);margin:6px 0 0}
 
 @media print{
   body{padding:0;background:#fff}
-  .sl-nav,.sl-foot,.g,.g-more,.form,.actions,.status,.local,.kit-intro,.kit-after{display:none !important}
+  .kit-hero,.sl-nav,.sl-foot,.g,.g-more,.form,.actions,.status,.local,.kit-intro,.kit-after{display:none !important}
   .kit-wrap,.builder{display:block;max-width:none;padding:0;margin:0}
   .out{position:static}
   .paper{box-shadow:none;border:0;max-height:none;overflow:visible;padding:0;font-size:12pt}
@@ -83,11 +116,34 @@
   <nav aria-label="Main"><a href="/remark/">Remark</a><a href="/themely/">Themely</a><a href="/guides/" aria-current="page">Guides</a></nav>
 </header>
 <main>
-<article class="g g-wrap">
+<section class="kit-hero">
+<div class="in">
+<div>
 <p class="g-crumb"><a href="/guides/">Guides</a> · Landlord kit</p>
-<h1>Free Renters' Rights Act landlord kit</h1>
-<p class="g-lede">A plain-English checklist of what changed for landlords in England, and a builder that makes the written statement of terms your tenants must now get. Free, no sign-up, and nothing you type leaves your device.</p>
-<p class="g-meta">Updated 20 November 2026 · England only · Not legal advice</p>
+<h1>Free Renters' Rights Act <em>landlord kit</em></h1>
+<p class="lede">A plain-English checklist of what changed for landlords in England, and a builder that makes the written statement of terms your tenants must now get. Free, no sign-up, and nothing you type leaves your device.</p>
+<p class="meta"><span>England only</span><span>Updated 20 November 2026</span><span>Not legal advice</span></p>
+<a class="go" href="#builder">Build my statement</a>
+</div>
+<div class="art" aria-hidden="true">
+<svg viewBox="0 0 320 360">
+<rect x="34" y="22" width="236" height="304" rx="10" fill="#E9E1CC" transform="rotate(5 152 174)"/>
+<rect x="26" y="18" width="240" height="310" rx="10" fill="#FBF8F0"/>
+<rect x="52" y="48" width="140" height="13" rx="4" fill="#123D2F"/>
+<rect x="52" y="70" width="96" height="8" rx="4" fill="#B9C7BF"/>
+<g fill="#123D2F"><rect x="52" y="104" width="16" height="16" rx="4"/><rect x="52" y="140" width="16" height="16" rx="4"/><rect x="52" y="176" width="16" height="16" rx="4"/><rect x="52" y="212" width="16" height="16" rx="4"/></g>
+<g fill="none" stroke="#8FE0BB" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M56 112l3 3 6-7"/><path d="M56 148l3 3 6-7"/><path d="M56 184l3 3 6-7"/><path d="M56 220l3 3 6-7"/></g>
+<g fill="#D5DDD8"><rect x="80" y="107" width="150" height="9" rx="4"/><rect x="80" y="143" width="120" height="9" rx="4"/><rect x="80" y="179" width="140" height="9" rx="4"/><rect x="80" y="215" width="104" height="9" rx="4"/></g>
+<rect x="46" y="246" width="200" height="30" rx="7" fill="#07090F"/>
+<rect x="56" y="255" width="12" height="12" rx="3" fill="#FFD400"/>
+<rect x="76" y="257" width="96" height="8" rx="4" fill="#fff" opacity=".85"/>
+<g class="stamp" style="transform-origin:226px 286px"><circle cx="226" cy="286" r="44" fill="none" stroke="#1B5440" stroke-width="4"/><circle cx="226" cy="286" r="36" fill="none" stroke="#1B5440" stroke-width="1.5"/><text x="226" y="283" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" font-size="11" fill="#1B5440">RRA 2025</text><text x="226" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="9" fill="#1B5440">ENGLAND</text></g>
+</svg>
+</div>
+</div>
+</section>
+
+<article class="g g-wrap">
 
 <nav class="g-toc" aria-label="On this page"><b>On this page</b><ol>
 <li><a href="#changed">What changed</a></li><li><a href="#checklist">Your checklist</a></li><li><a href="#builder">Written statement builder</a></li><li><a href="#faq">Questions</a></li>
@@ -106,14 +162,14 @@
 <li><b>Putting the rent up</b>Rent increases now go through a formal notice under section 13 of the Housing Act 1988. Your statement has to tell tenants this.</li>
 <li><b>Pets</b>Tenants can ask to keep a pet, and you can't unreasonably refuse. This is also part of the statement.</li>
 <li><b>The landlord database</b>Registration opens region by region from 15 December 2026, and every landlord in England must be registered by 14 November 2027.</li>
-<li class="priv"><b>Check where your home address is going</b>Your statement gives tenants an address for notices, and the database collects your contact details. Before you hand them out, check where your home address is already public. <a href="/guides/home-address-privacy-landlords.html">Do the free 10-minute check</a>, or <a href="/privacy-sweep/landlords/">let Privasweep do it for you</a>.</li>
+<li class="priv ps-zone"><a class="ps-tag" href="/privacy-sweep/landlords/"><img src="/privacy-sweep/logo.svg" alt="">Privasweep</a><b>Check where your home address is going</b>Your statement gives tenants an address for notices, and the database collects your contact details. Before you hand them out, check where your home address is already public. <a href="/guides/home-address-privacy-landlords.html">Do the free 10-minute check</a>, or <a href="/privacy-sweep/landlords/">let Privasweep do it for you</a>.</li>
 </ul>
 </article>
 
 <section class="kit-wrap" id="builder" aria-labelledby="builder-h">
 <div class="g kit-intro" style="max-width:720px">
 <h2 id="builder-h">Written statement of terms builder</h2>
-<p>Fill in the form and your statement builds itself on the right. Yellow highlights show what's still missing. Then copy it, or print it and save it as a PDF.</p>
+<p>Fill in the form and your statement builds itself on the right. Orange highlights show what's still missing. Then copy it, or print it and save it as a PDF.</p>
 </div>
 <div class="builder">
 <form class="form" id="f" autocomplete="off" onsubmit="return false">
@@ -124,7 +180,7 @@
     <textarea id="tenants" placeholder="Alex Jones&#10;Sam Patel"></textarea>
     <label for="notice">Address for notices</label><span class="hint">An address in England and Wales where your tenant can serve notices on you, including court papers.</span>
     <textarea id="notice" placeholder="Building, street, town, postcode"></textarea>
-    <div class="privnote"><b>Privacy:</b> this address goes to your tenant and could end up in court papers. The rules don't say it has to be your home, but notices must reliably reach you there. Check what's already public about your home address with our <a href="/guides/home-address-privacy-landlords.html">free check</a>.</div>
+    <div class="privnote ps-zone"><b>Privacy:</b> this address goes to your tenant and could end up in court papers. The rules don't say it has to be your home, but notices must reliably reach you there. Check what's already public about your home address with our <a href="/guides/home-address-privacy-landlords.html">free check</a>.</div>
   </fieldset>
 
   <fieldset><legend>The tenancy</legend>
@@ -190,7 +246,8 @@
 </section>
 
 <article class="g g-wrap kit-after">
-<section class="shortcut">
+<section class="shortcut ps-zone">
+<a class="ps-tag" href="/privacy-sweep/landlords/"><img src="/privacy-sweep/logo.svg" alt="">Privasweep</a>
 <h2>Your tenants get an address for you. Who else can find your home?</h2>
 <p>Most landlords' home addresses are already linked to their name somewhere online: people-search sites, old listings, property and company records. <b>Registration on the new landlord database opens on 15 December 2026.</b> Sort out where your home address appears before you register.</p>
 <p>Privasweep searches for you the way a stranger would, gives you a plain-English report of where your home address and household are published, and can send the removal requests for you.</p>
@@ -283,7 +340,7 @@
     $('paper').innerHTML = `<h3>Written statement of terms</h3><p class="sub-h">Assured periodic tenancy · England · Given before the tenancy is agreed</p>${s.join('')}
       <p class="foot">This statement gives the information required by the Assured Tenancies (Private Rented Sector) (Written Statement of Terms etc and Information Sheet) (England) Regulations 2026. Made with the free landlord kit at survivelabs.co.uk. Not legal advice.</p>`;
     const missing = $('paper').querySelectorAll('.blank').length;
-    $('status').textContent = missing ? `${missing} detail${missing === 1 ? '' : 's'} still missing (highlighted in yellow).` : 'All details filled in. Check it carefully before giving it to your tenant.';
+    $('status').textContent = missing ? `${missing} detail${missing === 1 ? '' : 's'} still missing (highlighted in orange).` : 'All details filled in. Check it carefully before giving it to your tenant.';
   }
 
   $('f').addEventListener('input', build);
