@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Landlord database checklist: your region, deadline and what you need | Survive Labs</title>
+<meta name="description" content="Free for landlords in England: find your region's registration window for the new landlord database (Register your rental property), tick off everything you need, and add your deadlines to your calendar.">
+<link rel="canonical" href="https://survivelabs.co.uk/landlords/database-checklist/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Survive Labs">
+<meta property="og:title" content="Landlord database checklist: your deadline and what you need">
+<meta property="og:description" content="Find your region's window for the new landlord database, see your deadline and tick off everything you need. Free, no sign-up.">
+<meta property="og:url" content="https://survivelabs.co.uk/landlords/database-checklist/">
+<meta property="og:image" content="https://survivelabs.co.uk/assets/og/home.jpg">
+<meta property="og:locale" content="en_GB">
+<link rel="stylesheet" href="/assets/sl.css?v=20261117b">
+<link rel="stylesheet" href="/assets/landlords.css?v=20261120b">
+<link rel="icon" href="/sl-icon.png">
+<link rel="apple-touch-icon" href="/sl-apple-touch.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Landlord database checklist","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"},"provider":{"@type":"Organization","name":"Survive Labs","url":"https://survivelabs.co.uk/"},"url":"https://survivelabs.co.uk/landlords/database-checklist/"},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"When do I have to register on the landlord database?","acceptedAnswer":{"@type":"Answer","text":"It depends on where the property is, not where you live. Registration opens on 15 December 2026 in the West Midlands, then one region a month, each with a three-month window. The last deadline is 14 November 2027."}},{"@type":"Question","name":"How much does it cost?","acceptedAnswer":{"@type":"Answer","text":"£65 per property per year, not subject to VAT. There is no separate fee to register yourself as a landlord."}},{"@type":"Question","name":"Can I register early?","acceptedAnswer":{"@type":"Answer","text":"Yes. GOV.UK says you can register properties before their region's start date, as long as none is registered after its region's end date."}}]}]}</script>
+<style>
+.reg-table{width:100%;border-collapse:collapse;font:400 15px/1.4 var(--sans);background:#fff;border:1px solid var(--cream2);border-radius:14px;overflow:hidden}
+.reg-table th{background:var(--kit);color:#fff;text-align:left;padding:10px 12px;font-weight:700}
+.reg-table td{padding:9px 12px;border-top:1px solid var(--cream2);color:#33413A;white-space:nowrap}
+.reg-table tr.mine td{background:var(--mint-soft);font-weight:700}
+.reg-table tr.open td:first-child::after{content:" · open now";color:var(--ok);font-weight:700}
+.tablebox{overflow-x:auto;border-radius:14px}
+.pc{display:flex;gap:8px}
+.pc input{flex:1}
+.pc button{font:800 15px var(--sans);border-radius:10px;border:2px solid var(--kit);background:var(--kit);color:#fff;padding:0 16px;cursor:pointer;min-height:44px}
+.region-out{margin:10px 0 0;font:600 15px/1.45 var(--sans);color:var(--kit-ink);background:var(--mint-soft);border-radius:12px;padding:10px 12px;display:none}
+.region-out.on{display:block}
+.region-out.warn{background:#FFF3E5;color:#7A4300}
+.clist{list-style:none;margin:6px 0 0;padding:0}
+.clist li{border-top:1px solid var(--cream2)}
+.clist label{display:flex;gap:12px;align-items:flex-start;padding:11px 2px;font:600 15px/1.4 var(--sans);color:var(--kit-ink);cursor:pointer}
+.clist label small{display:block;font:400 13.5px/1.45 var(--sans);color:#5D6B63;margin-top:2px}
+.clist input{width:22px;height:22px;accent-color:var(--kit);flex:none;margin-top:1px}
+.clist li.ps label{background:var(--ps);color:#fff;border-radius:12px;padding:14px 12px;margin:8px 0;position:relative;overflow:hidden}
+.clist li.ps label::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:repeating-linear-gradient(-45deg,var(--haz) 0 9px,#0A0A0A 9px 18px)}
+.clist li.ps label small{color:#C9CEDA}
+.clist li.ps label a{color:var(--haz);font-weight:800}
+.clist li.ps input{accent-color:var(--haz)}
+.prog{height:12px;background:var(--cream2);border-radius:999px;overflow:hidden;margin:6px 0 4px}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--kit2),var(--mint));transition:width .4s}
+.big-dl{background:var(--kit);color:#fff;border-radius:16px;padding:18px;margin:0 0 14px}
+.big-dl .k{font:700 13px var(--sans);color:var(--mint);letter-spacing:.02em}
+.big-dl b{display:block;font:900 clamp(26px,3vw,34px)/1.05 var(--sans);letter-spacing:-.02em;margin:4px 0}
+.big-dl span{font:400 14.5px/1.45 var(--sans);color:#C9DDD3}
+.fees{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0 0 14px}
+.fees div{background:var(--cream);border-radius:14px;padding:12px 14px}
+.fees b{display:block;font:900 26px/1 var(--sans);color:var(--kit-ink)}
+.fees span{font:600 13px var(--sans);color:#4F5D55}
+</style>
+</head>
+<body class="ll">
+<header class="sl-nav">
+  <a class="sl-logo" href="/"><img src="/sl-icon.png" alt=""><span>Survive Labs</span></a>
+  <nav aria-label="Main"><a href="/landlords/" aria-current="page">Landlords</a><a href="/privacy-sweep/">Privasweep</a><a href="/guides/">Guides</a></nav>
+</header>
+<main>
+<section class="ll-hero">
+  <div class="in">
+    <div>
+      <p class="ll-crumb"><a href="/landlords/">Landlord hub</a> · Free tool</p>
+      <h1>Landlord database <em>checklist</em></h1>
+      <p class="lede">Find your region's registration window for the new "Register your rental property" service, see your deadline, and tick off everything you'll need before you start.</p>
+    </div>
+    <div class="ll-chips"><span class="hot" id="cd">Opens 15 Dec 2026</span><span>England</span><span>Saved only on your device</span></div>
+  </div>
+</section>
+
+<div class="tr-wrap">
+  <div>
+    <div class="panel">
+      <h2>Your properties</h2>
+      <p class="sub">Your deadline depends on where each property is, not where you live.</p>
+      <div class="props" id="props" role="group" aria-label="Choose a property"></div>
+      <form class="f" id="f" autocomplete="off" onsubmit="return false">
+        <label for="name">Nickname</label>
+        <input type="text" id="name" maxlength="40" placeholder="Flat 2">
+        <label for="pc">Find the region from the postcode <span style="font-weight:400;color:#6A756F">(optional)</span></label>
+        <span class="hint">We look up the region using the free postcodes.io service. The postcode isn't stored or sent to us.</span>
+        <div class="pc"><input type="text" id="pc" maxlength="9" placeholder="B1 1AA" autocapitalize="characters"><button type="button" id="pcGo">Find</button></div>
+        <p class="region-out" id="pcOut" role="status"></p>
+        <label for="region">Region</label>
+        <select id="region"></select>
+
+        <fieldset><legend>About this property</legend>
+          <ul class="clist" id="propList"></ul>
+        </fieldset>
+        <button type="button" class="del" id="del">Remove this property</button>
+      </form>
+    </div>
+
+    <div class="panel">
+      <h2>About you</h2>
+      <p class="sub">You only do this once, however many properties you have.</p>
+      <ul class="clist" id="meList"></ul>
+      <label class="store"><input type="checkbox" id="remember" checked> <span>Remember my answers on this device. Nothing is sent to us or anyone else.</span></label>
+    </div>
+  </div>
+
+  <div>
+    <div class="panel">
+      <div class="big-dl" id="dl"></div>
+      <div class="fees" id="fees"></div>
+      <h2>How ready are you?</h2>
+      <div class="prog"><i id="bar"></i></div>
+      <p class="sub" id="progTxt"></p>
+      <ul class="due" id="todo"></ul>
+      <div class="acts">
+        <button type="button" id="ics">Add my deadlines to my calendar</button>
+        <button type="button" class="ghost" id="print">Print checklist</button>
+      </div>
+      <p id="status" role="status" style="font:500 14px var(--sans);color:#5D6B63;margin:10px 0 0"></p>
+      <div class="mini-ps">
+        <b>Which address will you give?</b>
+        <p>Registration asks for a correspondence address in England or Wales, and the government hasn't fully said what the public will see. Before you decide, check where your home address is already published.</p>
+        <a href="/privacy-sweep/landlords/">Privasweep for landlords, from £19 &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="shelf" style="padding-top:10px" aria-labelledby="regions-h">
+  <div class="shelf-h"><div><h2 id="regions-h">Every region's window</h2><p>Register by midnight on the last day. You can register earlier if you want to.</p></div></div>
+  <div class="tablebox"><table class="reg-table" id="regTable"><thead><tr><th>Region</th><th>Opens</th><th>Register by</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<section class="facts" aria-label="Questions">
+  <details><summary>How much does it cost?</summary><p>£65 per property per year, with no VAT. Registering yourself as a landlord is free, and so are updates. During the rollout your first fee is reduced to cover the part-year, and all your properties then share one renewal date. Source: <a href="https://www.gov.uk/guidance/register-your-rental-property-service-guidance-for-landlords">GOV.UK guidance</a>.</p></details>
+  <details><summary>What if something is missing on the day?</summary><p>You can still register and add missing information within 28 days, or the property's registration may be deactivated. After that, you have 28 days to update your record whenever something changes, such as a new gas certificate.</p></details>
+  <details><summary>What happens if I don't register?</summary><p>Councils can fine landlords up to £7,000 for not registering themselves or a property, and up to £40,000 for false or misleading information or repeated breaches. Once a region opens, tenants can also apply for a rent repayment order.</p></details>
+  <details><summary>Is this legal advice?</summary><p>No. It's a free checklist built from GOV.UK guidance as of November 2026. Check GOV.UK before you register, as details can change.</p></details>
+</section>
+<p class="ll-note">More free tools in the <a href="/landlords/">landlord hub</a>, including the <a href="/landlords/compliance-tracker/">compliance date tracker</a> for your gas, electrical and EPC dates.</p>
+</main>
+<footer class="sl-foot">
+  <div class="wrap">
+    <div class="top">
+      <div><p class="big">Questions?<br>We actually reply.</p><a href="mailto:hello@survivelabs.co.uk">hello@survivelabs.co.uk</a></div>
+      <div><h4>Remark</h4><a href="/remark/">Overview</a><a href="/remark/#pricing">Pricing</a><a href="/remark/support.html">Support</a><a href="/remark/privacy.html">Privacy</a><a href="/remark/terms.html">Terms</a></div>
+      <div><h4>Themely</h4><a href="/themely/">Themely for Docs</a><a href="/themely/sheets/">Themely for Sheets</a><a href="/themely/#pricing">Pricing</a><a href="/themely/#help">Help</a><a href="/themely/privacy.html">Privacy</a><a href="/themely/terms.html">Terms</a></div>
+      <div><h4>Survive Labs</h4><a href="/">Home</a><a href="/guides/">Guides</a><a href="/privacy-sweep/">Privasweep</a><a href="/tools/">Free tools</a><a href="mailto:hello@survivelabs.co.uk">Contact</a></div>
+    </div>
+    <div class="base"><span>© 2026 Survive Labs, Lytchett House, 13 Freeland Park, Wareham Road, Poole, Dorset BH16 6FA, United Kingdom</span><span>Remark and Themely are independent add-ons and are not affiliated with Google.</span></div>
+  </div>
+</footer>
+<script>
+{
+  const $ = id => document.getElementById(id);
+  const KEY = 'sl-ll-dbcheck-v1';
+  const TODAY = new Date(); TODAY.setHours(12,0,0,0);
+  const REGIONS = [
+    ['West Midlands','2026-12-15','2027-03-14'], ['East of England','2027-01-15','2027-04-14'], ['East Midlands','2027-02-15','2027-05-14'],
+    ['South East','2027-03-15','2027-06-14'], ['Yorkshire and the Humber','2027-04-15','2027-07-14'], ['North West','2027-05-15','2027-08-14'],
+    ['North East','2027-06-15','2027-09-14'], ['London','2027-07-15','2027-10-14'], ['South West','2027-08-15','2027-11-14']];
+  const D = s => new Date(s + 'T12:00');
+  const fmt = d => d.toLocaleDateString('en-GB', {day: 'numeric', month: 'long', year: 'numeric'});
+  const days = d => Math.round((d - TODAY) / 864e5);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  const PROP_ITEMS = [
+    ['gas', 'Gas safety certificate, in date', 'Skip this one if the property has no gas supply.', true],
+    ['eicr', 'Electrical safety report (EICR), in date', ''],
+    ['epc', 'Energy Performance Certificate (EPC)', 'Rated E or above, unless you have a registered exemption.'],
+    ['lic', 'Any licence (HMO or selective licence)', 'Only if your council requires one for this property.', true],
+    ['beds', 'Number of bedrooms', ''],
+    ['let', 'Whether it is let right now', ''],
+    ['rent', 'Tenancy details, including the rent and how often it is paid', ''],
+    ['agent', 'Contact details for any managing agent, superior landlord or freeholder', 'Skip if there isn\'t one.', true],
+  ];
+  const ME_ITEMS = [
+    ['login', 'Set up a GOV.UK One Login', 'You use it to register online. A paper form is available if you can\'t go online.'],
+    ['details', 'Your personal and contact details ready', 'For a company landlord: the Companies House number and a contact.'],
+    ['addr', 'Decide your correspondence address', 'It must be in England or Wales. Many landlords default to their home address. <a href="/privacy-sweep/landlords/">Check what\'s already public first &rarr;</a>', false, 'ps'],
+    ['fee', 'Budget for the fee', '£65 per property per year.'],
+  ];
+
+  const blank = n => ({name: n, region: 0, done: {}, na: {}});
+  let st = {props: [blank('Property 1')], me: {}, cur: 0}, remember = true;
+  try { const s = JSON.parse(localStorage.getItem(KEY) || 'null'); if (s && s.props && s.props.length) st = s; if (s && s.remember === false) remember = false; } catch {}
+  $('remember').checked = remember;
+  const save = () => { try { if (remember) localStorage.setItem(KEY, JSON.stringify({...st, remember})); else localStorage.removeItem(KEY); } catch {} };
+
+  $('region').innerHTML = REGIONS.map((r, i) => `<option value="${i}">${r[0]}</option>`).join('');
+
+  function listHTML(items, done, prefix) {
+    return items.map(([k, t, h, opt, cls]) => `<li class="${cls || ''}"><label><input type="checkbox" data-k="${k}" ${done[k] ? 'checked' : ''}><span>${esc(t)}${opt ? ' <span style="font-weight:400;color:inherit;opacity:.7">(or not needed)</span>' : ''}${h ? `<small>${cls ? h : esc(h)}</small>` : ''}</span></label></li>`).join('');
+  }
+  function load() {
+    const p = st.props[st.cur];
+    $('name').value = p.name; $('region').value = p.region;
+    $('propList').innerHTML = listHTML(PROP_ITEMS, p.done);
+    $('del').style.display = st.props.length > 1 ? '' : 'none';
+    $('pc').value = ''; $('pcOut').className = 'region-out';
+  }
+  function tabs() {
+    $('props').innerHTML = st.props.map((p, i) => `<button type="button" data-i="${i}" aria-pressed="${i === st.cur}">${esc(p.name || 'Property ' + (i + 1))}</button>`).join('') + (st.props.length < 30 ? '<button type="button" class="add" data-add="1">+ Add property</button>' : '');
+  }
+
+  function render() {
+    $('meList').innerHTML = listHTML(ME_ITEMS, st.me);
+    // earliest deadline across properties
+    const ps = st.props.map(p => ({p, r: REGIONS[p.region]}));
+    const soonest = ps.slice().sort((a, b) => D(a.r[2]) - D(b.r[2]))[0];
+    const dl = D(soonest.r[2]), op = D(soonest.r[1]);
+    const n = days(dl), o = days(op);
+    $('dl').innerHTML = `<span class="k">${st.props.length > 1 ? 'YOUR FIRST DEADLINE' : 'YOUR DEADLINE'}</span><b>${fmt(dl)}</b><span>${esc(soonest.p.name)} · ${soonest.r[0]}. ${o > 0 ? `Registration opens ${fmt(op)} (in ${o} days), or register earlier if you like.` : n >= 0 ? `Registration is open now. ${n} days left.` : 'This deadline has passed. Register as soon as you can.'}</span>`;
+    $('fees').innerHTML = `<div><b>£${65 * st.props.length}</b><span>a year for ${st.props.length} propert${st.props.length === 1 ? 'y' : 'ies'}</span></div><div><b>£0</b><span>to register yourself</span></div>`;
+    // to-do across everything
+    const todo = [];
+    let total = 0, done = 0;
+    ME_ITEMS.forEach(([k, t]) => { total++; if (st.me[k]) done++; else todo.push({t, m: 'About you', s: k === 'addr' ? 's' : 'i'}); });
+    st.props.forEach(p => PROP_ITEMS.forEach(([k, t]) => { total++; if (p.done[k]) done++; else todo.push({t, m: p.name, s: 'i'}); }));
+    const pct = Math.round(100 * done / total);
+    $('bar').style.width = pct + '%';
+    $('progTxt').textContent = pct === 100 ? 'Everything ticked. You\'re ready to register.' : `${done} of ${total} ticked (${pct}%). Still to sort:`;
+    $('todo').innerHTML = todo.slice(0, 12).map(x => `<li class="${x.s}"><span class="dot" aria-hidden="true"></span><span class="t">${esc(x.t)}</span><span class="when"></span><span class="m">${esc(x.m)}</span></li>`).join('') + (todo.length > 12 ? `<li class="i"><span class="dot"></span><span class="t">and ${todo.length - 12} more</span><span class="when"></span><span class="m">Tick items on the left as you go.</span></li>` : '');
+    // table highlight
+    const mine = new Set(st.props.map(p => +p.region));
+    $('regTable').querySelector('tbody').innerHTML = REGIONS.map((r, i) => `<tr class="${mine.has(i) ? 'mine' : ''} ${days(D(r[1])) <= 0 && days(D(r[2])) >= 0 ? 'open' : ''}"><td>${r[0]}</td><td>${fmt(D(r[1]))}</td><td>${fmt(D(r[2]))}</td></tr>`).join('');
+    tabs(); save();
+  }
+
+  // postcode lookup (postcodes.io, free and CORS-enabled)
+  const MAP = {'West Midlands': 0, 'East of England': 1, 'East Midlands': 2, 'South East': 3, 'Yorkshire and The Humber': 4, 'North West': 5, 'North East': 6, 'London': 7, 'South West': 8};
+  async function lookup() {
+    const pc = $('pc').value.trim(); const out = $('pcOut');
+    if (!pc) return;
+    out.className = 'region-out on'; out.textContent = 'Looking up…';
+    try {
+      const r = await fetch('https://api.postcodes.io/postcodes/' + encodeURIComponent(pc));
+      const j = await r.json();
+      if (!r.ok || !j.result) throw new Error(j.error || 'not found');
+      const res = j.result;
+      if (res.country !== 'England') { out.className = 'region-out on warn'; out.textContent = `That postcode is in ${res.country}. This register is for properties in England only.`; return; }
+      const i = MAP[res.region];
+      if (i === undefined) throw new Error('region');
+      st.props[st.cur].region = i; $('region').value = i;
+      out.textContent = `${res.admin_district}, ${REGIONS[i][0]}: opens ${fmt(D(REGIONS[i][1]))}, register by ${fmt(D(REGIONS[i][2]))}.`;
+      render();
+    } catch { out.className = 'region-out on warn'; out.textContent = "We couldn't find that postcode. Check it, or pick the region from the list below."; }
+  }
+
+  function ics() {
+    const seen = new Set(), ev = [];
+    const d8 = d => d.toISOString().slice(0, 10).replace(/-/g, '');
+    const stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
+    const add = (date, sum, desc, alarms) => { const d = D(date); ev.push(['BEGIN:VEVENT', `UID:sl-db-${d8(d)}-${ev.length}@survivelabs.co.uk`, `DTSTAMP:${stamp}`, `DTSTART;VALUE=DATE:${d8(d)}`, `DTEND;VALUE=DATE:${d8(new Date(d.getTime() + 864e5))}`, `SUMMARY:${sum}`, `DESCRIPTION:${desc}`, ...alarms.flatMap(a => ['BEGIN:VALARM', 'ACTION:DISPLAY', `TRIGGER:-P${a}D`, `DESCRIPTION:${sum}`, 'END:VALARM']), 'END:VEVENT'].join('\r\n')); };
+    st.props.forEach(p => {
+      const r = REGIONS[p.region]; if (seen.has(p.region)) return; seen.add(p.region);
+      const names = st.props.filter(x => x.region === p.region).map(x => x.name).join('\\, ');
+      add(r[1], `Landlord database opens: ${r[0]}`, `You can now register ${names}. Register by ${fmt(D(r[2]))}.`, [7]);
+      add(r[2], `Landlord database deadline: ${r[0]}`, `Register ${names} by midnight tonight. Penalty up to £7\\,000 if not registered.`, [30, 7]);
+    });
+    const body = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Survive Labs//Landlord database//EN', 'CALSCALE:GREGORIAN', ...ev, 'END:VCALENDAR'].join('\r\n');
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([body], {type: 'text/calendar'})); a.download = 'landlord-database-dates.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+    $('status').textContent = `Downloaded ${ev.length} dates. Open the file to add them to your calendar.`;
+  }
+
+  $('f').addEventListener('input', e => {
+    const p = st.props[st.cur];
+    if (e.target.id === 'name') p.name = e.target.value.trim() || 'Property ' + (st.cur + 1);
+    if (e.target.id === 'region') p.region = +e.target.value;
+    if (e.target.dataset.k) p.done[e.target.dataset.k] = e.target.checked;
+    render();
+  });
+  $('meList').addEventListener('change', e => { if (e.target.dataset.k) { st.me[e.target.dataset.k] = e.target.checked; render(); } });
+  $('props').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.add) { st.props.push(blank('Property ' + (st.props.length + 1))); st.cur = st.props.length - 1; } else st.cur = +b.dataset.i;
+    load(); render();
+  });
+  $('del').addEventListener('click', () => { if (st.props.length < 2) return; st.props.splice(st.cur, 1); st.cur = Math.max(0, st.cur - 1); load(); render(); });
+  $('pcGo').addEventListener('click', lookup);
+  $('pc').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); lookup(); } });
+  $('remember').addEventListener('change', e => { remember = e.target.checked; save(); });
+  $('ics').addEventListener('click', ics);
+  $('print').addEventListener('click', () => window.print());
+  const n = days(D('2026-12-15')); $('cd').textContent = n > 0 ? `Opens in ${n} days` : 'Registration is open';
+  if (st.cur >= st.props.length) st.cur = 0;
+  load(); render();
+}
+</script>
+<!-- Cloudflare Web Analytics (cookie-free) --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "8f72d9749e9f4d19a9bc2ef5aa6f097c"}'></script>
+</body>
+</html>
