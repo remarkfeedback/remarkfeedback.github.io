@@ -40,6 +40,9 @@
 .tool p{font-size:17px;line-height:1.5;color:var(--ink2);margin:0 0 16px}
 .tool ul{margin:0 0 22px;padding:0;list-style:none;display:grid;gap:8px;font-size:16px}
 .tool li{display:flex;gap:10px}
+.tool.wide{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:32px;align-items:center}
+.tool.wide img{width:100%;border-radius:14px;box-shadow:0 0 0 1px rgba(14,21,37,.08),0 20px 40px -24px rgba(14,21,37,.4)}
+@media (max-width:860px){.tool.wide{grid-template-columns:1fr}}
 .tool li svg{width:20px;height:20px;flex:none;margin-top:1px}
 .tool .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto}
 .tool .note{font-size:14px;color:var(--mut);margin:14px 0 0}
@@ -66,7 +69,7 @@
     <div>
       <p class="who rise" data-in>for Vinted, eBay, Depop and Etsy sellers</p>
       <h1 class="lines" data-in><span class="ln"><span>Know what you</span></span> <span class="ln"><span style="--d:.08s">actually take home.</span></span></h1>
-      <p class="rise" data-in style="--d:.25s">Free tools for UK resellers. Work out fees, postage and real profit before you list, and keep your records straight for HMRC.</p>
+      <p class="rise" data-in style="--d:.25s">Free tools for UK resellers, including our Seller Sync Chrome extension. Work out fees, postage and real profit before you list, and keep your records straight for HMRC.</p>
       <span class="tag rise" data-in style="--d:.35s">No sign-up needed</span>
     </div>
     <img class="rise" data-in style="--d:.2s" src="/tools/calculator.png" alt="The price and profit calculator spreadsheet">
@@ -98,6 +101,21 @@
           <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5.5" stroke="#E2530D" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Ready for your Self Assessment</li>
         </ul>
         <div class="acts"><a class="btn pen" href="https://www.etsy.com/listing/4618138680?utm_source=tools">Get it on Etsy</a><a class="btn line" href="https://payhip.com/b/VU970?utm_source=tools">Get it on Payhip</a></div>
+      </div>
+
+      <div class="tool wide rise" data-in style="--d:.2s" id="seller-sync">
+        <div class="wtext">
+          <span class="price free">Free Chrome extension</span>
+          <h2>Seller Sync</h2>
+          <p>All your Vinted, eBay, Depop and Etsy sales in one place, with a plain answer to "am I OK with HMRC?" Drop in the sales files the platforms already give you and it does the rest.</p>
+          <ul>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5.5" stroke="#0B9E73" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Checks the £1,000 trading allowance and each platform's reporting limit</li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5.5" stroke="#0B9E73" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Real profit after fees, refunds and what you paid</li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5.5" stroke="#0B9E73" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Private: no logins, and your sales never leave your computer</li>
+          </ul>
+          <div class="acts"><a class="btn" href="https://chromewebstore.google.com/detail/seller-sync-by-survive-la/gmojbhlpmdckjooaajjjfdlfibmjieke" rel="noopener">Add to Chrome, free</a><a class="btn line" href="/seller-sync/privacy.html">Privacy policy</a></div>
+        </div>
+        <img src="/tools/seller-sync.jpg" alt="The Seller Sync dashboard showing sales by platform and HMRC limit checks" loading="lazy">
       </div>
     </div>
     <p class="fine">General information, not tax advice.</p>
