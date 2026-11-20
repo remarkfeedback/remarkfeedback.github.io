@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tank Builder: see your aquarium in 3D before you buy</title>
+<meta name="description" content="Paste links to the tank, filter, rocks, wood and plants you're thinking of buying. See your aquarium in 3D at true size, rearrange it, and get a checked shopping list.">
+<meta name="tb-api" content="">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect x=%223%22 y=%225%22 width=%2226%22 height=%2222%22 rx=%224%22 fill=%22%230B2A3A%22/%3E%3Crect x=%226%22 y=%2218%22 width=%2220%22 height=%226%22 rx=%222%22 fill=%22%232FB6C8%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Tank Builder: deep water blue + sand, calm and practical. */
+:root{--deep:#0B2A3A;--deep2:#12405A;--aqua:#2FB6C8;--aqua-soft:#DDF3F6;--sand:#F4EEE3;--sand2:#E7DDCB;--ink:#10202A;--mut:#5B6B73;--ok:#1E8A5A;--warn:#B8690A;--bad:#C3361F;--r:14px;--sans:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box;min-width:0}
+html,body{height:100%}
+body{margin:0;font:15px/1.5 var(--sans);color:var(--ink);background:var(--sand);display:grid;grid-template-rows:auto 1fr;overflow:hidden}
+a{color:var(--deep2)}
+.top{display:flex;align-items:center;gap:14px;padding:10px 16px;background:var(--deep);color:#fff;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.01em;color:#fff;text-decoration:none}
+.brand i{width:28px;height:22px;border:2.5px solid #9FE3EC;border-radius:4px 4px 6px 6px;position:relative;display:inline-block}
+.brand i::after{content:"";position:absolute;left:2px;right:2px;bottom:2px;height:7px;background:#2FB6C8;border-radius:2px}
+.brand small{font-weight:600;font-size:12px;color:#9FE3EC;border:1px solid rgba(159,227,236,.4);border-radius:999px;padding:2px 8px}
+.top .sp{flex:1}
+.top button,.top a.tb{font:700 14px var(--sans);border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;border-radius:999px;padding:8px 14px;cursor:pointer;min-height:38px;text-decoration:none}
+.top button:hover{background:rgba(255,255,255,.08)}
+.top .primary:hover{background:#6fd6e3}
+.top .primary{background:var(--aqua);border-color:var(--aqua);color:var(--deep)}
+.app{display:grid;grid-template-columns:400px minmax(0,1fr);min-height:0}
+.side{overflow-y:auto;background:#fff;border-right:1px solid var(--sand2);padding:16px 16px 40px}
+.stage{position:relative;min-height:0;background:#e9eef0}
+#c{width:100%;height:100%;display:block;touch-action:none;cursor:grab}
+#c:active{cursor:grabbing}
+@media(max-width:860px){body{overflow:auto;grid-template-rows:auto auto}.top{padding:8px 12px;gap:6px}.top .sp{flex-basis:100%;height:0}.top button{padding:6px 11px;min-height:34px;font-size:13px}.brand small{display:none}.app{grid-template-columns:minmax(0,1fr)}.stage{height:50vh;order:-1;position:sticky;top:0;z-index:2}.side{border-right:0;overflow:visible}}
+
+h2{font-size:15px;font-weight:800;margin:18px 0 8px;display:flex;align-items:center;gap:8px}
+h2 .n{width:22px;height:22px;border-radius:50%;background:var(--deep);color:#fff;font-size:12px;display:grid;place-items:center}
+h2:first-child{margin-top:0}
+textarea,input,select{font:400 16px var(--sans);width:100%;border:1.5px solid var(--sand2);border-radius:10px;padding:10px 12px;background:#fff;color:var(--ink)}
+textarea:focus,input:focus,select:focus{outline:3px solid var(--aqua-soft);border-color:var(--aqua)}
+.btn{font:800 15px var(--sans);border:0;border-radius:999px;background:var(--deep);color:#fff;padding:12px 18px;cursor:pointer;min-height:44px}
+.btn:hover{background:var(--deep2)}
+.btn.sm{padding:8px 14px;min-height:36px;font-size:14px;margin-top:6px}
+.btn.alt{background:var(--aqua);color:var(--deep)}
+.hint{font-size:13px;color:var(--mut);margin:6px 0}
+.msg{font-size:13px;color:var(--bad);min-height:18px;margin:4px 0 0}
+.msg.okm{color:var(--ok)}
+details.more{border:1px solid var(--sand2);border-radius:12px;padding:10px 12px;margin-top:10px;background:var(--sand)}
+details.more summary{font-weight:700;cursor:pointer}
+details.more[open]{background:#fff}
+.bm{display:inline-block;background:var(--aqua);color:var(--deep);font-weight:800;text-decoration:none;padding:7px 12px;border-radius:999px;cursor:grab}
+.mgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:6px}
+.mgrid label{font-size:12px;color:var(--mut)}
+
+#empty{background:var(--aqua-soft);border-radius:var(--r);padding:14px;margin:14px 0 0}
+#empty b{display:block}
+#empty p{margin:4px 0 10px;color:var(--deep2);font-size:14px}
+.total{display:flex;align-items:baseline;justify-content:space-between;background:var(--deep);color:#fff;border-radius:var(--r);padding:14px 16px;margin:16px 0 8px}
+.total:empty{display:none}
+.total b{font-size:26px;letter-spacing:-.02em}
+.total span{font-size:13px;color:#9FE3EC}
+#list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.item{display:grid;grid-template-columns:34px minmax(0,1fr) 28px;gap:10px;border:1px solid var(--sand2);border-radius:var(--r);padding:10px 8px 10px 10px;background:#fff}
+.item .ic{font-size:22px;line-height:1}
+.item b{display:block;font-size:14.5px;line-height:1.3}
+.item b a{color:var(--ink);text-decoration:none}.item b a:hover{text-decoration:underline}
+.item .sub,.item .spec,.item .note{display:block;font-size:12.5px;color:var(--mut)}
+.item .spec{color:var(--deep2);font-weight:600}
+.item .note{color:var(--warn)}
+.item .est{font-style:normal;font-weight:700;color:var(--warn);background:#FFF2DE;border-radius:6px;padding:0 5px}
+.item .row{display:flex;align-items:center;gap:10px;margin-top:6px;flex-wrap:wrap}
+.item .price{font-weight:800;margin-left:auto}
+.muted{color:var(--mut);font-weight:400}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--sand2);border-radius:999px}
+.qty button{border:0;background:none;width:32px;height:30px;font:800 16px var(--sans);cursor:pointer;color:var(--deep)}
+.qty span{font-size:13px;font-weight:700;padding:0 4px;white-space:nowrap}
+.link{border:0;background:none;color:var(--deep2);font:700 13px var(--sans);cursor:pointer;padding:4px 0;text-decoration:underline}
+.link.danger{color:var(--bad)}
+.x{border:0;background:none;font-size:20px;color:var(--mut);cursor:pointer;align-self:start;line-height:1;height:28px}
+.edit{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px;background:var(--sand);border-radius:10px;padding:10px}
+.edit[hidden]{display:none}
+.edit label{font-size:12px;color:var(--mut);display:flex;flex-direction:column;gap:3px}
+.edit input,.edit select{padding:7px 9px;font-size:15px}
+.item.pending{background:var(--sand)}
+.item details.paste{margin-top:6px}
+.item details.paste summary{font-weight:700;font-size:13px;cursor:pointer}
+#checks{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+#checks li{font-size:13.5px;padding:8px 10px 8px 32px;border-radius:10px;position:relative;background:var(--sand)}
+#checks li::before{position:absolute;left:10px;top:8px;font-weight:900}
+#checks li.ok{background:#E8F5EE}#checks li.ok::before{content:"✓";color:var(--ok)}
+#checks li.warn{background:#FFF4E2}#checks li.warn::before{content:"!";color:var(--warn)}
+#checks li.bad{background:#FDECE8}#checks li.bad::before{content:"✕";color:var(--bad)}
+#checks li.info::before{content:"i";color:var(--deep2)}
+
+.overlay{position:absolute;left:12px;right:12px;display:flex;gap:8px;flex-wrap:wrap;pointer-events:none}
+.overlay>*{pointer-events:auto}
+.ov-top{top:12px;justify-content:space-between;align-items:flex-start}
+.ov-bot{bottom:12px;justify-content:center}
+.chip{background:rgba(255,255,255,.92);backdrop-filter:blur(6px);border-radius:999px;padding:7px 12px;font-size:13px;font-weight:700;color:var(--deep);box-shadow:0 4px 14px -6px rgba(0,0,0,.25)}
+.views{display:flex;background:rgba(255,255,255,.92);border-radius:999px;padding:3px;box-shadow:0 4px 14px -6px rgba(0,0,0,.25)}
+.views button{border:0;background:none;font:700 13px var(--sans);padding:7px 11px;border-radius:999px;cursor:pointer;color:var(--deep)}
+.views button:hover{background:var(--aqua-soft)}
+#selbar{display:flex;align-items:center;gap:6px;background:var(--deep);color:#fff;border-radius:999px;padding:6px 6px 6px 14px;box-shadow:0 8px 24px -8px rgba(0,0,0,.4);max-width:100%}
+#selbar[hidden]{display:none}
+#selbar span{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px}
+#selbar small{color:#9FE3EC;font-size:12px}
+#selbar button{border:0;border-radius:999px;background:rgba(255,255,255,.12);color:#fff;font:700 13px var(--sans);padding:8px 12px;cursor:pointer}
+#selbar button:hover{background:rgba(255,255,255,.22)}
+.help{font-size:12.5px;color:var(--mut);margin:14px 0 0;line-height:1.5}
+#status{font-size:13px;color:var(--ok);min-height:18px;margin:8px 0 0}
+body.no-api .live-only{display:none}
+</style>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="./"><i></i>Tank Builder <small>preview</small></a>
+  <span class="sp"></span>
+  <button type="button" id="example" class="primary">Try an example</button>
+  <button type="button" id="share">Share build</button>
+  <button type="button" id="snap">Save picture</button>
+</header>
+<div class="app">
+  <aside class="side">
+    <h2><span class="n">1</span>Paste your product links</h2>
+    <textarea id="links" rows="4" placeholder="One link per line: tank, stand, filter, light, substrate, rocks, wood, plants, fish…"></textarea>
+    <button type="button" class="btn" id="addLinks" style="margin-top:8px;width:100%">Build my tank</button>
+    <p class="msg" id="linksMsg" role="status"></p>
+    <details class="more"><summary>Shop won't load? Paste the page instead</summary>
+      <p class="hint">Open the product page, select everything (Ctrl+A or ⌘A), copy, and paste it here. Works with any shop.</p>
+      <input id="pasteUrl" placeholder="Product link (optional)" style="margin-bottom:6px">
+      <textarea id="pasteText" rows="4" placeholder="Paste the whole product page"></textarea>
+      <button type="button" class="btn sm" id="addText">Read this page</button>
+      <p class="msg okm" id="pasteMsg" role="status"></p>
+    </details>
+    <details class="more"><summary>On a computer? Add straight from any shop</summary>
+      <p class="hint">Drag this button to your bookmarks bar. On any product page, click it and the product is sent here, sizes and all.</p>
+      <p><a class="bm" id="bookmarklet" href="#">＋ Add to Tank Builder</a></p>
+    </details>
+    <details class="more"><summary>Add something by hand</summary>
+      <div class="mgrid" style="grid-template-columns:1fr 1fr">
+        <label>Type<select id="mCat"><option value="tank">Tank</option><option value="stand">Stand</option><option value="filter">Filter</option><option value="heater">Heater</option><option value="light">Light</option><option value="substrate">Substrate</option><option value="rock">Rock</option><option value="wood">Wood</option><option value="plant">Plant</option><option value="fish">Fish</option><option value="ornament">Decoration</option></select></label>
+        <label>Name<input id="mName" placeholder="e.g. Dragon stone"></label>
+      </div>
+      <div class="mgrid"><label>Length cm<input id="mL" type="number" min="0" step="0.5"></label><label>Depth cm<input id="mW" type="number" min="0" step="0.5"></label><label>Height cm<input id="mH" type="number" min="0" step="0.5"></label></div>
+      <div class="mgrid" style="grid-template-columns:1fr 1fr"><label>Price £<input id="mPrice" type="number" min="0" step="0.01"></label><span></span></div>
+      <button type="button" class="btn sm" id="addManual">Add</button>
+    </details>
+
+    <div id="empty"><b>Nothing here yet</b><p>Paste a few product links above, or see how it works with a real 60cm planted tank.</p><button type="button" class="btn alt sm" onclick="document.getElementById('example').click()">Load the example</button></div>
+    <p id="status" role="status"></p>
+    <div class="total" id="total"></div>
+    <h2 id="listH">Your build</h2>
+    <ul id="list"></ul>
+    <div id="checksWrap" hidden>
+      <h2>Checks</h2>
+      <ul id="checks"></ul>
+    </div>
+    <p class="help">Drag rocks, wood, plants and equipment to move them. Press R or tap Rotate to turn the selected piece. Sizes come from each product page. Anything marked <em style="font-style:normal;font-weight:700;color:var(--warn)">estimated</em> wasn't listed, so check it. Prices are as read from the page.</p>
+    <p class="help"><button type="button" class="link" id="relayout">Re-arrange automatically</button> · <button type="button" class="link danger" id="clear">Clear everything</button></p>
+  </aside>
+  <main class="stage">
+    <canvas id="c" aria-label="3D view of your aquarium. Drag to orbit, drag an object to move it."></canvas>
+    <div class="overlay ov-top">
+      <span class="chip" id="tankLabel"></span>
+      <div class="views" role="group" aria-label="Camera"><button type="button" data-view="front">Front</button><button type="button" data-view="3d">3D</button><button type="button" data-view="top">Top</button></div>
+    </div>
+    <div class="overlay ov-bot">
+      <div id="selbar" hidden><span id="selname"></span><small id="selsize"></small><button type="button" id="rot">⟲ Rotate</button><button type="button" id="delpiece">Remove</button><button type="button" id="desel" aria-label="Done">Done</button></div>
+    </div>
+  </main>
+</div>
+<script type="module" src="./app.js"></script>
+</body>
+</html>
