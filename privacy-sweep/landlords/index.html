@@ -356,6 +356,15 @@ body{background:var(--paper)}
 .hcard li svg{width:22px;height:22px;flex:none;margin-top:1px}
 @media (max-width:800px){.hcard{grid-template-columns:1fr;gap:22px;padding:24px;box-shadow:6px 6px 0 #FFD400}}
 </style>
+<style>
+.freeoffer{padding:40px 0 0}
+.fcard{background:#FFF7CC;color:#0E1525;border:2px dashed #0E1525;border-radius:20px;padding:28px 30px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:24px;align-items:center}
+.fcard .ftag{margin:0;background:#0E1525;color:#FFD400;font:800 14px var(--sans);padding:8px 12px;border-radius:10px;white-space:nowrap}
+.fcard h2{font-size:clamp(22px,2.4vw,30px)!important;line-height:1.1;letter-spacing:-.03em;margin:0 0 8px!important;color:#0E1525;max-width:none!important}
+.fcard p{margin:0;font:500 16px/1.55 var(--sans);color:#3A4256}
+.fcard .btn{white-space:nowrap}
+@media (max-width:800px){.fcard{grid-template-columns:1fr;gap:16px;padding:22px}.fcard .ftag{justify-self:start}.fcard .btn{width:100%;justify-content:center}}
+</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -473,6 +482,15 @@ body{background:var(--paper)}
     <p class="note">Secure checkout by Stripe. Within 1 working day of booking we'll email you a short form and a permission letter to sign. Your report arrives within 5 working days of getting them back. Any official fees, such as government charges for correcting old public records, are yours to pay directly, and we'll always tell you first. We don't register you on the database ourselves, and we don't give legal advice.</p>
   </div>
 </section>
+<section class="sec freeoffer" aria-labelledby="free-h">
+  <div class="wrap"><div class="fcard">
+    <p class="ftag">We're new</p>
+    <div><h2 id="free-h">The first 3 people get a free Privasweep report</h2>
+    <p>In return, we ask for honest feedback on how it went, good or bad. No card needed. Email us and say you'd like one of the free places. If they've gone, we'll tell you straight away.</p></div>
+    <a class="btn pen" href="mailto:hello@survivelabs.co.uk?subject=Free%20Privasweep%20report">Email for a free place</a>
+  </div></div>
+</section>
+
 <section class="sec human" aria-labelledby="human-h">
   <div class="wrap"><div class="hcard">
     <div class="hwho"><span class="hav" aria-hidden="true">R</span><div><h2 id="human-h">Checked by a person, not just a computer</h2><p>Lots of privacy services are fully automated. Privasweep isn't. I'm Regan, and I look at your results myself.</p></div></div>
