@@ -74,6 +74,11 @@ body{background:var(--paper)}
 .ps{border-left:4px solid #FFD400;padding:6px 0 6px 18px;margin-top:10px}
 .ps a{font-weight:800}
 .fine{font-size:14px;color:var(--mut);margin-top:18px}
+.sweep{display:block;margin-top:12px;padding:14px 18px;border-radius:14px;border:2px solid #7A1FD6;background:#fff;text-decoration:none;color:var(--ink)}
+.sweep small{display:block;font:800 11px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:#7A1FD6}
+.sweep b{display:block;font:800 17px/1.35 var(--sans);margin-top:2px}
+.sweep span{display:block;font-size:15px;color:var(--mut);text-decoration:underline}
+.sweep:hover{background:#F7F0FF}.sweep:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
 @media (max-width:640px){.box .hint{margin-left:0;width:100%}.chrome{grid-template-columns:1fr}.lk-btn{width:100%}}
 @media (prefers-reduced-motion:no-preference){.res{animation:pop .25s var(--ease)}@keyframes pop{from{opacity:0;transform:translateY(6px)}}}
 </style>
@@ -149,6 +154,6 @@ body{background:var(--paper)}
 
 
 <script src="/doorman/engine.js?v=1"></script>
-<script src="/doorman/app.js?v=1"></script>
+<script src="/doorman/app.js?v=2"></script>
 </body>
 </html>
