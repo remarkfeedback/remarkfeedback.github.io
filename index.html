@@ -348,18 +348,18 @@
             <div class="seg" role="group" aria-label="Show results"><button type="button" data-v="before" aria-pressed="false">Before</button><button type="button" data-v="after" aria-pressed="true">After Privasweep</button></div>
           </div>
           <ul class="rows">
-            <li style="--i:0"><span class="sign"><svg class="bad"><use href="#w"/></svg><svg class="ok"><use href="#ok"/></svg></span><span class="k">Full name</span><span class="v">Daniel J. Morgan<span class="redact"></span><small>People-search website</small></span><b class="pschip"><span class="a">EXPOSED</span><span class="b">Removed</span></b></li>
-            <li style="--i:1"><span class="sign"><svg class="bad"><use href="#w"/></svg><svg class="ok"><use href="#ok"/></svg></span><span class="k">Lives with</span><span class="v">Claire &amp; Ellie Morgan<span class="redact"></span><small>People-search website</small></span><b class="pschip"><span class="a">EXPOSED</span><span class="b">Removed</span></b></li>
-            <li style="--i:2"><span class="sign"><svg class="bad"><use href="#w"/></svg><svg class="ok"><use href="#ok"/></svg></span><span class="k">Home address</span><span class="v">One small payment away<span class="redact"></span><small>Paid people-search</small></span><b class="pschip"><span class="a">FOR SALE</span><span class="b">Removed</span></b></li>
-            <li style="--i:3"><span class="sign"><svg class="bad"><use href="#w"/></svg><svg class="ok"><use href="#ok"/></svg></span><span class="k">Your house</span><span class="v">Car on drive, side gate<span class="redact"></span><small>Street-level imagery</small></span><b class="pschip"><span class="a">EXPOSED</span><span class="b">Blurred</span></b></li>
-            <li style="--i:4"><span class="sign"><svg class="bad"><use href="#w"/></svg><svg class="ok"><use href="#ok"/></svg></span><span class="k">Routine</span><span class="v">Runs at 6am, same route<span class="redact"></span><small>Public fitness app</small></span><b class="pschip"><span class="a">EXPOSED</span><span class="b">Private</span></b></li>
+            <li style="--i:0"><span class="sign"><svg class="bad"><use href="#w"/></svg><svg class="ok"><use href="#ok"/></svg></span><span class="k">Full name</span><span class="v">Daniel J. Morgan<span class="redact"></span><small>People-search website</small></span><b class="pschip"><span class="a">EXPOSED</span><span class="b">Request sent</span></b></li>
+            <li style="--i:1"><span class="sign"><svg class="bad"><use href="#w"/></svg><svg class="ok"><use href="#ok"/></svg></span><span class="k">Lives with</span><span class="v">Claire &amp; Ellie Morgan<span class="redact"></span><small>People-search website</small></span><b class="pschip"><span class="a">EXPOSED</span><span class="b">Request sent</span></b></li>
+            <li style="--i:2"><span class="sign"><svg class="bad"><use href="#w"/></svg><svg class="ok"><use href="#ok"/></svg></span><span class="k">Home address</span><span class="v">One small payment away<span class="redact"></span><small>Paid people-search</small></span><b class="pschip"><span class="a">FOR SALE</span><span class="b">Request sent</span></b></li>
+            <li style="--i:3"><span class="sign"><svg class="bad"><use href="#w"/></svg><svg class="ok"><use href="#ok"/></svg></span><span class="k">Your house</span><span class="v">Car on drive, side gate<span class="redact"></span><small>Street-level imagery</small></span><b class="pschip"><span class="a">EXPOSED</span><span class="b">Blur requested</span></b></li>
+            <li style="--i:4"><span class="sign"><svg class="bad"><use href="#w"/></svg><svg class="ok"><use href="#ok"/></svg></span><span class="k">Routine</span><span class="v">Runs at 6am, same route<span class="redact"></span><small>Public fitness app</small></span><b class="pschip"><span class="a">EXPOSED</span><span class="b">Hide requested</span></b></li>
             <li style="--i:5" class="law"><span class="sign"><svg class="bad"><use href="#w"/></svg><svg class="ok"><use href="#ok"/></svg></span><span class="k">House sale</span><span class="v">2004, £95,000<small>Public property record</small></span><b class="pschip">Public by law</b></li>
           </ul>
-          <div class="foot"><span id="sum"><b>5 of 6</b> removed. We tell you what can't be.</span><button class="replay" type="button" id="replay">Replay</button></div>
+          <div class="foot"><span id="sum"><b>5 of 6</b> can be asked to come down. We tell you what can't.</span><button class="replay" type="button" id="replay">Replay</button></div>
         </div>
       </div>
       <div class="stamp" id="psStamp" aria-hidden="true">HOME FOUND</div>
-      <p class="eg">An example with made-up details. Every line is the kind of thing a real sweep finds.</p>
+      <p class="eg">Fictional example with made-up details. Outcomes depend on each site.</p>
     </div>
   </div>
   <div class="ticker" aria-label="Privasweep">
@@ -625,8 +625,8 @@
     const setView = v => {
       btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
       demo.classList.toggle('after', v === 'after');
-      stamp.textContent = v === 'after' ? 'REMOVED' : 'HOME FOUND'; stamp.classList.toggle('ok', v === 'after');
-      sum.innerHTML = v === 'after' ? '<b>5 of 6</b> removed. We tell you what can\u2019t be.' : '<b>6 results</b> in 41 seconds. <b style="color:#B4231A">Home found.</b>';
+      stamp.textContent = v === 'after' ? 'REQUESTS SENT' : 'HOME FOUND'; stamp.classList.toggle('ok', v === 'after');
+      sum.innerHTML = v === 'after' ? '<b>5 of 6</b> can be asked to come down. We tell you what can\u2019t.' : '<b>6 results</b> in this example. <b style="color:#B4231A">Home found.</b>';
     };
     const finalView = () => { clear(); demo.className = 'screen found marked'; typed.textContent = query; caret.hidden = true; stamp.classList.add('on'); setView('after'); };
     const play = () => {
