@@ -1,4 +1,4 @@
-/* Second Look by Survive Labs: shows results. Shared by the web page and the Chrome extension. */
+/* Doorman by Survive Labs: shows results. Shared by the web page and the Chrome extension. */
 (function () {
   'use strict';
   const S = window.SecondLook;

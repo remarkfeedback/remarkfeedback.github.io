@@ -1,4 +1,4 @@
-/* Second Look by Survive Labs: the checks.
+/* Doorman by Survive Labs: the checks.
    Everything here runs on the user's own device. Nothing is sent anywhere.
    It never says something is "safe": it lists warning signs, or says it found none. */
 (function (root) {
