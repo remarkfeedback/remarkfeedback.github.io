@@ -49,29 +49,41 @@
 </section>
 
 <nav class="ll-jump" aria-label="On this page"><div class="in">
-  <a href="#tools">Free tools</a><a href="#protect">Protect yourself</a><a href="#rules">Rules at a glance</a><a href="#dates">Key dates</a><a href="#read">Guides and official links</a>
+  <a href="#tools">Landlord tools</a><a href="#protect">Protect yourself</a><a href="#rules">Rules at a glance</a><a href="#dates">Key dates</a><a href="#read">Guides and official links</a>
 </div></nav>
 
-<section class="shelf" id="tools" aria-labelledby="tools-h">
-  <div class="shelf-h"><div><h2 id="tools-h">Free tools</h2><p>Each one does one job in a couple of minutes. What you type stays on your device, with one exception: if you use the optional postcode lookup in the checklist, the postcode is sent to our lookup provider to find the region. You can always choose the region yourself instead.</p></div>
-    <div class="arrows"><button type="button" data-dir="-1" aria-label="Scroll free tools left"><svg><use href="#i-l"/></svg></button><button type="button" data-dir="1" aria-label="Scroll free tools right"><svg><use href="#i-r"/></svg></button></div></div>
-  <div class="row">
-    <a class="card" href="/landlords/database-checklist/"><span class="ic"><svg><use href="#i-list"/></svg></span><b>Landlord database checklist</b><span class="d">Find your region's deadline from a postcode and tick off everything you need to register.</span><span class="ft"><span class="tag new">New</span><span>Open &rarr;</span></span></a>
-    <a class="card" href="/guides/renters-rights-act-landlord-kit.html#builder"><span class="ic"><svg><use href="#i-doc"/></svg></span><b>Written statement builder</b><span class="d">Make the written statement of terms every new tenant must now get under the Renters' Rights Act.</span><span class="ft"><span class="tag">Renters' Rights Act</span><span>Open &rarr;</span></span></a>
-    <a class="card" href="/landlords/compliance-tracker/"><span class="ic"><svg><use href="#i-cal"/></svg></span><b>Compliance date tracker</b><span class="d">Gas, electrical, EPC and deposit dates for all your properties, with calendar reminders.</span><span class="ft"><span class="tag new">New</span><span>Open &rarr;</span></span></a>
-    <div class="card soon"><span class="ic"><svg><use href="#i-pound"/></svg></span><b>Rent increase helper</b><span class="d">Works out the earliest date a new rent can start under the section 13 rules.</span><span class="ft"><span class="tag soon">Coming soon</span></span></div>
-    
-    <div class="card soon"><span class="ic"><svg><use href="#i-key"/></svg></span><b>Move-in pack checklist</b><span class="d">Every document a new tenant must get, and when, in one tickable list.</span><span class="ft"><span class="tag soon">Coming soon</span></span></div>
-  </div>
+<section class="shelf-v" id="tools" aria-labelledby="tools-h">
+  <style>
+  .shelf-v{max-width:1120px;margin:0 auto;padding:34px 20px 10px}
+  .shelf-v h2{margin:0 0 8px}
+  .shelf-v>p{margin:0 0 18px;max-width:70ch;color:var(--mut,#5A665F)}
+  .tlist{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+  .tlist a{display:flex;align-items:center;gap:16px;background:#fff;border:1.5px solid rgba(18,61,47,.14);border-radius:18px;padding:16px 18px;text-decoration:none;color:inherit}
+  .tlist a:hover{border-color:#123D2F}.tlist a:focus-visible{outline:3px solid #123D2F;outline-offset:3px}
+  .tlist .ic{flex:none;width:44px;height:44px;border-radius:12px;background:#123D2F;display:grid;place-items:center}
+  .tlist .ic svg{width:22px;height:22px;color:#8FE0BB;fill:none;stroke:currentColor}
+  .tlist b{display:block;font-size:19px}.tlist span.d{display:block;font-size:15px;color:#5A665F;margin-top:2px}
+  .tlist .go{margin-left:auto;font-weight:800;white-space:nowrap;color:#123D2F}
+  .soonlist{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:15px;color:#5A665F}
+  @media (max-width:560px){.tlist .go{display:none}}
+  </style>
+  <h2 id="tools-h">Landlord tools</h2>
+  <p>Free, no sign-up. What you type stays on your device, with one exception: if you use the optional postcode lookup, the postcode is sent to our lookup provider to find the region. You can always choose the region yourself instead.</p>
+  <ul class="tlist">
+    <li><a href="/landlords/database-checklist/"><span class="ic"><svg><use href="#i-list"/></svg></span><span><b>Find my registration deadline</b><span class="d">Your deadline depends on where each property is. Then tick off what you need to register.</span></span><span class="go">Open &rarr;</span></a></li>
+    <li><a href="/guides/renters-rights-act-landlord-kit.html#builder"><span class="ic"><svg><use href="#i-doc"/></svg></span><span><b>Create a written statement</b><span class="d">Make the written statement of terms every new tenant must now get under the Renters' Rights Act.</span></span><span class="go">Open &rarr;</span></a></li>
+    <li><a href="/landlords/compliance-tracker/"><span class="ic"><svg><use href="#i-cal"/></svg></span><span><b>Track safety-check dates</b><span class="d">Gas, electrical, EPC and deposit dates for each property, with calendar export.</span></span><span class="go">Open &rarr;</span></a></li>
+  </ul>
+  <ul class="soonlist" aria-label="Coming soon"><li><b>Coming soon:</b></li><li>Rent increase helper</li><li>Move-in pack checklist</li></ul>
 </section>
 
 <section class="products" id="protect" aria-labelledby="protect-h">
-  <div class="shelf-h"><div><h2 id="protect-h">Protect yourself</h2><p>Your tenants get an address for you, and the landlord database collects your details. Keep your home private.</p></div></div>
+  <div class="shelf-h"><div><h2 id="protect-h">Protect yourself</h2><p>Your tenants already have your name. You register with GOV.UK yourself; our optional check shows where your home address already appears online.</p></div></div>
   <div class="prod-grid">
     <a class="prod" href="/privacy-sweep/landlords/">
       <span class="who"><img src="/privacy-sweep/logo.svg" alt="">Privasweep for landlords</span>
       <h3>Your tenant knows your name. <em>Do they know where you live?</em></h3>
-      <p>We search for you the way a stranger would, show you every place your home address and household appear online, and get them removed where UK law allows.</p>
+      <p>We search for you the way a stranger would, show you where your home address and household appear online, and explain what you can ask to have removed. With the £69 service, we send the requests for you.</p>
       <ul><li>Plain-English report, ranked by risk</li><li>Removal requests sent for you with the £69 service</li><li>Checked before you register with GOV.UK</li></ul>
       <span class="buy"><span class="price">From £19<small>paid once</small></span><span class="btn">See Privasweep</span></span>
     </a>

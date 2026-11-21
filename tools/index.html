@@ -69,7 +69,12 @@
     <div>
       <p class="who rise" data-in>for Vinted, eBay, Depop and Etsy sellers</p>
       <h1 class="lines" data-in><span class="ln"><span>Know what you</span></span> <span class="ln"><span style="--d:.08s">actually take home.</span></span></h1>
-      <p class="rise" data-in style="--d:.25s">Free tools for UK resellers, including our Seller Sync Chrome extension. Work out fees, postage and real profit before you list, and keep your records straight for HMRC.</p>
+      <p class="rise" data-in style="--d:.25s">Which one do you need?</p>
+      <ul class="rise" data-in style="--d:.3s;list-style:none;padding:0;margin:0 0 18px;display:grid;gap:10px;font-size:17px;line-height:1.45">
+        <li><b>Pricing one item?</b> <a href="#calculator">Download the free Price &amp; Profit Calculator</a>.</li>
+        <li><b>Importing sales files from your platforms?</b> <a href="#seller-sync">Try Seller Sync</a>, free for Chrome.</li>
+        <li><b>Keeping a running record of purchases and expenses?</b> <a href="#tracker">Get the £12 tracker</a>.</li>
+      </ul>
       <span class="tag rise" data-in style="--d:.35s">No sign-up needed</span>
     </div>
     <img class="rise" data-in style="--d:.2s" src="/tools/calculator.png" alt="The price and profit calculator spreadsheet">
@@ -79,7 +84,7 @@
 <section class="tools">
   <div class="wrap">
     <div class="grid">
-      <div class="tool rise" data-in>
+      <div class="tool rise" data-in id="calculator">
         <span class="price free">Free</span>
         <h2>Price &amp; Profit Calculator</h2>
         <p>Type in what you paid and what you want to sell for. It shows your real profit after fees, postage and packaging on every platform.</p>
@@ -91,13 +96,13 @@
         <div class="acts"><a class="btn" href="/tools/Reseller-Price-and-Profit-Calculator.xlsx" download>Download free (.xlsx)</a></div>
         <p class="note">To use it in Google Sheets: File, then Import, then upload the file.</p>
       </div>
-      <div class="tool rise" data-in style="--d:.1s">
+      <div class="tool rise" data-in style="--d:.1s" id="tracker">
         <span class="price paid">£12, one-off</span>
         <h2>Reseller Profit &amp; HMRC Tracker</h2>
-        <p>Log every buy and sale and see your profit, your expenses and where you stand against the £1,000 trading allowance and the platform reporting limits.</p>
+        <p>Log every buy and sale and see your running profit and expenses, your total sales income against the £1,000 trading allowance, and your number of sales and sales value against the platform reporting thresholds (30 sales or about £1,700 per platform).</p>
         <ul>
           <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5.5" stroke="#E2530D" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Running profit, month by month</li>
-          <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5.5" stroke="#E2530D" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Warns you as you get close to HMRC limits</li>
+          <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5.5" stroke="#E2530D" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Warns you as your totals get close to those thresholds</li>
           <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5.5" stroke="#E2530D" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Ready for your Self Assessment</li>
         </ul>
         <div class="acts"><a class="btn pen" href="https://www.etsy.com/listing/4618138680?utm_source=tools">Get it on Etsy</a><a class="btn line" href="https://payhip.com/b/VU970?utm_source=tools">Get it on Payhip</a></div>
@@ -107,9 +112,9 @@
         <div class="wtext">
           <span class="price free">Free Chrome extension</span>
           <h2>Seller Sync</h2>
-          <p>All your Vinted, eBay, Depop and Etsy sales in one place, with a plain answer to "am I OK with HMRC?" Drop in the sales files the platforms already give you and it does the rest.</p>
+          <p>All your Vinted, eBay, Depop and Etsy sales in one place. Drop in the sales files the platforms already give you and it totals your sales income, number of sales per platform and profit after fees.</p>
           <ul>
-            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5.5" stroke="#0B9E73" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Checks the £1,000 trading allowance and each platform's reporting limit</li>
+            <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5.5" stroke="#0B9E73" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Compares your totals with the £1,000 trading allowance and each platform's reporting threshold</li>
             <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5.5" stroke="#0B9E73" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Real profit after fees, refunds and what you paid</li>
             <li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10.5l4.5 4.5L17 5.5" stroke="#0B9E73" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Private: no logins, and your sales never leave your computer</li>
           </ul>
@@ -118,7 +123,7 @@
         <img src="/tools/seller-sync.jpg" alt="The Seller Sync dashboard showing sales by platform and HMRC limit checks" loading="lazy">
       </div>
     </div>
-    <p class="fine">General information, not tax advice.</p>
+    <p class="fine">General information, not tax advice. A platform reporting your sales to HMRC doesn't automatically mean you owe tax or need a tax return. Tax may be due if you buy goods to resell or make goods to sell, and your trading income is over £1,000 before expenses in a tax year. Check <a href="https://www.gov.uk/government/news/information-for-online-sellers">HMRC's guidance for online sellers</a>.</p>
   </div>
 </section>
 </main>
