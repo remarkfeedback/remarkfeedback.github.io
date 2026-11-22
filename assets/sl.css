@@ -96,7 +96,7 @@ a{color:inherit}
 
 /* ---------- opening moment: the SL mark assembles, the flask fills, then the highlighter reveals the page ---------- */
 .sl-intro{position:fixed;inset:0;z-index:998;background:var(--paper,#F6F7F9);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;cursor:pointer}
-.sl-intro svg{width:min(260px,62vw);height:auto;overflow:visible}
+.sl-intro svg{width:min(150px,40vw);height:auto;overflow:visible}
 .sl-intro .s{fill:#2E2F31;fill-rule:evenodd;opacity:0;transform:translateX(-140px);animation:slIn .55s cubic-bezier(.2,.8,.2,1) forwards}
 .sl-intro .l{fill:#FF6A00;fill-rule:evenodd;opacity:0;transform:translateX(140px);animation:slIn .55s .08s cubic-bezier(.2,.8,.2,1) forwards}
 .sl-intro .fl{transform-box:fill-box;transform-origin:50% 100%;opacity:0;transform:translateY(-120px) scale(.7);animation:slDrop .55s .35s cubic-bezier(.3,1.5,.5,1) forwards}
