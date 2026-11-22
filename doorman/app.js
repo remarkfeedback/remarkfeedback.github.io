@@ -9,6 +9,9 @@
     .replace(/reportfraud\.police\.uk/g, '<a href="https://www.reportfraud.police.uk/" target="_blank" rel="noopener">reportfraud.police.uk</a>')
     .replace(/ncsc\.gov\.uk\/report/g, '<a href="https://www.ncsc.gov.uk/collection/phishing-scams" target="_blank" rel="noopener">ncsc.gov.uk</a>');
 
+  // Our own paid service. Plain link: no tracking codes, nothing is sent until the person chooses to click.
+  const SWEEP = `<a class="sweep" href="https://survivelabs.co.uk/privacy-sweep/" target="_blank" rel="noopener"><small>Also from Survive Labs</small><b>Worried scammers know where you live?</b><span>Check what's out there for £19</span></a>`;
+
   function renderSigns(kind, signs, extraHead) {
     const sm = S.summarise(signs);
     const steps = kind === 'page' ? S.NEXT_STEPS.page : S.NEXT_STEPS.message;
@@ -18,7 +21,7 @@
       ${extraHead || ''}
       ${signs.length ? `<ul class="signs">${signs.map(s => `<li><span class="lv ${s.level}">${LABEL[s.level]}</span><b>${esc(s.title)}</b><span class="w">${esc(s.why)}</span></li>`).join('')}</ul>` : ''}
       ${sm.band !== 'none' || kind === 'message' ? `<div class="next"><h3>What to do</h3><ul>${steps.map(([a, b]) => `<li><b>${esc(a)}</b>${b ? ' ' + linkify(b) : ''}</li>`).join('')}</ul></div>` : ''}
-    </div>`;
+    </div>${SWEEP}`;
   }
 
   function looksLikeJustALink(t) {
@@ -61,10 +64,10 @@
       <p class="sum">${esc(text)}</p>
       ${kv.length ? `<dl class="kv">${kv.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('')}</dl>` : ''}
       ${clean ? `<img src="${url}" alt="Your cleaned photo"><a class="lk-btn" href="${url}" download="${esc(clean.name)}">Download clean copy</a><p class="fine">The clean copy is redrawn on your device, which leaves the hidden data behind. Your photo never leaves your device.</p>` : '<p class="fine">This photo type can\'t be cleaned in your browser. Try a JPG or PNG, or take a screenshot of it and share that instead.</p>'}
-    </div>`;
+    </div>${SWEEP}`;
   }
 
-  window.SecondLookUI = { runText, runPhoto, renderSigns };
+  window.SecondLookUI = { runText, runPhoto, renderSigns, SWEEP };
 
   // wire up the page if the standard controls exist
   const input = $('in'), go = $('go'), ph = $('ph'), drop = $('drop'), out = $('out');
