@@ -129,7 +129,7 @@
 .panel li{display:flex;gap:12px;align-items:flex-start}
 .panel li svg{flex:none;width:22px;height:22px;margin-top:2px}
 .r .btn{background:var(--pen)} .r .btn:hover{color:var(--ink)}
-.th .btn{background:var(--ink)}
+.th .btn{background:var(--ink)} .th .btn.line{background:transparent;color:var(--ink)}
 /* mini product mock-ups, built in code so they stay sharp */
 .mock{border-radius:18px;overflow:hidden;background:#fff;color:var(--ink);box-shadow:0 40px 90px -40px rgba(0,0,0,.6);display:grid;grid-template-columns:minmax(0,1fr) 210px;min-height:380px;position:relative}
 .mock .doc{padding:34px 34px 26px 44px;font:400 16px/1.8 var(--doc);color:#262a33;position:relative}
@@ -411,22 +411,6 @@
     <p class="early rise" data-in style="--d:.9s">Remark and Themely are live on the Google Workspace Marketplace: <a href="https://workspace.google.com/marketplace/app/remark_comment_bank_marking_codes/563107659330" target="_blank" rel="noopener">add Remark to Google Docs</a>, <a href="https://workspace.google.com/marketplace/app/themely/860783735916" target="_blank" rel="noopener">add Themely to Google Docs</a> or <a href="https://workspace.google.com/marketplace/app/themely_for_sheets/191228226955" target="_blank" rel="noopener">add Themely to Google Sheets</a>.</p>
   </div>
 
-  <div class="stage" data-scene id="stage">
-    <div class="pin">
-      <div class="window" id="win">
-        <div class="chrome">
-          <i></i><i></i><i></i>
-          <div class="tabs" role="tablist" aria-label="Choose a demo">
-            <button role="tab" id="tab-remark" aria-selected="true" aria-controls="sheet">Mark an essay</button>
-            <button role="tab" id="tab-themely" aria-selected="false" aria-controls="sheet">Code an interview</button>
-          </div>
-          <span class="sp"></span>
-        </div>
-        <div class="sheet" id="sheet" role="tabpanel" aria-live="polite"></div>
-      </div>
-      <p class="cap">go on, click one</p>
-    </div>
-  </div>
 </section>
 
 <section class="duo" data-scene id="duo" data-dark>
@@ -490,6 +474,25 @@
           </div>
         </div>
       </article>
+    </div>
+  </div>
+</section>
+
+<section class="try" id="try">
+  <div class="stage" data-scene id="stage">
+    <div class="pin">
+      <div class="window" id="win">
+        <div class="chrome">
+          <i></i><i></i><i></i>
+          <div class="tabs" role="tablist" aria-label="Choose a demo">
+            <button role="tab" id="tab-remark" aria-selected="true" aria-controls="sheet">Mark an essay</button>
+            <button role="tab" id="tab-themely" aria-selected="false" aria-controls="sheet">Code an interview</button>
+          </div>
+          <span class="sp"></span>
+        </div>
+        <div class="sheet" id="sheet" role="tabpanel" aria-live="polite"></div>
+      </div>
+      <p class="cap">go on, click one</p>
     </div>
   </div>
 </section>
