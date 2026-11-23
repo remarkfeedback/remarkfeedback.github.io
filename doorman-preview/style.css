@@ -608,3 +608,11 @@ html:not(.js-off):not(.calm) .fade{opacity:0;transform:translateY(22px);transiti
 .pro-band .ex-label{color:#CDBB86}
 .pro-band .icons span{background:rgba(255,255,255,.08);color:#fff}
 .pro-band .quote,.pro-band .mini,.pro-band .toast{color:var(--ink)}
+
+/* what we test against: sizes, not scores */
+.counts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 56px;border-top:1px solid var(--rule)}
+@media (max-width:760px){.counts{grid-template-columns:1fr}}
+.counts li{display:grid;grid-template-columns:minmax(0,auto) 1fr;gap:20px;align-items:baseline;padding:24px 0;border-bottom:1px solid var(--rule)}
+.counts .n{font:800 clamp(30px,3.4vw,44px)/1 var(--display);letter-spacing:-.035em;color:var(--purple);min-width:4.6em}
+.counts div b{display:block;font-size:18px}
+.counts div span{font-size:15.5px;color:var(--ink2);line-height:1.4}

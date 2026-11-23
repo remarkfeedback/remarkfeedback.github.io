@@ -18,7 +18,7 @@
 <link rel="icon" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="fonts/unbounded-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -205,9 +205,9 @@
 <section class="tested" aria-labelledby="ts-h">
   <div class="wrap">
     <h2 id="ts-h" data-reveal>Tested against millions of real examples</h2>
-    <p class="intro" data-reveal>Before every release we run Doorman against real phishing links and scam messages, and against genuine sites and texts to make sure it doesn't cry wolf. These are our latest results, including what it misses.</p>
-    <ul class="results" data-stagger><li class="tr bad" style="--v:89%"><div class="tr-l"><b>Fake web addresses copying 141 well-known brands</b><span>448,226 tested</span></div><div class="tr-bar"><i></i></div><div class="tr-v"><b>89%</b><span>flagged as a likely scam</span></div></li><li class="tr bad" style="--v:65%"><div class="tr-l"><b>Live phishing links, using Doorman's own checks alone</b><span>789,052 tested</span></div><div class="tr-bar"><i></i></div><div class="tr-v"><b>65%</b><span>get a warning, before any scam-site list</span></div></li><li class="tr warn" style="--v:59%"><div class="tr-l"><b>Real scam texts reported around the world</b><span>23,899 tested</span></div><div class="tr-bar"><i></i></div><div class="tr-v"><b>59%</b><span>get a warning. <a href="how-we-test.html#misses">What we miss, and why</a></span></div></li><li class="tr ok" style="--v:99.9%"><div class="tr-l"><b>The world's most-visited genuine websites</b><span>1,000,000 tested</span></div><div class="tr-bar"><i></i></div><div class="tr-v"><b>99.9%</b><span>not called a likely scam (fewer than 1 in 1,000)</span></div></li><li class="tr ok" style="--v:99%"><div class="tr-l"><b>Everyday genuine text messages</b><span>4,827 tested</span></div><div class="tr-bar"><i></i></div><div class="tr-v"><b>99%</b><span>get no warning at all</span></div></li></ul>
-    <p class="ts-foot">Tested November 2026 on public research data. <a href="how-we-test.html">How we test, and where the data comes from</a></p>
+    <p class="intro" data-reveal>Every version of Doorman is checked against real scams and genuine sites before it reaches you. If a change starts flagging genuine websites or messages, it doesn't ship.</p>
+    <ul class="counts" data-stagger><li><b class="n">789,052</b><div><b>live phishing links</b><span>reported phishing sites from around the world</span></div></li><li><b class="n">1,000,000</b><div><b>genuine websites</b><span>the most-visited sites on the web, to make sure Doorman doesn't cry wolf</span></div></li><li><b class="n">448,226</b><div><b>fake look-alike addresses</b><span>copies of 141 well-known brands, spelt every way scammers try</span></div></li><li><b class="n">23,899</b><div><b>real scam texts</b><span>reported by the public, plus every one again disguised six ways to slip past filters</span></div></li></ul>
+    <p class="ts-foot">All from public research data. <a href="how-we-test.html">How we test</a></p>
   </div>
 </section>
 
@@ -327,9 +327,9 @@
   </div>
 </footer>
 
-<script src="js/engine.js?v=4"></script>
-<script src="js/app.js?v=4"></script>
-<script src="js/motion.js?v=4"></script>
+<script src="js/engine.js?v=5"></script>
+<script src="js/app.js?v=5"></script>
+<script src="js/motion.js?v=5"></script>
 <script>
 (function () {
   const msg = document.getElementById('msg'), out = document.getElementById('out');

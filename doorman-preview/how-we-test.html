@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex">
 <title>How we test Doorman | Doorman</title>
-<meta name="description" content="How we measure Doorman's accuracy: the public data we use, what counts as a warning, our latest results and what Doorman misses.">
+<meta name="description" content="How we test Doorman: the public data we use, what counts as a warning, and where any scam checker can fall short.">
 <meta property="og:title" content="How we test Doorman">
-<meta property="og:description" content="The public data we use, our latest results and what Doorman misses.">
+<meta property="og:description" content="The public data we use and where any scam checker can fall short.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Doorman">
 <meta property="og:image" content="https://survivelabs.co.uk/doorman-preview/img/share.jpg">
@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1A0B33">
 <link rel="icon" href="favicon.png">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -33,7 +33,7 @@
   </div>
 </header>
 <main id="main">
-<div class="page-hero"><div class="wrap"><h1>How we test Doorman</h1><p>No scam checker catches everything, and anyone who says otherwise isn't being straight with you. Here's how we measure Doorman, and what it misses.</p></div></div>
+<div class="page-hero"><div class="wrap"><h1>How we test Doorman</h1><p>No scam checker catches everything, and anyone who says otherwise isn't being straight with you. Here's how we test Doorman, and where it can fall short.</p></div></div>
 <div class="wrap prose">
 
 <h2>What we test against</h2>
@@ -46,28 +46,12 @@
 <li><b>Genuine texts and emails:</b> the UCI SMS collection and the SpamAssassin email collection, both widely used in research.</li>
 <li><b>Disguised messages:</b> every scam and genuine text again, rewritten six ways scammers hide words from filters, such as invisible characters and letters from other alphabets.</li>
 </ul>
-<p>We set half of the real scam texts aside and never look at them while writing new rules. Results on that unseen half tell us whether Doorman works on scams it has never seen.</p>
+<p>We set half of the real scam texts aside and never look at them while writing new rules, so we can see how Doorman does on scams it has never seen.</p>
 
 <h2>What counts as a warning</h2>
 <p>Doorman gives one of three results: <b>likely scam</b>, <b>caution</b> (some warning signs), or <b>no common warning signs</b>. In the results below, "a warning" means likely scam or caution.</p>
 
-<h2>Latest results (November 2026)</h2>
-<div class="scroll">
-<table class="res-table">
-<thead><tr><th>What we tested</th><th>Examples</th><th>Likely scam</th><th>Any warning</th></tr></thead>
-<tbody>
-<tr><td>Fake look-alike web addresses</td><td>448,226</td><td>89%</td><td>90%</td></tr>
-<tr><td>Live phishing links (Doorman's own checks, no list)</td><td>789,052</td><td>15%</td><td>65%</td></tr>
-<tr><td>Real scam texts, the unseen half</td><td>11,883</td><td>26%</td><td>59%</td></tr>
-<tr><td>Scam texts disguised with hidden characters</td><td>23,899</td><td>43%</td><td>87%</td></tr>
-<tr><td>Most-visited genuine websites</td><td>1,000,000</td><td>under 0.1%</td><td>8%</td></tr>
-<tr><td>Everyday genuine text messages</td><td>4,827</td><td>under 0.1%</td><td>0.7%</td></tr>
-<tr><td>Genuine emails</td><td>4,150</td><td>1.1%</td><td>9.9%</td></tr>
-</tbody>
-</table>
-</div>
-
-<h2 id="misses">What Doorman misses, and why</h2>
+<h2 id="misses">Where Doorman can fall short</h2>
 <ul>
 <li><b>"Wrong number" openers.</b> A first message like "Hi, are we still on for Friday?" looks exactly like a genuine text. The scam only shows itself later in the conversation.</li>
 <li><b>Brand-new scam sites with ordinary-looking names.</b> If a site's address and page look normal, there may be nothing for Doorman's checks to notice. That's why Pro adds a daily list of reported scam sites.</li>
@@ -83,6 +67,6 @@
 </div>
 </main>
 <footer><div class="wrap"><div><a class="brand" href="./"><img src="img/logo.webp" alt="" width="34" height="34">Doorman</a><p style="margin-top:12px">Doorman looks for warning signs. It can't prove something is safe. If in doubt, contact the company using details you already trust.</p><p class="co">Made in the UK by Survive Labs, Lytchett House, 13 Freeland Park, Wareham Road, Poole BH16 6FA.</p></div><nav aria-label="Footer"><a href="features.html">Features</a><a href="how-we-test.html">How we test</a><a href="check.html">Check something now</a><a href="privacy.html">Privacy</a><a href="mailto:hello@survivelabs.co.uk">Contact</a><a href="https://survivelabs.co.uk/">A Survive Labs product</a></nav></div></footer>
-<script src="js/motion.js?v=4"></script>
+<script src="js/motion.js?v=5"></script>
 </body>
 </html>
