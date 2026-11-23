@@ -73,8 +73,8 @@
   });
 
   // 2b. Everything else in a section eases in as it comes into view, a few lines at a time
-  const auto = [...document.querySelectorAll('main section h2, main section h3.belt-h, main section .intro, main section > .wrap > p, main .split > div > p, main .split ul, main .promises > li, main .faq details, main .plans .plan, main .ts-foot, main .later, main .prose > *, main .page-hero h1, main .page-hero p, main .feat-end p, main .feat-end .btn')]
-    .filter(el => !el.closest('.hero, .story-track, [data-reveal], [data-stagger], .chat') && !el.hasAttribute('data-reveal'));
+  const auto = [...document.querySelectorAll('main section h2, main section h3.belt-h, main section .intro, main section > .wrap > p, main .split > div > p, main .split ul, main .mk-after > *, main .promises > li, main .faq details, main .plans .plan, main .ts-foot, main .later, main .prose > *, main .page-hero h1, main .page-hero p, main .feat-end p, main .feat-end .btn')]
+    .filter(el => !el.closest('.hero, .story-track, .mk-pin, [data-reveal], [data-stagger], .chat, .bx') && !el.hasAttribute('data-reveal'));
   const groups = new Map();
   auto.forEach(el => { el.classList.add('fade'); const k = el.parentElement; const n = groups.get(k) || 0; el.style.setProperty('--i', Math.min(n, 6)); groups.set(k, n + 1); });
   const fader = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); fader.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
@@ -125,13 +125,97 @@
   const clock = document.querySelector('.clock');
   if (clock && !calm) { let t = 299; setInterval(() => { t = t > 0 ? t - 1 : 299; clock.textContent = `0${Math.floor(t / 60)}:${String(t % 60).padStart(2, '0')}`; }, 1000); }
 
-  // 4. The chat plays out when it scrolls into view, then Marketplace Guard speaks up
+  // shared: how far through a tall "track" the reader has scrolled (0 at the top, 1 at the end)
+  const progressOf = el => { const r = el.getBoundingClientRect(), span = r.height - innerHeight; return Math.min(1, Math.max(0, -r.top / (span > 0 ? span : 1))); };
+  const onFrame = fn => { let q = false; const run = () => { q = false; fn(); }; addEventListener('scroll', () => { if (!q) { q = true; requestAnimationFrame(run); } }, { passive: true }); addEventListener('resize', run); run(); };
+
+  // 4. The chat pins in place and plays out one step per scroll: each message arrives, Doorman
+  //    notes the courier and the bank details, then the payment link turns red and Marketplace Guard speaks up.
+  //    The trick it's using lights up in the list on the left at the same moment.
+  const mkTrack = document.querySelector('.mk-track');
   const chat = document.querySelector('.chat');
-  if (chat) {
-    const chatWatcher = new IntersectionObserver(entries => entries.forEach(e => {
-      if (e.isIntersecting) { chat.classList.add('play'); chatWatcher.disconnect(); }
-    }), { threshold: 0.45 });
-    chatWatcher.observe(chat);
+  if (mkTrack && chat) {
+    const bits = [...chat.querySelectorAll('[data-s]')];
+    const tricks = [...document.querySelectorAll('.tricks2 [data-t]')];
+    const LAST = 6;
+    let shown = -1;
+    const setMk = n => {
+      if (n === shown) return; shown = n;
+      bits.forEach(el => el.classList.toggle('on', +el.dataset.s <= n));
+      chat.classList.toggle('caught', n >= LAST);
+      tricks.forEach(li => li.classList.toggle('on', n >= +li.dataset.t));
+      chat.style.setProperty('--mp', `${(n / LAST) * 100}%`);
+    };
+    if (calm) setMk(LAST);
+    else onFrame(() => setMk(Math.min(LAST, 1 + Math.floor(progressOf(mkTrack) * (LAST + 0.6)))));
+  }
+
+  // 4b. The belt: pick a check on the left and watch it work on the right. While it's on screen and
+  //     nobody has picked one, it moves through them on its own; any click, key or hover hands control back.
+  const bx = document.querySelector('.bx');
+  if (bx) {
+    const tabs = [...bx.querySelectorAll('[role=tab]')];
+    const panels = tabs.map(t => document.getElementById(t.getAttribute('aria-controls')));
+    const side = bx.querySelector('.bx-side');
+    let cur = 0, timer = 0, visible = false, paused = false, picked = false;
+    const DUR = 5500;
+    const show = (i, focus) => {
+      cur = (i + tabs.length) % tabs.length;
+      tabs.forEach((t, k) => { const on = k === cur; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
+      panels.forEach((p, k) => p.classList.toggle('on', k === cur));
+      if (focus) tabs[cur].focus({ preventScroll: true });
+      // on phones the list is a sideways strip: keep the chosen one in view without moving the page
+      if (side && side.scrollWidth > side.clientWidth) { const t = tabs[cur]; side.scrollTo({ left: t.offsetLeft - side.clientWidth / 2 + t.offsetWidth / 2, behavior: calm ? 'auto' : 'smooth' }); }
+      restart();
+    };
+    const restart = () => {
+      clearTimeout(timer);
+      const run = !calm && !picked && visible && !paused;
+      bx.classList.toggle('auto', run);
+      if (run) { const bar = tabs[cur].querySelector('.tbar i'); bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = ''; timer = setTimeout(() => show(cur + 1), DUR); }
+    };
+    bx.style.setProperty('--dur', `${DUR}ms`);
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => { picked = true; show(i); });
+      t.addEventListener('keydown', e => {
+        const k = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+        if (k) { e.preventDefault(); picked = true; show(cur + k, true); }
+        else if (e.key === 'Home') { e.preventDefault(); picked = true; show(0, true); }
+        else if (e.key === 'End') { e.preventDefault(); picked = true; show(tabs.length - 1, true); }
+      });
+    });
+    bx.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { paused = true; restart(); } });
+    bx.addEventListener('pointerleave', () => { paused = false; restart(); });
+    bx.addEventListener('focusin', () => { paused = true; restart(); });
+    bx.addEventListener('focusout', () => { paused = false; restart(); });
+    new IntersectionObserver(es => es.forEach(e => { visible = e.isIntersecting; restart(); }), { threshold: 0.45 }).observe(bx);
+    show(0);
+  }
+
+  // 4c. Tested: a line runs down through each set of examples as you scroll. Each set lights up
+  //     and counts up as the line reaches it, and the version is "ready to ship" only at the end.
+  const pipe = document.querySelector('.pipe-wrap');
+  if (pipe) {
+    const stops = [...pipe.querySelectorAll('.pipe > li')];
+    const line = pipe.querySelector('.fl');
+    const fmt = n => n.toLocaleString('en-GB');
+    const countUp = el => {
+      const to = +el.dataset.count, t0 = performance.now(), D = 1300;
+      const tick = now => { const k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3); el.textContent = fmt(Math.round(to * e)); if (k < 1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    };
+    if (calm) stops.forEach(li => li.classList.add('on'));
+    else {
+      onFrame(() => {
+        const r = pipe.getBoundingClientRect();
+        const reach = innerHeight * 0.62 - r.top;           // how far down the line has got
+        line.style.setProperty('--fill', `${Math.max(0, reach - 22)}px`);
+        stops.forEach(li => {
+          const hit = reach >= li.offsetTop + 26;
+          if (hit && !li.classList.contains('on')) { li.classList.add('on'); const n = li.querySelector('[data-count]'); if (n) countUp(n); }
+        });
+      });
+    }
   }
 
   // 5. The promise lights up word by word on its own once it's comfortably in view
