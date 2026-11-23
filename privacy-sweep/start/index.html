@@ -38,6 +38,7 @@
 .box{background:var(--white);border:1px solid var(--rule);border-radius:14px;padding:18px 22px;margin:0 0 28px}
 .box p{margin:0 0 10px}.box p:last-child{margin:0}
 #done{display:none}
+@media print{.sl-nav,.sl-foot,.paid,#done button{display:none!important}body{padding-top:0}}
 .rvf .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:560px){.rvf .two{grid-template-columns:1fr}}
 .consent{background:var(--white);border:1.5px solid var(--ink);border-radius:14px;padding:18px}
 .consent blockquote{margin:0 0 14px;font:italic 400 17px/1.55 var(--doc);color:var(--ink)}
@@ -82,8 +83,11 @@
 
 <div id="done" class="box" role="status">
   <p><strong>Thanks, we've got everything we need.</strong></p>
-  <p>Your report will arrive by email within 5 working days. We've also emailed you a copy of the permission you just gave. If it's not in your inbox, check your spam folder.</p>
-  <p>Questions? Email <a href="mailto:hello@survivelabs.co.uk">hello@survivelabs.co.uk</a>.</p>
+  <p>Your report will arrive by email within 5 working days. Stripe has emailed you a receipt for your payment.</p>
+  <p><strong>Your permission</strong>, recorded <span id="when"></span>:</p>
+  <p id="gave" style="font-style:italic"></p>
+  <p><button type="button" onclick="window.print()" style="font:700 16px var(--sans);background:var(--white);color:var(--ink);border:1.5px solid var(--ink);border-radius:10px;padding:10px 16px;min-height:44px;cursor:pointer">Save or print a copy</button></p>
+  <p>Questions, or want to change anything? Email <a href="mailto:hello@survivelabs.co.uk">hello@survivelabs.co.uk</a>.</p>
 </div>
 </div>
 <script>
@@ -109,6 +113,8 @@
     err.textContent='';go.disabled=true;go.textContent='Sending…';
     fetch(ENDPOINT,{method:'POST',body:JSON.stringify(d)}).then(function(r){return r.json()}).then(function(j){
       if(!j.ok)throw 0;
+      document.getElementById('when').textContent=(j.received||'just now')+' (UK time)';
+      document.getElementById('gave').textContent='\u201C'+(j.wording||W[plan])+'\u201D';
       f.style.display='none';document.getElementById('done').style.display='block';window.scrollTo(0,0);
     }).catch(function(){
       go.disabled=false;go.textContent='Send my details';
