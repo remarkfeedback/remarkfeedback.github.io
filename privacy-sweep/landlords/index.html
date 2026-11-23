@@ -344,6 +344,18 @@ body{background:var(--paper)}
 .voices div b{display:block;font-size:13px;color:var(--mut);font-weight:700;margin-bottom:8px}
 @media (max-width:980px){.tline,.voices{grid-template-columns:1fr}}
 .hero h1{font-size:clamp(40px,4.4vw,66px)}
+
+@media (max-width:600px){
+  .case{height:400vh}
+  .llchip{display:block;border-radius:12px;padding:10px 14px;line-height:1.35}
+  .grid:has(.stat){grid-template-columns:1fr 1fr;gap:10px}
+  .grid:has(.stat) .stat{padding:16px}
+  .grid:has(.stat) .stat .n{font-size:34px}
+  .grid:has(.stat) .stat p{font-size:14px;line-height:1.35}
+  .grid:has(.stat) .stat small{font-size:11px}
+  .pr{padding:18px}
+}
+.hav img{width:58px;height:58px;border-radius:50%;display:block}
 </style>
 <style>
 .human{padding:56px 0}
@@ -483,7 +495,7 @@ body{background:var(--paper)}
 
 <section class="sec human" aria-labelledby="human-h">
   <div class="wrap"><div class="hcard">
-    <div class="hwho"><span class="hav" aria-hidden="true">SL</span><div><h2 id="human-h">Checked by a person, not just a computer</h2><p>Lots of privacy services are fully automated. Privasweep isn't. A real person looks over your results before anything reaches you.</p></div></div>
+    <div class="hwho"><span class="hav" aria-hidden="true" style="background:none"><img src="/sl-icon.png" alt=""></span><div><h2 id="human-h">Checked by a person, not just a computer</h2><p>Lots of privacy services are fully automated. Privasweep isn't. A real person looks over your results before anything reaches you.</p></div></div>
     <ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#17A86F"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Every report is checked by a person before it's sent to you</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#17A86F"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Removal requests are sent and chased by a person, not fired off by a bot</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#17A86F"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Every email is answered by a real person, not a ticket system</span></li></ul>
   </div></div>
 </section>

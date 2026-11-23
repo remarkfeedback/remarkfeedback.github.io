@@ -118,3 +118,5 @@ a{color:inherit}
 @keyframes slWord{to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.sl-intro{display:none}}
 html,body{overflow-x:clip}
+/* phone tap targets */
+@media (max-width:720px){.sl-logo{min-height:44px;min-width:44px;justify-content:center}.sl-logo img{width:34px;height:34px}.sl-nav nav a,.sl-nav .sl-menu-btn{min-height:42px;display:inline-flex;align-items:center}}
