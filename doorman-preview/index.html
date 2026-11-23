@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en-GB" class="js-off">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Doorman: a bouncer for your browser | Spot scams before they cost you</title>
+<meta name="description" content="Doorman checks messages, links and web pages for the tricks scammers use, on your own computer. Nothing you check is sent to us or anyone else. Made in the UK by Survive Labs.">
+<meta property="og:title" content="Doorman: a bouncer for your browser">
+<meta property="og:description" content="Spot scam texts, fake websites and marketplace tricks before they cost you. Every check happens on your own computer.">
+<meta property="og:image" content="img/logo.png">
+<meta name="theme-color" content="#1A0B33">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="fonts/unbounded-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="./"><img src="img/logo.webp" alt="" width="34" height="34">Doorman</a>
+    <nav aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#private">Privacy</a>
+      <a href="#pricing">Pricing</a>
+      <a href="check.html">Check something now</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" aria-labelledby="title">
+  <div class="wrap hero-grid">
+    <div>
+      <h1 id="title"><span class="ln1"><span>A bouncer</span></span> <span class="ln1"><span>for your</span></span> <span class="ln1"><span>browser.</span></span></h1>
+      <p class="lede">Doorman checks texts, emails, links and web pages for the tricks scammers use, and warns you before you hand anything over. Every check happens on your own computer. Nothing you check is ever sent to us or anyone else.</p>
+      <div class="ctas">
+        <span class="btn soon" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 8.5h8.2M8.9 13.8 4.8 6.7M15 13.8l-4.1 7.1"/></svg>Coming soon to Chrome</span>
+        <a class="btn ghost" href="#try">Try the checker</a>
+      </div>
+      <p class="small-print">Free to use. Doorman Pro adds a watcher that checks every page for you.</p>
+    </div>
+
+    <div class="hatch" id="try">
+      <div class="hatch-top"><img src="img/logo.webp" alt="" width="44" height="44"><div><b>Ask the Doorman</b><span>Paste something you weren't expecting</span></div></div>
+      <label for="msg">Text message, email or link</label>
+      <textarea id="msg" placeholder="For example: Royal Mail: your parcel is waiting. Pay the £1.45 redelivery fee at..."></textarea>
+      <div class="hatch-row">
+        <button class="go" id="go" type="button">Check it</button>
+        <button class="try" type="button" data-sample="Royal Mail: your parcel couldn't be delivered due to an unpaid fee of £1.45. Pay now at https://royalmail-redelivery.top/pay">Try a fake delivery text</button>
+        <button class="try" type="button" data-sample="Hi Mum, I've dropped my phone down the toilet, this is my new number. Can you help with a bill today? I'll pay you back tomorrow x">Try a "Hi Mum" text</button>
+      </div>
+      <p class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Checked in this browser tab. What you paste isn't sent anywhere.</p>
+      <div id="out" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <!-- the velvet rope -->
+  <svg class="rope" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="br" x1="0" x2="1"><stop offset="0" stop-color="#9C7420"/><stop offset=".45" stop-color="#F2D27A"/><stop offset="1" stop-color="#9C7420"/></linearGradient>
+      <linearGradient id="rp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8E3BFF"/><stop offset="1" stop-color="#3E0670"/></linearGradient>
+    </defs>
+    <path class="rope-line" pathLength="1" d="M60 34 Q330 120 600 34 Q870 120 1140 34" fill="none" stroke="url(#rp)" stroke-width="14" stroke-linecap="round"/>
+    <g fill="url(#br)"><rect x="50" y="22" width="20" height="98" rx="4"/><circle cx="60" cy="20" r="14"/><rect x="590" y="22" width="20" height="98" rx="4"/><circle cx="600" cy="20" r="14"/><rect x="1130" y="22" width="20" height="98" rx="4"/><circle cx="1140" cy="20" r="14"/></g>
+    <rect x="0" y="116" width="1200" height="4" fill="#FBF9FF"/>
+  </svg>
+</section>
+
+<section id="how" class="story" aria-labelledby="how-h">
+  <div class="wrap story-grid">
+    <div class="story-steps">
+      <div class="story-head" data-reveal>
+        <h2 id="how-h">It stays out of the way until something looks wrong</h2>
+        <p class="intro">With Always-on switched on, Doorman checks every page you open. The more worried it is, the louder it gets.</p>
+      </div>
+      <div class="step" data-step="0"><span class="num">1</span><h3>Nothing found</h3><p>It stays quiet. The Doorman icon in your toolbar glows green to show the page was checked.</p></div>
+      <div class="step" data-step="1"><span class="num">2</span><h3>A few warning signs</h3><p>A small note appears in the corner and the icon turns amber. Click it to see what Doorman noticed.</p></div>
+      <div class="step" data-step="2"><span class="num">3</span><h3>Strong signs of a scam</h3><p>A warning opens with the page and the icon turns red. Doorman marks what it found and explains each one in plain English.</p></div>
+      <div class="step" data-step="3"><span class="num">4</span><h3>Hold on</h3><p>Start typing a card number, bank details or a password on a risky page, and Doorman stops you before you finish.</p></div>
+    </div>
+
+    <div class="story-stage" aria-hidden="true">
+      <div class="browser" data-state="0">
+        <div class="bar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <div class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span class="u u0">gov.uk/library-opening-hours</span><span class="u u1">mega-deals-outlet.shop/trainers</span><span class="u u2">parcel-redelivery.top/pay</span></div>
+          <span class="tb"><img class="t0" src="img/ok-32.png" alt=""><img class="t1" src="img/medium-32.png" alt=""><img class="t2" src="img/high-32.png" alt=""><i class="badge">!</i></span>
+        </div>
+        <div class="view">
+          <div class="pg pg0">
+            <div class="ph gov">Local services</div>
+            <div class="pt">Library opening hours</div>
+            <div class="ln w90"></div><div class="ln w75"></div><div class="ln w82"></div>
+            <div class="tbl"><span>Monday to Friday</span><span>9am to 6pm</span><span>Saturday</span><span>10am to 4pm</span></div>
+            <div class="ln w60"></div>
+          </div>
+          <div class="pg pg1">
+            <div class="ph shop">MEGA DEALS</div>
+            <div class="sale">87% off everything<small>Ends in <b class="clock">04:59</b></small></div>
+            <div class="prods"><span></span><span></span><span></span></div>
+            <div class="ln w70"></div>
+          </div>
+          <div class="pg pg2">
+            <div class="ph parcel">Parcel delivery</div>
+            <div class="pt">We tried to deliver your parcel</div>
+            <div class="ln w90 hl h1"></div><div class="ln w65 hl h2"></div>
+            <div class="form">
+              <label>Card number</label><div class="field"><span class="typed">4929 1</span><i class="caret"></i></div>
+              <label>Expiry date</label><div class="field"></div>
+              <div class="pay">Pay £1.99</div>
+            </div>
+            <span class="mk m1">1</span><span class="mk m2">2</span><span class="mk m3">3</span>
+          </div>
+
+          <div class="pill"><img src="img/logo.webp" alt=""><i></i>Doorman: 2 warning signs</div>
+
+          <div class="alert">
+            <div class="ah"><img src="img/logo.webp" alt=""><b>Doorman</b><span>Always watching, on your device</span></div>
+            <div class="ab">
+              <span class="chip">High risk</span>
+              <b class="at">This page shows strong signs of a scam</b>
+              <ul><li>This form sends what you type to collect-pay.xyz</li><li>It asks for a small fee</li><li>The address isn't the courier's website</li></ul>
+              <div class="abtn"><span class="p">Show me on the page</span><span>Leave this page</span></div>
+            </div>
+          </div>
+
+          <div class="shade"></div>
+          <div class="hold">
+            <div class="hh"><img src="img/logo.webp" alt=""><b>Hold on a moment</b><span>You're about to type card details on parcel-redelivery.top, and this page has strong signs of a scam.</span></div>
+            <div class="hb"><span class="p">Get me out of here</span><span>Show me why</span><em>I know this site, let me continue</em></div>
+          </div>
+        </div>
+      </div>
+      <p class="stage-note">An example. Doorman runs the same checks on every page you open.</p>
+    </div>
+  </div>
+</section>
+
+<section class="market" aria-labelledby="mk-h">
+  <div class="wrap split">
+    <div data-reveal>
+      <h2 id="mk-h">A second pair of eyes when you're buying and selling</h2>
+      <p>Marketplace Guard reads chats as messages arrive, and speaks up the moment a buyer, seller or "landlord" tries one of the usual tricks.</p>
+      <ul class="tricks">
+        <li>Links to "receive your payment"</li>
+        <li>Paying by bank transfer or PayPal friends and family</li>
+        <li>Moving the chat to WhatsApp or off the site</li>
+        <li>Overpaying and asking for the difference back</li>
+        <li>Deposits before a viewing, or keys sent by post</li>
+      </ul>
+      <ul class="sites" aria-label="Sites Marketplace Guard works on"><li>Vinted</li><li>eBay</li><li>Gumtree</li><li>Facebook Marketplace</li><li>Depop</li><li>SpareRoom</li><li>Rightmove</li><li>Zoopla</li><li>OpenRent</li><li>AutoTrader</li></ul>
+    </div>
+    <div class="chat" role="img" aria-label="Example chat: a buyer asks about an iPhone, says their courier will collect, asks for bank details, then sends a link to receive payment. Marketplace Guard shows a high risk warning.">
+      <div class="ch-top"><span class="av">J</span><div><b>Jordan</b><small>Interested in: iPhone 14 Pro, £520</small></div></div>
+      <div class="msgs">
+        <p class="m them" style="--d:0">Hi, is this still available?</p>
+        <p class="m me" style="--d:1">Yes it is!</p>
+        <p class="m them" style="--d:2">Great. I'm working away so my courier will collect it.</p>
+        <p class="m them" style="--d:3">I'll pay by bank transfer, just send your sort code and account number.</p>
+        <p class="m them bad" style="--d:4">Sent the money. Click here to receive your payment: secure-pay-confirm.top/receive</p>
+      </div>
+      <div class="guard">
+        <div class="gh"><img src="img/logo.webp" alt=""><b>Marketplace Guard</b></div>
+        <span class="chip">High risk</span>
+        <b>Sends a link to "receive" your payment</b>
+        <span class="gw">You never need a link to receive money. Fake payment pages steal card details.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="belt-h">
+  <div class="wrap">
+    <h2 id="belt-h" data-reveal>Everything on the belt</h2>
+    <p class="intro">Click the Doorman icon and pick a check. Each one takes a few seconds.</p>
+    <dl class="belt" data-stagger>
+      <div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="m3 8 9 6 9-6"/></svg></dt><dd><b>Scan this page</b></dd><dd class="what">Marks anything suspicious on the page you're on, and explains each one.</dd></div>
+      <div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></dt><dd><b>Check a message</b></dd><dd class="what">Fake deliveries, "Hi Mum", bank alerts, fines, job offers, investment pitches.</dd></div>
+      <div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></dt><dd><b>Check a link</b></dd><dd class="what">Where it really goes, look-alike spellings and addresses that copy real companies.</dd></div>
+      <div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg></dt><dd><b>Check a QR code</b></dd><dd class="what">See where a parking-meter sticker or a letter's QR code leads before you scan it with your phone.</dd></div>
+      <div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.4 11.1-9.2 9.2a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 0 1 5.7 5.7l-9.2 9.2a2 2 0 0 1-2.8-2.8l8.5-8.5"/></svg></dt><dd><b>Check an attachment</b></dd><dd class="what">Spots programs dressed up as invoices, hidden macros and files inside zips.</dd></div>
+      <div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></dt><dd><b>Check a password</b></dd><dd class="what">An honest idea of how quickly it could be guessed.</dd></div>
+      <div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></dt><dd><b>Check a photo</b></dd><dd class="what">See if a photo gives away where you live before you post it. Pro saves a clean copy.</dd></div>
+      <div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10 6h4M10 10h4M10 14h2"/></svg></dt><dd><b>Check a screenshot <span class="pro-tag">Pro</span></b></dd><dd class="what">Got a dodgy text on your phone? Drop in a screenshot and Doorman reads it.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="statement" aria-label="Our promise">
+  <div class="wrap"><p class="fill" data-fill>Every check happens on your own computer. Nothing you paste, no page you visit and no photo you choose is ever sent to us or anyone else.</p></div>
+</section>
+
+<section class="private" id="private" aria-labelledby="pr-h">
+  <div class="wrap device">
+    <div>
+      <h2 id="pr-h">Nothing you check leaves your computer</h2>
+      <p class="intro">Many scam checkers send what you paste, or every site you visit, to their own servers to be checked. Doorman doesn't. All its checks are built into the extension and run on your own device.</p>
+      <ul class="promises">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><b>No account, no tracking, no adverts.</b> We don't know who you are or what you check.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><b>Our own rules, written by people.</b> Doorman doesn't use AI to judge anything, and it tells you exactly why it's worried.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><b>The list comes to you.</b> Pro downloads a list of reported scam websites once a day and checks it on your computer, so nobody learns which sites you visit.</span></li>
+      </ul>
+    </div>
+    <svg class="diagram" viewBox="0 0 420 340" role="img" aria-label="Diagram: checks happen inside your computer. Nothing goes out. Only the daily list of scam sites comes in.">
+      <rect x="20" y="70" width="250" height="200" rx="22" fill="rgba(255,255,255,.06)" stroke="#8E6BD8" stroke-width="2"/>
+      <text x="40" y="104" fill="#D2C4F2" font-family="Atkinson Hyperlegible,sans-serif" font-size="15">Your computer</text>
+      <rect x="48" y="126" width="194" height="110" rx="16" fill="#6D1ED4"/>
+      <text x="145" y="172" fill="#fff" text-anchor="middle" font-family="Unbounded,sans-serif" font-weight="700" font-size="16">Doorman</text>
+      <text x="145" y="198" fill="#E4D9FF" text-anchor="middle" font-family="Atkinson Hyperlegible,sans-serif" font-size="14">checks happen here</text>
+      <path d="M272 140 H360" stroke="#7A6A9C" stroke-width="2.5" stroke-dasharray="6 6"/>
+      <circle cx="316" cy="140" r="15" fill="#1A0B33" stroke="#F04438" stroke-width="2.5"/><path d="M309 133l14 14M323 133l-14 14" stroke="#F04438" stroke-width="2.5" stroke-linecap="round"/>
+      <text x="292" y="118" fill="#BFAEE6" font-family="Atkinson Hyperlegible,sans-serif" font-size="13">nothing goes out</text>
+      <path d="M392 216 H282" stroke="#D9A93A" stroke-width="2.5"/><path d="M290 208l-9 8 9 8" fill="none" stroke="#D9A93A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="290" y="246" fill="#E8CF8A" font-family="Atkinson Hyperlegible,sans-serif" font-size="13">daily scam-site list</text>
+      <text x="290" y="264" fill="#BFAEE6" font-family="Atkinson Hyperlegible,sans-serif" font-size="13">(Pro, download only)</text>
+    </svg>
+  </div>
+</section>
+
+<section id="pricing" aria-labelledby="pp-h">
+  <div class="wrap">
+    <h2 id="pp-h" data-reveal>Free to use. Pro if you want it watching for you.</h2>
+    <p class="intro">Pro launches soon. Everything in the free version stays free.</p>
+    <div class="plans" data-stagger>
+      <div class="plan">
+        <h3>Doorman</h3>
+        <p class="price">Free</p>
+        <p class="per">No account needed</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Scan any page</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Check messages, links, QR codes, attachments and passwords</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>See what a photo gives away</li>
+        </ul>
+      </div>
+      <div class="plan pro">
+        <h3>Doorman Pro</h3>
+        <p class="price">£2.99 <small>a month</small></p>
+        <p class="per">or £24.99 a year</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Always-on: checks every page and steps in before you type card or bank details</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Marketplace Guard for buying, selling and renting</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Daily list of reported scam websites</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Screenshot checker and clean photo copies</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Alerts about scam pages in your other tabs</li>
+        </ul>
+      </div>
+    </div>
+    <p class="later">Looking out for your parents too? A family plan is on the way.</p>
+  </div>
+</section>
+
+<section aria-labelledby="faq-h" style="padding-top:0">
+  <div class="wrap faq">
+    <h2 id="faq-h">Questions</h2>
+    <details><summary>Does Doorman use AI?</summary><p>Doorman doesn't use AI to judge anything. Every warning comes from our own rules, and every check runs on your device. That's why it can always tell you exactly what it noticed.</p></details>
+    <details><summary>If Doorman finds nothing, does that mean a site is safe?</summary><p>No, and we'll never say it is. New scams appear every day, and a brand-new scam site can look perfectly clean. Doorman looks for the warning signs scammers usually leave. If something still feels wrong, contact the company using details you already trust.</p></details>
+    <details><summary>Can Doorman see my passwords or card numbers?</summary><p>Doorman notices when you click into a password or card box on a risky page, so it can warn you. It never reads, stores or sends what you type.</p></details>
+    <details><summary>Why does Chrome say it can "read and change data on all websites"?</summary><p>That's Chrome's standard wording for any extension that checks pages for you. Doorman only asks for it when you switch on Always-on or Marketplace Guard, and the checks still happen on your computer.</p></details>
+    <details><summary>Which browsers does it work in?</summary><p>Google Chrome first, which also covers Microsoft Edge and Brave. We'd like to bring it to phones later.</p></details>
+    <details><summary>Who makes Doorman?</summary><p>Doorman is made in the UK by <a href="https://survivelabs.co.uk/">Survive Labs</a>. We build small, honest tools that help people stay safe and private online.</p></details>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="brand" href="./"><img src="img/logo.webp" alt="" width="34" height="34">Doorman</a>
+      <p style="margin-top:12px">Doorman looks for warning signs. It can't prove something is safe. If in doubt, contact the company using details you already trust.</p>
+    </div>
+    <nav aria-label="Footer">
+      <a href="check.html">Check something now</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="mailto:hello@survivelabs.co.uk">Contact</a>
+      <a href="https://survivelabs.co.uk/">A Survive Labs product</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="js/engine.js"></script>
+<script src="js/app.js"></script>
+<script src="js/motion.js"></script>
+<script>
+(function () {
+  const msg = document.getElementById('msg'), out = document.getElementById('out');
+  const run = () => window.SecondLookUI.runText(msg.value, out);
+  document.getElementById('go').addEventListener('click', run);
+  msg.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) run(); });
+  document.querySelectorAll('[data-sample]').forEach(b => b.addEventListener('click', () => { msg.value = b.dataset.sample; run(); }));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Check a message, link or photo | Doorman</title>
+<meta name="description" content="Paste a text, email or link, or choose a photo. Doorman checks it in your browser for the tricks scammers use. Nothing is sent anywhere.">
+<meta name="theme-color" content="#1A0B33">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="brand" href="./"><img src="img/logo.webp" alt="" width="34" height="34">Doorman</a><nav aria-label="Main"><a href="./#how">How it works</a><a href="./#private">Privacy</a><a href="./#pricing">Pricing</a></nav></div></header>
+<main>
+<div class="page-hero"><div class="wrap"><h1>Check something now</h1><p>Paste a message or link, or choose a photo. It's checked in this browser tab and nothing is sent anywhere.</p></div></div>
+<div class="wrap" style="max-width:760px;padding:40px 0 80px">
+  <div class="tool-tabs" role="tablist" aria-label="What to check">
+    <button role="tab" id="t-text" aria-selected="true" aria-controls="p-text">Message or link</button>
+    <button role="tab" id="t-photo" aria-selected="false" aria-controls="p-photo">Photo</button>
+  </div>
+  <div class="hatch" style="box-shadow:0 20px 50px -30px rgba(42,6,80,.5)">
+    <div id="p-text" role="tabpanel" aria-labelledby="t-text">
+      <label for="msg">Text message, email or link</label>
+      <textarea id="msg" placeholder="Paste it here"></textarea>
+      <div class="hatch-row"><button class="go" id="go" type="button">Check it</button></div>
+    </div>
+    <div id="p-photo" role="tabpanel" aria-labelledby="t-photo" hidden>
+      <label class="drop" for="ph"><span><b>Choose a photo</b><br><span style="color:var(--ink2);font-size:15px">See whether it shows where it was taken before you post it</span></span></label>
+      <input type="file" id="ph" accept="image/*" hidden>
+    </div>
+    <div id="out" aria-live="polite"></div>
+  </div>
+  <p style="margin-top:28px;color:var(--ink2)">Want Doorman to check pages for you as you browse? The Chrome extension is coming soon.</p>
+</div>
+</main>
+<footer><div class="wrap"><div><a class="brand" href="./"><img src="img/logo.webp" alt="" width="34" height="34">Doorman</a></div><nav aria-label="Footer"><a href="./">Home</a><a href="privacy.html">Privacy</a><a href="mailto:hello@survivelabs.co.uk">Contact</a><a href="https://survivelabs.co.uk/">A Survive Labs product</a></nav></div></footer>
+<script src="js/engine.js"></script>
+<script>window.DoormanPhotoLocked = () => true; window.DoormanProLink = "./#pricing"; // clean photo copies are part of Doorman Pro</script>
+<script src="js/app.js"></script>
+<script>
+(function () {
+  const out = document.getElementById('out'), msg = document.getElementById('msg');
+  document.getElementById('go').addEventListener('click', () => window.SecondLookUI.runText(msg.value, out));
+  document.getElementById('ph').addEventListener('change', e => window.SecondLookUI.runPhoto(e.target.files[0], out));
+  const tabs = [['t-text', 'p-text'], ['t-photo', 'p-photo']];
+  tabs.forEach(([t, p]) => document.getElementById(t).addEventListener('click', () => {
+    tabs.forEach(([t2, p2]) => { document.getElementById(t2).setAttribute('aria-selected', String(t2 === t)); document.getElementById(p2).hidden = t2 !== t; });
+    out.innerHTML = '';
+  }));
+  // a link shared to this page, e.g. check.html#https://example.com
+  if (location.hash.length > 1) { msg.value = decodeURIComponent(location.hash.slice(1)); window.SecondLookUI.runText(msg.value, out); }
+})();
+</script>
+</body>
+</html>
