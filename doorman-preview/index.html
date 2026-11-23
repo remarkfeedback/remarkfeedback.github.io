@@ -62,33 +62,33 @@
 </section>
 
 <section id="how" class="story" aria-labelledby="how-h">
-  <div class="wrap story-grid">
-    <div class="story-steps">
-      <div class="story-head" data-reveal>
+  <div class="wrap"><div class="story-head">
         <h2 id="how-h">It stays out of the way until something looks wrong</h2>
         <p class="intro">With Always-on switched on, Doorman reads every page you open, the way a careful friend would. Here's what it notices on four pages.</p>
-      </div>
-      <div class="step" data-step="0"><span class="num">1</span><h3>A genuine page: nothing found</h3>
+      </div></div>
+  <div class="story-track">
+    <div class="story-pin">
+      <div class="wrap story-grid">
+        <div class="story-text">
+          <div class="story-steps">
+            <div class="step" data-step="0"><span class="num">1</span><h3>A genuine page: nothing found</h3>
         <ul class="read"><li><i class="ck ok" aria-label="Fine">✓</i>The address is gov.uk, the government's own website</li><li><i class="ck ok" aria-label="Fine">✓</i>Nothing asks for money, passwords or card details</li><li><i class="ck ok" aria-label="Fine">✓</i>No countdowns, threats or pressure</li></ul>
-        <p class="out">Doorman stays quiet. The icon in your toolbar glows green.</p></div>
-      <div class="step" data-step="1"><span class="num">2</span><h3>A pushy shop: a few warning signs</h3>
+        <p class="out">Doorman stays quiet. The icon in your toolbar glows green.</p></div><div class="step" data-step="1"><span class="num">2</span><h3>A pushy shop: a few warning signs</h3>
         <ul class="read"><li><i class="ck warn" aria-label="Warning sign">!</i>A countdown is rushing you to buy</li><li><i class="ck warn" aria-label="Warning sign">!</i>"87% off everything" is a typical fake-shop offer</li><li><i class="ck ok" aria-label="Fine">✓</i>It isn't asking for card details yet</li></ul>
-        <p class="out">A small note appears in the corner. Click it to see why.</p></div>
-      <div class="step" data-step="2"><span class="num">3</span><h3>A fake parcel page: strong signs of a scam</h3>
+        <p class="out">A small note appears in the corner. Click it to see why.</p></div><div class="step" data-step="2"><span class="num">3</span><h3>A fake parcel page: strong signs of a scam</h3>
         <ul class="read"><li><i class="ck bad" aria-label="Strong warning sign">✕</i>It says Royal Mail, but the address is parcel-redelivery.top</li><li><i class="ck bad" aria-label="Strong warning sign">✕</i>It asks for a small fee to release your parcel</li><li><i class="ck bad" aria-label="Strong warning sign">✕</i>The card form sends your details to a different site</li></ul>
-        <p class="out">Doorman warns you as the page opens and marks each problem.</p></div>
-      <div class="step" data-step="3"><span class="num">4</span><h3>You start typing your card number</h3>
+        <p class="out">Doorman warns you as the page opens and marks each problem.</p></div><div class="step" data-step="3"><span class="num">4</span><h3>You start typing your card number</h3>
         <ul class="read"><li><i class="ck bad" aria-label="Strong warning sign">✕</i>You've clicked into a card number box</li><li><i class="ck bad" aria-label="Strong warning sign">✕</i>This page already shows strong signs of a scam</li></ul>
         <p class="out">Doorman stops you before you finish typing.</p></div>
-    </div>
-
-    <div class="story-stage" aria-hidden="true">
+          </div>
+          <div class="story-dots" role="tablist" aria-label="Steps"><button type="button" class="sd" data-go="0" aria-label="Step 1: A genuine page"><i></i><span>A genuine page</span></button><button type="button" class="sd" data-go="1" aria-label="Step 2: A pushy shop"><i></i><span>A pushy shop</span></button><button type="button" class="sd" data-go="2" aria-label="Step 3: A fake parcel page"><i></i><span>A fake parcel page</span></button><button type="button" class="sd" data-go="3" aria-label="Step 4: Typing a card number"><i></i><span>Typing a card number</span></button></div>
+        </div>
+        <div class="story-stage" aria-hidden="true">
       <div class="browser" data-state="0">
         <div class="bar">
           <span class="dots"><i></i><i></i><i></i></span>
-          <div class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span class="u u0">gov.uk/library-opening-hours</span><span class="u u1">mega-deals-outlet.shop/trainers</span><span class="u u2">parcel-redelivery.top/pay</span></div>
+          <div class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span class="u u0">gov.uk/library-opening-hours</span><span class="u u1">mega-deals-outlet.shop/trainers</span><span class="u u2">parcel-redelivery.top/pay</span><span class="mk m1">1</span></div>
           <span class="tb"><img class="t0" src="img/ok-32.png" alt=""><img class="t1" src="img/medium-32.png" alt=""><img class="t2" src="img/high-32.png" alt=""><i class="badge">!</i></span>
-          <span class="mk m1">1</span>
         </div>
         <div class="view">
           <div class="pg pg0">
@@ -133,7 +133,9 @@
           </div>
         </div>
       </div>
-      <p class="stage-note">An example. Doorman runs the same checks on every page you open.</p>
+      
+    
+      </div>
     </div>
   </div>
 </section>

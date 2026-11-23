@@ -72,19 +72,46 @@
     revealer.observe(list);
   });
 
-  // 3. How it steps in: the browser on the right follows whichever step is in the middle of the screen
+  // 3. How it steps in: the section pins in place and scrolling moves through the four steps.
+  //    The text and the browser always change together, so nothing scrolls away mid-demo.
   const browser = document.querySelector('.browser');
-  const steps = [...document.querySelectorAll('.step')];
+  const track = document.querySelector('.story-track');
+  const steps = [...document.querySelectorAll('.story-steps .step')];
+  const dots = [...document.querySelectorAll('.story-dots .sd')];
+  const N = steps.length;
+  let current = -1;
   const setStep = n => {
-    if (!browser || browser.dataset.state === String(n)) return;
+    if (n === current || !browser) return;
+    current = n;
     browser.dataset.state = n;
-    steps.forEach(s => s.classList.toggle('on', s.dataset.step === String(n)));
+    steps.forEach((s, i) => s.classList.toggle('on', i === n));
+    dots.forEach((d, i) => { d.classList.toggle('on', i === n); d.setAttribute('aria-selected', String(i === n)); });
   };
-  const stepWatcher = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) setStep(e.target.dataset.step); }),
-    // on phones the browser sits pinned at the top, so the step being read is the one in the lower part of the screen
-    { rootMargin: matchMedia('(max-width: 900px)').matches ? '-72% 0px -18% 0px' : '-45% 0px -45% 0px' });
-  steps.forEach(s => stepWatcher.observe(s));
-  if (steps[0]) steps[0].classList.add('on');
+  const trackProgress = () => {
+    const r = track.getBoundingClientRect(), span = r.height - innerHeight;
+    return Math.min(1, Math.max(0, -r.top / (span > 0 ? span : 1)));
+  };
+  if (track && !calm) {
+    let queued = false;
+    const onScroll = () => {
+      queued = false;
+      const p = trackProgress();
+      // each step holds for a quarter of the scroll; the last stays until the section ends
+      const n = Math.min(N - 1, Math.floor(p * N * 0.999));
+      setStep(n);
+      dots.forEach((d, i) => d.querySelector('i').style.setProperty('--f', Math.min(1, Math.max(0, p * N - i))));
+    };
+    addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(onScroll); } }, { passive: true });
+    addEventListener('resize', onScroll);
+    onScroll();
+    // clicking a step label jumps to it
+    dots.forEach((d, i) => d.addEventListener('click', () => {
+      const top = track.getBoundingClientRect().top + scrollY, span = track.offsetHeight - innerHeight;
+      scrollTo({ top: top + span * (i + 0.5) / N, behavior: 'smooth' });
+    }));
+  } else {
+    setStep(2); // no motion: show the scam example
+  }
 
   // the countdown on the pushy shop page ticks (it's the kind of pressure Doorman notices)
   const clock = document.querySelector('.clock');
