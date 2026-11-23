@@ -42,7 +42,6 @@
             <g><use href="#hk" x="536" y="88"/><animateTransform attributeName="transform" type="translate" values="0 0;-474 150;-424 162" keyTimes="0;.6;1" calcMode="spline" keySplines=".55 0 .9 .45;.2 .7 .3 1" dur=".9s" begin="1.6s" fill="freeze"/></g>
           </g>
         </svg>
-        <b class="iword">Doorman</b>
       </div>`;
     root.appendChild(intro);
     root.classList.add('intro-on');

@@ -343,11 +343,9 @@ html:not(.js-off):not(.calm) [data-stagger]>*{opacity:0;transform:translateY(22p
 /* ---------- the opening moment ---------- */
 html.intro-on{overflow:hidden}
 .dm-intro{position:fixed;inset:0;z-index:999;display:grid;place-items:center;cursor:pointer}
-.dm-intro .door{position:absolute;top:0;bottom:0;width:50.5%;background:radial-gradient(700px 500px at 100% 40%,rgba(162,11,255,.35),transparent 60%),linear-gradient(170deg,#2A0A52,#1A0B33 70%);transition:transform 1s cubic-bezier(.7,0,.2,1)}
-.dm-intro .door.l{left:0}
-.dm-intro.open .door.l{box-shadow:inset -2px 0 0 rgba(217,169,58,.7)}
-.dm-intro.open .door.r{box-shadow:inset 2px 0 0 rgba(217,169,58,.7)}
-.dm-intro .door.r{right:0;transform-origin:right;background:radial-gradient(700px 500px at 0% 40%,rgba(162,11,255,.35),transparent 60%),linear-gradient(190deg,#2A0A52,#1A0B33 70%)}
+.dm-intro .door{position:absolute;top:0;bottom:0;width:calc(50% + 1px);background:radial-gradient(760px 520px at 50% 42%,rgba(162,11,255,.35),transparent 60%),linear-gradient(180deg,#2A0A52,#1A0B33 70%);background-size:100vw 100%;transition:transform 1s cubic-bezier(.7,0,.2,1)}
+.dm-intro .door.l{left:0;background-position:0 0}
+.dm-intro .door.r{right:0;transform-origin:right;background-position:right 0}
 .dm-intro.open .door.l{transform:translateX(-101%)}
 .dm-intro.open .door.r{transform:translateX(101%)}
 .stagebox{position:relative;display:grid;justify-items:center;gap:6px;transition:transform .7s cubic-bezier(.5,0,.2,1),opacity .45s}
@@ -915,3 +913,7 @@ html:not(.js-off):not(.calm) [data-build].mk-grid .chat{opacity:0;transform:tran
 [data-build].in .mk-text>:nth-child(4){transition-delay:.28s}
 [data-build].in .mk-text>:nth-child(5){transition-delay:.36s}
 @media (min-width:901px){.mk-grid .chat .guard{bottom:-118px;right:-26px}.mk-grid .chat{margin-bottom:90px}}
+/* no pale rim on rounded purple headers: nothing white sits behind the corners */
+.bx-card{background:transparent;box-shadow:0 50px 90px -40px rgba(0,0,0,.75)}
+.bx-body{background:#fff}
+.guard{background:linear-gradient(#3E0670 0 22px,#fff 22px)}
