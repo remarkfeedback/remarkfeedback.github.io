@@ -31,9 +31,27 @@
             <g clip-path="url(#igl)"><rect class="glint" x="20" y="24" width="6" height="20" fill="#fff" transform="skewX(-25)"/></g>
           </g>
         </svg>
-        <svg class="irope" viewBox="0 0 300 60"><g class="hook"><path d="M24 14 Q150 64 276 14" fill="none" stroke="#7C1FD8" stroke-width="7" stroke-linecap="round"/></g>
-          <rect x="16" y="8" width="16" height="52" rx="3" fill="#D9A93A"/><circle cx="24" cy="8" r="9" fill="#E8C66A"/>
-          <rect x="268" y="8" width="16" height="52" rx="3" fill="#D9A93A"/><circle cx="276" cy="8" r="9" fill="#E8C66A"/></svg>
+        <svg class="irope" viewBox="0 0 640 270">
+          <defs>
+            <linearGradient id="bV" x1="0" x2="1"><stop offset="0" stop-color="#5E4110"/><stop offset=".18" stop-color="#A57C2A"/><stop offset=".38" stop-color="#F6DE97"/><stop offset=".5" stop-color="#FFF4CF"/><stop offset=".62" stop-color="#E2BB5C"/><stop offset=".85" stop-color="#8A6320"/><stop offset="1" stop-color="#4A320B"/></linearGradient>
+            <radialGradient id="bB" cx=".36" cy=".32" r=".75"><stop offset="0" stop-color="#FFF8DD"/><stop offset=".25" stop-color="#F1D27E"/><stop offset=".6" stop-color="#B08530"/><stop offset="1" stop-color="#4E360D"/></radialGradient>
+            <linearGradient id="bF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3D88F"/><stop offset=".45" stop-color="#A57C2A"/><stop offset="1" stop-color="#3E2A08"/></linearGradient>
+            <linearGradient id="vV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B06CFF"/><stop offset=".3" stop-color="#7A22E0"/><stop offset=".7" stop-color="#4A0B92"/><stop offset="1" stop-color="#22053F"/></linearGradient>
+            <filter id="sf" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+            <g id="pst"><ellipse cx="0" cy="250" rx="46" ry="11" fill="#000" opacity=".45" filter="url(#sf)"/><ellipse cx="0" cy="244" rx="40" ry="10" fill="url(#bF)"/><path d="M-40 244v-6q40-16 80 0v6q-40 12-80 0z" fill="url(#bV)"/><path d="M-14 232q14-22 28 0z" fill="url(#bV)"/><rect x="-7" y="70" width="14" height="164" fill="url(#bV)"/><rect x="-11" y="78" width="22" height="7" rx="3.5" fill="url(#bV)"/><rect x="-10" y="60" width="20" height="12" rx="4" fill="url(#bV)"/><circle cx="0" cy="46" r="17" fill="url(#bB)"/><ellipse cx="-5" cy="39" rx="5" ry="3.2" fill="#fff" opacity=".7"/></g>
+            <g id="hk"><circle r="9" fill="none" stroke="url(#bV)" stroke-width="4.5"/><rect x="-6" y="5" width="12" height="16" rx="3" fill="url(#bV)"/></g>
+          </defs>
+          <use class="pl" href="#pst" x="90"/><use class="pr" href="#pst" x="550"/>
+          <g class="rope">
+            <path d="M104 92C200 190 440 190 536 92" fill="none" stroke="#000" stroke-opacity=".35" stroke-width="22" stroke-linecap="round" filter="url(#sf)" transform="translate(0 14)"><animate attributeName="d" values="M104 92C200 190 440 190 536 92;M104 92C94 160 72 205 62 238;M104 92C108 160 100 206 112 250" keyTimes="0;.6;1" calcMode="spline" keySplines=".55 0 .9 .45;.2 .7 .3 1" dur=".9s" begin="1.6s" fill="freeze"/></path>
+            <path d="M104 92C200 190 440 190 536 92" fill="none" stroke="#2A0650" stroke-width="20" stroke-linecap="round"><animate attributeName="d" values="M104 92C200 190 440 190 536 92;M104 92C94 160 72 205 62 238;M104 92C108 160 100 206 112 250" keyTimes="0;.6;1" calcMode="spline" keySplines=".55 0 .9 .45;.2 .7 .3 1" dur=".9s" begin="1.6s" fill="freeze"/></path>
+            <path d="M104 92C200 190 440 190 536 92" fill="none" stroke="url(#vV)" stroke-width="17" stroke-linecap="round"><animate attributeName="d" values="M104 92C200 190 440 190 536 92;M104 92C94 160 72 205 62 238;M104 92C108 160 100 206 112 250" keyTimes="0;.6;1" calcMode="spline" keySplines=".55 0 .9 .45;.2 .7 .3 1" dur=".9s" begin="1.6s" fill="freeze"/></path>
+            <path d="M104 88C200 184 440 184 536 88" fill="none" stroke="#D7B3FF" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"><animate attributeName="d" values="M104 88C200 184 440 184 536 88;M100 88C90 158 68 203 58 236;M100 88C104 158 96 204 108 248" keyTimes="0;.6;1" calcMode="spline" keySplines=".55 0 .9 .45;.2 .7 .3 1" dur=".9s" begin="1.6s" fill="freeze"/></path>
+            <path d="M104 92C200 190 440 190 536 92" fill="none" stroke="#1A0233" stroke-opacity=".18" stroke-width="16" stroke-dasharray="1.5 7"><animate attributeName="d" values="M104 92C200 190 440 190 536 92;M104 92C94 160 72 205 62 238;M104 92C108 160 100 206 112 250" keyTimes="0;.6;1" calcMode="spline" keySplines=".55 0 .9 .45;.2 .7 .3 1" dur=".9s" begin="1.6s" fill="freeze"/></path>
+            <use href="#hk" x="104" y="88"/>
+            <g><use href="#hk" x="536" y="88"/><animateTransform attributeName="transform" type="translate" values="0 0;-474 150;-424 162" keyTimes="0;.6;1" calcMode="spline" keySplines=".55 0 .9 .45;.2 .7 .3 1" dur=".9s" begin="1.6s" fill="freeze"/></g>
+          </g>
+        </svg>
         <b class="iword">Doorman</b>
       </div>`;
     root.appendChild(intro);
@@ -46,7 +64,7 @@
       setTimeout(() => { root.classList.remove('intro-on'); done(); }, 420);
       setTimeout(() => intro.remove(), 1200);
     };
-    const t = setTimeout(finish, 2300);
+    const t = setTimeout(finish, 2700);
     intro.addEventListener('click', () => { clearTimeout(t); finish(); });
     addEventListener('keydown', () => { clearTimeout(t); finish(); }, { once: true });
   }
