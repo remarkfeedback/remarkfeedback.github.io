@@ -22,10 +22,11 @@
   <div class="wrap">
     <a class="brand" href="./"><img src="img/logo.webp" alt="" width="34" height="34">Doorman</a>
     <nav aria-label="Main">
-      <a href="#how">How it works</a>
-      <a href="#private">Privacy</a>
-      <a href="#pricing">Pricing</a>
-      <a href="check.html">Check something now</a>
+      <a href="./#how">How it works</a>
+      <a href="features.html">Features</a>
+      <a href="./#private">Privacy</a>
+      <a href="./#pricing">Pricing</a>
+      <a class="nav-cta" href="check.html">Check something now</a>
     </nav>
   </div>
 </header>
@@ -37,8 +38,8 @@
       <h1 id="title"><span class="ln1"><span>A bouncer</span></span> <span class="ln1"><span>for your</span></span> <span class="ln1"><span>browser.</span></span></h1>
       <p class="lede">Doorman checks texts, emails, links and web pages for the tricks scammers use, and warns you before you hand anything over. Every check happens on your own computer. Nothing you check is ever sent to us or anyone else.</p>
       <div class="ctas">
-        <span class="btn soon" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 8.5h8.2M8.9 13.8 4.8 6.7M15 13.8l-4.1 7.1"/></svg>Coming soon to Chrome</span>
-        <a class="btn ghost" href="#try">Try the checker</a>
+        <a class="btn go-green" href="#try"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6l-8-3z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>Try the checker</a>
+        <span class="btn soon" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3h4v3a2 2 0 1 0 4 0V3h3v6h-3a2 2 0 1 0 0 4h3v8h-6v-3a2 2 0 1 0-4 0v3H4v-8h3a2 2 0 1 0 0-4H4V3z"/></svg>Chrome extension<em>Coming soon</em></span>
       </div>
       <p class="small-print">Free to use. Doorman Pro adds a watcher that checks every page for you.</p>
     </div>
@@ -65,12 +66,20 @@
     <div class="story-steps">
       <div class="story-head" data-reveal>
         <h2 id="how-h">It stays out of the way until something looks wrong</h2>
-        <p class="intro">With Always-on switched on, Doorman checks every page you open. The more worried it is, the louder it gets.</p>
+        <p class="intro">With Always-on switched on, Doorman reads every page you open, the way a careful friend would. Here's what it notices on four pages.</p>
       </div>
-      <div class="step" data-step="0"><span class="num">1</span><h3>Nothing found</h3><p>It stays quiet. The Doorman icon in your toolbar glows green to show the page was checked.</p></div>
-      <div class="step" data-step="1"><span class="num">2</span><h3>A few warning signs</h3><p>A small note appears in the corner and the icon turns amber. Click it to see what Doorman noticed.</p></div>
-      <div class="step" data-step="2"><span class="num">3</span><h3>Strong signs of a scam</h3><p>A warning opens with the page and the icon turns red. Doorman marks what it found and explains each one in plain English.</p></div>
-      <div class="step" data-step="3"><span class="num">4</span><h3>Hold on</h3><p>Start typing a card number, bank details or a password on a risky page, and Doorman stops you before you finish.</p></div>
+      <div class="step" data-step="0"><span class="num">1</span><h3>A genuine page: nothing found</h3>
+        <ul class="read"><li><i class="ck ok" aria-label="Fine">✓</i>The address is gov.uk, the government's own website</li><li><i class="ck ok" aria-label="Fine">✓</i>Nothing asks for money, passwords or card details</li><li><i class="ck ok" aria-label="Fine">✓</i>No countdowns, threats or pressure</li></ul>
+        <p class="out">Doorman stays quiet. The icon in your toolbar glows green.</p></div>
+      <div class="step" data-step="1"><span class="num">2</span><h3>A pushy shop: a few warning signs</h3>
+        <ul class="read"><li><i class="ck warn" aria-label="Warning sign">!</i>A countdown is rushing you to buy</li><li><i class="ck warn" aria-label="Warning sign">!</i>"87% off everything" is a typical fake-shop offer</li><li><i class="ck ok" aria-label="Fine">✓</i>It isn't asking for card details yet</li></ul>
+        <p class="out">A small note appears in the corner. Click it to see why.</p></div>
+      <div class="step" data-step="2"><span class="num">3</span><h3>A fake parcel page: strong signs of a scam</h3>
+        <ul class="read"><li><i class="ck bad" aria-label="Strong warning sign">✕</i>It says Royal Mail, but the address is parcel-redelivery.top</li><li><i class="ck bad" aria-label="Strong warning sign">✕</i>It asks for a small fee to release your parcel</li><li><i class="ck bad" aria-label="Strong warning sign">✕</i>The card form sends your details to a different site</li></ul>
+        <p class="out">Doorman warns you as the page opens and marks each problem.</p></div>
+      <div class="step" data-step="3"><span class="num">4</span><h3>You start typing your card number</h3>
+        <ul class="read"><li><i class="ck bad" aria-label="Strong warning sign">✕</i>You've clicked into a card number box</li><li><i class="ck bad" aria-label="Strong warning sign">✕</i>This page already shows strong signs of a scam</li></ul>
+        <p class="out">Doorman stops you before you finish typing.</p></div>
     </div>
 
     <div class="story-stage" aria-hidden="true">
@@ -79,31 +88,30 @@
           <span class="dots"><i></i><i></i><i></i></span>
           <div class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span class="u u0">gov.uk/library-opening-hours</span><span class="u u1">mega-deals-outlet.shop/trainers</span><span class="u u2">parcel-redelivery.top/pay</span></div>
           <span class="tb"><img class="t0" src="img/ok-32.png" alt=""><img class="t1" src="img/medium-32.png" alt=""><img class="t2" src="img/high-32.png" alt=""><i class="badge">!</i></span>
+          <span class="mk m1">1</span>
         </div>
         <div class="view">
           <div class="pg pg0">
-            <div class="ph gov">Local services</div>
+            <div class="ph gov">GOV.UK</div>
             <div class="pt">Library opening hours</div>
-            <div class="ln w90"></div><div class="ln w75"></div><div class="ln w82"></div>
-            <div class="tbl"><span>Monday to Friday</span><span>9am to 6pm</span><span>Saturday</span><span>10am to 4pm</span></div>
-            <div class="ln w60"></div>
+            <p class="tx">Your local library is open six days a week. You can borrow books, use a computer and print documents.</p>
+            <div class="tbl"><span>Monday to Friday</span><span>9am to 6pm</span><span>Saturday</span><span>10am to 4pm</span><span>Sunday</span><span>Closed</span></div>
           </div>
           <div class="pg pg1">
-            <div class="ph shop">MEGA DEALS</div>
-            <div class="sale">87% off everything<small>Ends in <b class="clock">04:59</b></small></div>
-            <div class="prods"><span></span><span></span><span></span></div>
-            <div class="ln w70"></div>
+            <div class="ph shop">MEGA DEALS OUTLET</div>
+            <div class="sale">87% off everything<small class="cd">Offer ends in <b class="clock">04:59</b></small></div>
+            <div class="prods"><span><b>Running trainers</b><s>£120</s> £15.60</span><span><b>Designer hoodie</b><s>£95</s> £12.35</span><span><b>Smart watch</b><s>£249</s> £32.37</span></div>
           </div>
           <div class="pg pg2">
-            <div class="ph parcel">Parcel delivery</div>
+            <div class="ph parcel">Royal Mail</div>
             <div class="pt">We tried to deliver your parcel</div>
-            <div class="ln w90 hl h1"></div><div class="ln w65 hl h2"></div>
+            <p class="tx fee">Pay the £1.99 redelivery fee within 24 hours, or your parcel will be returned to the sender.</p>
             <div class="form">
               <label>Card number</label><div class="field"><span class="typed">4929 1</span><i class="caret"></i></div>
               <label>Expiry date</label><div class="field"></div>
               <div class="pay">Pay £1.99</div>
             </div>
-            <span class="mk m1">1</span><span class="mk m2">2</span><span class="mk m3">3</span>
+            <span class="mk m2">2</span><span class="mk m3">3</span>
           </div>
 
           <div class="pill"><img src="img/logo.webp" alt=""><i></i>Doorman: 2 warning signs</div>
@@ -113,7 +121,7 @@
             <div class="ab">
               <span class="chip">High risk</span>
               <b class="at">This page shows strong signs of a scam</b>
-              <ul><li>This form sends what you type to collect-pay.xyz</li><li>It asks for a small fee</li><li>The address isn't the courier's website</li></ul>
+              <ol><li>It says Royal Mail, but this isn't Royal Mail's website</li><li>It asks for a small fee</li><li>Your card details go to collect-pay.xyz</li></ol>
               <div class="abtn"><span class="p">Show me on the page</span><span>Leave this page</span></div>
             </div>
           </div>
@@ -195,19 +203,39 @@
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><b>The list comes to you.</b> Pro downloads a list of reported scam websites once a day and checks it on your computer, so nobody learns which sites you visit.</span></li>
       </ul>
     </div>
-    <svg class="diagram" viewBox="0 0 420 340" role="img" aria-label="Diagram: checks happen inside your computer. Nothing goes out. Only the daily list of scam sites comes in.">
-      <rect x="20" y="70" width="250" height="200" rx="22" fill="rgba(255,255,255,.06)" stroke="#8E6BD8" stroke-width="2"/>
-      <text x="40" y="104" fill="#D2C4F2" font-family="Atkinson Hyperlegible,sans-serif" font-size="15">Your computer</text>
-      <rect x="48" y="126" width="194" height="110" rx="16" fill="#6D1ED4"/>
-      <text x="145" y="172" fill="#fff" text-anchor="middle" font-family="Unbounded,sans-serif" font-weight="700" font-size="16">Doorman</text>
-      <text x="145" y="198" fill="#E4D9FF" text-anchor="middle" font-family="Atkinson Hyperlegible,sans-serif" font-size="14">checks happen here</text>
-      <path d="M272 140 H360" stroke="#7A6A9C" stroke-width="2.5" stroke-dasharray="6 6"/>
-      <circle cx="316" cy="140" r="15" fill="#1A0B33" stroke="#F04438" stroke-width="2.5"/><path d="M309 133l14 14M323 133l-14 14" stroke="#F04438" stroke-width="2.5" stroke-linecap="round"/>
-      <text x="292" y="118" fill="#BFAEE6" font-family="Atkinson Hyperlegible,sans-serif" font-size="13">nothing goes out</text>
-      <path d="M392 216 H282" stroke="#D9A93A" stroke-width="2.5"/><path d="M290 208l-9 8 9 8" fill="none" stroke="#D9A93A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <text x="290" y="246" fill="#E8CF8A" font-family="Atkinson Hyperlegible,sans-serif" font-size="13">daily scam-site list</text>
-      <text x="290" y="264" fill="#BFAEE6" font-family="Atkinson Hyperlegible,sans-serif" font-size="13">(Pro, download only)</text>
-    </svg>
+    <figure class="dev-fig" data-reveal>
+      <svg class="diagram" viewBox="0 0 540 420" role="img" aria-label="Diagram: your messages, links and photos are checked inside your computer by Doorman. Nothing is sent to our servers. Only the daily list of reported scam websites is downloaded, for Pro.">
+        <defs>
+          <linearGradient id="scr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3B1275"/><stop offset="1" stop-color="#1E0A3D"/></linearGradient>
+          <linearGradient id="alu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9C2D8"/><stop offset="1" stop-color="#7D7491"/></linearGradient>
+        </defs>
+        <!-- the daily list, coming in -->
+        <g class="d-list">
+          <rect x="300" y="14" width="200" height="56" rx="14" fill="rgba(217,169,58,.12)" stroke="#D9A93A" stroke-width="1.5"/>
+          <text x="400" y="38" text-anchor="middle" fill="#F1D98F" font-family="Atkinson Hyperlegible,sans-serif" font-size="15" font-weight="700">Daily scam-site list</text>
+          <text x="400" y="57" text-anchor="middle" fill="#CDBB86" font-family="Atkinson Hyperlegible,sans-serif" font-size="12.5">Pro · download only</text>
+          <path class="d-arrow" d="M400 72 V128" stroke="#D9A93A" stroke-width="2.5" stroke-dasharray="5 6"/>
+          <path d="M392 120l8 10 8-10" fill="none" stroke="#D9A93A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <!-- the laptop -->
+        <rect x="40" y="134" width="400" height="236" rx="16" fill="#0F0620" stroke="#5B4A80" stroke-width="2"/>
+        <rect x="54" y="148" width="372" height="208" rx="8" fill="url(#scr)"/>
+        <path d="M14 372h452l-26 22H40z" fill="url(#alu)"/><rect x="200" y="372" width="80" height="6" rx="3" fill="#5E5672"/>
+        <text x="70" y="174" fill="#BFAEE6" font-family="Atkinson Hyperlegible,sans-serif" font-size="13">Your computer</text>
+        <image href="img/logo-640.webp" x="70" y="196" width="128" height="128"/>
+        <text x="134" y="344" text-anchor="middle" fill="#fff" font-family="Atkinson Hyperlegible,sans-serif" font-size="13" font-weight="700">Doorman checks here</text>
+        <g class="d-items" font-family="Atkinson Hyperlegible,sans-serif" font-size="14">
+          <g class="d-it" style="--i:0"><rect x="220" y="196" width="190" height="38" rx="10" fill="rgba(255,255,255,.08)"/><text x="236" y="220" fill="#ECE4FF">Message</text><circle cx="388" cy="215" r="10" fill="#12B76A"/><path d="M383 215l3.5 3.5 6.5-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="d-it" style="--i:1"><rect x="220" y="242" width="190" height="38" rx="10" fill="rgba(255,255,255,.08)"/><text x="236" y="266" fill="#ECE4FF">Link</text><circle cx="388" cy="261" r="10" fill="#12B76A"/><path d="M383 261l3.5 3.5 6.5-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g class="d-it" style="--i:2"><rect x="220" y="288" width="190" height="38" rx="10" fill="rgba(255,255,255,.08)"/><text x="236" y="312" fill="#ECE4FF">Photo</text><circle cx="388" cy="307" r="10" fill="#12B76A"/><path d="M383 307l3.5 3.5 6.5-7" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+        </g>
+        <!-- nothing goes out -->
+        <path class="d-out" d="M442 252 H492" stroke="#8A7BAA" stroke-width="2.5" stroke-dasharray="4 6"/>
+        <g class="d-stop"><circle cx="500" cy="252" r="17" fill="#1A0B33" stroke="#F04438" stroke-width="3"/><path d="M488 240l24 24" stroke="#F04438" stroke-width="3" stroke-linecap="round"/></g>
+        <text x="500" y="292" text-anchor="middle" fill="#FDA29B" font-family="Atkinson Hyperlegible,sans-serif" font-size="13" font-weight="700">Nothing</text>
+        <text x="500" y="309" text-anchor="middle" fill="#FDA29B" font-family="Atkinson Hyperlegible,sans-serif" font-size="13" font-weight="700">sent</text>
+      </svg>
+    </figure>
   </div>
 </section>
 
@@ -262,7 +290,7 @@
       <a class="brand" href="./"><img src="img/logo.webp" alt="" width="34" height="34">Doorman</a>
       <p style="margin-top:12px">Doorman looks for warning signs. It can't prove something is safe. If in doubt, contact the company using details you already trust.</p>
     </div>
-    <nav aria-label="Footer">
+    <nav aria-label="Footer"><a href="features.html">Features</a>
       <a href="check.html">Check something now</a>
       <a href="privacy.html">Privacy</a>
       <a href="mailto:hello@survivelabs.co.uk">Contact</a>
