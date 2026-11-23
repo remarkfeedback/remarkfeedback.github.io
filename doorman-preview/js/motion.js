@@ -126,22 +126,15 @@
     chatWatcher.observe(chat);
   }
 
-  // 5. The promise lights up word by word as you scroll past it
+  // 5. The promise lights up word by word on its own once it's comfortably in view
   const fill = document.querySelector('[data-fill]');
   if (fill) {
     const words = fill.textContent.trim().split(/\s+/);
-    fill.innerHTML = words.map(w => `<span>${w}</span>`).join(' ');
-    const spans = [...fill.children];
-    let ticking = false;
-    const paint = () => {
-      ticking = false;
-      const r = fill.getBoundingClientRect(), vh = innerHeight;
-      const p = Math.min(1, Math.max(0, (vh * 0.8 - r.top) / (r.height + vh * 0.35)));
-      const lit = calm ? spans.length : Math.round(p * spans.length);
-      spans.forEach((s, i) => s.classList.toggle('lit', i < lit));
-    };
-    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(paint); } }, { passive: true });
-    addEventListener('resize', paint);
-    paint();
+    fill.innerHTML = words.map((w, i) => `<span style="--w:${i}">${w}</span>`).join(' ');
+    if (calm) fill.classList.add('lit');
+    else {
+      const fw = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { fill.classList.add('lit'); fw.disconnect(); } }), { threshold: 0.6 });
+      fw.observe(fill);
+    }
   }
 }
