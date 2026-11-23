@@ -1,8 +1,14 @@
 [
-  {
-    "name": "Glyn S.",
-    "rating": 5,
-    "text": "Very happy with the report,was able to see clearly a full breakdown , hopefully will purchase again in a view months.",
-    "date": "2026-11-23"
-  }
+ {
+  "name": "HME",
+  "rating": 4,
+  "text": "Very simple and easy to use. Slight delay in my report, however once mentioned the issue was fixed right away and apologies made!! Nice to know who/ where people can find me. Even if you don’t need it for anything in particular, it’s very cool. My curiosity couldn’t help herself. Would recommend",
+  "date": "2026-11-23"
+ },
+ {
+  "name": "Glyn S.",
+  "rating": 5,
+  "text": "Very happy with the report,was able to see clearly a full breakdown , hopefully will purchase again in a view months.",
+  "date": "2026-11-23"
+ }
 ]
