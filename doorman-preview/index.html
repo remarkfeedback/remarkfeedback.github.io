@@ -18,7 +18,7 @@
 <link rel="icon" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="fonts/unbounded-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -46,7 +46,11 @@
         <a class="btn go-green" href="#try"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6l-8-3z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>Try the checker</a>
         <span class="btn soon" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3h4v3a2 2 0 1 0 4 0V3h3v6h-3a2 2 0 1 0 0 4h3v8h-6v-3a2 2 0 1 0-4 0v3H4v-8h3a2 2 0 1 0 0-4H4V3z"/></svg>Chrome extension<em>Coming soon</em></span>
       </div>
-      <p class="small-print">Free to use. Doorman Pro adds a watcher that checks every page for you.</p>
+      <ul class="trust" aria-label="Privacy promises">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Checked on your computer</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V7M7 12l5-5 5 5"/><path d="M4 4l16 16"/></svg>Nothing uploaded, ever</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/><path d="M3 3l18 18"/></svg>No account needed</li>
+      </ul>
     </div>
 
     <div class="hatch" id="try">
@@ -182,6 +186,7 @@
   <div class="wrap">
     <h2 id="belt-h" data-reveal>Everything on the belt</h2>
     <p class="intro">Click the Doorman icon and pick a check. Each one takes a few seconds.</p>
+    <h3 class="belt-h">Free checks</h3>
     <dl class="belt" data-stagger>
       <div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="m3 8 9 6 9-6"/></svg></dt><dd><b>Scan this page</b></dd><dd class="what">Marks anything suspicious on the page you're on, and explains each one.</dd></div>
       <div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></dt><dd><b>Check a message</b></dd><dd class="what">Fake deliveries, "Hi Mum", bank alerts, fines, job offers, investment pitches.</dd></div>
@@ -190,7 +195,9 @@
       <div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.4 11.1-9.2 9.2a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 0 1 5.7 5.7l-9.2 9.2a2 2 0 0 1-2.8-2.8l8.5-8.5"/></svg></dt><dd><b>Check an attachment</b></dd><dd class="what">Spots programs dressed up as invoices, hidden macros and files inside zips.</dd></div>
       <div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></dt><dd><b>Check a password</b></dd><dd class="what">An honest idea of how quickly it could be guessed.</dd></div>
       <div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></dt><dd><b>Check a photo</b></dd><dd class="what">See if a photo gives away where you live before you post it. <span class="pro-tag sm">Pro</span> saves a clean copy.</dd></div>
-      <div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10 6h4M10 10h4M10 14h2"/></svg></dt><dd><b>Check a screenshot <span class="pro-tag">Pro</span></b></dd><dd class="what">Got a dodgy text on your phone? Drop in a screenshot and Doorman reads it.</dd></div><div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6l-8-3z"/><path d="m9 12 2 2 4-4"/></svg></dt><dd><b>Always-on <span class="pro-tag">Pro</span></b></dd><dd class="what">Checks every page you open, and steps in before you type card details or a password on a risky one.</dd></div><div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18l-2 11H5z"/><path d="M8 7a4 4 0 0 1 8 0"/></svg></dt><dd><b>Marketplace Guard <span class="pro-tag">Pro</span></b></dd><dd class="what">Reads chats on Vinted, eBay, Gumtree, Facebook Marketplace and rental sites, and flags known tricks as messages arrive.</dd></div><div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2.5"/></svg></dt><dd><b>Daily scam-site list <span class="pro-tag">Pro</span></b></dd><dd class="what">Checks every site against hundreds of thousands of reported phishing websites, on your computer.</dd></div><div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></dt><dd><b>Alerts for other tabs <span class="pro-tag">Pro</span></b></dd><dd class="what">A notification if a scam page is open in a tab you aren't looking at.</dd></div>
+      </dl>
+    <h3 class="belt-h pro"><span class="pro-tag">Pro</span> Doorman Pro adds</h3>
+    <dl class="belt pro" data-stagger><div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10 6h4M10 10h4M10 14h2"/></svg></dt><dd><b>Check a screenshot <span class="pro-tag">Pro</span></b></dd><dd class="what">Got a dodgy text on your phone? Drop in a screenshot and Doorman reads it.</dd></div><div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6l-8-3z"/><path d="m9 12 2 2 4-4"/></svg></dt><dd><b>Always-on <span class="pro-tag">Pro</span></b></dd><dd class="what">Checks every page you open, and steps in before you type card details or a password on a risky one.</dd></div><div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18l-2 11H5z"/><path d="M8 7a4 4 0 0 1 8 0"/></svg></dt><dd><b>Marketplace Guard <span class="pro-tag">Pro</span></b></dd><dd class="what">Reads chats on Vinted, eBay, Gumtree, Facebook Marketplace and rental sites, and flags known tricks as messages arrive.</dd></div><div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2.5"/></svg></dt><dd><b>Daily scam-site list <span class="pro-tag">Pro</span></b></dd><dd class="what">Checks every site against hundreds of thousands of reported phishing websites, on your computer.</dd></div><div><dt><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></dt><dd><b>Alerts for other tabs <span class="pro-tag">Pro</span></b></dd><dd class="what">A notification if a scam page is open in a tab you aren't looking at.</dd></div>
     </dl>
   </div>
 </section>
@@ -212,7 +219,11 @@
   <div class="wrap device">
     <div>
       <h2 id="pr-h">Nothing you check leaves your computer</h2>
-      <p class="intro">Many scam checkers send what you paste, or every site you visit, to their own servers to be checked. Doorman doesn't. All its checks are built into the extension and run on your own device.</p>
+      <p class="intro">Your messages, the sites you visit and your photos are personal. So Doorman never sends them anywhere: every check is built into the extension and runs on your own device.</p>
+      <div class="compare" data-reveal>
+        <div class="cmp them"><b>How many scam checkers work</b><ul><li>Your message or screenshot is uploaded to their servers</li><li>Every site you visit can be sent off to be looked up</li><li>Often needs an account and your email</li></ul></div>
+        <div class="cmp us"><b>How Doorman works</b><ul><li>Checked on your own computer, in a split second</li><li>Nothing you paste, visit or choose is sent anywhere</li><li>No account. We don't know who you are</li></ul></div>
+      </div>
       <ul class="promises">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><b>No account, no tracking, no adverts.</b> We don't know who you are or what you check.</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span><b>Our own rules, written by people.</b> Doorman doesn't use AI to judge anything, and it tells you exactly why it's worried.</span></li>
@@ -271,7 +282,7 @@
         </ul>
       </div>
       <div class="plan pro">
-        <h3>Doorman Pro</h3>
+        <h3>Doorman Pro <span class="pro-tag">Pro</span></h3>
         <p class="price">£2.99 <small>a month</small></p>
         <p class="per">or £24.99 a year</p>
         <ul>
@@ -316,9 +327,9 @@
   </div>
 </footer>
 
-<script src="js/engine.js"></script>
-<script src="js/app.js"></script>
-<script src="js/motion.js"></script>
+<script src="js/engine.js?v=4"></script>
+<script src="js/app.js?v=4"></script>
+<script src="js/motion.js?v=4"></script>
 <script>
 (function () {
   const msg = document.getElementById('msg'), out = document.getElementById('out');

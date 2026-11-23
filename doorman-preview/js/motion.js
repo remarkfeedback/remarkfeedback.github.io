@@ -72,6 +72,14 @@
     revealer.observe(list);
   });
 
+  // 2b. Everything else in a section eases in as it comes into view, a few lines at a time
+  const auto = [...document.querySelectorAll('main section h2, main section h3.belt-h, main section .intro, main section > .wrap > p, main .split > div > p, main .split ul, main .promises > li, main .faq details, main .plans .plan, main .ts-foot, main .later, main .prose > *, main .page-hero h1, main .page-hero p, main .feat-end p, main .feat-end .btn')]
+    .filter(el => !el.closest('.hero, .story-track, [data-reveal], [data-stagger], .chat') && !el.hasAttribute('data-reveal'));
+  const groups = new Map();
+  auto.forEach(el => { el.classList.add('fade'); const k = el.parentElement; const n = groups.get(k) || 0; el.style.setProperty('--i', Math.min(n, 6)); groups.set(k, n + 1); });
+  const fader = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); fader.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  auto.forEach(el => fader.observe(el));
+
   // 3. How it steps in: the section pins in place and scrolling moves through the four steps.
   //    The text and the browser always change together, so nothing scrolls away mid-demo.
   const browser = document.querySelector('.browser');
