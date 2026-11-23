@@ -367,12 +367,15 @@ html.intro-on{overflow:hidden}
 .dm-intro.open .door.r{transform:translateX(101%)}
 .stagebox{position:relative;display:grid;justify-items:center;gap:6px;transition:transform .7s cubic-bezier(.5,0,.2,1),opacity .45s}
 .dm-intro.open .stagebox{transform:scale(1.18);opacity:0}
-.crest{width:min(210px,46vw);height:auto;overflow:visible;filter:drop-shadow(0 20px 40px rgba(0,0,0,.45))}
-.crest .sh-line,.crest .sh-inner{stroke-dasharray:1;stroke-dashoffset:1;animation:dmDraw .75s cubic-bezier(.6,0,.2,1) forwards}
-.crest .sh-inner{animation-delay:.25s}
-.crest .sh-fill{opacity:0;animation:dmFade .5s .6s ease-out forwards}
-.crest .man{transform:translateY(16px);opacity:0;animation:dmRise .6s .85s cubic-bezier(.2,.8,.2,1) forwards}
-.crest .glint{transform:skewX(-25deg) translateX(0);animation:dmGlint .55s 1.5s ease-in-out forwards}
+.crest{position:relative;width:min(230px,50vw);aspect-ratio:1;filter:drop-shadow(0 22px 44px rgba(0,0,0,.5))}
+.crest .outline{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.crest .sh-line{stroke-dasharray:1;stroke-dashoffset:1;animation:dmDraw .8s cubic-bezier(.6,0,.2,1) forwards,dmOut .5s 1.25s forwards}
+.crest .real{position:absolute;inset:0;width:100%;height:100%;clip-path:inset(100% 0 0 0);transform:scale(.96);animation:dmReveal .75s .6s cubic-bezier(.3,.7,.2,1) forwards}
+/* a flash of light across the sunglasses (positioned on the real logo's glasses) */
+.crest .glint{position:absolute;left:37.9%;top:29.9%;width:24.1%;height:6.8%;overflow:hidden;border-radius:30%}
+.crest .glint i{position:absolute;top:-50%;bottom:-50%;width:22%;left:-30%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);transform:skewX(-25deg);animation:dmGlint .55s 1.5s ease-in-out forwards}
+@keyframes dmReveal{to{clip-path:inset(0 0 0 0);transform:none}}
+@keyframes dmOut{to{opacity:0}}
 .irope{width:min(300px,66vw);height:auto;margin-top:6px;overflow:visible}
 .irope .pl,.irope .pr{opacity:0;transform:translateY(18px);animation:dmRise .6s cubic-bezier(.2,.8,.2,1) forwards}
 .irope .pl{animation-delay:.95s}.irope .pr{animation-delay:1.05s}
@@ -381,6 +384,6 @@ html.intro-on{overflow:hidden}
 @keyframes dmDraw{to{stroke-dashoffset:0}}
 @keyframes dmFade{to{opacity:1}}
 @keyframes dmRise{to{opacity:1;transform:none}}
-@keyframes dmGlint{to{transform:skewX(-25deg) translateX(70px)}}
+@keyframes dmGlint{to{left:120%}}
 @keyframes dmSwing{0%{transform:rotate(0)}35%{transform:rotate(-6deg)}70%{transform:rotate(74deg)}85%{transform:rotate(62deg)}100%{transform:rotate(68deg)}}
 @media (prefers-reduced-motion:reduce){.dm-intro{display:none}}

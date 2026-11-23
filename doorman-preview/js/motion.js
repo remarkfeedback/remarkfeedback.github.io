@@ -16,21 +16,11 @@
     intro.className = 'dm-intro'; intro.setAttribute('aria-hidden', 'true');
     intro.innerHTML = `<div class="door l"></div><div class="door r"></div>
       <div class="stagebox">
-        <svg class="crest" viewBox="0 0 100 100">
-          <defs><linearGradient id="igr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A20BFF"/><stop offset="1" stop-color="#3E0670"/></linearGradient>
-          <clipPath id="icl"><path d="M50 10 83 22.4v25.6c0 21.6-14 34.4-33 42C31 82.4 17 69.6 17 48V22.4z"/></clipPath>
-          <clipPath id="igl"><path d="M37 30.4h26v3H60.6c-.2 3.4-2.2 5.4-5 5.4s-4.6-2-5-4.4h-1.2c-.4 2.4-2.2 4.4-5 4.4s-4.8-2-5-5.4H37z"/></clipPath></defs>
-          <path class="sh-fill" d="M50 3 90 18v30c0 26-17 41-40 50C27 89 10 74 10 48V18z" fill="url(#igr)"/>
-          <path class="sh-line" pathLength="1" d="M50 3 90 18v30c0 26-17 41-40 50C27 89 10 74 10 48V18z" fill="none" stroke="#D9A93A" stroke-width="2.4" stroke-linejoin="round"/>
-          <path class="sh-inner" pathLength="1" d="M50 10 83 22.4v25.6c0 21.6-14 34.4-33 42C31 82.4 17 69.6 17 48V22.4z" fill="none" stroke="#fff" stroke-width="3.2"/>
-          <g class="man">
-            <g clip-path="url(#icl)"><path d="M43 44h14v12H43z" fill="#fff"/><path d="M6 100V76c0-10 8-16 18-18l17-4h18l17 4c10 2 18 8 18 18v24z" fill="#111"/><path d="M41 54h18l-9 26z" fill="#fff"/><path d="M47.4 56.5h5.2l-1 3.5 2.2 16-3.8 5-3.8-5 2.2-16z" fill="#111"/></g>
-            <ellipse cx="36.6" cy="35" rx="3" ry="4.4" fill="#fff"/><ellipse cx="63.4" cy="35" rx="3" ry="4.4" fill="#fff"/>
-            <path d="M37.4 30c0-8.6 5-13 12.6-13s12.6 4.4 12.6 13v6.4c0 7-5 11.6-12.6 12.6-7.6-1-12.6-5.6-12.6-12.6z" fill="#fff"/>
-            <path d="M37 30.4h26v3H60.6c-.2 3.4-2.2 5.4-5 5.4s-4.6-2-5-4.4h-1.2c-.4 2.4-2.2 4.4-5 4.4s-4.8-2-5-5.4H37z" fill="#111"/>
-            <g clip-path="url(#igl)"><rect class="glint" x="20" y="24" width="6" height="20" fill="#fff" transform="skewX(-25)"/></g>
-          </g>
-        </svg>
+        <div class="crest">
+          <svg class="outline" viewBox="0 0 1085 1085"><path class="sh-line" pathLength="1" d="M542.0 1074.5 L494.0 1047.5 L444.0 1014.5 L396.0 978.5 L358.0 946.5 L322.5 913.0 L281.5 869.0 L245.5 824.0 L218.5 784.0 L188.5 730.0 L173.5 698.0 L149.5 627.0 L136.5 571.0 L125.5 505.0 L116.5 400.0 L117.5 271.0 L125.5 191.0 L127.5 177.0 L130.0 174.5 L285.0 114.5 L541.0 9.5 L953.0 174.5 L955.5 180.0 L960.5 221.0 L966.5 308.0 L964.5 446.0 L959.5 501.0 L949.5 567.0 L936.5 624.0 L923.5 666.0 L910.5 699.0 L883.5 752.0 L863.5 785.0 L830.5 832.0 L792.5 878.0 L748.0 924.5 L707.0 961.5 L651.0 1005.5 L598.0 1041.5 L542.0 1074.5Z" fill="none" stroke="#D9A93A" stroke-width="9" stroke-linejoin="round"/></svg>
+          <img class="real" src="img/logo-640.webp" alt="">
+          <span class="glint"><i></i></span>
+        </div>
         <svg class="irope" viewBox="0 0 640 270">
           <defs>
             <linearGradient id="bV" x1="0" x2="1"><stop offset="0" stop-color="#5E4110"/><stop offset=".18" stop-color="#A57C2A"/><stop offset=".38" stop-color="#F6DE97"/><stop offset=".5" stop-color="#FFF4CF"/><stop offset=".62" stop-color="#E2BB5C"/><stop offset=".85" stop-color="#8A6320"/><stop offset="1" stop-color="#4A320B"/></linearGradient>
