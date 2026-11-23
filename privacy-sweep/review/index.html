@@ -64,14 +64,10 @@
     <textarea id="text" maxlength="800"></textarea>
   </div>
   <div>
-    <label for="name">Name to show<span class="hint">First name and initial is fine, for example "Sarah T."</span></label>
+    <label for="name">Name to show<span class="hint">First name and surname initial only, for example "Sarah T." We never show where you live.</span></label>
     <input type="text" id="name" maxlength="40" autocomplete="off">
   </div>
-  <div>
-    <label for="town">Town or county (optional)</label>
-    <input type="text" id="town" maxlength="40" autocomplete="off">
-  </div>
-  <label class="chk"><input type="checkbox" id="ok"> <span>You can publish my review, name and town on the Survive Labs website.</span></label>
+  <label class="chk"><input type="checkbox" id="ok"> <span>You can publish my review and name (first name and initial) on the Survive Labs website.</span></label>
   <p class="err" id="err" role="alert"></p>
   <button type="submit">Send my review</button>
   <p class="hint" style="font:400 14px var(--sans);color:var(--mut);margin:0">This opens your email app with your review ready to send to hello@survivelabs.co.uk. Just press send.</p>
@@ -96,14 +92,13 @@
     var r=(f.querySelector('input[name=rating]:checked')||{}).value;
     var t=document.getElementById('text').value.trim();
     var n=document.getElementById('name').value.trim();
-    var w=document.getElementById('town').value.trim();
-    var ok=document.getElementById('ok').checked;
+        var ok=document.getElementById('ok').checked;
     if(!r){err.textContent='Please choose a star rating.';return}
     if(t.length<10){err.textContent='Please write a few words about how it went.';return}
     if(!n){err.textContent='Please add a name to show, for example "Sarah T."';return}
     if(!ok){err.textContent='Please tick the box so we can publish your review.';return}
     err.textContent='';
-    var body='Review code: '+code+'\nRating: '+r+' out of 5\nName to show: '+n+'\nTown: '+(w||'(not given)')+'\nPermission to publish: yes\n\nReview:\n'+t+'\n';
+    var body='Review code: '+code+'\nRating: '+r+' out of 5\nName to show: '+n+'\nPermission to publish: yes\n\nReview:\n'+t+'\n';
     document.getElementById('copy').value=body;
     f.style.display='none';document.getElementById('done').style.display='block';
     location.href='mailto:hello@survivelabs.co.uk?subject='+encodeURIComponent('Privasweep review '+code)+'&body='+encodeURIComponent(body);

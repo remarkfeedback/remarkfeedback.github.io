@@ -28,7 +28,7 @@
         return isNaN(t) ? '' : t.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
       };
       var cards = list.map(function (r) {
-        var who = esc(r.name) + (r.town ? ', ' + esc(r.town) : '');
+        var who = esc(r.name);  // first name + surname initial only, never a location
         var reply = r.reply ? '<p class="rv-reply"><b>Our reply:</b> ' + esc(r.reply) + '</p>' : '';
         return '<li class="rv">' + stars(r.rating) +
           '<p class="rv-text">' + esc(r.text) + '</p>' + reply +
