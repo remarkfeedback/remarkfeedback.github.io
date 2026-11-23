@@ -843,3 +843,75 @@ html:not(.js-off):not(.calm) .d-no{transform:translateX(-14px)}
 .tested{overflow-x:clip}
 @media (max-width:900px){.mk-text h2{font-size:30px}.ch-top{padding-bottom:10px}.msgs{padding-top:10px;gap:6px}.av{width:34px;height:34px}}
 .mini.ok{border-top-color:#12B76A}.mini.ok>b{color:#067647}
+/* polished belt examples */
+.bx-url mark,.bx-file mark{padding:0 1px;border-radius:3px}
+.bb-ext{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:#fff;box-shadow:0 0 0 1px var(--rule)}
+.bb-ext img{width:20px;height:20px;filter:drop-shadow(0 0 6px rgba(247,144,9,.95))}
+.bb-pg.shop{gap:6px;padding:12px 14px 14px}
+.sh-hd{display:block;background:#111;color:#fff;font:800 11px var(--body);letter-spacing:.12em;padding:7px 10px;border-radius:6px}
+.sh-sale{font:800 22px/1.1 var(--body);color:#C4320A;margin-top:4px}
+.sh-cd{justify-self:start;font-size:12.5px;font-weight:700;background:#FEF0C7;padding:2px 8px;border-radius:5px}
+.sh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}.sh-grid i{height:46px;border-radius:8px;background:linear-gradient(160deg,#F2EFF7,#E6E0F0)}
+.bb-toast.pos{position:absolute;right:10px;top:8px;font-size:12.5px;padding:6px 12px 6px 6px}
+.bb-toast.pos img{width:20px;height:20px}
+.bx-tabs{border:1px solid var(--rule);background:#fff;min-height:170px}
+.tabstrip{display:flex;gap:4px;padding:8px 8px 0;background:#ECE8F3}
+.tab{display:flex;align-items:center;gap:6px;max-width:48%;padding:7px 12px;border-radius:9px 9px 0 0;font-size:12.5px;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tab.on{background:#fff;color:var(--ink);font-weight:700}
+.tab.bad i{width:8px;height:8px;border-radius:50%;background:#D92D20;flex:none;box-shadow:0 0 0 3px rgba(217,45,32,.2)}
+.tabs-pg{display:grid;gap:8px;padding:16px}.tabs-pg i{height:9px;border-radius:5px;background:#EEEAF5}.tabs-pg i.s{width:60%}
+.bx-note.pop{position:absolute;right:10px;bottom:10px;width:min(300px,86%);padding:10px 12px;gap:10px;border-radius:14px;border:0;box-shadow:0 18px 40px -14px rgba(22,10,51,.55),0 0 0 1px rgba(22,10,51,.06)}
+.bx-note.pop img{width:28px;height:28px}
+.bx-note.pop span span{font-size:13.5px}
+.bx-clean2{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px}
+.cc{background:#F6F4FA;border:1px solid var(--rule);border-radius:12px;padding:8px 8px 10px}
+.cc.ok{background:#F3FCF7;border-color:#ABEFC6}
+.ccimg{position:relative;display:block;border-radius:8px;overflow:hidden;aspect-ratio:3/2}.ccimg svg{display:block;width:100%;height:100%}
+.pin.sm{left:18px;top:4px;width:20px;height:20px}.pin.sm svg{width:20px;height:20px}
+.cc>b{display:block;font-size:13.5px;margin:7px 2px 4px}
+.cc dl{display:grid;grid-template-columns:auto 1fr;gap:2px 8px;margin:0 2px;font-size:12px}
+.cc dt{color:var(--ink2)}.cc dd{margin:0;font-weight:700;text-align:right}
+.cc dd.bad{color:#B42318}.cc dd.ok{color:#067647}
+.bx-clean2 .arr svg{width:22px;height:22px;color:var(--purple)}
+.pn{width:250px;padding:8px 10px 14px}
+.pn-st{display:flex;justify-content:space-between;color:#fff;font-size:11px;padding:2px 8px 6px}.pn-st span{width:40px;height:9px;border-radius:5px;background:#3A2A5C}
+.pn-h{display:flex;align-items:center;justify-content:center;gap:8px;padding-bottom:8px;border-bottom:1px solid #2E2448;margin-bottom:4px}
+.pn-av{width:24px;height:24px;border-radius:50%;background:#3A2A5C;color:#BFAEE6;font-weight:800;display:grid;place-items:center;font-size:12px}
+/* marketplace, take two: only what this chat shows, numbered to match */
+.market{background:linear-gradient(180deg,#F5F1FD,#EDE5FB)}
+.sp-l{margin:0 0 10px;font-weight:700;font-size:15px;color:var(--ink2)}
+.spotted{list-style:none;margin:0;padding:0;display:grid;gap:10px;max-width:30em}
+.spotted li{display:grid;grid-template-columns:32px 1fr;gap:12px;align-items:start;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.6);border:1.5px dashed #D5C9EA;transition:background .5s,border-color .5s,opacity .5s,transform .5s var(--ease)}
+.spotted li>span:last-child{transition:opacity .45s}
+html:not(.js-off):not(.calm) .spotted li:not(.on){opacity:.5}
+html:not(.js-off):not(.calm) .spotted li:not(.on)>span:last-child{opacity:0}
+.sn{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font:800 15px var(--body);background:#E6DEF5;color:#8B7BB0;transition:background .5s,color .5s}
+.spotted b{display:block;font-size:17px;line-height:1.3;color:var(--ink)}
+.spotted small{display:block;font-size:15px;line-height:1.4;color:var(--ink2);margin-top:2px}
+.spotted li.on,html.js-off .spotted li,html.calm .spotted li{border-style:solid;background:#fff}
+.spotted li.amber.on,html.js-off .spotted li.amber,html.calm .spotted li.amber{border-color:#FEC84B}
+.spotted li.red.on,html.js-off .spotted li.red,html.calm .spotted li.red{border-color:#FDA29B;box-shadow:0 14px 30px -18px rgba(217,45,32,.5)}
+.spotted li.amber.on .sn,html.js-off .spotted li.amber .sn,html.calm .spotted li.amber .sn{background:#F79009;color:#fff}
+.spotted li.red.on .sn,html.js-off .spotted li.red .sn,html.calm .spotted li.red .sn{background:#D92D20;color:#fff}
+.m{font-size:16.5px}
+.flag{font-size:14.5px;margin:0 0 4px 6px}
+.flag i{width:20px;height:20px;line-height:20px;font-size:11.5px}
+.mk-after{padding:36px 0 100px;display:grid;gap:14px}
+.mk-works{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.mk-works .sites{margin:0}
+.mk-after .sites li{background:#fff;border:1px solid #E1D8F1;font-weight:700;color:var(--ink);padding:7px 14px;box-shadow:0 6px 14px -10px rgba(42,6,80,.35)}
+.mk-also{margin:0;color:var(--ink2);font-size:16px}
+@media (max-width:900px){.sp-l,.spotted{display:none}html.js-off .spotted,html.calm .spotted{display:grid}html.js-off .sp-l,html.calm .sp-l{display:block}}
+
+/* the belt and the marketplace build themselves in, like the privacy section */
+html:not(.js-off):not(.calm) [data-build] .bx-g,
+html:not(.js-off):not(.calm) [data-build] [role=tab]{opacity:0;transform:translateX(-14px);transition:opacity .5s var(--ease),transform .6s var(--ease),background .25s,color .25s;transition-delay:calc(var(--i,0) * 45ms),calc(var(--i,0) * 45ms),0s,0s}
+html:not(.js-off):not(.calm) [data-build] .bx-stage{opacity:0;transform:translateY(30px) scale(.97);transition:opacity .8s var(--ease) .25s,transform 1s var(--ease) .25s}
+html:not(.js-off):not(.calm) [data-build].mk-grid .mk-text>*{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease),transform .7s var(--ease)}
+html:not(.js-off):not(.calm) [data-build].mk-grid .chat{opacity:0;transform:translateY(36px) scale(.97);transition:opacity .8s var(--ease) .45s,transform 1s var(--ease) .45s}
+[data-build].in .bx-g,[data-build].in [role=tab],[data-build].in .bx-stage,[data-build].in .mk-text>*,[data-build].in .chat{opacity:1!important;transform:none!important}
+[data-build].in .mk-text>:nth-child(2){transition-delay:.08s}
+[data-build].in .mk-text>:nth-child(3){transition-delay:.18s}
+[data-build].in .mk-text>:nth-child(4){transition-delay:.28s}
+[data-build].in .mk-text>:nth-child(5){transition-delay:.36s}
+@media (min-width:901px){.mk-grid .chat .guard{bottom:-118px;right:-26px}.mk-grid .chat{margin-bottom:90px}}

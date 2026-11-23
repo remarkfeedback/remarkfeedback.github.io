@@ -67,6 +67,11 @@
     if (e.isIntersecting) { e.target.classList.add('in'); revealer.unobserve(e.target); }
   }), { rootMargin: '0px 0px -12% 0px' });
   document.querySelectorAll('[data-reveal]').forEach(el => revealer.observe(el));
+  // sections that build themselves in, piece by piece, the first time they come into view
+  document.querySelectorAll('[data-build]').forEach(el => {
+    el.querySelectorAll('.bx-g, [role=tab]').forEach((c, i) => c.style.setProperty('--i', i));
+    revealer.observe(el);
+  });
   document.querySelectorAll('[data-stagger]').forEach(list => {
     [...list.children].forEach((c, i) => c.style.setProperty('--i', i));
     revealer.observe(list);
@@ -136,7 +141,7 @@
   const chat = document.querySelector('.chat');
   if (mkTrack && chat) {
     const bits = [...chat.querySelectorAll('[data-s]')];
-    const tricks = [...document.querySelectorAll('.tricks2 [data-t]')];
+    const tricks = [...document.querySelectorAll('.spotted [data-t]')];
     const LAST = 6;
     let shown = -1;
     const setMk = n => {

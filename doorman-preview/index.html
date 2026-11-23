@@ -18,7 +18,7 @@
 <link rel="icon" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="fonts/big-shoulders-display-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -149,56 +149,11 @@
   </div>
 </section>
 
-<section class="market" aria-labelledby="mk-h">
-  <div class="mk-track">
-    <div class="mk-pin">
-      <div class="wrap mk-grid">
-        <div class="mk-text">
-          <p class="mk-kicker"><span class="pro-tag">Pro</span> Marketplace Guard</p>
-          <h2 id="mk-h">A second pair of eyes when you're buying and selling</h2>
-          <p class="mk-lead">Marketplace Guard reads chats as messages arrive, and speaks up the moment a buyer, seller or "landlord" tries one of the usual tricks.</p>
-          <ul class="tricks2" aria-label="Tricks it watches for">
-            <li data-t="3" class="amber"><span class="td"></span>"My courier will collect it"</li>
-            <li data-t="4" class="amber"><span class="td"></span>Asking for your bank details</li>
-            <li data-t="6" class="red"><span class="td"></span>Links to "receive your payment"</li>
-            <li><span class="td"></span>Moving the chat to WhatsApp</li>
-            <li><span class="td"></span>Overpaying and asking for the difference back</li>
-            <li><span class="td"></span>Deposits before a viewing</li>
-          </ul>
-        </div>
-        <div class="chat" role="img" aria-label="Example chat: a buyer asks about an iPhone, says their courier will collect, asks for bank details, then sends a link to receive payment. Marketplace Guard flags each trick and shows a high risk warning.">
-          <div class="ch-top"><span class="av">J</span><div><b>Jordan</b><small>Interested in: iPhone 14 Pro, £520</small></div><span class="ch-prog"><i></i></span></div>
-          <div class="msgs">
-            <p class="m them" data-s="1">Hi, is this still available?</p>
-            <p class="m me" data-s="2">Yes it is!</p>
-            <p class="m them" data-s="3">Great. I'm working away so my courier will collect it.</p>
-            <p class="flag" data-s="3"><i aria-hidden="true">!</i>Can't meet in person: a common set-up</p>
-            <p class="m them" data-s="4">I'll pay by bank transfer, just send your sort code and account number.</p>
-            <p class="flag" data-s="4"><i aria-hidden="true">!</i>Asks for your bank details</p>
-            <p class="m them bad" data-s="5">Sent the money. Click here to receive your payment: secure-pay-confirm.top/receive</p>
-          </div>
-          <div class="guard">
-            <div class="gh"><img src="img/logo.webp" alt=""><b>Marketplace Guard</b></div>
-            <span class="chip">High risk</span>
-            <b>Sends a link to "receive" your payment</b>
-            <span class="gw">You never need a link to receive money. Fake payment pages steal card details.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="wrap mk-after">
-    <p class="mk-mlead">Marketplace Guard reads chats as messages arrive, and speaks up the moment a buyer, seller or "landlord" tries one of the usual tricks.</p>
-    <p class="mk-sites-l">Works on</p>
-    <ul class="sites" aria-label="Sites Marketplace Guard works on"><li>Vinted</li><li>eBay</li><li>Gumtree</li><li>Facebook Marketplace</li><li>Depop</li><li>SpareRoom</li><li>Rightmove</li><li>Zoopla</li><li>OpenRent</li><li>AutoTrader</li></ul>
-  </div>
-</section>
-
 <section class="belt-sec" id="checks" aria-labelledby="belt-h">
   <div class="wrap">
     <h2 id="belt-h">Everything on the belt</h2>
     <p class="intro">Click the Doorman icon and pick a check. Each one takes a few seconds, and every one runs on your computer.</p>
-    <div class="bx" data-reveal>
+    <div class="bx" data-build>
       <div class="bx-side">
         <p class="bx-g"><span class="free-tag">Free</span> Checks anyone can use</p>
         <div class="bx-list" role="tablist" aria-label="Free checks"><button role="tab" id="bt-scan" aria-controls="bp-scan" aria-selected="true" tabindex="0" class=""><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="m3 8 9 6 9-6"/></svg></span><span class="tt">Scan this page</span><span class="tbar"><i></i></span></button><button role="tab" id="bt-msg" aria-controls="bp-msg" aria-selected="false" tabindex="-1" class=""><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="tt">Check a message</span><span class="tbar"><i></i></span></button><button role="tab" id="bt-link" aria-controls="bp-link" aria-selected="false" tabindex="-1" class=""><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span><span class="tt">Check a link</span><span class="tbar"><i></i></span></button><button role="tab" id="bt-qr" aria-controls="bp-qr" aria-selected="false" tabindex="-1" class=""><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg></span><span class="tt">Check a QR code</span><span class="tbar"><i></i></span></button><button role="tab" id="bt-att" aria-controls="bp-att" aria-selected="false" tabindex="-1" class=""><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.4 11.1-9.2 9.2a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 0 1 5.7 5.7l-9.2 9.2a2 2 0 0 1-2.8-2.8l8.5-8.5"/></svg></span><span class="tt">Check an attachment</span><span class="tbar"><i></i></span></button><button role="tab" id="bt-pw" aria-controls="bp-pw" aria-selected="false" tabindex="-1" class=""><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><span class="tt">Check a password</span><span class="tbar"><i></i></span></button><button role="tab" id="bt-photo" aria-controls="bp-photo" aria-selected="false" tabindex="-1" class=""><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span><span class="tt">Check a photo</span><span class="tbar"><i></i></span></button></div>
@@ -228,26 +183,68 @@
         <div class="bx-card"><div class="bx-hd"><img src="img/logo.webp" alt="">Check a photo</div><div class="bx-body"><div class="bx-in bx-photo"><span class="bx-ph"><svg viewBox="0 0 120 80" aria-hidden="true"><defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9FD3FF"/><stop offset="1" stop-color="#E6F4FF"/></linearGradient></defs><rect width="120" height="80" fill="url(#sky)"/><circle cx="92" cy="20" r="9" fill="#FFE08A"/><path d="M0 62 30 40l22 16 20-14 48 26v12H0z" fill="#5FB37A"/><path d="M0 70 40 54l30 12 50-8v22H0z" fill="#3E8E5C"/><rect x="18" y="46" width="22" height="18" fill="#F4E9DA"/><path d="m16 47 13-10 13 10z" fill="#B85C3C"/></svg><span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span></span><span><b>IMG_4021.jpg</b><small>Ready to post on a selling site</small></span></div><div class="bx-res med"><b>This photo shows where it was taken</b><dl><dt>Location</dt><dd>51.50735, -0.16562</dd><dt>Phone</dt><dd>Apple iPhone 15</dd><dt>Taken</dt><dd>14 August 2026</dd></dl></div></div></div>
         <p class="bx-cap">See if a photo gives away where you live, before you post it on a selling site or room advert.</p>
       </div><div class="bx-panel" role="tabpanel" id="bp-always" aria-labelledby="bt-always">
-        <div class="bx-card"><div class="bx-hd"><img src="img/logo.webp" alt="">Always-on<span class="pro-tag sm">Pro</span></div><div class="bx-body"><div class="bx-in bx-browser"><div class="bb-bar"><span class="tl"><i></i><i></i><i></i></span><span class="bb-url">mega-deals-outlet.shop</span></div><div class="bb-pg bx-tb"><span class="bx-icons"><img src="img/ok-48.png" alt=""><img src="img/medium-48.png" alt="" class="cur"><img src="img/high-48.png" alt=""></span><span class="bb-toast"><img src="img/logo.webp" alt="">Doorman: 2 warning signs</span></div></div><div class="bx-res med"><b>Checks every page as it opens</b><ul><li style="--k:0">Green glow: no warning signs found</li><li style="--k:1">Amber: a small note with the warning signs</li><li style="--k:2">Red: it steps in before you type card details</li></ul></div></div></div>
+        <div class="bx-card"><div class="bx-hd"><img src="img/logo.webp" alt="">Always-on<span class="pro-tag sm">Pro</span></div><div class="bx-body"><div class="bx-in bx-browser"><div class="bb-bar"><span class="tl"><i></i><i></i><i></i></span><span class="bb-url">mega-deals-outlet.shop/trainers</span><span class="bb-ext"><img src="img/medium-48.png" alt=""></span></div><div class="bb-pg shop"><span class="sh-hd">MEGA DEALS OUTLET</span><span class="sh-sale">87% off everything</span><span class="sh-cd">Offer ends in <b>04:59</b></span><span class="sh-grid"><i></i><i></i><i></i></span><span class="bb-toast pos"><img src="img/logo.webp" alt="">Doorman: 2 warning signs</span></div></div><div class="bx-res med"><b>Some warning signs</b><ul><li style="--k:0">A countdown is rushing you to buy</li><li style="--k:1">"87% off everything" is a typical fake-shop offer</li></ul></div></div></div>
         <p class="bx-cap">You don't have to remember to check. Doorman looks at every page you open, and stays quiet unless something looks wrong.</p>
       </div><div class="bx-panel" role="tabpanel" id="bp-market" aria-labelledby="bt-market">
         <div class="bx-card"><div class="bx-hd"><img src="img/logo.webp" alt="">Marketplace Guard<span class="pro-tag sm">Pro</span></div><div class="bx-body"><div class="bx-in bx-chat"><p class="m them">I'll pay by bank transfer, just send your sort code.</p><p class="m them bad">Click here to receive your payment: secure-pay-confirm.top</p></div><div class="bx-res high"><b>Sends a link to "receive" your payment</b><ul><li style="--k:0">You never need a link to receive money</li><li style="--k:1">Fake payment pages steal card details</li></ul></div></div></div>
         <p class="bx-cap">Reads chats on Vinted, eBay, Gumtree, Facebook Marketplace and rental sites, and flags known tricks as messages arrive.</p>
       </div><div class="bx-panel" role="tabpanel" id="bp-shot" aria-labelledby="bt-shot">
-        <div class="bx-card"><div class="bx-hd"><img src="img/logo.webp" alt="">Check a screenshot<span class="pro-tag sm">Pro</span></div><div class="bx-body"><div class="bx-in bx-phone"><span class="pn"><span class="pn-h">+44 7700 900461</span><span class="pb">Hi Mum, I've dropped my phone, this is my new number</span><span class="pb">Can you pay a bill for me? I'll pay you back tomorrow</span></span></div><div class="bx-res high"><b>Strong signs of a scam</b><ul><li style="--k:0">Says it's family on a new number</li><li style="--k:1">Asks for money urgently</li><li style="--k:2">Read from your screenshot on this computer</li></ul></div></div></div>
+        <div class="bx-card"><div class="bx-hd"><img src="img/logo.webp" alt="">Check a screenshot<span class="pro-tag sm">Pro</span></div><div class="bx-body"><div class="bx-in bx-phone"><span class="pn"><span class="pn-st"><b>16:42</b><span></span></span><span class="pn-h"><span class="pn-av">?</span>+44 7700 900461</span><span class="pb">Hi Mum, I've dropped my phone. This is my new number</span><span class="pb">Can you pay a bill for me? I'll pay you back tomorrow x</span></span></div><div class="bx-res high"><b>Strong signs of a scam</b><ul><li style="--k:0">Says it's family on a new number</li><li style="--k:1">Asks for money urgently</li></ul></div></div></div>
         <p class="bx-cap">Got a dodgy text on your phone? Drop in a screenshot and Doorman reads it, without uploading it anywhere.</p>
       </div><div class="bx-panel" role="tabpanel" id="bp-list" aria-labelledby="bt-list">
         <div class="bx-card"><div class="bx-hd"><img src="img/logo.webp" alt="">Daily scam-site list<span class="pro-tag sm">Pro</span></div><div class="bx-body"><div class="bx-in bx-browser"><div class="bb-bar"><span class="tl"><i></i><i></i><i></i></span><span class="bb-url">hmrc-tax-refund.uk/claim</span></div><div class="bb-pg"><b>HMRC</b><span class="bb-t">Claim your £326.17 tax refund</span><span class="bb-f">National Insurance number</span></div></div><div class="bx-res high"><b>Reported as a phishing site</b><ul><li style="--k:0">It's on today's list of reported scam websites</li><li style="--k:1">The list is on your computer, so nobody sees what you visit</li></ul></div></div></div>
         <p class="bx-cap">Every day Doorman downloads a list of hundreds of thousands of reported phishing websites, and checks it on your computer.</p>
       </div><div class="bx-panel" role="tabpanel" id="bp-alerts" aria-labelledby="bt-alerts">
-        <div class="bx-card"><div class="bx-hd"><img src="img/logo.webp" alt="">Alerts for other tabs<span class="pro-tag sm">Pro</span></div><div class="bx-body"><div class="bx-in bx-note"><img src="img/logo.webp" alt=""><span><b>Doorman</b><span>A tab you aren't looking at has strong signs of a scam</span><small>royalmail-fee.info</small></span></div><div class="bx-res high"><b>Strong signs of a scam in another tab</b><ul><li style="--k:0">Switch to it to see why</li><li style="--k:1">Or close it from the notification</li></ul></div></div></div>
+        <div class="bx-card"><div class="bx-hd"><img src="img/logo.webp" alt="">Alerts for other tabs<span class="pro-tag sm">Pro</span></div><div class="bx-body"><div class="bx-in bx-tabs"><div class="tabstrip"><span class="tab on">Inbox</span><span class="tab bad"><i></i>Royal Mail: pay your fee</span></div><div class="tabs-pg"><i></i><i class="s"></i><i></i><i class="s"></i></div><div class="bx-note pop"><img src="img/logo.webp" alt=""><span><b>Doorman</b><span>Strong signs of a scam in a tab you aren't looking at</span><small>royalmail-fee.info</small></span></div></div><div class="bx-res high"><b>Strong signs of a scam in another tab</b><ul><li style="--k:0">Click the notification to see why</li><li style="--k:1">Or close the tab before it can do anything</li></ul></div></div></div>
         <p class="bx-cap">A notification if a scam page is open in a tab you aren't looking at, so a page that loaded in the background doesn't catch you out.</p>
       </div><div class="bx-panel" role="tabpanel" id="bp-clean" aria-labelledby="bt-clean">
-        <div class="bx-card"><div class="bx-hd"><img src="img/logo.webp" alt="">Clean photo copies<span class="pro-tag sm">Pro</span></div><div class="bx-body"><div class="bx-in bx-clean"><span class="cp"><svg viewBox="0 0 120 80" aria-hidden="true"><defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9FD3FF"/><stop offset="1" stop-color="#E6F4FF"/></linearGradient></defs><rect width="120" height="80" fill="url(#sky)"/><circle cx="92" cy="20" r="9" fill="#FFE08A"/><path d="M0 62 30 40l22 16 20-14 48 26v12H0z" fill="#5FB37A"/><path d="M0 70 40 54l30 12 50-8v22H0z" fill="#3E8E5C"/><rect x="18" y="46" width="22" height="18" fill="#F4E9DA"/><path d="m16 47 13-10 13 10z" fill="#B85C3C"/></svg><small>Location: 51.50735, -0.16562</small></span><span class="arr" aria-hidden="true">→</span><span class="cp ok"><svg viewBox="0 0 120 80" aria-hidden="true"><defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9FD3FF"/><stop offset="1" stop-color="#E6F4FF"/></linearGradient></defs><rect width="120" height="80" fill="url(#sky)"/><circle cx="92" cy="20" r="9" fill="#FFE08A"/><path d="M0 62 30 40l22 16 20-14 48 26v12H0z" fill="#5FB37A"/><path d="M0 70 40 54l30 12 50-8v22H0z" fill="#3E8E5C"/><rect x="18" y="46" width="22" height="18" fill="#F4E9DA"/><path d="m16 47 13-10 13 10z" fill="#B85C3C"/></svg><small>Location removed</small></span></div><div class="bx-res ok"><b>Clean copy saved</b><ul><li style="--k:0">Location, date and phone details removed</li><li style="--k:1">Your original photo isn't changed</li></ul></div></div></div>
+        <div class="bx-card"><div class="bx-hd"><img src="img/logo.webp" alt="">Clean photo copies<span class="pro-tag sm">Pro</span></div><div class="bx-body"><div class="bx-in bx-clean2"><div class="cc"><span class="ccimg"><svg viewBox="0 0 120 80" aria-hidden="true"><defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9FD3FF"/><stop offset="1" stop-color="#E6F4FF"/></linearGradient></defs><rect width="120" height="80" fill="url(#sky2)"/><circle cx="92" cy="20" r="9" fill="#FFE08A"/><path d="M0 62 30 40l22 16 20-14 48 26v12H0z" fill="#5FB37A"/><path d="M0 70 40 54l30 12 50-8v22H0z" fill="#3E8E5C"/><rect x="18" y="46" width="22" height="18" fill="#F4E9DA"/><path d="m16 47 13-10 13 10z" fill="#B85C3C"/></svg><span class="pin sm"><svg viewBox="0 0 24 24" fill="#fff" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span></span><b>Your photo</b><dl><dt>Location</dt><dd class="bad">51.507, -0.166</dd><dt>Taken</dt><dd class="bad">14 Aug 2026</dd><dt>Phone</dt><dd class="bad">iPhone 15</dd></dl></div><span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><div class="cc ok"><span class="ccimg"><svg viewBox="0 0 120 80" aria-hidden="true"><defs><linearGradient id="sky3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9FD3FF"/><stop offset="1" stop-color="#E6F4FF"/></linearGradient></defs><rect width="120" height="80" fill="url(#sky3)"/><circle cx="92" cy="20" r="9" fill="#FFE08A"/><path d="M0 62 30 40l22 16 20-14 48 26v12H0z" fill="#5FB37A"/><path d="M0 70 40 54l30 12 50-8v22H0z" fill="#3E8E5C"/><rect x="18" y="46" width="22" height="18" fill="#F4E9DA"/><path d="m16 47 13-10 13 10z" fill="#B85C3C"/></svg></span><b>Clean copy</b><dl><dt>Location</dt><dd class="ok">Removed</dd><dt>Taken</dt><dd class="ok">Removed</dd><dt>Phone</dt><dd class="ok">Removed</dd></dl></div></div><div class="bx-res ok"><b>Clean copy saved</b><ul><li style="--k:0">Ready to post on a selling site</li><li style="--k:1">Your original photo isn't changed</li></ul></div></div></div>
         <p class="bx-cap">Saves a copy of your photo with the hidden location and details taken out, ready to post.</p>
       </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="market" aria-labelledby="mk-h">
+  <div class="mk-track">
+    <div class="mk-pin">
+      <div class="wrap mk-grid" data-build>
+        <div class="mk-text">
+          <p class="mk-kicker"><span class="pro-tag">Pro</span> Marketplace Guard</p>
+          <h2 id="mk-h">A second pair of eyes when you're buying and selling</h2>
+          <p class="mk-lead">Marketplace Guard reads chats on selling and rental sites as messages arrive, and points out each trick the moment it happens.</p>
+          <p class="sp-l">What Doorman spotted in this chat</p>
+          <ol class="spotted">
+            <li data-t="3" class="amber"><span class="sn">1</span><span><b>Can't meet in person</b><small>A buyer who sends a "courier" is often setting up a fake payment.</small></span></li>
+            <li data-t="4" class="amber"><span class="sn">2</span><span><b>Asks for your bank details</b><small>Real buyers pay through the site, so they don't need them.</small></span></li>
+            <li data-t="6" class="red"><span class="sn">3</span><span><b>A link to "receive" your payment</b><small>You never need a link to receive money.</small></span></li>
+          </ol>
+        </div>
+        <div class="chat" role="img" aria-label="Example chat: a buyer asks about an iPhone, says their courier will collect, asks for bank details, then sends a link to receive payment. Marketplace Guard flags each trick and shows a high risk warning.">
+          <div class="ch-top"><span class="av">J</span><div><b>Jordan</b><small>Interested in: iPhone 14 Pro, £520</small></div><span class="ch-prog"><i></i></span></div>
+          <div class="msgs">
+            <p class="m them" data-s="1">Hi, is this still available?</p>
+            <p class="m me" data-s="2">Yes it is!</p>
+            <p class="m them" data-s="3">Great. I'm working away so my courier will collect it.</p>
+            <p class="flag" data-s="3"><i aria-hidden="true">1</i>Can't meet in person</p>
+            <p class="m them" data-s="4">I'll pay by bank transfer, just send your sort code and account number.</p>
+            <p class="flag" data-s="4"><i aria-hidden="true">2</i>Asks for your bank details</p>
+            <p class="m them bad" data-s="5">Sent the money. Click here to receive your payment: secure-pay-confirm.top/receive</p>
+          </div>
+          <div class="guard">
+            <div class="gh"><img src="img/logo.webp" alt=""><b>Marketplace Guard</b></div>
+            <span class="chip">High risk</span>
+            <b>Sends a link to "receive" your payment</b>
+            <span class="gw">You never need a link to receive money. Fake payment pages steal card details.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap mk-after">
+    <p class="mk-mlead">Marketplace Guard reads chats as messages arrive, and speaks up the moment a buyer, seller or "landlord" tries one of the usual tricks.</p>
+    <div class="mk-works"><p class="mk-sites-l">Works on</p><ul class="sites" aria-label="Sites Marketplace Guard works on"><li>Vinted</li><li>eBay</li><li>Gumtree</li><li>Facebook Marketplace</li><li>Depop</li><li>SpareRoom</li><li>Rightmove</li><li>Zoopla</li><li>OpenRent</li><li>AutoTrader</li></ul></div><p class="mk-also">It also watches for overpayments, deposits before a viewing, and buyers or sellers who try to move the chat to WhatsApp.</p>
   </div>
 </section>
 
@@ -382,9 +379,9 @@
   </div>
 </footer>
 
-<script src="js/engine.js?v=8"></script>
-<script src="js/app.js?v=8"></script>
-<script src="js/motion.js?v=8"></script>
+<script src="js/engine.js?v=9"></script>
+<script src="js/app.js?v=9"></script>
+<script src="js/motion.js?v=9"></script>
 <script>
 (function () {
   const msg = document.getElementById('msg'), out = document.getElementById('out');
