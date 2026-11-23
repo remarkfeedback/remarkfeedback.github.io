@@ -320,6 +320,32 @@ body{background:var(--paper)}
   .pr{padding:18px}
 }
 .hav img{width:58px;height:58px;border-radius:50%;display:block}
+
+.ph{font:800 24px/1.1 var(--sans);letter-spacing:-.02em;margin:44px 0 14px}
+.promlist{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 28px}
+.promlist li{position:relative;padding-left:28px;font-size:16px;line-height:1.45}
+.promlist li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border-radius:50%;background:#17A86F url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' stroke='%23fff' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
+.promlist a{color:inherit}
+.wherebox{margin-top:30px;border:2px solid var(--rule,#E2E5EA);border-radius:16px;padding:4px 18px}
+.wherebox summary{cursor:pointer;font:700 17px var(--sans);padding:14px 0;list-style:none}
+.wherebox summary::after{content:"+";float:right;font-size:22px;line-height:1}
+.wherebox[open] summary::after{content:"\2212"}
+.wherebox .where{margin:0 0 16px}
+@media (max-width:600px){
+  .promlist{grid-template-columns:1fr}
+  .case{display:none}
+  .steps li span{font-size:15px}
+  .wherebox .where{grid-template-columns:1fr;gap:6px}
+  .wherebox .where div{padding:10px 12px;font-size:15px}
+}
+@media (max-width:600px){
+  .steps{gap:0}
+  .steps>li{display:grid;grid-template-columns:36px 1fr;column-gap:12px;border-top:1px solid var(--rule,#E2E5EA);padding:14px 0}
+  .steps>li::before{grid-row:1/3;margin:0;width:28px;height:28px}
+  .steps b{font-size:17px;margin-bottom:2px}
+  .steps span{line-height:1.4}
+  .how .sub{margin-bottom:14px}
+}
 </style>
 <style>
 .human{padding:56px 0}
@@ -461,6 +487,16 @@ body{background:var(--paper)}
       <li class="rise" data-in style="--d:.16s"><b>You get the report</b><span>A plain-English list of what we found, ranked by risk, with what can and can't be removed and what to do next.</span></li>
       <li class="rise" data-in style="--d:.24s"><b>We send the removal requests (£69 service)</b><span>With your written permission we send the requests, chase the ones that don't reply, and tell you the outcome of each: removed, refused, or public by law.</span></li>
     </ol>
+    <h3 class="ph" id="promises">Our promises</h3>
+    <ul class="promlist">
+      <li><b>We only ever search for you.</b> Your details must match your payment, so nobody can use us to find someone else.</li>
+      <li><b>Never sold.</b> We share your details only with the sites we ask to remove them. <a href="/privacy-sweep/privacy.html">Privacy policy</a></li>
+      <li><b>Straight about the limits.</b> Some records are public by law, and we'll tell you which before you pay for removals.</li>
+      <li><b>Nothing to remove? Full refund.</b></li>
+      <li><b>No fake reviews.</b> We're new, and we say so.</li>
+      <li><b>A real person replies</b>, not a chatbot.</li>
+    </ul>
+    <details class="wherebox"><summary>Where we look</summary>
     <div class="where">
       <div><svg class="warn" aria-hidden="true"><use href="#w"/></svg>People-search and data broker websites</div>
       <div><svg class="warn" aria-hidden="true"><use href="#w"/></svg>Official public registers and records</div>
@@ -471,23 +507,10 @@ body{background:var(--paper)}
       <div><svg class="warn" aria-hidden="true"><use href="#w"/></svg>Social media, apps and old accounts</div>
       <div><svg class="warn" aria-hidden="true"><use href="#w"/></svg>Maps and street-level imagery</div>
     </div>
+    </details>
   </div>
 </section>
 
-<section class="sec promises" id="promises" data-dark>
-  <div class="wrap">
-    <h2>Our promises</h2>
-    <p class="sub">You're trusting us with the very details you want hidden. Here's how we treat them.</p>
-    <div class="pgrid">
-      <div class="pr rise" data-in><svg viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="11" r="5" fill="none" stroke="#5FE0A8" stroke-width="2.4"/><path d="M5 26c1.5-5 5.5-8 10-8s8.5 3 10 8" fill="none" stroke="#5FE0A8" stroke-width="2.4" stroke-linecap="round"/></svg><b>We only ever search for you</b><p>Your details must match your payment, and you sign a permission letter before we start. Privasweep can never be used to track down someone else.</p></div>
-      <div class="pr rise" data-in style="--d:.08s"><svg viewBox="0 0 30 30" aria-hidden="true"><rect x="6" y="13" width="18" height="13" rx="3" fill="none" stroke="#5FE0A8" stroke-width="2.4"/><path d="M10 13V9a5 5 0 0110 0v4" fill="none" stroke="#5FE0A8" stroke-width="2.4"/></svg><b>Never sold</b><p>We collect only what's needed to find and remove your details. We don't sell it. We share it only with the sites we ask to remove it and the providers that run our service, such as payments and email. <a href="/privacy-sweep/privacy.html" style="color:inherit">Full privacy policy</a>.</p></div>
-      <div class="pr rise" data-in style="--d:.16s"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M15 4l9 4v7c0 6-4 9.5-9 11-5-1.5-9-5-9-11V8z" fill="none" stroke="#5FE0A8" stroke-width="2.4" stroke-linejoin="round"/><path d="M11 15l3 3 5-6" fill="none" stroke="#5FE0A8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Your rights, used properly</b><p>UK data protection law lets you ask companies to delete your data, and lets us act for you with your written permission.</p></div>
-      <div class="pr rise" data-in><svg viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="10" fill="none" stroke="#5FE0A8" stroke-width="2.4"/><path d="M15 10v6M15 20v.5" stroke="#5FE0A8" stroke-width="2.6" stroke-linecap="round"/></svg><b>Straight about the limits</b><p>Some records are public by law. We'll tell you exactly what can't be removed before you pay for removals.</p></div>
-      <div class="pr rise" data-in style="--d:.08s"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M6 8h18M6 15h12M6 22h15" stroke="#5FE0A8" stroke-width="2.4" stroke-linecap="round"/></svg><b>No fake reviews</b><p>We're new, and we'll say so. You won't see made-up testimonials here, just what we do and what it costs.</p></div>
-      <div class="pr rise" data-in style="--d:.16s"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M5 9l10 7 10-7" fill="none" stroke="#5FE0A8" stroke-width="2.4" stroke-linejoin="round"/><rect x="5" y="7" width="20" height="16" rx="3" fill="none" stroke="#5FE0A8" stroke-width="2.4"/></svg><b>A real person replies</b><p>Questions are answered by a real person, not a ticket queue or a chatbot.</p></div>
-    </div>
-  </div>
-</section>
 
 <section class="case" data-scene id="case" data-dark aria-label="How a stranger builds a profile of you from public websites">
   <div class="pin">
@@ -528,21 +551,6 @@ body{background:var(--paper)}
   </div>
 </section>
 
-<section class="sec">
-  <div class="wrap">
-    <h2>Your details are worth something to criminals.</h2>
-    <p class="sub">Burglary and identity fraud happen on a huge scale in the UK. The less of your life that sits on public websites, the harder you are to target.</p>
-    <div class="grid">
-      <div class="stat dark rise" data-in><div class="n"><span data-count="900" data-pre="~">~900</span></div><p>homes burgled every day in England and Wales</p><small>327,000 domestic burglaries in the year to December 2025 (ONS).</small></div>
-      <div class="stat rise" data-in style="--d:.08s"><div class="n"><span data-count="444">444</span>k</div><p>fraud cases recorded in the UK in 2025, a record. More than 1,200 a day.</p><small>Cifas, Fraudscape 2026.</small></div>
-      <div class="stat rise" data-in style="--d:.16s"><div class="n r"><span data-count="59">59</span>%</div><p>of fraud cases in early 2026 were identity fraud, which runs on stolen personal details</p><small>Cifas, Fraudscape 2026 six-month update.</small></div>
-      <div class="stat rise" data-in><div class="n">+<span data-count="9">9</span>%</div><p>rise in identity fraud in the first half of 2026, the highest January to June total on record</p><small>Cifas, Fraudscape 2026 six-month update.</small></div>
-      <div class="stat rise" data-in style="--d:.08s"><div class="n">2×</div><p>Company directors are twice as likely to be victims of identity fraud</p><small>GOV.UK figure, cited by TaxAssist Accountants.</small></div>
-      <div class="stat dark rise" data-in style="--d:.16s"><div class="n r">£0</div><p>to see someone's name, area and household on the biggest people-search site</p><small>Free search results. The full record costs extra.</small></div>
-    </div>
-    <p class="honest">To be straight with you: removing your details won't make crime impossible, and nobody honest will promise that. It means a stranger can't find where you live, who you live with and what you own with one quick search.</p>
-  </div>
-</section>
 
 <section class="sec faq">
   <div class="wrap">
@@ -559,6 +567,22 @@ body{background:var(--paper)}
       <details><summary>Can I cancel?</summary><p>Yes. Cancel within 14 days of booking and we'll refund you in full if we haven't started your search. If we have started at your request, we'll refund the part we haven't done yet. Email hello@survivelabs.co.uk.</p></details>
       <details><summary>Who is it for?</summary><p>Anyone, but especially online sellers, company directors, landlords and anyone who'd rather a stranger couldn't find their front door.</p><p>Privacy guides for your job: <a href="/guides/home-address-privacy-solicitors.html">Solicitors</a>, <a href="/guides/home-address-privacy-accountants.html">accountants</a>, <a href="/guides/home-address-privacy-estate-agents.html">estate agents</a>, <a href="/guides/home-address-privacy-nhs-staff.html">NHS staff</a>, <a href="/guides/home-address-privacy-teachers.html">teachers</a>, <a href="/guides/home-address-privacy-landlords.html">landlords</a>.</p><p>Landlord? Registration on the new landlord database opens on 15 December. <a href="/privacy-sweep/landlords/">See where your home address already appears before you register</a>.</p></details>
     </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2>Your details are worth something to criminals.</h2>
+    <p class="sub">Burglary and identity fraud happen on a huge scale in the UK. The less of your life that sits on public websites, the harder you are to target.</p>
+    <div class="grid">
+      <div class="stat dark rise" data-in><div class="n"><span data-count="900" data-pre="~">~900</span></div><p>homes burgled every day in England and Wales</p><small>327,000 domestic burglaries in the year to December 2025 (ONS).</small></div>
+      <div class="stat rise" data-in style="--d:.08s"><div class="n"><span data-count="444">444</span>k</div><p>fraud cases recorded in the UK in 2025, a record. More than 1,200 a day.</p><small>Cifas, Fraudscape 2026.</small></div>
+      <div class="stat rise" data-in style="--d:.16s"><div class="n r"><span data-count="59">59</span>%</div><p>of fraud cases in early 2026 were identity fraud, which runs on stolen personal details</p><small>Cifas, Fraudscape 2026 six-month update.</small></div>
+      <div class="stat rise" data-in><div class="n">+<span data-count="9">9</span>%</div><p>rise in identity fraud in the first half of 2026, the highest January to June total on record</p><small>Cifas, Fraudscape 2026 six-month update.</small></div>
+      <div class="stat rise" data-in style="--d:.08s"><div class="n">2×</div><p>Company directors are twice as likely to be victims of identity fraud</p><small>GOV.UK figure, cited by TaxAssist Accountants.</small></div>
+      <div class="stat dark rise" data-in style="--d:.16s"><div class="n r">£0</div><p>to see someone's name, area and household on the biggest people-search site</p><small>Free search results. The full record costs extra.</small></div>
+    </div>
+    <p class="honest">To be straight with you: removing your details won't make crime impossible, and nobody honest will promise that. It means a stranger can't find where you live, who you live with and what you own with one quick search.</p>
   </div>
 </section>
 
