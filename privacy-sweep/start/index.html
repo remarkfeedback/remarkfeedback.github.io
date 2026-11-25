@@ -54,7 +54,7 @@
 <div id="checking" class="box"><p>Checking your payment&hellip;</p></div>
 <div id="blocked" class="box" hidden>
   <p><strong id="bt">This form is only for customers who have paid.</strong></p>
-  <p id="bm">Please use the link you were sent to straight after paying. If you've paid and this keeps happening, email <a href="mailto:hello@survivelabs.co.uk">hello@survivelabs.co.uk</a> and we'll sort it out.</p>
+  <p id="bm">Please use the link you were sent to straight after paying. If you've paid and this keeps happening, <a href="/contact/?topic=Privasweep">send us a message</a> and we'll sort it out.</p>
 </div>
 
 <form id="f" class="rvf" novalidate hidden>
@@ -94,7 +94,7 @@
   <p><strong>Your permission</strong>, recorded <span id="when"></span>:</p>
   <p id="gave" style="font-style:italic"></p>
   <p><button type="button" onclick="window.print()" style="font:700 16px var(--sans);background:var(--white);color:var(--ink);border:1.5px solid var(--ink);border-radius:10px;padding:10px 16px;min-height:44px;cursor:pointer">Save or print a copy</button></p>
-  <p>Questions, or want to change anything? Email <a href="mailto:hello@survivelabs.co.uk">hello@survivelabs.co.uk</a>.</p>
+  <p>Questions, or want to change anything? <a href="/contact/?topic=Privasweep">send us a message</a>.</p>
 </div>
 </div>
 <script>
@@ -111,10 +111,10 @@
   else fetch(ENDPOINT+'?session='+encodeURIComponent(session)).then(function(r){return r.json()}).then(function(j){
     if(j.valid){plan=j.plan==='dfy'?'dfy':'report';$('wording').textContent='\u201C'+W[plan]+'\u201D';
       $('checking').hidden=true;$('paid').hidden=false;$('f').hidden=false;return;}
-    if(j.reason==='used')block('We already have your details for this order.','Thanks, there\u2019s nothing more to do. If you need to change anything, email <a href="mailto:hello@survivelabs.co.uk">hello@survivelabs.co.uk</a>.');
-    else if(j.reason==='server')block('Sorry, we couldn\u2019t check your payment just now.','Please refresh this page in a minute. If it keeps happening, email <a href="mailto:hello@survivelabs.co.uk">hello@survivelabs.co.uk</a>.');
+    if(j.reason==='used')block('We already have your details for this order.','Thanks, there\u2019s nothing more to do. If you need to change anything, <a href="/contact/?topic=Privasweep">send us a message</a>.');
+    else if(j.reason==='server')block('Sorry, we couldn\u2019t check your payment just now.','Please refresh this page in a minute. If it keeps happening, <a href="/contact/?topic=Privasweep">send us a message</a>.');
     else block();
-  }).catch(function(){block('Sorry, we couldn\u2019t check your payment just now.','Please refresh this page in a minute. If it keeps happening, email <a href="mailto:hello@survivelabs.co.uk">hello@survivelabs.co.uk</a>.');});
+  }).catch(function(){block('Sorry, we couldn\u2019t check your payment just now.','Please refresh this page in a minute. If it keeps happening, <a href="/contact/?topic=Privasweep">send us a message</a>.');});
   var f=document.getElementById('f'),err=document.getElementById('err'),go=document.getElementById('go');
   var v=function(id){return document.getElementById(id).value.trim()};
   f.addEventListener('submit',function(e){
@@ -134,7 +134,7 @@
       f.style.display='none';document.getElementById('done').style.display='block';window.scrollTo(0,0);
     }).catch(function(){
       go.disabled=false;go.textContent='Send my details';
-      err.textContent='Sorry, that didn’t send. Please try again, or email your details to hello@survivelabs.co.uk.';
+      err.textContent='Sorry, that didn’t send. Please try again, or message us at survivelabs.co.uk/contact.';
     });
   });
 })();
