@@ -90,11 +90,11 @@
   if (!reduce && !arriving && !seen && /^\/(remark\/|themely\/|tools\/)?(index\.html)?$/.test(location.pathname)) {
     const intro = document.createElement('div');
     intro.className = 'sl-intro'; intro.setAttribute('aria-hidden', 'true');
-    const poly = "M606 506V590L492 782Q486 818 520 818H790Q824 818 818 782L704 590V506";
-    const wave = y => `M380 ${y} q40 -18 80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 V900 H380 Z`;
-    intro.innerHTML = `<svg viewBox="440 420 430 440"><defs><clipPath id="slLiq"><path d="M630 560L528 790H782L680 560Z"/></clipPath></defs>
-      <g class="fl"><path class="key" d="${poly}"/><rect class="keyr" x="546" y="456" width="218" height="72" rx="36"/><path class="body" d="${poly}"/><rect class="bodyr" x="566" y="476" width="178" height="40" rx="20"/>
-      <g clip-path="url(#slLiq)"><g class="lvl"><path class="wave back" d="${wave(712)}"/><path class="wave" d="${wave(722)}"/></g><circle class="bub" cx="668" cy="700" r="17"/><circle class="bub" cx="636" cy="730" r="12"/><circle class="bub" cx="700" cy="720" r="9"/></g></g></svg><b>Survive <i>Labs</i></b>`;
+    const wave = y => `M60 ${y} q20 -12 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 V460 H60 Z`;
+    intro.innerHTML = `<svg viewBox="70 60 372 380"><defs><clipPath id="slLiq"><path d="M226 214 L150 352 Q138 378 166 380 H346 Q374 378 362 352 L286 214 Z"/></clipPath></defs>
+      <path class="ol" d="M190 82 H322 Q348 82 348 110 Q348 136 318 142 V198 L414 360 Q438 410 388 420 H124 Q74 410 98 360 L194 198 V142 Q164 136 164 110 Q164 82 190 82 Z"/>
+      <g class="gl"><rect x="186" y="104" width="140" height="36" rx="18"/><path d="M214 140 H298 V206 L384 356 Q398 392 366 396 H146 Q114 392 128 356 L214 206 Z"/></g>
+      <g clip-path="url(#slLiq)"><g class="lvl"><path class="wave back" d="${wave(296)}"/><path class="wave" d="${wave(306)}"/></g><circle class="bub" cx="278" cy="252" r="20"/><circle class="bub" cx="236" cy="284" r="13"/><circle class="bub" cx="300" cy="300" r="9"/></g></svg><b>Survive <i>Labs</i></b>`;
     document.documentElement.appendChild(intro);
     let done; SL.introDone = new Promise(r => done = r);
     let ended = false;
@@ -106,7 +106,7 @@
         requestAnimationFrame(() => requestAnimationFrame(() => { wipe.className = 'sl-wipe out'; }));
       }, 560);
     };
-    const t = setTimeout(finish, 1750);
+    const t = setTimeout(finish, 1950);
     intro.addEventListener('click', () => { clearTimeout(t); finish(); });
     addEventListener('keydown', () => { clearTimeout(t); finish(); }, { once: true });
   }

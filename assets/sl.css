@@ -4,8 +4,8 @@
 
 :root{
   --paper:#F6F7F9; --white:#FFFFFF; --ink:#0E1525; --ink2:#2A3245; --mut:#5B6375; --rule:#DCE0E7;
-  --hl:#FFE14D; --pen:#FF6A1F; --pen-deep:#E2530D;
-  --charcoal:#141518; --charcoal2:#1E2026; --chalk:#ECECEF;
+  --hl:#A9CDFF; --pen:#1F6FFF; --pen-deep:#0A52D6; --glow:#1E86FF;
+  --charcoal:#0E1117; --charcoal2:#161B26; --chalk:#ECECEF;
   --mint:#2BD4A0; --mint-soft:#BDF3E0; --sky:#9FD2FF; --rose:#FFC2C2; --lilac:#D6C8FF; --butter:#FFF0A6;
   --sans:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
   --hand:"Caveat","Bradley Hand",cursive;
@@ -65,8 +65,8 @@ a{color:inherit}
 
 /* ---------- page transition: a highlighter stroke wipes the screen ---------- */
 .sl-wipe{position:fixed;inset:-10vh -20vw;z-index:999;pointer-events:none;display:flex;flex-direction:column;justify-content:center;gap:0}
-.sl-wipe i{display:block;height:44vh;background:#2E2F31;transform:translateX(-130%) skewX(-28deg)}
-.sl-wipe i+i{margin-top:-4px}.sl-wipe i:nth-child(2){background:#FF6A00;height:14vh}.sl-wipe i:nth-child(3){background:#232427}
+.sl-wipe i{display:block;height:44vh;background:#0E1117;transform:translateX(-130%) skewX(-28deg)}
+.sl-wipe i+i{margin-top:-4px}.sl-wipe i:nth-child(2){background:linear-gradient(90deg,#0A52D6,#1E86FF 50%,#5FD0FF);height:14vh;box-shadow:0 0 60px 10px rgba(30,134,255,.55)}.sl-wipe i:nth-child(3){background:#0A0D13}
 .sl-wipe.in i{transition:transform .55s var(--ease);transform:translateX(0) skewX(-28deg)}
 .sl-wipe.in i:nth-child(2){transition-delay:.06s}.sl-wipe.in i:nth-child(3){transition-delay:.12s}
 .sl-wipe.cover i{transform:translateX(0) skewX(-28deg)}
@@ -94,27 +94,24 @@ a{color:inherit}
   .sl-wipe{display:none}
 }
 
-/* ---------- opening moment: the SL mark assembles, the flask fills, then the highlighter reveals the page ---------- */
-.sl-intro{position:fixed;inset:0;z-index:998;background:var(--paper,#F6F7F9);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;cursor:pointer}
-.sl-intro svg{width:min(150px,40vw);height:auto;overflow:visible}
-.sl-intro .s{fill:#2E2F31;fill-rule:evenodd;opacity:0;transform:translateX(-140px);animation:slIn .55s cubic-bezier(.2,.8,.2,1) forwards}
-.sl-intro .l{fill:#FF6A00;fill-rule:evenodd;opacity:0;transform:translateX(140px);animation:slIn .55s .08s cubic-bezier(.2,.8,.2,1) forwards}
-.sl-intro .fl{transform-box:fill-box;transform-origin:50% 100%;opacity:0;transform:translateY(-120px) scale(.7);animation:slDrop .55s .35s cubic-bezier(.3,1.5,.5,1) forwards}
-.sl-intro .key,.sl-intro .keyr{fill:var(--paper,#F6F7F9)}.sl-intro .key{stroke:var(--paper,#F6F7F9);stroke-width:80;stroke-linejoin:round}
-.sl-intro .body,.sl-intro .bodyr{fill:#2E2F31}.sl-intro .body{stroke:#2E2F31;stroke-width:34;stroke-linejoin:round}
-.sl-intro .lvl{transform:translateY(240px);animation:slFill .7s .75s cubic-bezier(.3,.1,.2,1) forwards}
-.sl-intro .wave{fill:#FF6A00;animation:slWave 1.1s linear infinite}
-.sl-intro .wave.back{fill:#FFB27F;animation-duration:1.6s;animation-direction:reverse}
-.sl-intro .bub{fill:#fff;opacity:0;animation:slBub 1s 1s ease-in infinite}
-.sl-intro .bub:nth-of-type(2){animation-delay:1.3s}.sl-intro .bub:nth-of-type(3){animation-delay:1.6s}
-.sl-intro b{font:900 26px/1 'Schibsted Grotesk',system-ui,sans-serif;letter-spacing:-.04em;color:var(--ink,#0E1525);opacity:0;transform:translateY(10px);animation:slWord .5s .85s cubic-bezier(.2,.7,.2,1) forwards}
-.sl-intro b i{font-style:normal;color:#FF6A00}
+/* ---------- opening moment: the glowing outline draws, the flask drops in, it fills with blue, then the wipe reveals the page ---------- */
+.sl-intro{position:fixed;inset:0;z-index:998;background:radial-gradient(900px 700px at 50% 45%,#182033 0%,#0E1117 60%,#090B10 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;cursor:pointer}
+.sl-intro svg{width:min(170px,42vw);height:auto;overflow:visible}
+.sl-intro .ol{fill:none;stroke:#1E86FF;stroke-width:7;stroke-linejoin:round;stroke-dasharray:1400;stroke-dashoffset:1400;filter:drop-shadow(0 0 10px rgba(30,134,255,.9));animation:slDraw .9s .05s cubic-bezier(.6,.1,.3,1) forwards}
+.sl-intro .gl{fill:#F4F6FA;transform-box:fill-box;transform-origin:50% 100%;opacity:0;transform:translateY(-60px) scale(.8);animation:slDrop .55s .45s cubic-bezier(.3,1.5,.5,1) forwards}
+.sl-intro .lvl{transform:translateY(130px);animation:slFill .6s .7s cubic-bezier(.3,.1,.2,1) forwards}
+.sl-intro .wave{fill:#0A5EE8;animation:slWave 1.2s linear infinite}
+.sl-intro .wave.back{fill:#5FB4FF;opacity:.55;animation-duration:1.7s;animation-direction:reverse}
+.sl-intro .bub{fill:#0A5EE8;opacity:0;animation:slBub 1.1s 1.05s ease-out infinite}
+.sl-intro .bub:nth-of-type(2){animation-delay:1.3s}.sl-intro .bub:nth-of-type(3){animation-delay:1.55s}
+.sl-intro b{font:900 28px/1 'Schibsted Grotesk',system-ui,sans-serif;letter-spacing:-.04em;color:#F4F6FA;opacity:0;transform:translateY(10px);animation:slWord .5s .95s cubic-bezier(.2,.7,.2,1) forwards}
+.sl-intro b i{font-style:normal;color:#3D8BFF;text-shadow:0 0 18px rgba(30,134,255,.6)}
 .sl-intro.gone{display:none}
-@keyframes slIn{to{opacity:1;transform:none}}
+@keyframes slDraw{to{stroke-dashoffset:0}}
 @keyframes slDrop{to{opacity:1;transform:none}}
 @keyframes slFill{to{transform:translateY(0)}}
-@keyframes slWave{to{transform:translateX(-160px)}}
-@keyframes slBub{0%{opacity:0;transform:translateY(0)}20%{opacity:.95}100%{opacity:0;transform:translateY(-150px)}}
+@keyframes slWave{to{transform:translateX(-80px)}}
+@keyframes slBub{0%{opacity:0;transform:translateY(16px)}25%{opacity:1}100%{opacity:0;transform:translateY(-34px)}}
 @keyframes slWord{to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.sl-intro{display:none}}
 html,body{overflow-x:clip}
