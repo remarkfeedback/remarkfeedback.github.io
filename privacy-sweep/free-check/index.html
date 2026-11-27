@@ -83,6 +83,9 @@ footer.cf a{color:#C9CFDB;margin:0 10px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 <script src="/assets/sl.js?v=20261127"></script>
+<!-- Google Ads measurement: consent mode, no cookies set -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18583381567"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});gtag('js',new Date());gtag('config','AW-18583381567');</script>
 </head>
 <body data-dark>
 <header class="sl-nav">
@@ -183,6 +186,7 @@ footer.cf a{color:#C9CFDB;margin:0 10px}
       else $('ref').textContent=j.ref||'';
       f.style.display='none';$('done').style.display='block';
       try{if(window.sl_track)sl_track('free_check')}catch(e){}
+      try{if(!j.repeat&&window.gtag)gtag('event','conversion',{send_to:'AW-18583381567/flftCKfpxMAdEL_Mn51F',value:1.0,currency:'GBP'})}catch(e){}
     }).catch(function(){go.disabled=false;go.textContent='Check my details free';err.textContent='Sorry, that didn\u2019t send. Please try again in a minute.';});
   });
 })();
