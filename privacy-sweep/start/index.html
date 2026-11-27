@@ -11,6 +11,9 @@
 <link rel="apple-touch-icon" href="/privacy-sweep/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/sl.css?v=20261127"><link rel="stylesheet" href="/assets/nav.css?v=1">
 <link rel="stylesheet" href="/assets/guide.css">
+<!-- Google Ads measurement: consent mode, no cookies set -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18583381567"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});gtag('js',new Date());gtag('config','AW-18583381567');</script>
 </head>
 <body>
 <header class="sl-nav">
@@ -109,7 +112,8 @@
   function block(t,m){$('checking').hidden=true;$('blocked').hidden=false;if(t)$('bt').textContent=t;if(m)$('bm').innerHTML=m;}
   if(!/^cs_(live|test)_[A-Za-z0-9]+$/.test(session)){block();}
   else fetch(ENDPOINT+'?session='+encodeURIComponent(session)).then(function(r){return r.json()}).then(function(j){
-    if(j.valid){plan=j.plan==='dfy'?'dfy':'report';$('wording').textContent='\u201C'+W[plan]+'\u201D';
+    if(j.valid){plan=j.plan==='dfy'?'dfy':'report';
+      try{if(window.gtag)gtag('event','conversion',{send_to:'AW-18583381567/97uFCNnRycAdEL_Mn51F',value:plan==='dfy'?69.0:14.99,currency:'GBP',transaction_id:session})}catch(e){}$('wording').textContent='\u201C'+W[plan]+'\u201D';
       $('checking').hidden=true;$('paid').hidden=false;$('f').hidden=false;return;}
     if(j.reason==='used')block('We already have your details for this order.','Thanks, there\u2019s nothing more to do. If you need to change anything, <a href="/contact/?topic=Privasweep">send us a message</a>.');
     else if(j.reason==='server')block('Sorry, we couldn\u2019t check your payment just now.','Please refresh this page in a minute. If it keeps happening, <a href="/contact/?topic=Privasweep">send us a message</a>.');
